@@ -1,0 +1,28 @@
+version: "3"
+services:
+  app:
+    image: node:8.12.0
+    environment:
+    - DEBUG=True
+    - DOCKER_GATEWAY_IP=172.100.0.1
+    command: sh -c 'npm install && npm test'
+    volumes:
+    - .:/app
+    working_dir: /app
+    depends_on:
+      - syscoin
+    networks:
+      - syscoin
+  syscoin:
+    image: salikausar/syscoin-docker
+    ports:
+    - 8336:8368
+    networks:
+      - syscoin
+networks:
+  syscoin:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.100.0.0/16

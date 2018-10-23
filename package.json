@@ -1,0 +1,50 @@
+{
+  "name": "syscoin-js",
+  "version": "3.1.0",
+  "description": "Javascript SDK for the Syscoin cryptocurrency.",
+  "main": "dist",
+  "scripts": {
+    "test": "jest",
+    "testdocker": "docker-compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app && docker-compose down -v",
+    "compile": "npm run clean && ./node_modules/.bin/babel src --out-dir dist",
+    "clean": "rimraf dist",
+    "start": "node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/syscoin/syscoin-js.git"
+  },
+  "keywords": [
+    "syscoin",
+    "javascript"
+  ],
+  "author": "Blockchain Foundry",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/syscoin/syscoin-js/issues"
+  },
+  "homepage": "https://github.com/syscoin/syscoin-js#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.4.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "rimraf": "^2.6.2"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "babel-runtime": "^6.26.0",
+    "bunyan": "^1.8.12",
+    "jest": "^23.5.0",
+    "npm": "^6.4.1",
+    "syscoin-ow": "github:syscoin/syscoin-ow",
+    "xhr2": "^0.1.4"
+  },
+  "jest": {
+    "setupFiles": [
+      "./_tests_/setup.js"
+    ]
+  }
+}
