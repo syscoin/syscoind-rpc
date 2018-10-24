@@ -5,7 +5,7 @@ export function syscoinRpcMasternodeServices(callRpc) {
     return {
         broadcastByAssignedName: post(async({name} = {}) => { return await callMasterNodeBroadcastCommand('create-name', [name]); }),
         broadcastForAllMasternodes: post(async() => { return await callMasterNodeBroadcastCommand('create-all'); }),
-        count: get(async({format} = {}) => { return await callMasterNodeCommand('count') }),
+        count: get(async({format} = {}) => { return await callMasterNodeCommand('count', format ? [format] : []) }),
         decodeMessage: post(async({message} = {}) => {return await callMasterNodeBroadcastCommand('decode', [message])}),
         generatePrivateKey: post(async() => { return await callMasterNodeCommand('genkey'); }),
         getConfiguration: get(async() => { return await callMasterNodeCommand('list-conf'); }),
