@@ -5,19 +5,24 @@
 
 declare module 'syscoin-js' {
     export default class SyscoinRpcClient {
-        constructor(SyscoinRpcClientArguments);
-    }
-
-    export interface SyscoinRpcClientArguments {
-        baseUrl? : string,
-        port? : number | string,
-        username? : string,
-        password? : string,
-        useSsl?: boolean,
-        timeout?: number,
-        customHttpAgent?: any,
-        loggerLevel?: string,
-        whitelist?: Array<string>,
-        blacklist?: Array<string>
+        constructor({baseUrl,
+                port,
+                username,
+                password,
+                useSsl,
+                timeout,
+                customHttpAgent,
+                loggerLevel,
+                whitelist,
+                blacklist}: {baseUrl?: string,
+                    port?: number | string,
+                    username?: string,
+                    password?: string,
+                    useSsl?: boolean,
+                    timeout?: number,
+                    customHttpAgent?: any,
+                    loggerLevel?: string,
+                    whitelist?: Array<string>,
+                    blacklist?: Array<string>});
     }
 }
