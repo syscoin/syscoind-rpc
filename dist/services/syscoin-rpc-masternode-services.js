@@ -3,16 +3,16 @@ import { get, post } from '../endpoint-decorators';
 export function syscoinRpcMasternodeServices(callRpc) {
 
     return {
-        broadcastByAssignedName: post(async name => {
+        broadcastByAssignedName: post(async ({ name } = {}) => {
             return await callMasterNodeBroadcastCommand('create-name', [name]);
         }),
         broadcastForAllMasternodes: post(async () => {
             return await callMasterNodeBroadcastCommand('create-all');
         }),
-        count: get(async () => {
-            return await callMasterNodeCommand('count');
+        count: get(async ({ format } = {}) => {
+            return await callMasterNodeCommand('count', format ? [format] : []);
         }),
-        decodeMessage: post(async message => {
+        decodeMessage: post(async ({ message } = {}) => {
             return await callMasterNodeBroadcastCommand('decode', [message]);
         }),
         generatePrivateKey: post(async () => {
@@ -24,64 +24,70 @@ export function syscoinRpcMasternodeServices(callRpc) {
         getCurrentMasternodeWinner: get(async () => {
             return await callMasterNodeCommand('current');
         }),
-        initialize: post(async name => {
+        initialize: post(async ({ name } = {}) => {
             return await callMasterNodeCommand('initialize', [name]);
         }),
         list: {
-            activeSeconds: get(async filter => {
+            activeSeconds: get(async ({ filter } = {}) => {
                 return await listMasterNodeCall('activeseconds', filter);
             }),
-            address: get(async filter => {
+            address: get(async ({ filter } = {}) => {
                 return await listMasterNodeCall('addr', filter);
             }),
-            daemon: get(async filter => {
+            daemon: get(async ({ filter } = {}) => {
                 return await listMasterNodeCall('daemon', filter);
             }),
-            info: get(async filter => {
+            info: get(async ({ filter } = {}) => {
                 return await listMasterNodeCall('info', filter);
             }),
-            json: get(async filter => {
+            json: get(async ({ filter } = {}) => {
                 return await listMasterNodeCall('json', filter);
             }),
-            lastPaidBlock: get(async filter => {
+            lastPaidBlock: get(async ({ filter } = {}) => {
                 return await listMasterNodeCall('lastpaidblock', filter);
             }),
-            lastPaidTime: get(async filter => {
+            lastPaidTime: get(async ({ filter } = {}) => {
                 return await listMasterNodeCall('lastpaidtime', filter);
             }),
-            lastSeen: get(async filter => {
+            lastSeen: get(async ({ filter } = {}) => {
                 return await listMasterNodeCall('lastseen', filter);
             }),
-            payee: get(async filter => {
+            payee: get(async ({ filter } = {}) => {
                 return await listMasterNodeCall('payee', filter);
             }),
-            protocol: get(async filter => {
+            protocol: get(async ({ filter } = {}) => {
                 return await listMasterNodeCall('protocol', filter);
             }),
-            pubkey: get(async filter => {
+            pubkey: get(async ({ filter } = {}) => {
                 return await listMasterNodeCall('pubkey', filter);
             }),
-            rank: get(async filter => {
+            rank: get(async ({ filter } = {}) => {
                 return await listMasterNodeCall('rank', filter);
             }),
-            sentinel: get(async filter => {
+            sentinel: get(async ({ filter } = {}) => {
                 return await listMasterNodeCall('sentinel', filter);
             }),
-            status: get(async filter => {
+            status: get(async ({ filter } = {}) => {
                 return await listMasterNodeCall('status', filter);
             }),
-            full: get(async filter => {
+            full: get(async ({ filter } = {}) => {
                 return await listMasterNodeCall('full', filter);
             })
         },
         outputs: get(async () => {
             return await callMasterNodeCommand('outputs');
         }),
-        relayMessage: post(async msg => {
+        relayMessage: post(async ({ msg } = {}) => {
             return await callMasterNodeBroadcastCommand('relay', [msg]);
         }),
-        start: post(async masterNodeMode => {
-            return await callMasterNodeCommand(`start-${masterNodeMode}`);
+        startAll: post(async () => {
+            return await callMasterNodeCommand(`start-all`);
+        }),
+        startMissing: post(async () => {
+            return await callMasterNodeCommand(`start-missing`);
+        }),
+        startDisabled: post(async () => {
+            return await callMasterNodeCommand(`start-disabled`);
         }),
         status: get(async () => {
             return await callMasterNodeCommand('status');
@@ -92,10 +98,10 @@ export function syscoinRpcMasternodeServices(callRpc) {
         winners: get(async () => {
             return await callMasterNodeCommand('winners');
         }),
-        masternodeList: get(async (mode, filter) => {
+        masternodeList: get(async ({ mode, filter } = {}) => {
             return await listMasterNodeCall(mode, filter);
         }),
-        masternodeBroadcast: post(async (command, arg) => {
+        masternodeBroadcast: post(async ({ command, arg } = {}) => {
             return await callMasterNodeBroadcastCommand(command, arg);
         })
     };

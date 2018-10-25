@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "testdocker": "docker-compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app && docker-compose down -v",
-    "compile": "npm run clean && ./node_modules/.bin/babel src --out-dir dist",
+    "compile": "npm run clean && ./node_modules/.bin/babel src --out-dir dist && npm run copy-ts-defs",
+    "copy-ts-defs": "shx cp index.d.ts dist/index.d.ts",
     "clean": "rimraf dist",
     "start": "node dist/index.js"
   },
@@ -31,7 +32,8 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "shx": "^0.3.2"
   },
   "dependencies": {
     "axios": "^0.18.0",
