@@ -1,9 +1,12 @@
+import DiagnosticServices from "./supporting-types/diagnostic-services"
+
 // Disclosure: do not love Typescript.
 // However, for the proletariat out there we have provided
 // this type definitions so that you too can have the warm
 // hug of static typing inside of a dynamic language.  Boo yah.
 
 declare module 'syscoin-js' {
+
     export default class SyscoinRpcClient {
         constructor({baseUrl,
                 port,
@@ -24,5 +27,7 @@ declare module 'syscoin-js' {
                     loggerLevel?: string,
                     whitelist?: Array<string>,
                     blacklist?: Array<string>});
+        
+        diagnosticServices: DiagnosticServices;
     }
 }
