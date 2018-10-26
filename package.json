@@ -7,7 +7,7 @@
     "test": "jest",
     "testdocker": "docker-compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app && docker-compose down -v",
     "compile": "npm run clean && ./node_modules/.bin/babel src --out-dir dist && npm run copy-ts-defs",
-    "copy-ts-defs": "shx cp index.d.ts dist/index.d.ts",
+    "copy-ts-defs": "shx cp -r type-definitions/* dist/",
     "clean": "rimraf dist",
     "start": "node dist/index.js"
   },
