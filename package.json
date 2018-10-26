@@ -28,7 +28,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
-    "babel-jest": "^23.4.2",
+    "babel-jest": "^23.6.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
@@ -39,7 +39,7 @@
     "axios": "^0.18.0",
     "babel-runtime": "^6.26.0",
     "bunyan": "^1.8.12",
-    "jest": "^23.5.0",
+    "jest": "^23.6.0",
     "npm": "^6.4.1",
     "syscoin-ow": "github:syscoin/syscoin-ow",
     "xhr2": "^0.1.4"
