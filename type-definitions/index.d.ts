@@ -29,5 +29,7 @@ declare module 'syscoin-js' {
                     blacklist?: Array<string>});
         
         diagnosticServices: DiagnosticServices;
+        
+        callRpc(methodName: string, arguments?: Array<string>): Promise<any>;
     }
 }
