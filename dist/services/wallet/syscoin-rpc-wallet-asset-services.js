@@ -26,9 +26,9 @@ export function walletAssetServices(callRpc) {
         ow(category, ow.string.label("assetNew:category").not.empty);
         ow(precision, ow.number.label("assetNew:precision").is(x => 0 <= x && x <= 8));
         ow(useInputRanges, ow.boolean.label("assetNew:useInputRanges").is(x => x == true && x == false));
-        ow(supply, ow.number.label("assetNew:supply").integer.greaterThanOrEqual(0));
-        ow(maxSupply, ow.numer.label("assetNew:maxSupply").integer.greaterThanOrEqual(0));
-        ow(interestRate, ow.number.label("assetNew:interestRate").integer.greaterThanOrEqual(0));
+        ow(supply, ow.number.label("assetNew:supply").integer.greaterThan(0));
+        ow(maxSupply, ow.numer.label("assetNew:maxSupply").integer.greaterThan(0));
+        ow(interestRate, ow.number.label("assetNew:interestRate").integer.greaterThan(0));
         ow(canAdjustInterestRate, ow.string.label("assetNew:canAdjustInterestRate").is(x => x == true && x == false));
         ow(witness, ow.string.label("assetNew:witness").string.minLength(0));
         return await callRpc('assetnew', [symbol, owner, publicValue, category, precision, useInputRanges, supply, maxSupply, interestRate, canAdjustInterestRate, witness]);
@@ -38,7 +38,7 @@ export function walletAssetServices(callRpc) {
         ow(asset, ow.string.label("assetSend:asset").not.empty);
         ow(aliasFrom, ow.string.label("assetSend:aliasFrom").not.empty);
         ow(aliasTo, ow.string.label("assetSend:aliasTo").not.empty);
-        ow(amount, ow.number.label("assetSend:amount").integer.greaterThanOrEqual(0));
+        ow(amount, ow.number.label("assetSend:amount").integer.greaterThan(0));
         ow(ranges, ow.object.label("assetSend:ranges").not.empty);
         ow(memo, ow.string.label("assetSend:memo").minLength(0));
         return await callRpc('assetsend', [asset, aliasFrom, aliasTo, amount, ranges, memo]);
@@ -55,18 +55,18 @@ export function walletAssetServices(callRpc) {
         ow(asset, ow.string.label("assetUpdate:asset").not.empty);
         ow(publicValue, ow.string.label("assetUpdate:publicValue").minLength(0));
         ow(category, ow.string.label("assetUpdate:category").not.empty);
-        ow(supply, ow.number.label("assetUpdate:supply").integer.greaterThanOrEqual(0));
-        ow(interestRate, ow.number.label("assetUpdate:interestRate").integer.greaterThanOrEqual(0));
+        ow(supply, ow.number.label("assetUpdate:supply").integer.greaterThan(0));
+        ow(interestRate, ow.number.label("assetUpdate:interestRate").integer.greaterThan(0));
         ow(witness, ow.string.label("assetUpdate:witness").not.empty);
         return await callRpc('assetUpdate', [asset, publicValue, category, supply, interestRate, witness]);
     }
 
     async function listAssets({ count, from, options } = {}) {
         if (count) {
-            ow(count, ow.number.label("listAssets:count").integer.greaterThanOrEqual(0));
+            ow(count, ow.number.label("listAssets:count").integer.greaterThan(0));
         }
         if (from) {
-            ow(from, ow.number.label("listAssets:from").integer.greaterThanOrEqual(0));
+            ow(from, ow.number.label("listAssets:from").integer.greaterThan(0));
         }
         if (options) {
             ow(options, ow.objects.label("listAssets:options").not.empty);
@@ -75,7 +75,7 @@ export function walletAssetServices(callRpc) {
     }
 
     async function listAssetsAfterBlock({ blockNumber } = {}) {
-        ow(blockNumber, ow.number.label("blockNumber:blockNumber").integer.greaterThanOrEqual(0));
+        ow(blockNumber, ow.number.label("blockNumber:blockNumber").integer.greaterThan(0));
         let options = {
             startblock: blockNumber
         };

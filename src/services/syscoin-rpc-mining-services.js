@@ -45,15 +45,15 @@ export function syscoinRpcMiningServices(callRpc) {
     }
 
     async function getNetworkHashesPerSecond(numberOfBlocks=120,blockHeight=-1) {
-        ow(numberOfBlocks, ow.number.label("getNetworkHashesPerSecond:numberOfBlocks").greaterThanOrEqual(0));
-        ow(blockHeight, ow.number.label("getNetworkHashesPerSecond:blockHeight").greaterThanOrEqual(0));
+        ow(numberOfBlocks, ow.number.label("getNetworkHashesPerSecond:numberOfBlocks").greaterThan(0));
+        ow(blockHeight, ow.number.label("getNetworkHashesPerSecond:blockHeight").greaterThan(0));
         return await callRpc('getnetworkhashps', arguments);
     }
 
     async function prioritiseTransaction(txid, priorityDelta, feeDeltaInSatoshis) {
         ow(txid, ow.string.label("prioritiseTransaction:txid").not.empty);
-        ow(priorityDelta, ow.number.label("prioritiseTransaction:priorityDelta").greaterThanOrEqual(0));
-        ow(feeDeltaInSatoshis, ow.number.label("prioritiseTransaction:feeDelaInSatoshis").greaterThanOrEqual(0));
+        ow(priorityDelta, ow.number.label("prioritiseTransaction:priorityDelta").greaterThan(0));
+        ow(feeDeltaInSatoshis, ow.number.label("prioritiseTransaction:feeDelaInSatoshis").greaterThan(0));
         return await callRpc('prioritisetransaction', arguments);
     }
 

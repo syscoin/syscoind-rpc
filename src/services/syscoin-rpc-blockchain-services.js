@@ -67,12 +67,12 @@ export function syscoinRpcBlockchainServices(callRpc) {
     }
 
     async function getBlockHash({height} = {}) {
-        ow(height, ow.number.label("getBlockHash:height").integer.greaterThanOrEqual(0));
+        ow(height, ow.number.label("getBlockHash:height").integer.greaterThan(0));
         return await callRpc('getblockhash', [height]);
     }
 
     async function getBlockAtHeight({height} = {}) {
-        ow(height, ow.number.label("getBlockAtHeight:blockHeight").integer.greaterThanOrEqual(0));
+        ow(height, ow.number.label("getBlockAtHeight:blockHeight").integer.greaterThan(0));
         let blockHash = await getBlockHash({height: height});
         if (!blockHash.error) {
             return await getBlock({blockHash: blockHash});
@@ -83,7 +83,7 @@ export function syscoinRpcBlockchainServices(callRpc) {
     }
 
     async function getBlockAtHeightVerbose({height} = {}) {
-        ow(height, ow.number.label("getBlockAtHeightVerbose:blockHeight").integer.greaterThanOrEqual(0));
+        ow(height, ow.number.label("getBlockAtHeightVerbose:blockHeight").integer.greaterThan(0));
         let blockHash = await getBlockHash({height: height});
         if (!blockHash.error) {
             return await getBlockVerbose({blockHash: blockHash});
@@ -94,8 +94,8 @@ export function syscoinRpcBlockchainServices(callRpc) {
     }
 
     async function getBlockHashes({timestampHigh, timestampLow} = {}) {
-        ow(timestampHigh, ow.number.label("getBlockHashes:timestamp").integer.greaterThanOrEqual(0));
-        ow(timestampLow, ow.number.label("getBlockHashes:timestamp").integer.greaterThanOrEqual(0));
+        ow(timestampHigh, ow.number.label("getBlockHashes:timestamp").integer.greaterThan(0));
+        ow(timestampLow, ow.number.label("getBlockHashes:timestamp").integer.greaterThan(0));
         return await callRpc('getblockhashes', [timestampHigh, timestampLow]);
     }
 
@@ -113,24 +113,24 @@ export function syscoinRpcBlockchainServices(callRpc) {
 
     async function getBlockHeaders({hash, headerCount=2000} = {}) {
         ow(hash, ow.string.label("getBlockHeaders:hash").not.empty);
-        ow(headerCount, ow.number.label("getBlockHeader:headerCount").integer.greaterThanOrEqual(0));
+        ow(headerCount, ow.number.label("getBlockHeader:headerCount").integer.greaterThan(0));
         let Verbose = false;
         return await callRpc('getblockheaders', [hash, headerCount, Verbose])
     }
 
     async function getBlockHeadersVerbose({hash, headerCount=2000} = {}) {
         ow(hash, ow.string.label("getBlockHeadersVerbose:hash").not.empty);
-        ow(headerCount, ow.number.label("getBlockHeadersVerbose:headerCount").integer.greaterThanOrEqual(0));
+        ow(headerCount, ow.number.label("getBlockHeadersVerbose:headerCount").integer.greaterThan(0));
         let Verbose = true;
         return await callRpc('getblockheaders', [hash, headerCount, Verbose])
     }
 
     async function getChainTips({count, branchLength} = {}) {
         if (count) {
-            ow(count, ow.number.label("getChainTips:count").integer.greaterThanOrEqual(0));
+            ow(count, ow.number.label("getChainTips:count").integer.greaterThan(0));
         }
         if (branchLength) {
-            ow(branchLength, ow.number.label("getChainTips:branchLength").integer.greaterThanOrEqual(0));
+            ow(branchLength, ow.number.label("getChainTips:branchLength").integer.greaterThan(0));
         }
         return await callRpc('getchaintips', [count,branchLength]);
     }
@@ -188,14 +188,14 @@ export function syscoinRpcBlockchainServices(callRpc) {
     async function getSpentInfo({txid, startingBlockHeight} = {}) {
         ow(txid, ow.string.label("getSpentInfo:txid").not.empty);
         if (startingBlockHeight) {
-            ow(startingBlockHeight, ow.number.label("getSpentInfo:startingBlockHeight").integer.greaterThanOrEqual(0));
+            ow(startingBlockHeight, ow.number.label("getSpentInfo:startingBlockHeight").integer.greaterThan(0));
         }
         return await callRpc('getspentinfo', arguments);
     }
     
     async function getTxOut({txid, voutNumber, includeMempool=false} = {}) {
         ow(txid, ow.string.label("getTxOut:txid").not.empty);
-        ow(includeMempool, ow.number.label("getTxOut:includeMempool").integer.greaterThanOrEqual(0));
+        ow(includeMempool, ow.number.label("getTxOut:includeMempool").integer.greaterThan(0));
         return await callRpc('gettxout', arguments)
     }
     

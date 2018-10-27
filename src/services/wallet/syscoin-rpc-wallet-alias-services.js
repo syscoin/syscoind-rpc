@@ -60,7 +60,7 @@ export function walletAliasServices(callRpc) {
         ow(aliasName, ow.string.label("aliasNew:aliasName").not.empty);
         ow(publicValue, ow.string.label("aliasNew:publicValue").minLength(0));
         ow(acceptTransferFlags, ow.number.label("aliasNew:transfersFlag").is(x => (x >= 0 && x <= 3)));
-        ow(expireTimestamp, ow.number.label("aliasNew:expireTimestamp").integer.greaterThanOrEqual(0));
+        ow(expireTimestamp, ow.number.label("aliasNew:expireTimestamp").integer.greaterThan(0));
         ow(address, ow.string.label("aliasNew:address").minLength(0));
         ow(encryptionPrivateKey, ow.string.label("aliasNew:encPrivateKey").minLength(0));
         ow(encryptionPublicKey, ow.string.label("aliasNew:encPublicKey").minLength(0));
@@ -74,7 +74,7 @@ export function walletAliasServices(callRpc) {
         ow(aliasName, ow.string.label("aliasNewEstimatedFee:aliasName").not.empty);
         ow(publicValue, ow.string.label("aliasNewEstimatedFee:publicValue").minLength(0));
         ow(transfersFlag, ow.number.label("aliasNewEstimatedFee:transfersFlag").is(x => (x >= 0 && x <= 3)));
-        ow(expireTimestamp, ow.number.label("aliasNewEstimatedFee:expireTimestamp").integer.greaterThanOrEqual(0));
+        ow(expireTimestamp, ow.number.label("aliasNewEstimatedFee:expireTimestamp").integer.greaterThan(0));
         ow(address, ow.string.label("aliasNewEstimatedFee:address").minLength(0));
         ow(encPrivateKey, ow.string.label("aliasNewEstimatedFee:encPrivateKey").minLength(0));
         ow(encPublicKey, ow.string.label("aliasNewEstimatedFee:encPublicKey").minLength(0));
@@ -98,7 +98,7 @@ export function walletAliasServices(callRpc) {
         ow(aliasName, ow.string.label("aliasUpdate:aliasName").not.empty);
         ow(publicValue, ow.string.label("aliasUpdate:publicValue").minLength(0));
         ow(transfersFlag, ow.number.label("aliasUpdate:transfersFlag").is(x => (x >= 0 && x <= 3)));
-        ow(expireTimestamp, ow.number.label("aliasUpdate:expireTimestamp").integer.greaterThanOrEqual(0));
+        ow(expireTimestamp, ow.number.label("aliasUpdate:expireTimestamp").integer.greaterThan(0));
         ow(address, ow.string.label("aliasUpdate:address").minLength(0));
         ow(encPrivateKey, ow.string.label("aliasUpdate:encPrivateKey").minLength(0));
         ow(encPublicKey, ow.string.label("aliasUpdate:encPublicKey").minLength(0));
@@ -128,7 +128,7 @@ export function walletAliasServices(callRpc) {
         ow(aliasName, ow.string.label("aliasUpdateEstimatedFee:aliasName").not.empty);
         ow(publicValue, ow.string.label("aliasUpdateEstimatedFee:publicValue").minLength(0));
         ow(transfersFlag, ow.number.label("aliasUpdateEstimatedFee:transfersFlag").is(x => (x >= 0 && x <= 3)));
-        ow(expireTimestamp, ow.number.label("aliasUpdateEstimatedFee:expireTimestamp").integer.greaterThanOrEqual(0));
+        ow(expireTimestamp, ow.number.label("aliasUpdateEstimatedFee:expireTimestamp").integer.greaterThan(0));
         ow(address, ow.string.label("aliasUpdateEstimatedFee:address").minLength(0));
         ow(encPrivateKey, ow.string.label("aliasUpdateEstimatedFee:encPrivateKey").minLength(0));
         ow(encPublicKey, ow.string.label("aliasUpdateEstimatedFee:encPublicKey").minLength(0));
@@ -139,10 +139,10 @@ export function walletAliasServices(callRpc) {
 
     async function listAliases({count, from, options} = {}) {
         if(count) {
-            ow(count, ow.number.label("listAliases:count").integer.greaterThanOrEqual(0));
+            ow(count, ow.number.label("listAliases:count").integer.greaterThan(0));
         }
         if(from) {
-            ow(from, ow.number.label("listAliases:from").integer.greaterThanOrEqual(0));
+            ow(from, ow.number.label("listAliases:from").integer.greaterThan(0));
         }
         if(options) {
             ow(options, ow.objects.label("listAliases:options").not.empty);
@@ -162,7 +162,7 @@ export function walletAliasServices(callRpc) {
     }
 
     async function listAliasesAfterBlock({blockNumber} = {}) {
-        ow(blockNumber, ow.number.label("listAliasesAfterBlock:blockNumber").integer.greaterThanOrEqual(0));
+        ow(blockNumber, ow.number.label("listAliasesAfterBlock:blockNumber").integer.greaterThan(0));
         let options = {
             startblock: blockNumber
         }

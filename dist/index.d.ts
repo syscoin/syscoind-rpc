@@ -6,7 +6,8 @@
 import AddressIndexServices from './supporting-types/address-index-services';
 import BlockchainServices from './supporting-types/blockchain-services';
 import DiagnosticServices from './supporting-types/diagnostic-services';
-
+import EstimateServices from './supporting-types/estimate-services';
+import GenerationServices from './supporting-types/generation-services';
 
 declare module 'syscoin-js' {
 
@@ -32,8 +33,9 @@ declare module 'syscoin-js' {
                     blacklist?: Array<string>});
         
         addressIndexServices: AddressIndexServices;
-        blockchainServies: BlockchainServices;
+        blockchainServices: BlockchainServices;
         diagnosticServices: DiagnosticServices;
+        generationServices: GenerationServices;
         
         callRpc(methodName: string, arguments?: Array<string>): Promise<any>;
     }
