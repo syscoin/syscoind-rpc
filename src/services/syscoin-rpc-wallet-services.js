@@ -82,7 +82,7 @@ export function syscoinRpcWalletServices(callRpc, utilityServices) {
     }
 
     async function addMultiSigAddress(nRequired, keys, account) {
-        ow(nRequired, ow.number.label("addMultiSigAddress:nRequired").integer.greaterThanOrEqual(0));
+        ow(nRequired, ow.number.label("addMultiSigAddress:nRequired").integer.greaterThan(0));
         ow(keys, ow.array.label("addMultiSigAddress:keys").not.empty);
         if(account) {
             ow(account, ow.string.label("addMultiSigAddress: account").not.empty);
@@ -210,7 +210,7 @@ export function syscoinRpcWalletServices(callRpc, utilityServices) {
     async function importElectrumWallet(fileName, index) {
         ow(fileName, ow.string.label("importMulti:requests").not.empty);
         if(index) {
-            ow(index, ow.number.label("importMulti:index").integer.greaterThanOrEqual(0));
+            ow(index, ow.number.label("importMulti:index").integer.greaterThan(0));
         }
         return await callRpc('importelectrumwallet', arguments);
     }
@@ -259,7 +259,7 @@ export function syscoinRpcWalletServices(callRpc, utilityServices) {
 
     async function instantSendToAddress(address, amount, comment, commentTo, subtractFeeFromAmount) {
         ow(minConf, ow.string.label("listUnspent:minConf").not.empty);
-        ow(amount, ow.number.label("listUnspent:amount").integer.greaterThanOrEqual(0));
+        ow(amount, ow.number.label("listUnspent:amount").integer.greaterThan(0));
         if(comment) {
             ow(comment, ow.string.label("listUnspent:comment").minLength(0));
         }
@@ -301,7 +301,7 @@ export function syscoinRpcWalletServices(callRpc, utilityServices) {
 
     async function listAddressBalances(minAmount) {
         if(minAmount) {
-            ow(minAmount, ow.number.label("listAddressBalances:minAmount").integer.greaterThanOrEqual(0));
+            ow(minAmount, ow.number.label("listAddressBalances:minAmount").integer.greaterThan(0));
         }
         return await callRpc('listaddressbalances', arguments);
     }
@@ -351,7 +351,7 @@ export function syscoinRpcWalletServices(callRpc, utilityServices) {
             ow(blockHash, ow.string.label("listSinceBlock:blockHash").not.empty);
         }
         if(targetConfirmations) {
-            ow(targetConfirmations, ow.number.label("listSinceBlock:targetConfirmations").integer.greaterThanOrEqual(0));
+            ow(targetConfirmations, ow.number.label("listSinceBlock:targetConfirmations").integer.greaterThan(0));
 
         }
         if(includeWatchOnly) {
@@ -362,10 +362,10 @@ export function syscoinRpcWalletServices(callRpc, utilityServices) {
 
     async function listTransactions(count = 10, skip = 0, includeWatchOnly = false) {
         if(count) {
-            ow(count, ow.number.label("listUnspent:count").integer.greaterThanOrEqual(0));
+            ow(count, ow.number.label("listUnspent:count").integer.greaterThan(0));
         }
         if(skip) {
-            ow(skip, ow.number.label("listUnspent:skip").integer.greaterThanOrEqual(0));
+            ow(skip, ow.number.label("listUnspent:skip").integer.greaterThan(0));
         }
         if(includeWatchOnly) {
             ow(includeUnsafe, ow.boolean.label("listUnspent:includeUnsafe").is(x => x == true || x == false));
@@ -398,7 +398,7 @@ export function syscoinRpcWalletServices(callRpc, utilityServices) {
     async function move(fromAccount, toAccount, amount, dummy, comment) {
         ow(fromAccount, ow.string.label("move:fromAccount").not.empty);
         ow(toAccount, ow.string.label("move:toAccount").not.empty);
-        ow(amount, ow.number.label("move:amount").integer.greaterThanOrEqual(0));
+        ow(amount, ow.number.label("move:amount").integer.greaterThan(0));
         ow(dummy, ow.string.label("move:dummy").not.empty);
         ow(comment, ow.string.label("move:comment").string.minLength(0));
         return await callRpc('move', arguments);
@@ -434,7 +434,7 @@ export function syscoinRpcWalletServices(callRpc, utilityServices) {
 
     async function sendMany(fromAccount, amounts, minConf, addLocked, comment, subtractFeeFromAmount, useIs, usePs) {
         ow(fromAccount, ow.string.label("sendMany:fromAccount").not.empty);
-        ow(amounts, ow.number.label("sendMany:amounts").integer.greaterThanOrEqual(0));
+        ow(amounts, ow.number.label("sendMany:amounts").integer.greaterThan(0));
         if(minConf) {
             ow(minConf, ow.number.label("sendMany:minConf").integer.greaterThanOrEqual(1));
         }
@@ -459,7 +459,7 @@ export function syscoinRpcWalletServices(callRpc, utilityServices) {
 
     async function sendToAddress(address, amount, comment, commentTo, subtractFeeFromAmount, useIs, usePs) {
         ow(address, ow.string.label("sendToAddress:address").not.empty);
-        ow(amount, ow.number.label("sendToAddress:amount").integer.greaterThanOrEqual(0));
+        ow(amount, ow.number.label("sendToAddress:amount").integer.greaterThan(0));
         if(comment){
             ow(comment, ow.string.label("sendToAddress:comment").not.empty);
         }
@@ -524,7 +524,7 @@ export function syscoinRpcWalletServices(callRpc, utilityServices) {
     }
 
     async function tpsTestAdd(startTime, rawTransactions) {
-        ow(startTime, ow.number.label("tpsTestAdd:startTime").integer.greaterThanOrEqual(0));
+        ow(startTime, ow.number.label("tpsTestAdd:startTime").integer.greaterThan(0));
         ow(rawTransactions, ow.array.label("tpsTestEnabled:enabled").not.empty);
         return await callRpc('tpstestadd', arguments);
     }
@@ -545,7 +545,7 @@ export function syscoinRpcWalletServices(callRpc, utilityServices) {
 
     async function walletPassPhrase(passPhrase, timeout, mixingOnly) {
         ow(passphrase, ow.string.label("walletPassPhrase:passphrase").not.empty);
-        ow(timeout, ow.number.label("walletPassPhrase:timeout").integer.greaterThanOrEqual(0));
+        ow(timeout, ow.number.label("walletPassPhrase:timeout").integer.greaterThan(0));
         ow(mixingOnly, ow.boolean.label("walletPassPhrase:mixingOnly").is(x => x == true || x == false));
         return await callRpc('walletpassphrase', arguments);
     }

@@ -39,7 +39,7 @@ export function syscoinRpcEstimateServices(callRpc) {
         ow(aliasName, ow.string.label("aliasNewEstimatedFee:aliasName").not.empty);
         ow(publicValue, ow.string.label("aliasNewEstimatedFee:publicValue").minLength(0));
         ow(transfersFlag, ow.number.label("aliasNewEstimatedFee:transfersFlag").is(x => (x >= 0 && x <= 3)));
-        ow(expireTimestamp, ow.number.label("aliasNewEstimatedFee:expireTimestamp").integer.greaterThanOrEqual(0));
+        ow(expireTimestamp, ow.number.label("aliasNewEstimatedFee:expireTimestamp").integer.greaterThan(0));
         ow(address, ow.string.label("aliasNewEstimatedFee:address").minLength(0));
         ow(encPrivateKey, ow.string.label("aliasNewEstimatedFee:encPrivateKey").minLength(0));
         ow(encPublicKey, ow.string.label("aliasNewEstimatedFee:encPublicKey").minLength(0));
@@ -52,7 +52,7 @@ export function syscoinRpcEstimateServices(callRpc) {
         ow(aliasName, ow.string.label("aliasNewEstimatedFee:aliasName").not.empty);
         ow(publicValue, ow.string.label("aliasNewEstimatedFee:publicValue").minLength(0));
         ow(transfersFlag, ow.number.label("aliasNewEstimatedFee:transfersFlag").is(x => (x >= 0 && x <= 3)));
-        ow(expireTimestamp, ow.number.label("aliasNewEstimatedFee:expireTimestamp").integer.greaterThanOrEqual(0));
+        ow(expireTimestamp, ow.number.label("aliasNewEstimatedFee:expireTimestamp").integer.greaterThan(0));
         ow(address, ow.string.label("aliasNewEstimatedFee:address").minLength(0));
         ow(encPrivateKey, ow.string.label("aliasNewEstimatedFee:encPrivateKey").minLength(0));
         ow(encPublicKey, ow.string.label("aliasNewEstimatedFee:encPublicKey").minLength(0));

@@ -13,7 +13,7 @@ export function syscoinRpcUtilityServices(callRpc) {
     }
 
     async function createMultiSig({numberOfRequiredSignatures, keys}) {
-        ow(numberOfRequiredSignatures, ow.number.label("createMultiSig:numberOfRequiredSignatures").integer.greaterThanOrEqual(0));
+        ow(numberOfRequiredSignatures, ow.number.label("createMultiSig:numberOfRequiredSignatures").integer.greaterThan(0));
         ow(keys, ow.array.label("createMultiSig:keys").not.empty);
         return await callRpc('createmultisig', arguments);
     }
@@ -39,7 +39,7 @@ export function syscoinRpcUtilityServices(callRpc) {
     }
 
     async function tpsTestAdd({startTime, rawTx}) {
-        ow(startTime, ow.number.label("tpsTestAdd:startTime").integer.greaterThanOrEqual(0));
+        ow(startTime, ow.number.label("tpsTestAdd:startTime").integer.greaterThan(0));
         ow(rawTx, ow.array.label("tpsTestAdd:rawTx").not.empty);
         return await callRpc('tpstestadd', arguments);
     }

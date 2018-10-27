@@ -28,10 +28,10 @@ export function walletAssetAllocationServices(callRpc) {
 
     async function listAssetAllocations({ count, from, options } = {}) {
         if (count) {
-            ow(count, ow.number.label("listAssetAllocations:count").integer.greaterThanOrEqual(0));
+            ow(count, ow.number.label("listAssetAllocations:count").integer.greaterThan(0));
         }
         if (from) {
-            ow(from, ow.number.label("listAssetAllocations:from").integer.greaterThanOrEqual(0));
+            ow(from, ow.number.label("listAssetAllocations:from").integer.greaterThan(0));
         }
         if (options) {
             ow(options, ow.objects.label("listAssetAllocations:options").not.empty);
@@ -41,10 +41,10 @@ export function walletAssetAllocationServices(callRpc) {
 
     async function listAssetAllocationTransactions({ count, from, options } = {}) {
         if (count) {
-            ow(count, ow.number.label("listAssetAllocationTransactions:count").integer.greaterThanOrEqual(0));
+            ow(count, ow.number.label("listAssetAllocationTransactions:count").integer.greaterThan(0));
         }
         if (from) {
-            ow(from, ow.number.label("listAssetAllocationTransactions:from").integer.greaterThanOrEqual(0));
+            ow(from, ow.number.label("listAssetAllocationTransactions:from").integer.greaterThan(0));
         }
         if (options) {
             ow(options, ow.objects.label("listAssetAllocationTransactions:options").not.empty);
@@ -53,7 +53,7 @@ export function walletAssetAllocationServices(callRpc) {
     }
 
     async function listAssetAllocationsAfterBlock({ blockNumber }) {
-        ow(blockNumber, ow.number.label("listAssetAllocationsAfterBlock:blockNumber").integer.greaterThanOrEqual(0));
+        ow(blockNumber, ow.number.label("listAssetAllocationsAfterBlock:blockNumber").integer.greaterThan(0));
 
         let options = {
             startblock: blockNumber

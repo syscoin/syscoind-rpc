@@ -62,7 +62,7 @@ export function syscoinRpcGovernanceServices(callRpc) {
     }
 
     async function getSuperblockBudget({ blockIndex }) {
-        ow(blockIndex, ow.number.label("getSuperblockBudget:blockIndex").integer.greaterThanOrEqual(0));
+        ow(blockIndex, ow.number.label("getSuperblockBudget:blockIndex").integer.greaterThan(0));
         return await callGovernanceCommand(['getsuperblockbudget', blockIndex]);
     }
 
@@ -132,11 +132,11 @@ export function syscoinRpcGovernanceServices(callRpc) {
         time,
         voteSignature }) {
         ow(masterNodeTxHash, ow.string.label("callGovernanceCommand:format").not.empty);
-        ow(masterNodeTxIndex, ow.number.label("callGovernanceCommand:format").integer.greaterThanOrEqual(0));
+        ow(masterNodeTxIndex, ow.number.label("callGovernanceCommand:format").integer.greaterThan(0));
         ow(governanceHash, ow.string.label("callGovernanceCommand:format").not.empty);
         ow(voteSignal, ow.string.label("callGovernanceCommand:format").not.empty);
         ow(vote, ow.string.label("callGovernanceCommand:vote").is(x => x == "yes" || x == "no" || x == "abstain"));
-        ow(time, ow.number.label("callGovernanceCommand:time").integer.greaterThanOrEqual(0));
+        ow(time, ow.number.label("callGovernanceCommand:time").integer.greaterThan(0));
         ow(voteSignature, ow.string.label("callGovernanceCommand:voteSignature").not.empty);
         return await callRpc('voteraw', arguments);
     }

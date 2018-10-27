@@ -58,14 +58,14 @@ export function syscoinRpcNetworkServices(callRpc) {
 
     async function banNodeForLengthOfTime({subnetOrIp, banTimeInSeconds=0}) {
         ow(subnetOrIp, ow.string.label("banNodeUntilDate:subnetOrIp").not.empty);
-        ow(banTimeInSeconds, ow.number.label("banNodeForLengthOfTime:banTimeInSeconds").integer.greaterThanOrEqual(0));
+        ow(banTimeInSeconds, ow.number.label("banNodeForLengthOfTime:banTimeInSeconds").integer.greaterThan(0));
         const AbsoluteTime = false;
         return await callRpc('setban', [subnetOrIp, 'add', banTimeInSeconds, AbsoluteTime]);
     }
 
     async function banNodeUntilDate({subnetOrIp, banDateTimeEpoch}) {
         ow(subnetOrIp, ow.string.label("banNodeUntilDate:subnetOrIp").not.empty);
-        ow(banDateTimeEpoch, ow.number.label("banNodeUntilDate:banDateTimeEpoch").integer.greaterThanOrEqual(0));
+        ow(banDateTimeEpoch, ow.number.label("banNodeUntilDate:banDateTimeEpoch").integer.greaterThan(0));
         const AbsoluteTime = true;
         return await callRpc('n', [subnetOrIp, 'add', banDateTimeEpoch, AbsoluteTime]);
     }
@@ -142,7 +142,7 @@ export function syscoinRpcNetworkServices(callRpc) {
 
     async function getChainTxStats({nBlocks, blockHash}) {
         if(nBlocks) {
-            ow(nBlocks, ow.number.label("getChainTxStats:nBlocks").integer.greaterThanOrEqual(0));
+            ow(nBlocks, ow.number.label("getChainTxStats:nBlocks").integer.greaterThan(0));
             return await callRpc('getchaintxstats', [nBlocks]);
         }
         if(blockHash) {

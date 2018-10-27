@@ -27,7 +27,7 @@ export function walletEscrowServices(callRpc) {
         ow(alias, ow.string.label("escrowBid:alias").not.empty);
         ow(escrow, ow.string.label("escrowBid:escrow").not.empty);
         ow(bidInPaymentOption, ow.string.label("escrowBid:bidInPaymentOption").not.empty);
-        ow(bidInOfferCurrency, ow.number.label("escrowBid:bidInOfferCurrency").integer.greaterThanOrEqual(0));
+        ow(bidInOfferCurrency, ow.number.label("escrowBid:bidInOfferCurrency").integer.greaterThan(0));
         ow(witness, ow.string.label("escrowBid:witness").not.empty);
         return await callRpc('escrowbid', arguments);
     }
@@ -58,7 +58,7 @@ export function walletEscrowServices(callRpc) {
         ow(escrowGuid, ow.string.label("escrowCompleteRelease:escrowGuid").not.empty);
         ow(userFrom, ow.string.label("escrowCompleteRelease:userFrom").not.empty);
         ow(feedback, ow.string.label("escrowCompleteRelease:feedback").string.minLength(0));
-        ow(rating, ow.number.label("escrowCompleteRelease:rating").integer.greaterThanOrEqual(0));
+        ow(rating, ow.number.label("escrowCompleteRelease:rating").integer.greaterThan(0));
         ow(userTo, ow.string.label("escrowCompleteRelease:userTo").not.empty);
         ow(witness, ow.string.label("escrowCompleteRelease:witness").not.empty);
         return await callRpc('escrowfeedback', arguments);
@@ -73,13 +73,13 @@ export function walletEscrowServices(callRpc) {
         ow(getAmountAndAddress, ow.boolean.label("escrowNew:getAmountAndAddress").so(x => x == true || x == false));
         ow(alias, ow.string.label("escrowNew:alias").not.empty);
         ow(offer, ow.string.label("escrowNew:offer").not.empty);
-        ow(quantity, ow.number.label("escrowNew:quantity").integer.greaterThanOrEqual(0));
+        ow(quantity, ow.number.label("escrowNew:quantity").integer.greaterThan(0));
         ow(buyNow, ow.boolean.label("escrowNew:buyNow").so(x => x == true || x == false));
-        ow(pricePerUnitInPaymentOption, ow.number.label("escrowNew:pricePerUnitInPaymentOption").integer.greaterThanOrEqual(0));
-        ow(shippingAmount, ow.number.label("escrowNew:shippingAmount").integer.greaterThanOrEqual(0));
-        ow(networkFee, ow.number.label("escrowNew:networkFee").integer.greaterThanOrEqual(0));
-        ow(arbiterFee, ow.number.label("escrowNew:arbiterFee").integer.greaterThanOrEqual(0));
-        ow(witnessFee, ow.number.label("escrowNew:witnessFee").integer.greaterThanOrEqual(0));
+        ow(pricePerUnitInPaymentOption, ow.number.label("escrowNew:pricePerUnitInPaymentOption").integer.greaterThan(0));
+        ow(shippingAmount, ow.number.label("escrowNew:shippingAmount").integer.greaterThan(0));
+        ow(networkFee, ow.number.label("escrowNew:networkFee").integer.greaterThan(0));
+        ow(arbiterFee, ow.number.label("escrowNew:arbiterFee").integer.greaterThan(0));
+        ow(witnessFee, ow.number.label("escrowNew:witnessFee").integer.greaterThan(0));
         ow(exTx, ow.string.label("escrowNew:exTx").not.empty);
         ow(payment, ow.string.label("escrowNew:payment").not.empty);
         ow(option, ow.string.label("escrowNew:option").not.empty);
@@ -107,10 +107,10 @@ export function walletEscrowServices(callRpc) {
 
     async function listEscrows(count, from, options) {
         if(count) {
-            ow(count, ow.number.label("listEscrows:count").integer.greaterThanOrEqual(0));
+            ow(count, ow.number.label("listEscrows:count").integer.greaterThan(0));
         }
         if(from) {
-            ow(from, ow.number.label("listEscrows:from").integer.greaterThanOrEqual(0));
+            ow(from, ow.number.label("listEscrows:from").integer.greaterThan(0));
         }
         if(options) {
             ow(options, ow.objects.label("listEscrows:options").not.empty);
@@ -119,7 +119,7 @@ export function walletEscrowServices(callRpc) {
     }
 
     async function listEscrowsAfterBlock(blockNumber) {
-        ow(blockNumber, ow.number.label("listEscrowsAfterBlock:blockNumber").integer.greaterThanOrEqual(0));
+        ow(blockNumber, ow.number.label("listEscrowsAfterBlock:blockNumber").integer.greaterThan(0));
         let options = {
             startblock: blockNumber
         }

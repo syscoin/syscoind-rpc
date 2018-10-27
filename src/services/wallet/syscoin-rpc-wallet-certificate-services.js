@@ -45,10 +45,10 @@ export function walletCertificateServices(callRpc) {
 
     async function listCerts(count, from, options) {
         if(count) {
-            ow(count, ow.number.label("listCerts:count").integer.greaterThanOrEqual(0));
+            ow(count, ow.number.label("listCerts:count").integer.greaterThan(0));
         }
         if(from) {
-            ow(from, ow.number.label("listCerts:from").integer.greaterThanOrEqual(0));
+            ow(from, ow.number.label("listCerts:from").integer.greaterThan(0));
         }
         if(options) {
             ow(options, ow.objects.label("listCerts:options").not.empty);
@@ -57,7 +57,7 @@ export function walletCertificateServices(callRpc) {
     }
 
     async function listCertificatesAfterBlock(blockNumber) {
-        ow(blockNumber, ow.number.label("listCertificatesAfterBlock:blockNumber").integer.greaterThanOrEqual(0));
+        ow(blockNumber, ow.number.label("listCertificatesAfterBlock:blockNumber").integer.greaterThan(0));
         let options = {
             startblock: blockNumber
         }

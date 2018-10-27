@@ -30,8 +30,8 @@ export function walletOfferServices(callRpc) {
         ow(alias, ow.string.label("offerNew:alias").not.empty);
         ow(category, ow.string.label("offerNew:category").not.empty);
         ow(title, ow.string.label("offerNew:title").not.empty);
-        ow(quantity, ow.number.label("offerNew:quantity").integer.greaterThanOrEqual(0));
-        ow(price, ow.number.label("offerNew:price").integer.greaterThanOrEqual(0));
+        ow(quantity, ow.number.label("offerNew:quantity").integer.greaterThan(0));
+        ow(price, ow.number.label("offerNew:price").integer.greaterThan(0));
         ow(description, ow.string.label("offerNew:description").string.minLength(0));
         ow(currency, ow.string.label("offerNew:currency").not.empty);
         ow(certGuid, ow.string.label("offerNew:certGuid").not.empty);
@@ -51,8 +51,8 @@ export function walletOfferServices(callRpc) {
         ow(alias, ow.string.label("offerUpdate:alias").not.empty);
         ow(category, ow.string.label("offerUpdate:category").not.empty);
         ow(title, ow.string.label("offerUpdate:title").not.empty);
-        ow(quantity, ow.number.label("offerUpdate:quantity").integer.greaterThanOrEqual(0));
-        ow(price, ow.number.label("offerUpdate:price").integer.greaterThanOrEqual(0));
+        ow(quantity, ow.number.label("offerUpdate:quantity").integer.greaterThan(0));
+        ow(price, ow.number.label("offerUpdate:price").integer.greaterThan(0));
         ow(description, ow.string.label("offerUpdate:description").string.minLength(0));
         ow(currency, ow.string.label("offerUpdate:currency").not.empty);
         ow(certGuid, ow.string.label("offerUpdate:certGuid").not.empty);
@@ -70,10 +70,10 @@ export function walletOfferServices(callRpc) {
 
     async function listOffers(count, from, options) {
         if (count) {
-            ow(count, ow.number.label("listOffers:count").integer.greaterThanOrEqual(0));
+            ow(count, ow.number.label("listOffers:count").integer.greaterThan(0));
         }
         if (from) {
-            ow(from, ow.number.label("listOffers:from").integer.greaterThanOrEqual(0));
+            ow(from, ow.number.label("listOffers:from").integer.greaterThan(0));
         }
         if (options) {
             ow(options, ow.objects.label("listOffers:options").not.empty);
@@ -82,7 +82,7 @@ export function walletOfferServices(callRpc) {
     }
 
     async function listOffersAfterBlock(blockNumber) {
-        ow(blockNumber, ow.number.label("listOffersAfterBlock:blockNumber").integer.greaterThanOrEqual(0));
+        ow(blockNumber, ow.number.label("listOffersAfterBlock:blockNumber").integer.greaterThan(0));
         let options = {
             startblock: blockNumber
         };
