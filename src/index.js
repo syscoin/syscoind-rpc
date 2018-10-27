@@ -21,6 +21,7 @@ import AuthorizationFailedErrorHandler from './error-handlers/authorization-fail
 import RpcMethodNotFoundErrorHandler from './error-handlers/rpc-method-not-found-error';
 import RpcException from './rpc-exception';
 import RpcErrorHandler from './error-handlers/rpc-error-handler';
+import NonSpecificNetworkErrorHandler from './error-handlers/non-specific-network-error-handler';
 
 export default class SyscoinRpcClient {
 
@@ -116,7 +117,8 @@ export default class SyscoinRpcClient {
                 new ConnectionRefusedErrorHandler(url, logger, createCustomErrorResponse),
                 new AuthorizationFailedErrorHandler(url, logger, createCustomErrorResponse),
                 new RpcMethodNotFoundErrorHandler(methodName, logger, createCustomErrorResponse),
-                new RpcErrorHandler(methodName, logger)
+                new RpcErrorHandler(methodName, logger), 
+                new NonSpecificNetworkErrorHandler(url, logger, createCustomErrorResponse)
             ]
 
             for (let i = 0; i < commonErrorHandlers.length; ++i) {
@@ -126,26 +128,6 @@ export default class SyscoinRpcClient {
             }
 
             // If it's none of these, we've encountered something totally unknown.
-            let errorResponse = rpcError.response;
-            if (errorResponse && errorResponse.data) {
-                let dataFromResponse = errorResponse.data;
-                logger.logError(methodName, dataFromResponse);
-                if (dataFromResponse.error) {
-                    throw new RpcException({
-                        result: null,
-                        error: dataFromResponse.error.message,
-                        code: dataFromResponse.error.code
-                    });
-                }
-                else {
-                    throw new RpcException({
-                        result: dataFromResponse,
-                        error: `An RPC error with a non-standard format occurred.  Please inspect the 'result' field for details.`,
-                        code: -2000
-                    })
-                }
-            }
-
             throw new RpcException({
                 result: rpcError,
                 error: 'An unrecognized error occurred',
