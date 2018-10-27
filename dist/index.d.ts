@@ -1,9 +1,12 @@
-import DiagnosticServices from "./supporting-types/diagnostic-services"
-
 // Disclosure: do not love Typescript.
 // However, for the proletariat out there we have provided
-// this type definitions so that you too can have the warm
+// these type definitions so that you too can have the warm
 // hug of static typing inside of a dynamic language.  Boo yah.
+
+import AddressIndexServices from './supporting-types/address-index-services';
+import DiagnosticServices from "./supporting-types/diagnostic-services"
+import { Address } from 'cluster';
+
 
 declare module 'syscoin-js' {
 
@@ -28,6 +31,7 @@ declare module 'syscoin-js' {
                     whitelist?: Array<string>,
                     blacklist?: Array<string>});
         
+        addressIndexServices: AddressIndexServices;
         diagnosticServices: DiagnosticServices;
         
         callRpc(methodName: string, arguments?: Array<string>): Promise<any>;
