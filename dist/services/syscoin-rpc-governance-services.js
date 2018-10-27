@@ -31,17 +31,17 @@ export function syscoinRpcGovernanceServices(callRpc) {
         return await callRpc('gobject', args);
     }
 
-    async function checkProposal({ hex }) {
+    async function checkProposal({ hex } = {}) {
         ow(proposal, ow.string.label("checkProposal:proposal").not.empty);
         return await callGovernanceCommand(['check', hex]);
     }
 
-    async function count({ format }) {
+    async function count({ format } = {}) {
         ow(format, ow.string.label("count:format").not.empty);
         return await callGovernanceCommand(['count', format]);
     }
 
-    async function deserializeGovernanceObject({ dataHex }) {
+    async function deserializeGovernanceObject({ dataHex } = {}) {
         ow(dataHex, ow.string.label("deserializeGovernanceObject.dataHex").not.empty);
         return await callGovernanceCommand(['deserialize']);
     }
@@ -50,7 +50,7 @@ export function syscoinRpcGovernanceServices(callRpc) {
         return await callGovernanceCommand(['diff']);
     }
 
-    async function getByHash({ hash }) {
+    async function getByHash({ hash } = {}) {
         ow(hash, ow.string.label("getByHash.hash").not.empty);
         return await callGovernanceCommand(['get', hash]);
     }
@@ -61,7 +61,7 @@ export function syscoinRpcGovernanceServices(callRpc) {
         return await callRpc('getgovernanceinfo');
     }
 
-    async function getSuperblockBudget({ blockIndex }) {
+    async function getSuperblockBudget({ blockIndex } = {}) {
         ow(blockIndex, ow.number.label("getSuperblockBudget:blockIndex").integer.greaterThan(0));
         return await callGovernanceCommand(['getsuperblockbudget', blockIndex]);
     }
@@ -70,7 +70,7 @@ export function syscoinRpcGovernanceServices(callRpc) {
         return await callGovernanceCommand('getcurrentvotes');
     }
 
-    async function getVotes({ hash }) {
+    async function getVotes({ hash } = {}) {
         ow(hash, ow.string.label("getVotes.hash").not.empty);
         return await callGovernanceCommand(['getvotes', hash]);
     }
@@ -95,7 +95,7 @@ export function syscoinRpcGovernanceServices(callRpc) {
         return await callGovernanceCommand(['list', 'endorsed']);
     }
 
-    async function prepareGovernanceObject({ parentHash, revision, time, dataHex }) {
+    async function prepareGovernanceObject({ parentHash, revision, time, dataHex } = {}) {
         ow(parentHash, ow.string.label('prepareGovernanceObject.parentHash').not.empty);
         ow(revision, ow.number.label('prepareGovernanceObject.revision').not.empty);
         ow(time, ow.number.label('prepareGovernanceObject.time').not.empty);
@@ -103,7 +103,7 @@ export function syscoinRpcGovernanceServices(callRpc) {
         return await callGovernanceCommand(['prepare', parentHash, revision, time, dataHex]);
     }
 
-    async function submitGovernanceObject({ parentHash, revision, time, dataHex, feeTxId }) {
+    async function submitGovernanceObject({ parentHash, revision, time, dataHex, feeTxId } = {}) {
         ow(parentHash, ow.string.label('submitGovernanceObject.parentHash').not.empty);
         ow(revision, ow.number.label('submitGovernanceObject.revision').not.empty);
         ow(time, ow.number.label('submitGovernanceObject.time').not.empty);
@@ -130,7 +130,7 @@ export function syscoinRpcGovernanceServices(callRpc) {
         voteSignal,
         vote,
         time,
-        voteSignature }) {
+        voteSignature } = {}) {
         ow(masterNodeTxHash, ow.string.label("callGovernanceCommand:format").not.empty);
         ow(masterNodeTxIndex, ow.number.label("callGovernanceCommand:format").integer.greaterThan(0));
         ow(governanceHash, ow.string.label("callGovernanceCommand:format").not.empty);
