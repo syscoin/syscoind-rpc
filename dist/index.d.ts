@@ -4,8 +4,8 @@
 // hug of static typing inside of a dynamic language.  Boo yah.
 
 import AddressIndexServices from './supporting-types/address-index-services';
-import DiagnosticServices from "./supporting-types/diagnostic-services"
-import { Address } from 'cluster';
+import BlockchainServices from './supporting-types/blockchain-services';
+import DiagnosticServices from './supporting-types/diagnostic-services';
 
 
 declare module 'syscoin-js' {
@@ -32,6 +32,7 @@ declare module 'syscoin-js' {
                     blacklist?: Array<string>});
         
         addressIndexServices: AddressIndexServices;
+        blockchainServies: BlockchainServices;
         diagnosticServices: DiagnosticServices;
         
         callRpc(methodName: string, arguments?: Array<string>): Promise<any>;
