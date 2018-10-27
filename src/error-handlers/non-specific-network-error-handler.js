@@ -9,7 +9,7 @@ export default class NonSpecificNetworkErrorHandler {
         return rpcError.message === "Network Error";
     }
 
-    logAndReturn() {
+    logAndReturn(rpcError) {
 
         if (rpcError.message === "Network Error") {
             throw new RpcException({
