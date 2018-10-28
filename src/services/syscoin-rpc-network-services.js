@@ -23,7 +23,10 @@ export function syscoinRpcNetworkServices(callRpc) {
         ping: post(ping),
         removeNode: post(removeNode),
         sentinelPing: post(sentinelPing),
-        spork: post(spork),
+        sporks: {
+            showCurrentValues: get(showCurrentSporkValues),
+            showActivationStatus: get(showSporkActivationStatus)
+        },
         stop: post(stop),
         tryToConnectToNode: post(tryToConnectToNode),
         unbanNode: post(unbanNode)
@@ -33,17 +36,20 @@ export function syscoinRpcNetworkServices(callRpc) {
         return await callRpc('setnetworkactive', [true]);
     }
 
-    async function spork({command}) {
-        ow(command, ow.string.label("spork:command").not.empty);
-        return await callRpc('spork', [command])
+    async function showCurrentSporkValues() {
+        return await callRpc('spork', ['all']);
     }
 
-    async function sentinelPing({version}) {
-        ow(version, ow.string.label("sentinelPingn:version").not.empty);
+    async function showSporkActivationStatus() {
+        return await callRpc('spork', ['active']);
+    }
+
+    async function sentinelPing({version} = {}) {
+        ow(version, ow.string.label("sentinelPing:version").not.empty);
         return await callRpc('sentinelping', [version]);
     }
 
-    async function addNode({nodeAddress}) {
+    async function addNode({nodeAddress} = {} ) {
         ow(nodeAddress, ow.string.label("addNode:nodeAddress").not.empty);
         return await callRpc('addnode', [nodeAddress, 'add']);
     }
@@ -56,14 +62,14 @@ export function syscoinRpcNetworkServices(callRpc) {
         return await callRpc('stop');
     }
 
-    async function banNodeForLengthOfTime({subnetOrIp, banTimeInSeconds=0}) {
+    async function banNodeForLengthOfTime({subnetOrIp, banTimeInSeconds=0} = {}) {
         ow(subnetOrIp, ow.string.label("banNodeUntilDate:subnetOrIp").not.empty);
         ow(banTimeInSeconds, ow.number.label("banNodeForLengthOfTime:banTimeInSeconds").integer.greaterThan(0));
         const AbsoluteTime = false;
         return await callRpc('setban', [subnetOrIp, 'add', banTimeInSeconds, AbsoluteTime]);
     }
 
-    async function banNodeUntilDate({subnetOrIp, banDateTimeEpoch}) {
+    async function banNodeUntilDate({subnetOrIp, banDateTimeEpoch} = {}) {
         ow(subnetOrIp, ow.string.label("banNodeUntilDate:subnetOrIp").not.empty);
         ow(banDateTimeEpoch, ow.number.label("banNodeUntilDate:banDateTimeEpoch").integer.greaterThan(0));
         const AbsoluteTime = true;
@@ -78,12 +84,12 @@ export function syscoinRpcNetworkServices(callRpc) {
         return await callRpc('setnetworkactive', [false]);
     }
 
-    async function disconnectNode({nodeAddress}) {
+    async function disconnectNode({nodeAddress} = {}) {
         ow(nodeAddress, ow.string.label("disconnectNode:nodeAddress").not.empty);
         return await callRpc('disconnectnode', [nodeAddress]);
     }
 
-    async function getAddedNodeInfo({nodeAddress}) {
+    async function getAddedNodeInfo({nodeAddress} = {}) {
         if(nodeAddress) {
             ow(nodeAddress, ow.string.label("getAddedNodeInfo:nodeAddress").not.empty);
         }
@@ -91,7 +97,7 @@ export function syscoinRpcNetworkServices(callRpc) {
             await callRpc('getaddednodeinfo');
     }
 
-    async function aliasClearWhiteList({ownerAddress, witness}) {
+    async function aliasClearWhiteList({ownerAddress, witness} = {}) {
         ow(ownerAddress, ow.string.label("aliasClearWhiteList:ownerAddress").not.empty);
         ow(witness, ow.string.label("aliasClearWhiteList:witness").not.empty);
         return await callRpc('aliasclearwhitelist', [ownerAddress, witness]);
@@ -125,22 +131,22 @@ export function syscoinRpcNetworkServices(callRpc) {
         return await callRpc('ping');
     }
 
-    async function removeNode({nodeAddress}) {
+    async function removeNode({nodeAddress} = {}) {
         ow(nodeAddress, ow.string.label("removeNode:nodeAddress").not.empty);
         return await callRpc('addnode', [nodeAddress, 'remove']);
     }
 
-    async function tryToConnectToNode({nodeAddress}) {
+    async function tryToConnectToNode({nodeAddress} = {}) {
         ow(nodeAddress, ow.string.label("tryToConnectToNode:nodeAddress").not.empty);
         return await callRpc('addnode', [nodeAddress, 'onetry']);
     }
 
-    async function unbanNode({subnetOrIp}) {
+    async function unbanNode({subnetOrIp} = {}) {
         ow(subnetOrIp, ow.string.label("unbanNode:subnetOrIp").not.empty);
         return await callRpc('setban', [subnetOrIp, 'remove']);
     }
 
-    async function getChainTxStats({nBlocks, blockHash}) {
+    async function getChainTxStats({nBlocks, blockHash} = {}) {
         if(nBlocks) {
             ow(nBlocks, ow.number.label("getChainTxStats:nBlocks").integer.greaterThan(0));
             return await callRpc('getchaintxstats', [nBlocks]);

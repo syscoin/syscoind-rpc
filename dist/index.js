@@ -140,14 +140,5 @@ export default class SyscoinRpcClient {
         this.sentinelPing = async versionString => {
             return await callRpc('sentinelping', [versionString]);
         };
-
-        this.sporks = {
-            showCurrentValues: async () => {
-                return await callRpc('spork', ['all']);
-            },
-            showSporkActivationStatus: async () => {
-                return await callRpc('spork', ['active']);
-            }
-        };
     }
 }
