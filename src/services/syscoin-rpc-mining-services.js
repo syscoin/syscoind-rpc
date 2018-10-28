@@ -14,22 +14,22 @@ export function syscoinRpcMiningServices(callRpc) {
         getPoolInfo: get(getPoolInfo)
     }
 
-    async function createAuxBlock(address) {
+    async function createAuxBlock({address} = {}) {
         ow(address, ow.string.label("createAuxBlock:address").not.empty);
-        return await callRpc('createauxblock', arguments);
+        return await callRpc('createauxblock', [address]);
     }
 
-    async function getAuxBlock(blockHash, auxPow) {
+    async function getAuxBlock({blockHash, auxPow} = {}) {
         if(blockHash) {
             ow(blockHash, ow.string.label("getAuxBlock:blockHash").not.empty);
         }
         if(blockHash && auxPow) {
             ow(auxPow, ow.string.label("getAuxBlock:auxPow").not.empty);
         }
-        return await callRpc('getauxblock', arguments);
+        return await callRpc('getauxblock', [blockHash,auxPow]);
     }
 
-    async function getBlockTemplate(blockTemplate) {
+    async function getBlockTemplate({blockTemplate} = {}) {
         if(blockTemplate) {
             ow(blockTemplate, ow.string.label("getBlockTemplate:blockTemplate").not.empty);
         }
@@ -44,26 +44,26 @@ export function syscoinRpcMiningServices(callRpc) {
         return await callRpc('getpoolinfo');
     }
 
-    async function getNetworkHashesPerSecond(numberOfBlocks=120,blockHeight=-1) {
+    async function getNetworkHashesPerSecond({numberOfBlocks=120,blockHeight=-1} = {numberOfBlocks:120,blockHeight:-1}) {
         ow(numberOfBlocks, ow.number.label("getNetworkHashesPerSecond:numberOfBlocks").greaterThan(0));
         ow(blockHeight, ow.number.label("getNetworkHashesPerSecond:blockHeight").greaterThan(0));
-        return await callRpc('getnetworkhashps', arguments);
+        return await callRpc('getnetworkhashps', [numberOfBlocks,blockHeight]);
     }
 
-    async function prioritiseTransaction(txid, priorityDelta, feeDeltaInSatoshis) {
+    async function prioritiseTransaction({txid, priorityDelta, feeDeltaInSatoshis} = {}) {
         ow(txid, ow.string.label("prioritiseTransaction:txid").not.empty);
         ow(priorityDelta, ow.number.label("prioritiseTransaction:priorityDelta").greaterThan(0));
         ow(feeDeltaInSatoshis, ow.number.label("prioritiseTransaction:feeDelaInSatoshis").greaterThan(0));
-        return await callRpc('prioritisetransaction', arguments);
+        return await callRpc('prioritisetransaction', [txid,priorityDelta,feeDeltaInSatoshis]);
     }
 
-    async function submitAuxBlock(blockHash,auxPow) {
+    async function submitAuxBlock({blockHash,auxPow} = {}) {
         ow(blockHash, ow.string.label("submitAuxBlock:blockHash").not.empty);
-        ow(blockHash, ow.string.label("submitAuxBlock:auxPow").not.empty);
-        return await callRpc('submitauxblock',arguments);
+        ow(auxPow, ow.string.label("submitAuxBlock:auxPow").not.empty);
+        return await callRpc('submitauxblock',[blockHash,auxPow]);
     }
 
-    async function submitBlock(hexDataToSubmit) {
+    async function submitBlock({hexDataToSubmit} = {}) {
         ow(hexDataToSubmit, ow.string.label("submitBlock:hexDataToSubmit").not.empty);
         // submitblock "hexdata" ( "jsonparametersobject" )
 

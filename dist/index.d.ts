@@ -10,6 +10,8 @@ import EstimateServices from './supporting-types/estimate-services';
 import GenerationServices from './supporting-types/generation-services';
 import GovernanceServices from './supporting-types/governance-services';
 import MasternodeServices from './supporting-types/masternode-services';
+import MessagingServices from './supporting-types/messaging-services';
+import MiningServices from './supporting-types/mining-services';
 
 declare module 'syscoin-js' {
 
@@ -40,7 +42,9 @@ declare module 'syscoin-js' {
         generationServices: GenerationServices;
         governanceServices: GovernanceServices;
         masternodeServices: MasternodeServices;
-        
+        messagingServices: MessagingServices;
+        miningServices: MiningServices;
+
         callRpc(methodName: string, arguments?: Array<string>): Promise<any>;
     }
 }
