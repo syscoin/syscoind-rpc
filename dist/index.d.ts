@@ -8,6 +8,8 @@ import BlockchainServices from './supporting-types/blockchain-services';
 import DiagnosticServices from './supporting-types/diagnostic-services';
 import EstimateServices from './supporting-types/estimate-services';
 import GenerationServices from './supporting-types/generation-services';
+import GovernanceServices from './supporting-types/governance-services';
+import MasternodeServices from './supporting-types/masternode-services';
 
 declare module 'syscoin-js' {
 
@@ -36,6 +38,8 @@ declare module 'syscoin-js' {
         blockchainServices: BlockchainServices;
         diagnosticServices: DiagnosticServices;
         generationServices: GenerationServices;
+        governanceServices: GovernanceServices;
+        masternodeServices: MasternodeServices;
         
         callRpc(methodName: string, arguments?: Array<string>): Promise<any>;
     }
