@@ -12,6 +12,7 @@ import GovernanceServices from './supporting-types/governance-services';
 import MasternodeServices from './supporting-types/masternode-services';
 import MessagingServices from './supporting-types/messaging-services';
 import MiningServices from './supporting-types/mining-services';
+import MixingServices from './supporting-types/mixing-services';
 
 declare module 'syscoin-js' {
 
@@ -44,6 +45,7 @@ declare module 'syscoin-js' {
         masternodeServices: MasternodeServices;
         messagingServices: MessagingServices;
         miningServices: MiningServices;
+        mixingServices: MixingServices;
 
         callRpc(methodName: string, arguments?: Array<string>): Promise<any>;
     }
