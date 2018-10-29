@@ -14,24 +14,24 @@ export function syscoinRpcTransactionServices(callRpc) {
     }
 
 
-    async function createRawTransaction({inputs, outputs, lockTime=0}) {
+    async function createRawTransaction({inputs, outputs, lockTime=0} = {}) {
         ow(inputs, ow.array.label("createRawTransaction:inputs").not.empty);
         ow(outputs, ow.object.label("createRawTransaction:outputs").not.empty);
         ow(lockTime, ow.number.label("createRawTransaction:lockTime").greaterThan(0));
         return await callRpc('createrawtransaction', [inputs, outputs, lockTime])
     }
 
-    async function decodeRawTransaction({hexString}) {
+    async function decodeRawTransaction({hexString} = {}) {
         ow(hexString, ow.string.label("decodeRawTransaction:hexString").not.empty);
         return await callRpc('decoderawtransaction', [hexString]);
     }
 
-    async function decodeScript({hexString})  {
+    async function decodeScript({hexString} = {})  {
         ow(hexString, ow.string.label("decodeScript:hexString").not.empty);
         return await callRpc('decodescript', [hexString]);
     }
 
-    async function fundRawTransaction({hexString, options}) {
+    async function fundRawTransaction({hexString, options} = {}) {
         ow(hexString, ow.string.label("fundRawTransaction:hexString").not.empty);
         if(options) {
             ow(options, ow.object.label("fundRawTransaction:options").not.empty);
@@ -39,20 +39,20 @@ export function syscoinRpcTransactionServices(callRpc) {
         return await callRpc('fundrawtransaction', [hexString, options]);
     }
 
-    async function getRawTransaction({txId}) {
+    async function getRawTransaction({txId} = {}) {
         ow(txId, ow.string.label("getRawTransaction:txId").not.empty);
         let verbose = false;
         return await callRpc('getrawtransaction',[txId, verbose]);
     }
     
-    async function getRawTransactionVerbose({txId}) {
+    async function getRawTransactionVerbose({txId} = {}) {
         ow(txId, ow.string.label("getRawTransactionVerbose:txId").not.empty);
         let verbose = true;
         return await callRpc('getrawtransaction',[txId,verbose]);
     }
     
     async function sendRawTransaction({hexString,
-                                       allowHighFees=false,instantSend=false,bypassLimits=false}) {
+                                       allowHighFees=false,instantSend=false,bypassLimits=false} = {}) {
         ow(hexString, ow.string.label("sendRawTransaction:hexString").not.empty);
         ow(allowHighFees, ow.boolean.label("sendRawTransaction:allowHighFees").is(x => x == true || x == false));
         ow(instantSend, ow.boolean.label("sendRawTransaction:instantSend").is(x => x == true || x == false));
@@ -62,7 +62,7 @@ export function syscoinRpcTransactionServices(callRpc) {
 
     // Not sure the documentation explains this one appropriately.  Reference for later.
     async function signRawTransaction({hexString,
-                                       previousTransactionOutputs,privateKeys,signatureHashType='ALL'}) {
+                                       previousTransactionOutputs,privateKeys,signatureHashType='ALL'} = {}) {
         ow(hexString, ow.string.label("signRawTransaction:hexString").not.empty);
         if (previousTransactionOutputs && privateKeys) {
             ow(previousTransactionOutputs, ow.array.label("signRawTransaction:previousTransactionOutputs").not.empty);

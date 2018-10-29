@@ -24,11 +24,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function syscoinRpcTransactionServices(callRpc) {
     var createRawTransaction = function () {
-        var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(_ref) {
-            var inputs = _ref.inputs,
-                outputs = _ref.outputs,
-                _ref$lockTime = _ref.lockTime,
-                lockTime = _ref$lockTime === undefined ? 0 : _ref$lockTime;
+        var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+            var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+                inputs = _ref2.inputs,
+                outputs = _ref2.outputs,
+                _ref2$lockTime = _ref2.lockTime,
+                lockTime = _ref2$lockTime === undefined ? 0 : _ref2$lockTime;
+
             return _regenerator2.default.wrap(function _callee$(_context) {
                 while (1) {
                     switch (_context.prev = _context.next) {
@@ -50,14 +52,16 @@ function syscoinRpcTransactionServices(callRpc) {
             }, _callee, this);
         }));
 
-        return function createRawTransaction(_x) {
-            return _ref2.apply(this, arguments);
+        return function createRawTransaction() {
+            return _ref.apply(this, arguments);
         };
     }();
 
     var decodeRawTransaction = function () {
-        var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(_ref3) {
-            var hexString = _ref3.hexString;
+        var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2() {
+            var _ref4 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+                hexString = _ref4.hexString;
+
             return _regenerator2.default.wrap(function _callee2$(_context2) {
                 while (1) {
                     switch (_context2.prev = _context2.next) {
@@ -77,14 +81,16 @@ function syscoinRpcTransactionServices(callRpc) {
             }, _callee2, this);
         }));
 
-        return function decodeRawTransaction(_x2) {
-            return _ref4.apply(this, arguments);
+        return function decodeRawTransaction() {
+            return _ref3.apply(this, arguments);
         };
     }();
 
     var decodeScript = function () {
-        var _ref6 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(_ref5) {
-            var hexString = _ref5.hexString;
+        var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3() {
+            var _ref6 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+                hexString = _ref6.hexString;
+
             return _regenerator2.default.wrap(function _callee3$(_context3) {
                 while (1) {
                     switch (_context3.prev = _context3.next) {
@@ -104,15 +110,17 @@ function syscoinRpcTransactionServices(callRpc) {
             }, _callee3, this);
         }));
 
-        return function decodeScript(_x3) {
-            return _ref6.apply(this, arguments);
+        return function decodeScript() {
+            return _ref5.apply(this, arguments);
         };
     }();
 
     var fundRawTransaction = function () {
-        var _ref8 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4(_ref7) {
-            var hexString = _ref7.hexString,
-                options = _ref7.options;
+        var _ref7 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4() {
+            var _ref8 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+                hexString = _ref8.hexString,
+                options = _ref8.options;
+
             return _regenerator2.default.wrap(function _callee4$(_context4) {
                 while (1) {
                     switch (_context4.prev = _context4.next) {
@@ -135,14 +143,16 @@ function syscoinRpcTransactionServices(callRpc) {
             }, _callee4, this);
         }));
 
-        return function fundRawTransaction(_x4) {
-            return _ref8.apply(this, arguments);
+        return function fundRawTransaction() {
+            return _ref7.apply(this, arguments);
         };
     }();
 
     var getRawTransaction = function () {
-        var _ref10 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5(_ref9) {
-            var txId = _ref9.txId;
+        var _ref9 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5() {
+            var _ref10 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+                txId = _ref10.txId;
+
             var verbose;
             return _regenerator2.default.wrap(function _callee5$(_context5) {
                 while (1) {
@@ -164,14 +174,16 @@ function syscoinRpcTransactionServices(callRpc) {
             }, _callee5, this);
         }));
 
-        return function getRawTransaction(_x5) {
-            return _ref10.apply(this, arguments);
+        return function getRawTransaction() {
+            return _ref9.apply(this, arguments);
         };
     }();
 
     var getRawTransactionVerbose = function () {
-        var _ref12 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee6(_ref11) {
-            var txId = _ref11.txId;
+        var _ref11 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee6() {
+            var _ref12 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+                txId = _ref12.txId;
+
             var verbose;
             return _regenerator2.default.wrap(function _callee6$(_context6) {
                 while (1) {
@@ -193,20 +205,22 @@ function syscoinRpcTransactionServices(callRpc) {
             }, _callee6, this);
         }));
 
-        return function getRawTransactionVerbose(_x6) {
-            return _ref12.apply(this, arguments);
+        return function getRawTransactionVerbose() {
+            return _ref11.apply(this, arguments);
         };
     }();
 
     var sendRawTransaction = function () {
-        var _ref14 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee7(_ref13) {
-            var hexString = _ref13.hexString,
-                _ref13$allowHighFees = _ref13.allowHighFees,
-                allowHighFees = _ref13$allowHighFees === undefined ? false : _ref13$allowHighFees,
-                _ref13$instantSend = _ref13.instantSend,
-                instantSend = _ref13$instantSend === undefined ? false : _ref13$instantSend,
-                _ref13$bypassLimits = _ref13.bypassLimits,
-                bypassLimits = _ref13$bypassLimits === undefined ? false : _ref13$bypassLimits;
+        var _ref13 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee7() {
+            var _ref14 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+                hexString = _ref14.hexString,
+                _ref14$allowHighFees = _ref14.allowHighFees,
+                allowHighFees = _ref14$allowHighFees === undefined ? false : _ref14$allowHighFees,
+                _ref14$instantSend = _ref14.instantSend,
+                instantSend = _ref14$instantSend === undefined ? false : _ref14$instantSend,
+                _ref14$bypassLimits = _ref14.bypassLimits,
+                bypassLimits = _ref14$bypassLimits === undefined ? false : _ref14$bypassLimits;
+
             var _args7 = arguments;
             return _regenerator2.default.wrap(function _callee7$(_context7) {
                 while (1) {
@@ -236,8 +250,8 @@ function syscoinRpcTransactionServices(callRpc) {
             }, _callee7, this);
         }));
 
-        return function sendRawTransaction(_x7) {
-            return _ref14.apply(this, arguments);
+        return function sendRawTransaction() {
+            return _ref13.apply(this, arguments);
         };
     }();
 
@@ -245,12 +259,14 @@ function syscoinRpcTransactionServices(callRpc) {
 
 
     var signRawTransaction = function () {
-        var _ref16 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee8(_ref15) {
-            var hexString = _ref15.hexString,
-                previousTransactionOutputs = _ref15.previousTransactionOutputs,
-                privateKeys = _ref15.privateKeys,
-                _ref15$signatureHashT = _ref15.signatureHashType,
-                signatureHashType = _ref15$signatureHashT === undefined ? 'ALL' : _ref15$signatureHashT;
+        var _ref15 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee8() {
+            var _ref16 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+                hexString = _ref16.hexString,
+                previousTransactionOutputs = _ref16.previousTransactionOutputs,
+                privateKeys = _ref16.privateKeys,
+                _ref16$signatureHashT = _ref16.signatureHashType,
+                signatureHashType = _ref16$signatureHashT === undefined ? 'ALL' : _ref16$signatureHashT;
+
             return _regenerator2.default.wrap(function _callee8$(_context8) {
                 while (1) {
                     switch (_context8.prev = _context8.next) {
@@ -285,8 +301,8 @@ function syscoinRpcTransactionServices(callRpc) {
             }, _callee8, this);
         }));
 
-        return function signRawTransaction(_x8) {
-            return _ref16.apply(this, arguments);
+        return function signRawTransaction() {
+            return _ref15.apply(this, arguments);
         };
     }();
 
