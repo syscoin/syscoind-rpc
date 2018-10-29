@@ -24,10 +24,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function syscoinRpcUtilityServices(callRpc) {
     var createMultiSig = function () {
-        var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(_ref) {
-            var numberOfRequiredSignatures = _ref.numberOfRequiredSignatures,
-                keys = _ref.keys;
-            var _args = arguments;
+        var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+            var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+                numberOfRequiredSignatures = _ref2.numberOfRequiredSignatures,
+                keys = _ref2.keys;
+
             return _regenerator2.default.wrap(function _callee$(_context) {
                 while (1) {
                     switch (_context.prev = _context.next) {
@@ -35,7 +36,7 @@ function syscoinRpcUtilityServices(callRpc) {
                             (0, _syscoinOw2.default)(numberOfRequiredSignatures, _syscoinOw2.default.number.label("createMultiSig:numberOfRequiredSignatures").integer.greaterThan(0));
                             (0, _syscoinOw2.default)(keys, _syscoinOw2.default.array.label("createMultiSig:keys").not.empty);
                             _context.next = 4;
-                            return callRpc('createmultisig', _args);
+                            return callRpc('createmultisig', [numberOfRequiredSignatures, keys]);
 
                         case 4:
                             return _context.abrupt("return", _context.sent);
@@ -48,14 +49,16 @@ function syscoinRpcUtilityServices(callRpc) {
             }, _callee, this);
         }));
 
-        return function createMultiSig(_x) {
-            return _ref2.apply(this, arguments);
+        return function createMultiSig() {
+            return _ref.apply(this, arguments);
         };
     }();
 
     var validateAddress = function () {
-        var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(_ref3) {
-            var address = _ref3.address;
+        var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2() {
+            var _ref4 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+                address = _ref4.address;
+
             return _regenerator2.default.wrap(function _callee2$(_context2) {
                 while (1) {
                     switch (_context2.prev = _context2.next) {
@@ -75,14 +78,16 @@ function syscoinRpcUtilityServices(callRpc) {
             }, _callee2, this);
         }));
 
-        return function validateAddress(_x2) {
-            return _ref4.apply(this, arguments);
+        return function validateAddress() {
+            return _ref3.apply(this, arguments);
         };
     }();
 
     var debug = function () {
-        var _ref6 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(_ref5) {
-            var category = _ref5.category;
+        var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3() {
+            var _ref6 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+                category = _ref6.category;
+
             return _regenerator2.default.wrap(function _callee3$(_context3) {
                 while (1) {
                     switch (_context3.prev = _context3.next) {
@@ -102,14 +107,16 @@ function syscoinRpcUtilityServices(callRpc) {
             }, _callee3, this);
         }));
 
-        return function debug(_x3) {
-            return _ref6.apply(this, arguments);
+        return function debug() {
+            return _ref5.apply(this, arguments);
         };
     }();
 
     var help = function () {
-        var _ref8 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4(_ref7) {
-            var command = _ref7.command;
+        var _ref7 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4() {
+            var _ref8 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+                command = _ref8.command;
+
             return _regenerator2.default.wrap(function _callee4$(_context4) {
                 while (1) {
                     switch (_context4.prev = _context4.next) {
@@ -129,14 +136,16 @@ function syscoinRpcUtilityServices(callRpc) {
             }, _callee4, this);
         }));
 
-        return function help(_x4) {
-            return _ref8.apply(this, arguments);
+        return function help() {
+            return _ref7.apply(this, arguments);
         };
     }();
 
     var tpsTestSetEnabled = function () {
-        var _ref10 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5(_ref9) {
-            var enabled = _ref9.enabled;
+        var _ref9 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5() {
+            var _ref10 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+                enabled = _ref10.enabled;
+
             return _regenerator2.default.wrap(function _callee5$(_context5) {
                 while (1) {
                     switch (_context5.prev = _context5.next) {
@@ -158,16 +167,17 @@ function syscoinRpcUtilityServices(callRpc) {
             }, _callee5, this);
         }));
 
-        return function tpsTestSetEnabled(_x5) {
-            return _ref10.apply(this, arguments);
+        return function tpsTestSetEnabled() {
+            return _ref9.apply(this, arguments);
         };
     }();
 
     var tpsTestAdd = function () {
-        var _ref12 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee6(_ref11) {
-            var startTime = _ref11.startTime,
-                rawTx = _ref11.rawTx;
-            var _args6 = arguments;
+        var _ref11 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee6() {
+            var _ref12 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+                startTime = _ref12.startTime,
+                rawTx = _ref12.rawTx;
+
             return _regenerator2.default.wrap(function _callee6$(_context6) {
                 while (1) {
                     switch (_context6.prev = _context6.next) {
@@ -175,7 +185,7 @@ function syscoinRpcUtilityServices(callRpc) {
                             (0, _syscoinOw2.default)(startTime, _syscoinOw2.default.number.label("tpsTestAdd:startTime").integer.greaterThan(0));
                             (0, _syscoinOw2.default)(rawTx, _syscoinOw2.default.array.label("tpsTestAdd:rawTx").not.empty);
                             _context6.next = 4;
-                            return callRpc('tpstestadd', _args6);
+                            return callRpc('tpstestadd', [startTime, rawTx]);
 
                         case 4:
                             return _context6.abrupt("return", _context6.sent);
@@ -188,8 +198,8 @@ function syscoinRpcUtilityServices(callRpc) {
             }, _callee6, this);
         }));
 
-        return function tpsTestAdd(_x6) {
-            return _ref12.apply(this, arguments);
+        return function tpsTestAdd() {
+            return _ref11.apply(this, arguments);
         };
     }();
 

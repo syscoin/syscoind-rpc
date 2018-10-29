@@ -17,7 +17,7 @@ export function syscoinRpcTransactionServices(callRpc) {
     async function createRawTransaction({inputs, outputs, lockTime=0} = {}) {
         ow(inputs, ow.array.label("createRawTransaction:inputs").not.empty);
         ow(outputs, ow.object.label("createRawTransaction:outputs").not.empty);
-        ow(lockTime, ow.number.label("createRawTransaction:lockTime").greaterThan(0));
+        ow(lockTime, ow.number.label("createRawTransaction:lockTime").greaterThanOrEqualTo(0));
         return await callRpc('createrawtransaction', [inputs, outputs, lockTime])
     }
 

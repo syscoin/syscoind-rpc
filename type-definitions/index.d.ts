@@ -16,6 +16,7 @@ import MixingServices from './supporting-types/mixing-services';
 import NetworkServices from './supporting-types/network-services';
 import SynchronizationServices from './supporting-types/synchronization-services';
 import TransactionServices from './supporting-types/transaction-services';
+import UtilityServices from './supporting-types/utility-services';
 
 declare module 'syscoin-js' {
 
@@ -52,7 +53,8 @@ declare module 'syscoin-js' {
         networkServices: NetworkServices;
         synchronizationServices: SynchronizationServices;
         transactionServices: TransactionServices;
-        
+        utilityServices: UtilityServices;
+
         callRpc(methodName: string, arguments?: Array<string>): Promise<any>;
     }
 }

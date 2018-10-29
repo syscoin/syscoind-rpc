@@ -37,7 +37,7 @@ function syscoinRpcTransactionServices(callRpc) {
                         case 0:
                             (0, _syscoinOw2.default)(inputs, _syscoinOw2.default.array.label("createRawTransaction:inputs").not.empty);
                             (0, _syscoinOw2.default)(outputs, _syscoinOw2.default.object.label("createRawTransaction:outputs").not.empty);
-                            (0, _syscoinOw2.default)(lockTime, _syscoinOw2.default.number.label("createRawTransaction:lockTime").greaterThan(0));
+                            (0, _syscoinOw2.default)(lockTime, _syscoinOw2.default.number.label("createRawTransaction:lockTime").greaterThanOrEqualTo(0));
                             _context.next = 5;
                             return callRpc('createrawtransaction', [inputs, outputs, lockTime]);
 
