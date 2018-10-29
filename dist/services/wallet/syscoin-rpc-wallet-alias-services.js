@@ -80,14 +80,15 @@ function walletAliasServices(callRpc) {
         var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2() {
             var _ref4 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
                 aliases = _ref4.aliases,
-                instantSend = _ref4.instantSend;
+                _ref4$instantSend = _ref4.instantSend,
+                instantSend = _ref4$instantSend === undefined ? false : _ref4$instantSend;
 
             var aliasesObj;
             return _regenerator2.default.wrap(function _callee2$(_context2) {
                 while (1) {
                     switch (_context2.prev = _context2.next) {
                         case 0:
-                            (0, _syscoinOw2.default)(aliases, _syscoinOw2.default.string.label("aliasBalanceMulti:aliases").not.empty);
+                            (0, _syscoinOw2.default)(aliases, _syscoinOw2.default.array.label("aliasBalanceMulti:aliases").not.empty);
                             if (instantSend) {
                                 (0, _syscoinOw2.default)(account, _syscoinOw2.default.boolean.label("aliasBalance:instantSend").is(function (x) {
                                     return x == true || x == false;
@@ -204,12 +205,14 @@ function walletAliasServices(callRpc) {
             var _ref10 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
                 aliasName = _ref10.aliasName,
                 publicValue = _ref10.publicValue,
-                acceptTransferFlags = _ref10.acceptTransferFlags,
+                _ref10$acceptTransfer = _ref10.acceptTransferFlags,
+                acceptTransferFlags = _ref10$acceptTransfer === undefined ? 3 : _ref10$acceptTransfer,
                 expireTimestamp = _ref10.expireTimestamp,
                 address = _ref10.address,
                 encryptionPrivateKey = _ref10.encryptionPrivateKey,
                 encryptionPublicKey = _ref10.encryptionPublicKey,
-                witness = _ref10.witness;
+                _ref10$witness = _ref10.witness,
+                witness = _ref10$witness === undefined ? '' : _ref10$witness;
 
             return _regenerator2.default.wrap(function _callee5$(_context5) {
                 while (1) {
@@ -249,12 +252,14 @@ function walletAliasServices(callRpc) {
             var _ref12 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
                 aliasName = _ref12.aliasName,
                 publicValue = _ref12.publicValue,
-                acceptTransferFlags = _ref12.acceptTransferFlags,
+                _ref12$acceptTransfer = _ref12.acceptTransferFlags,
+                acceptTransferFlags = _ref12$acceptTransfer === undefined ? 3 : _ref12$acceptTransfer,
                 expireTimestamp = _ref12.expireTimestamp,
                 address = _ref12.address,
                 encryptionPrivateKey = _ref12.encryptionPrivateKey,
                 encryptionPublicKey = _ref12.encryptionPublicKey,
-                witness = _ref12.witness;
+                _ref12$witness = _ref12.witness,
+                witness = _ref12$witness === undefined ? '' : _ref12$witness;
 
             return _regenerator2.default.wrap(function _callee6$(_context6) {
                 while (1) {
@@ -294,7 +299,8 @@ function walletAliasServices(callRpc) {
             var _ref14 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
                 aliasFrom = _ref14.aliasFrom,
                 amountsToAliases = _ref14.amountsToAliases,
-                instantSend = _ref14.instantSend,
+                _ref14$instantSend = _ref14.instantSend,
+                instantSend = _ref14$instantSend === undefined ? false : _ref14$instantSend,
                 subtractFeeFromAmount = _ref14.subtractFeeFromAmount;
 
             return _regenerator2.default.wrap(function _callee7$(_context7) {
@@ -333,12 +339,15 @@ function walletAliasServices(callRpc) {
             var _ref16 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
                 aliasName = _ref16.aliasName,
                 publicValue = _ref16.publicValue,
-                acceptTransferFlags = _ref16.acceptTransferFlags,
-                expireTimestamp = _ref16.expireTimestamp,
+                _ref16$acceptTransfer = _ref16.acceptTransferFlags,
+                acceptTransferFlags = _ref16$acceptTransfer === undefined ? 3 : _ref16$acceptTransfer,
+                _ref16$expireTimestam = _ref16.expireTimestamp,
+                expireTimestamp = _ref16$expireTimestam === undefined ? 3600 : _ref16$expireTimestam,
                 address = _ref16.address,
                 encryptionPrivateKey = _ref16.encryptionPrivateKey,
                 encryptionPublicKey = _ref16.encryptionPublicKey,
-                witness = _ref16.witness;
+                _ref16$witness = _ref16.witness,
+                witness = _ref16$witness === undefined ? '' : _ref16$witness;
 
             return _regenerator2.default.wrap(function _callee8$(_context8) {
                 while (1) {
@@ -377,21 +386,24 @@ function walletAliasServices(callRpc) {
         var _ref17 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee9() {
             var _ref18 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
                 ownerAlias = _ref18.ownerAlias,
-                witness = _ref18.witness;
+                whitelistEntries = _ref18.whitelistEntries,
+                _ref18$witness = _ref18.witness,
+                witness = _ref18$witness === undefined ? '' : _ref18$witness;
 
             return _regenerator2.default.wrap(function _callee9$(_context9) {
                 while (1) {
                     switch (_context9.prev = _context9.next) {
                         case 0:
                             (0, _syscoinOw2.default)(ownerAlias, _syscoinOw2.default.string.label("aliasUpdateWhitelist:ownerAlias").not.empty);
+                            (0, _syscoinOw2.default)(whitelistEntries, _syscoinOw2.default.object.label("aliasUpdateWhitelist:whitelistEntries").not.empty);
                             (0, _syscoinOw2.default)(witness, _syscoinOw2.default.string.label("aliasUpdateWhitelist:witness").not.empty);
-                            _context9.next = 4;
-                            return callRpc('aliasupdatewhitelist', [ownerAlias, witness]);
-
-                        case 4:
-                            return _context9.abrupt("return", _context9.sent);
+                            _context9.next = 5;
+                            return callRpc('aliasupdatewhitelist', [ownerAlias, whitelistEntries, witness]);
 
                         case 5:
+                            return _context9.abrupt("return", _context9.sent);
+
+                        case 6:
                         case "end":
                             return _context9.stop();
                     }
@@ -415,7 +427,7 @@ function walletAliasServices(callRpc) {
                         case 0:
                             (0, _syscoinOw2.default)(script, _syscoinOw2.default.string.label("aliasAddScript:script").not.empty);
                             _context10.next = 3;
-                            return callRpc('aliasaddscript', script);
+                            return callRpc('aliasaddscript', [script]);
 
                         case 3:
                             return _context10.abrupt("return", _context10.sent);
@@ -467,12 +479,13 @@ function walletAliasServices(callRpc) {
             var _ref24 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
                 aliasName = _ref24.aliasName,
                 publicValue = _ref24.publicValue,
+                address = _ref24.address,
                 acceptTransferFlags = _ref24.acceptTransferFlags,
                 expireTimestamp = _ref24.expireTimestamp,
-                address = _ref24.address,
                 encryptionPrivateKey = _ref24.encryptionPrivateKey,
                 encryptionPublicKey = _ref24.encryptionPublicKey,
-                witness = _ref24.witness;
+                _ref24$witness = _ref24.witness,
+                witness = _ref24$witness === undefined ? '' : _ref24$witness;
 
             return _regenerator2.default.wrap(function _callee12$(_context12) {
                 while (1) {
@@ -480,6 +493,7 @@ function walletAliasServices(callRpc) {
                         case 0:
                             (0, _syscoinOw2.default)(aliasName, _syscoinOw2.default.string.label("aliasUpdateEstimatedFee:aliasName").not.empty);
                             (0, _syscoinOw2.default)(publicValue, _syscoinOw2.default.string.label("aliasUpdateEstimatedFee:publicValue").minLength(0));
+                            (0, _syscoinOw2.default)(address, _syscoinOw2.default.string.label("aliasUpdateEstimatedFee:address").not.empty);
                             (0, _syscoinOw2.default)(transfersFlag, _syscoinOw2.default.number.label("aliasUpdateEstimatedFee:transfersFlag").is(function (x) {
                                 return x >= 0 && x <= 3;
                             }));
@@ -488,13 +502,13 @@ function walletAliasServices(callRpc) {
                             (0, _syscoinOw2.default)(encPrivateKey, _syscoinOw2.default.string.label("aliasUpdateEstimatedFee:encPrivateKey").minLength(0));
                             (0, _syscoinOw2.default)(encPublicKey, _syscoinOw2.default.string.label("aliasUpdateEstimatedFee:encPublicKey").minLength(0));
                             (0, _syscoinOw2.default)(witness, _syscoinOw2.default.string.label("aliasUpdateEstimatedFee:witness").minLength(0));
-                            _context12.next = 10;
-                            return callRpc('aliasupdate', [aliasName, publicValue, acceptTransferFlags, expireTimestamp, address, encryptionPrivateKey, encryptionPublicKey, witness]);
-
-                        case 10:
-                            return _context12.abrupt("return", _context12.sent);
+                            _context12.next = 11;
+                            return callRpc('aliasupdate', [aliasName, publicValue, address, acceptTransferFlags, expireTimestamp, encryptionPrivateKey, encryptionPublicKey, witness]);
 
                         case 11:
+                            return _context12.abrupt("return", _context12.sent);
+
+                        case 12:
                         case "end":
                             return _context12.stop();
                     }
@@ -510,11 +524,12 @@ function walletAliasServices(callRpc) {
     var listAliases = function () {
         var _ref25 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee13() {
             var _ref26 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-                count = _ref26.count,
-                from = _ref26.from,
+                _ref26$count = _ref26.count,
+                count = _ref26$count === undefined ? 10 : _ref26$count,
+                _ref26$from = _ref26.from,
+                from = _ref26$from === undefined ? 0 : _ref26$from,
                 options = _ref26.options;
 
-            var _args13 = arguments;
             return _regenerator2.default.wrap(function _callee13$(_context13) {
                 while (1) {
                     switch (_context13.prev = _context13.next) {
@@ -523,13 +538,13 @@ function walletAliasServices(callRpc) {
                                 (0, _syscoinOw2.default)(count, _syscoinOw2.default.number.label("listAliases:count").integer.greaterThan(0));
                             }
                             if (from) {
-                                (0, _syscoinOw2.default)(from, _syscoinOw2.default.number.label("listAliases:from").integer.greaterThan(0));
+                                (0, _syscoinOw2.default)(from, _syscoinOw2.default.number.label("listAliases:from").integer.greaterThanOrEqual(0));
                             }
                             if (options) {
-                                (0, _syscoinOw2.default)(options, _syscoinOw2.default.objects.label("listAliases:options").not.empty);
+                                (0, _syscoinOw2.default)(options, _syscoinOw2.default.object.label("listAliases:options").not.empty);
                             }
                             _context13.next = 5;
-                            return callRpc('listaliases', _args13);
+                            return callRpc('listaliases', [count, from, options]);
 
                         case 5:
                             return _context13.abrupt("return", _context13.sent);
@@ -551,51 +566,51 @@ function walletAliasServices(callRpc) {
 
 
     var validateAlias = function () {
-        var _ref27 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee14(aliasName) {
+        var _ref27 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee14() {
+            var _ref28 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+                aliasName = _ref28.aliasName;
+
             var aliasData, addressValidationData;
             return _regenerator2.default.wrap(function _callee14$(_context14) {
                 while (1) {
                     switch (_context14.prev = _context14.next) {
                         case 0:
                             (0, _syscoinOw2.default)(aliasName, _syscoinOw2.default.string.label("validateAlias:aliasName").not.empty);
-                            _context14.next = 3;
+                            _context14.prev = 1;
+                            _context14.next = 4;
                             return aliasInfo(aliasName);
 
-                        case 3:
+                        case 4:
                             aliasData = _context14.sent;
-
-                            if (!aliasData.error) {
-                                _context14.next = 6;
-                                break;
-                            }
-
-                            return _context14.abrupt("return", aliasData);
-
-                        case 6:
-                            _context14.next = 8;
+                            _context14.next = 7;
                             return utilityServices.validateAddress(aliasData.address);
 
-                        case 8:
+                        case 7:
                             addressValidationData = _context14.sent;
                             return _context14.abrupt("return", addressValidationData);
 
-                        case 10:
+                        case 11:
+                            _context14.prev = 11;
+                            _context14.t0 = _context14["catch"](1);
+                            throw new Error("Could not validate alias:" + _context14.t0);
+
+                        case 14:
                         case "end":
                             return _context14.stop();
                     }
                 }
-            }, _callee14, this);
+            }, _callee14, this, [[1, 11]]);
         }));
 
-        return function validateAlias(_x14) {
+        return function validateAlias() {
             return _ref27.apply(this, arguments);
         };
     }();
 
     var listAliasesAfterBlock = function () {
-        var _ref28 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee15() {
-            var _ref29 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-                blockNumber = _ref29.blockNumber;
+        var _ref29 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee15() {
+            var _ref30 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+                blockNumber = _ref30.blockNumber;
 
             var options, aliases;
             return _regenerator2.default.wrap(function _callee15$(_context15) {
@@ -622,7 +637,7 @@ function walletAliasServices(callRpc) {
         }));
 
         return function listAliasesAfterBlock() {
-            return _ref28.apply(this, arguments);
+            return _ref29.apply(this, arguments);
         };
     }();
 

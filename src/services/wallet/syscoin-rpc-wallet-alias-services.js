@@ -30,8 +30,8 @@ export function walletAliasServices(callRpc) {
             await callRpc('aliasbalance', [alias]);
     }
 
-    async function aliasBalanceMulti({aliases, instantSend} = {}) {
-        ow(aliases, ow.string.label("aliasBalanceMulti:aliases").not.empty);
+    async function aliasBalanceMulti({aliases, instantSend=false} = {}) {
+        ow(aliases, ow.array.label("aliasBalanceMulti:aliases").not.empty);
         if(instantSend){
             ow(account, ow.boolean.label("aliasBalance:instantSend").is(x => x == true || x == false));
         }
@@ -55,8 +55,8 @@ export function walletAliasServices(callRpc) {
         return await callRpc('aliasinfo', [aliasName]);
     }
 
-    async function aliasNew({aliasName, publicValue, acceptTransferFlags, expireTimestamp, address,
-        encryptionPrivateKey, encryptionPublicKey, witness} = {}) {
+    async function aliasNew({aliasName, publicValue, acceptTransferFlags=3, expireTimestamp, address,
+        encryptionPrivateKey, encryptionPublicKey, witness=''} = {}) {
         ow(aliasName, ow.string.label("aliasNew:aliasName").not.empty);
         ow(publicValue, ow.string.label("aliasNew:publicValue").minLength(0));
         ow(acceptTransferFlags, ow.number.label("aliasNew:transfersFlag").is(x => (x >= 0 && x <= 3)));
@@ -69,8 +69,8 @@ export function walletAliasServices(callRpc) {
             address,encryptionPrivateKey,encryptionPublicKey,witness]);
     }
 
-    async function aliasNewEstimatedFee({aliasName, publicValue, acceptTransferFlags, expireTimestamp, address,
-        encryptionPrivateKey, encryptionPublicKey, witness} = {}) {
+    async function aliasNewEstimatedFee({aliasName, publicValue, acceptTransferFlags=3, expireTimestamp, address,
+        encryptionPrivateKey, encryptionPublicKey, witness=''} = {}) {
         ow(aliasName, ow.string.label("aliasNewEstimatedFee:aliasName").not.empty);
         ow(publicValue, ow.string.label("aliasNewEstimatedFee:publicValue").minLength(0));
         ow(transfersFlag, ow.number.label("aliasNewEstimatedFee:transfersFlag").is(x => (x >= 0 && x <= 3)));
@@ -83,7 +83,7 @@ export function walletAliasServices(callRpc) {
             address, encryptionPrivateKey,encryptionPublicKey, witness]);
     }
 
-    async function aliasPay({aliasFrom, amountsToAliases, instantSend, subtractFeeFromAmount} = {}) {
+    async function aliasPay({aliasFrom, amountsToAliases, instantSend=false, subtractFeeFromAmount} = {}) {
         ow(aliasFrom, ow.string.label("aliasPay:aliasFrom").not.empty);
         ow(amountsToAliases, ow.object.label("aliasPay:amountsToAliases").not.empty);
         ow(instantSend, ow.boolean.label("aliasPay:instantSend").is(x => x == true || x == false));
@@ -93,8 +93,8 @@ export function walletAliasServices(callRpc) {
         return await callRpc('aliaspay', [aliasFrom, amountsToAliases, instantSend, subtractFeeFromAmount]);
     }
 
-    async function aliasUpdate({aliasName, publicValue, acceptTransferFlags, expireTimestamp, address,
-        encryptionPrivateKey, encryptionPublicKey, witness} = {}) {
+    async function aliasUpdate({aliasName, publicValue, acceptTransferFlags=3, expireTimestamp=3600, address,
+        encryptionPrivateKey, encryptionPublicKey, witness=''} = {}) {
         ow(aliasName, ow.string.label("aliasUpdate:aliasName").not.empty);
         ow(publicValue, ow.string.label("aliasUpdate:publicValue").minLength(0));
         ow(transfersFlag, ow.number.label("aliasUpdate:transfersFlag").is(x => (x >= 0 && x <= 3)));
@@ -107,15 +107,16 @@ export function walletAliasServices(callRpc) {
             address, encryptionPrivateKey, encryptionPublicKey, witness]);
     }
 
-    async function aliasUpdateWhiteList({ownerAlias, witness} = {}) {
+    async function aliasUpdateWhiteList({ownerAlias, whitelistEntries, witness=''} = {}) {
         ow(ownerAlias, ow.string.label("aliasUpdateWhitelist:ownerAlias").not.empty);
+        ow(whitelistEntries, ow.object.label("aliasUpdateWhitelist:whitelistEntries").not.empty);
         ow(witness, ow.string.label("aliasUpdateWhitelist:witness").not.empty);
-        return await callRpc('aliasupdatewhitelist', [ownerAlias, witness]);
+        return await callRpc('aliasupdatewhitelist', [ownerAlias, whitelistEntries, witness]);
     }
 
     async function aliasAddScript({script} = {}) {
         ow(script, ow.string.label("aliasAddScript:script").not.empty);
-        return await callRpc('aliasaddscript', script);
+        return await callRpc('aliasaddscript', [script]);
     }
 
     async function aliasWhiteList({alias} = {}) {
@@ -123,42 +124,45 @@ export function walletAliasServices(callRpc) {
         return await callRpc('aliaswhitelist', [alias]);
     }
 
-    async function aliasUpdateEstimatedFee({aliasName, publicValue, acceptTransferFlags, expireTimestamp, address,
-        encryptionPrivateKey, encryptionPublicKey, witness} = {}) {
+    async function aliasUpdateEstimatedFee({aliasName, publicValue, address, acceptTransferFlags, expireTimestamp,
+        encryptionPrivateKey, encryptionPublicKey, witness=''} = {}) {
         ow(aliasName, ow.string.label("aliasUpdateEstimatedFee:aliasName").not.empty);
         ow(publicValue, ow.string.label("aliasUpdateEstimatedFee:publicValue").minLength(0));
+        ow(address, ow.string.label("aliasUpdateEstimatedFee:address").not.empty);
         ow(transfersFlag, ow.number.label("aliasUpdateEstimatedFee:transfersFlag").is(x => (x >= 0 && x <= 3)));
         ow(expireTimestamp, ow.number.label("aliasUpdateEstimatedFee:expireTimestamp").integer.greaterThan(0));
         ow(address, ow.string.label("aliasUpdateEstimatedFee:address").minLength(0));
         ow(encPrivateKey, ow.string.label("aliasUpdateEstimatedFee:encPrivateKey").minLength(0));
         ow(encPublicKey, ow.string.label("aliasUpdateEstimatedFee:encPublicKey").minLength(0));
         ow(witness, ow.string.label("aliasUpdateEstimatedFee:witness").minLength(0));
-        return await callRpc('aliasupdate', [aliasName, publicValue, acceptTransferFlags, expireTimestamp, address,
+        return await callRpc('aliasupdate', [aliasName, publicValue, address, acceptTransferFlags, expireTimestamp,
             encryptionPrivateKey, encryptionPublicKey, witness]);
     }
 
-    async function listAliases({count, from, options} = {}) {
+    async function listAliases({count=10, from=0, options} = {}) {
         if(count) {
             ow(count, ow.number.label("listAliases:count").integer.greaterThan(0));
         }
         if(from) {
-            ow(from, ow.number.label("listAliases:from").integer.greaterThan(0));
+            ow(from, ow.number.label("listAliases:from").integer.greaterThanOrEqual(0));
         }
         if(options) {
-            ow(options, ow.objects.label("listAliases:options").not.empty);
+            ow(options, ow.object.label("listAliases:options").not.empty);
         }
-        return await callRpc('listaliases', arguments);
+        return await callRpc('listaliases', [count, from, options]);
     }
 
     // Helper method that can eventually live in wallet
-    async function validateAlias(aliasName) {
+    async function validateAlias({aliasName} = {}) {
         ow(aliasName, ow.string.label("validateAlias:aliasName").not.empty);
-        let aliasData = await aliasInfo(aliasName);
-        if (aliasData.error) {
-            return aliasData;
+        try {
+            let aliasData = await aliasInfo(aliasName);
+            let addressValidationData = await utilityServices.validateAddress(aliasData.address);
+            return addressValidationData;
         }
-        let addressValidationData = await utilityServices.validateAddress(aliasData.address);
-        return addressValidationData;
+        catch (err) {
+            throw new Error(`Could not validate alias:${err}`);
+        }
     }
 
     async function listAliasesAfterBlock({blockNumber} = {}) {
