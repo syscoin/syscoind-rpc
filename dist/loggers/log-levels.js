@@ -1,6 +1,16 @@
-import * as bunyan from "bunyan";
+"use strict";
 
-const LOG_LEVELS = {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _bunyan = require("bunyan");
+
+var bunyan = _interopRequireWildcard(_bunyan);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+var LOG_LEVELS = {
     debug: bunyan.DEBUG,
     error: bunyan.ERROR,
     info: bunyan.INFO,
@@ -9,4 +19,4 @@ const LOG_LEVELS = {
     warn: bunyan.WARN
 };
 
-export default LOG_LEVELS;
+exports.default = LOG_LEVELS;

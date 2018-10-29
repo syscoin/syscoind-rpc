@@ -1,37 +1,70 @@
-import * as util from 'util'; // has no default export
-import { methodShouldBeLogged } from './logging-support-methods';
+'use strict';
 
-export default class TraceLogger {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
-    constructor(logger, listing) {
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _util = require('util');
+
+var util = _interopRequireWildcard(_util);
+
+var _loggingSupportMethods = require('./logging-support-methods');
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var TraceLogger = function () {
+    function TraceLogger(logger, listing) {
+        (0, _classCallCheck3.default)(this, TraceLogger);
+
         this.listing = listing;
         this.log = logger;
     }
 
-    logRpcCall(callData) {
-        if (!methodShouldBeLogged(callData.method, this.listing)) return;
-        this.log(callData, 'RPC call');
-    }
-
-    logCustomErrorResponse(errorResponse) {
-        this.log(errorResponse, 'Custom error response sent');
-    }
-
-    logDataFromRpc(methodName, data) {
-        if (!methodShouldBeLogged(methodName, this.listing)) return;
-        this.log({ methodName, data }, 'Received standard data response');
-    }
-
-    logAlternateResponseFromRpc(methodName, response) {
-        if (!methodShouldBeLogged(methodName, this.listing)) return;
-        this.log({ methodName, res: response }, 'Received alternate data response');
-    }
-
-    logError(methodName, errorObject) {
-        if (errorObject.error) {
-            this.log({ methodName, err: errorObject }, 'Standard error');
-        } else {
-            this.log({ methodName, err: errorObject }, 'Non-standard format error');
+    (0, _createClass3.default)(TraceLogger, [{
+        key: 'logRpcCall',
+        value: function logRpcCall(callData) {
+            if (!(0, _loggingSupportMethods.methodShouldBeLogged)(callData.method, this.listing)) return;
+            this.log(callData, 'RPC call');
         }
-    }
-}
+    }, {
+        key: 'logCustomErrorResponse',
+        value: function logCustomErrorResponse(errorResponse) {
+            this.log(errorResponse, 'Custom error response sent');
+        }
+    }, {
+        key: 'logDataFromRpc',
+        value: function logDataFromRpc(methodName, data) {
+            if (!(0, _loggingSupportMethods.methodShouldBeLogged)(methodName, this.listing)) return;
+            this.log({ methodName: methodName, data: data }, 'Received standard data response');
+        }
+    }, {
+        key: 'logAlternateResponseFromRpc',
+        value: function logAlternateResponseFromRpc(methodName, response) {
+            if (!(0, _loggingSupportMethods.methodShouldBeLogged)(methodName, this.listing)) return;
+            this.log({ methodName: methodName, res: response }, 'Received alternate data response');
+        }
+    }, {
+        key: 'logError',
+        value: function logError(methodName, errorObject) {
+            if (errorObject.error) {
+                this.log({ methodName: methodName, err: errorObject }, 'Standard error');
+            } else {
+                this.log({ methodName: methodName, err: errorObject }, 'Non-standard format error');
+            }
+        }
+    }]);
+    return TraceLogger;
+}(); // has no default export
+
+
+exports.default = TraceLogger;

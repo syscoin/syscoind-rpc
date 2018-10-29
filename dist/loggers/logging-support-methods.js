@@ -1,4 +1,11 @@
-export function methodShouldBeLogged(methodName, listing) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.methodShouldBeLogged = methodShouldBeLogged;
+exports.createListing = createListing;
+function methodShouldBeLogged(methodName, listing) {
     if (listing.whitelist.length > 0) {
         return listing.whitelist.includes(methodName);
     } else if (listing.blacklist.length > 0) {
@@ -7,9 +14,9 @@ export function methodShouldBeLogged(methodName, listing) {
     return true;
 }
 
-export function createListing(whitelist, blacklist) {
+function createListing(whitelist, blacklist) {
 
-    let methodListing = {
+    var methodListing = {
         whitelist: [],
         blacklist: []
 

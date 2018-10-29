@@ -1,9 +1,16 @@
-export function get(sdkMethod) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.get = get;
+exports.post = post;
+function get(sdkMethod) {
     sdkMethod.httpMethod = 'get';
     return sdkMethod;
 }
 
-export function post(sdkMethod) {
+function post(sdkMethod) {
     sdkMethod.httpMethod = 'post';
     return sdkMethod;
 }

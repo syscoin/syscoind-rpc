@@ -35,7 +35,7 @@ export function syscoinRpcDiagnosticServices(callRpc) {
         return helpMethodDefinitionArray;
     }
 
-    function helpLineIsHeader({helpDefinition}) {
+    function helpLineIsHeader(helpDefinition) {
         return helpDefinition.startsWith("==");
     }
 
