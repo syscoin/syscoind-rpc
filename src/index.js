@@ -70,7 +70,24 @@ export default class SyscoinRpcClient {
             }
         }
 
-        this.callRpc = callRpc;
+
+        let callRpcCoerced = async (methodName, args=[]) => {
+            let arrayedArgs = Array.from(args).filter(element => element !== undefined);
+            let numbersInArray = arrayedArgs.map(obj => { return isNaN(obj) ? obj : +obj});
+            let booleansInArray = numbersInArray.map(obj => {
+                if (typeof obj === 'string' || obj instanceof String) {
+                    if (obj.toLowerCase() === "true") {
+                        return true;
+                    } else if (obj.toLowerCase() === "false") {
+                        return false;
+                    }
+                }
+                return obj;
+            })
+            return await callRpc(methodName, booleansInArray);
+        }
+
+        this.callRpc = callRpcCoerced;
         this.addressIndexServices = syscoinRpcAddressIndexServices(callRpc);
         this.blockchainServices = syscoinRpcBlockchainServices(callRpc);
         this.diagnosticServices = syscoinRpcDiagnosticServices(callRpc);

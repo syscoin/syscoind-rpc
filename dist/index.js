@@ -92,41 +92,41 @@ var SyscoinRpcClient = function SyscoinRpcClient() {
     var _this = this;
 
     var getResponseFromRpcCall = function () {
-        var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(url, data, logger) {
+        var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(url, data, logger) {
             var responseFromRpc, dataFromRpc;
-            return _regenerator2.default.wrap(function _callee2$(_context2) {
+            return _regenerator2.default.wrap(function _callee3$(_context3) {
                 while (1) {
-                    switch (_context2.prev = _context2.next) {
+                    switch (_context3.prev = _context3.next) {
                         case 0:
-                            _context2.next = 2;
+                            _context3.next = 2;
                             return instance.post(url, data);
 
                         case 2:
-                            responseFromRpc = _context2.sent;
+                            responseFromRpc = _context3.sent;
                             dataFromRpc = responseFromRpc.data;
 
                             if (!dataFromRpc) {
-                                _context2.next = 9;
+                                _context3.next = 9;
                                 break;
                             }
 
                             logger.logDataFromRpc(data.method, dataFromRpc);
-                            return _context2.abrupt('return', dataFromRpc.result ? dataFromRpc.result : dataFromRpc);
+                            return _context3.abrupt('return', dataFromRpc.result ? dataFromRpc.result : dataFromRpc);
 
                         case 9:
                             logger.logAlternateResponseFromRpc(data.method, responseFromRpc);
-                            return _context2.abrupt('return', responseFromRpc);
+                            return _context3.abrupt('return', responseFromRpc);
 
                         case 11:
                         case 'end':
-                            return _context2.stop();
+                            return _context3.stop();
                     }
                 }
-            }, _callee2, this);
+            }, _callee3, this);
         }));
 
-        return function getResponseFromRpcCall(_x5, _x6, _x7) {
-            return _ref3.apply(this, arguments);
+        return function getResponseFromRpcCall(_x7, _x8, _x9) {
+            return _ref4.apply(this, arguments);
         };
     }();
 
@@ -210,7 +210,50 @@ var SyscoinRpcClient = function SyscoinRpcClient() {
         };
     }();
 
-    this.callRpc = callRpc;
+    var callRpcCoerced = function () {
+        var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(methodName) {
+            var args = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+            var arrayedArgs, numbersInArray, booleansInArray;
+            return _regenerator2.default.wrap(function _callee2$(_context2) {
+                while (1) {
+                    switch (_context2.prev = _context2.next) {
+                        case 0:
+                            arrayedArgs = (0, _from2.default)(args).filter(function (element) {
+                                return element !== undefined;
+                            });
+                            numbersInArray = arrayedArgs.map(function (obj) {
+                                return isNaN(obj) ? obj : +obj;
+                            });
+                            booleansInArray = numbersInArray.map(function (obj) {
+                                if (typeof obj === 'string' || obj instanceof String) {
+                                    if (obj.toLowerCase() === "true") {
+                                        return true;
+                                    } else if (obj.toLowerCase() === "false") {
+                                        return false;
+                                    }
+                                }
+                                return obj;
+                            });
+                            _context2.next = 5;
+                            return callRpc(methodName, booleansInArray);
+
+                        case 5:
+                            return _context2.abrupt('return', _context2.sent);
+
+                        case 6:
+                        case 'end':
+                            return _context2.stop();
+                    }
+                }
+            }, _callee2, _this);
+        }));
+
+        return function callRpcCoerced(_x5) {
+            return _ref3.apply(this, arguments);
+        };
+    }();
+
+    this.callRpc = callRpcCoerced;
     this.addressIndexServices = (0, _syscoinRpcAddressIndexServices.syscoinRpcAddressIndexServices)(callRpc);
     this.blockchainServices = (0, _syscoinRpcBlockchainServices.syscoinRpcBlockchainServices)(callRpc);
     this.diagnosticServices = (0, _syscoinRpcDiagnosticServices.syscoinRpcDiagnosticServices)(callRpc);
@@ -238,11 +281,11 @@ var SyscoinRpcClient = function SyscoinRpcClient() {
         return new _rpcException2.default(errorResponse);
     };
 
-    function getErrorInformationFromRpcCall(_ref4) {
-        var rpcError = _ref4.rpcError,
-            methodName = _ref4.methodName,
-            url = _ref4.url,
-            logger = _ref4.logger;
+    function getErrorInformationFromRpcCall(_ref5) {
+        var rpcError = _ref5.rpcError,
+            methodName = _ref5.methodName,
+            url = _ref5.url,
+            logger = _ref5.logger;
 
 
         var commonErrorHandlers = [new _connectionRefusedErrorHandler2.default(url, logger, createCustomErrorResponse), new _authorizationFailedErrorHandler2.default(url, logger, createCustomErrorResponse), new _rpcMethodNotFoundError2.default(methodName, logger, createCustomErrorResponse), new _rpcErrorHandler2.default(methodName, logger), new _nonSpecificNetworkErrorHandler2.default(url, logger, createCustomErrorResponse)];
@@ -280,27 +323,27 @@ var SyscoinRpcClient = function SyscoinRpcClient() {
 
     // General commands that don't seem to fit in a logical grouping
     this.sentinelPing = function () {
-        var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(versionString) {
-            return _regenerator2.default.wrap(function _callee3$(_context3) {
+        var _ref6 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4(versionString) {
+            return _regenerator2.default.wrap(function _callee4$(_context4) {
                 while (1) {
-                    switch (_context3.prev = _context3.next) {
+                    switch (_context4.prev = _context4.next) {
                         case 0:
-                            _context3.next = 2;
+                            _context4.next = 2;
                             return callRpc('sentinelping', [versionString]);
 
                         case 2:
-                            return _context3.abrupt('return', _context3.sent);
+                            return _context4.abrupt('return', _context4.sent);
 
                         case 3:
                         case 'end':
-                            return _context3.stop();
+                            return _context4.stop();
                     }
                 }
-            }, _callee3, _this);
+            }, _callee4, _this);
         }));
 
-        return function (_x8) {
-            return _ref5.apply(this, arguments);
+        return function (_x10) {
+            return _ref6.apply(this, arguments);
         };
     }();
 };
