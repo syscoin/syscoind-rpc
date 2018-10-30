@@ -1,12 +1,10 @@
-import * as bunyan from "bunyan";
-
 const LOG_LEVELS = {
-    debug: bunyan.DEBUG,
-    error: bunyan.ERROR,
-    info: bunyan.INFO,
+    debug: 'debug',
+    error: 'error',
+    info: 'info',
     silent: 'silent',
-    trace: bunyan.TRACE,
-    warn: bunyan.WARN,
+    trace: 'trace',
+    warn: 'warn',
 };
 
 export default LOG_LEVELS;
