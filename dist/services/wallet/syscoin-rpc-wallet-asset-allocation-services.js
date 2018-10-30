@@ -1,24 +1,24 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _regenerator = require("babel-runtime/regenerator");
+var _regenerator = require('babel-runtime/regenerator');
 
 var _regenerator2 = _interopRequireDefault(_regenerator);
 
-var _asyncToGenerator2 = require("babel-runtime/helpers/asyncToGenerator");
+var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
 
 var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
 exports.walletAssetAllocationServices = walletAssetAllocationServices;
 
-var _syscoinOw = require("syscoin-ow");
+var _syscoinOw = require('syscoin-ow');
 
 var _syscoinOw2 = _interopRequireDefault(_syscoinOw);
 
-var _endpointDecorators = require("../../endpoint-decorators");
+var _endpointDecorators = require('../../endpoint-decorators');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28,7 +28,8 @@ function walletAssetAllocationServices(callRpc) {
             var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
                 asset = _ref2.asset,
                 owner = _ref2.owner,
-                witness = _ref2.witness;
+                _ref2$witness = _ref2.witness,
+                witness = _ref2$witness === undefined ? '' : _ref2$witness;
 
             return _regenerator2.default.wrap(function _callee$(_context) {
                 while (1) {
@@ -41,10 +42,10 @@ function walletAssetAllocationServices(callRpc) {
                             return callRpc('assetallocationcollectinterest', [asset, owner, witness]);
 
                         case 5:
-                            return _context.abrupt("return", _context.sent);
+                            return _context.abrupt('return', _context.sent);
 
                         case 6:
-                        case "end":
+                        case 'end':
                             return _context.stop();
                     }
                 }
@@ -76,10 +77,10 @@ function walletAssetAllocationServices(callRpc) {
                             return callRpc('assetallocationinfo', [asset, owner, getInputs]);
 
                         case 5:
-                            return _context2.abrupt("return", _context2.sent);
+                            return _context2.abrupt('return', _context2.sent);
 
                         case 6:
-                        case "end":
+                        case 'end':
                             return _context2.stop();
                     }
                 }
@@ -115,10 +116,10 @@ function walletAssetAllocationServices(callRpc) {
                             return callRpc('listassetallocations', [count, from, options]);
 
                         case 5:
-                            return _context3.abrupt("return", _context3.sent);
+                            return _context3.abrupt('return', _context3.sent);
 
                         case 6:
-                        case "end":
+                        case 'end':
                             return _context3.stop();
                     }
                 }
@@ -154,10 +155,10 @@ function walletAssetAllocationServices(callRpc) {
                             return callRpc('listassetallocationtransactions', [count, from, options]);
 
                         case 5:
-                            return _context4.abrupt("return", _context4.sent);
+                            return _context4.abrupt('return', _context4.sent);
 
                         case 6:
-                        case "end":
+                        case 'end':
                             return _context4.stop();
                     }
                 }
@@ -187,10 +188,10 @@ function walletAssetAllocationServices(callRpc) {
 
                         case 4:
                             assetAllocations = _context5.sent;
-                            return _context5.abrupt("return", assetAllocations);
+                            return _context5.abrupt('return', assetAllocations);
 
                         case 6:
-                        case "end":
+                        case 'end':
                             return _context5.stop();
                     }
                 }
@@ -210,7 +211,8 @@ function walletAssetAllocationServices(callRpc) {
                 ownerTo = _ref12.ownerTo,
                 ranges = _ref12.ranges,
                 memo = _ref12.memo,
-                witness = _ref12.witness;
+                _ref12$witness = _ref12.witness,
+                witness = _ref12$witness === undefined ? '' : _ref12$witness;
 
             return _regenerator2.default.wrap(function _callee6$(_context6) {
                 while (1) {
@@ -226,10 +228,10 @@ function walletAssetAllocationServices(callRpc) {
                             return callRpc('assetallocationsend', [asset, owner, ownerTo, ranges, memo, witness]);
 
                         case 8:
-                            return _context6.abrupt("return", _context6.sent);
+                            return _context6.abrupt('return', _context6.sent);
 
                         case 9:
-                        case "end":
+                        case 'end':
                             return _context6.stop();
                     }
                 }
@@ -259,10 +261,10 @@ function walletAssetAllocationServices(callRpc) {
                             return callRpc('assetallocationsenderstatus', [asset, owner, txId]);
 
                         case 5:
-                            return _context7.abrupt("return", _context7.sent);
+                            return _context7.abrupt('return', _context7.sent);
 
                         case 6:
-                        case "end":
+                        case 'end':
                             return _context7.stop();
                     }
                 }

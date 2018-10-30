@@ -12,7 +12,7 @@ export function walletAssetAllocationServices(callRpc) {
         senderStatus: get(assetAllocationSenderStatus)
     }
 
-    async function assetAllocationCollectInterest({asset, owner, witness} = {}) {
+    async function assetAllocationCollectInterest({asset, owner, witness=''} = {}) {
         ow(asset, ow.string.label("assetAllocationCollectInterest:asset").not.empty);
         ow(owner, ow.string.label("assetAllocationCollectInterest:owner").not.empty);
         ow(witness, ow.string.label("assetAllocationCollectInterest:witness").minLength(0));
@@ -62,7 +62,7 @@ export function walletAssetAllocationServices(callRpc) {
         return assetAllocations;
     }
 
-    async function assetAllocationSend({asset, owner, ownerTo, ranges, memo, witness} = {}) {
+    async function assetAllocationSend({asset, owner, ownerTo, ranges, memo, witness=''} = {}) {
         ow(asset, ow.string.label("assetAllocationSend:asset").not.empty);
         ow(owner, ow.string.label("assetAllocationSend:owner").not.empty);
         ow(ownerTo, ow.string.label("assetAllocationSend:ownerTo").not.empty);
