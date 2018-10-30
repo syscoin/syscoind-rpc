@@ -69,7 +69,8 @@ function walletAssetServices(callRpc) {
                 maxSupply = _ref4.maxSupply,
                 interestRate = _ref4.interestRate,
                 canAdjustInterestRate = _ref4.canAdjustInterestRate,
-                witness = _ref4.witness;
+                _ref4$witness = _ref4.witness,
+                witness = _ref4$witness === undefined ? '' : _ref4$witness;
 
             return _regenerator2.default.wrap(function _callee2$(_context2) {
                 while (1) {
@@ -154,16 +155,17 @@ function walletAssetServices(callRpc) {
         var _ref7 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4() {
             var _ref8 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
                 asset = _ref8.asset,
-                ownerTo = _ref8.ownerTo,
-                witness = _ref8.witness;
+                newOwner = _ref8.newOwner,
+                _ref8$witness = _ref8.witness,
+                witness = _ref8$witness === undefined ? '' : _ref8$witness;
 
             return _regenerator2.default.wrap(function _callee4$(_context4) {
                 while (1) {
                     switch (_context4.prev = _context4.next) {
                         case 0:
                             (0, _syscoinOw2.default)(asset, _syscoinOw2.default.string.label("assetTransfer:asset").not.empty);
-                            (0, _syscoinOw2.default)(ownerTo, _syscoinOw2.default.string.label("assetTransfer:ownerTo").not.empty);
-                            (0, _syscoinOw2.default)(witness, _syscoinOw2.default.string.label("assetTransfer:witness").not.empty);
+                            (0, _syscoinOw2.default)(newOwner, _syscoinOw2.default.string.label("assetTransfer:newOwner").not.empty);
+                            (0, _syscoinOw2.default)(witness, _syscoinOw2.default.string.label("assetTransfer:witness").minLength(0));
                             _context4.next = 5;
                             return callRpc('assettransfer', [asset, ownerTo, witness]);
 
@@ -191,7 +193,8 @@ function walletAssetServices(callRpc) {
                 category = _ref10.category,
                 supply = _ref10.supply,
                 interestRate = _ref10.interestRate,
-                witness = _ref10.witness;
+                _ref10$witness = _ref10.witness,
+                witness = _ref10$witness === undefined ? '' : _ref10$witness;
 
             return _regenerator2.default.wrap(function _callee5$(_context5) {
                 while (1) {
@@ -202,7 +205,7 @@ function walletAssetServices(callRpc) {
                             (0, _syscoinOw2.default)(category, _syscoinOw2.default.string.label("assetUpdate:category").not.empty);
                             (0, _syscoinOw2.default)(supply, _syscoinOw2.default.number.label("assetUpdate:supply").integer.greaterThan(0));
                             (0, _syscoinOw2.default)(interestRate, _syscoinOw2.default.number.label("assetUpdate:interestRate").integer.greaterThan(0));
-                            (0, _syscoinOw2.default)(witness, _syscoinOw2.default.string.label("assetUpdate:witness").not.empty);
+                            (0, _syscoinOw2.default)(witness, _syscoinOw2.default.string.label("assetUpdate:witness").minLength(0));
                             _context5.next = 8;
                             return callRpc('assetUpdate', [asset, publicValue, category, supply, interestRate, witness]);
 

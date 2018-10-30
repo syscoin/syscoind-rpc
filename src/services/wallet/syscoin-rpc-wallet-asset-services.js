@@ -19,7 +19,7 @@ export function walletAssetServices(callRpc) {
     }
 
     async function assetNew({symbol, owner, publicValue, category, precision, useInputRanges,
-        supply, maxSupply, interestRate, canAdjustInterestRate, witness} = {}) {
+        supply, maxSupply, interestRate, canAdjustInterestRate, witness=''} = {}) {
         ow(symbol, ow.string.label("assetNew:symbol").not.empty);
         ow(owner, ow.string.label("assetNew:owner").not.empty);
         ow(publicValue, ow.string.label("assetNew:publicValue").string.minLength(0));
@@ -45,20 +45,20 @@ export function walletAssetServices(callRpc) {
         return await callRpc('assetsend', [asset, aliasFrom, aliasTo, amount, ranges, memo]);
     }
 
-    async function assetTransfer({asset, ownerTo, witness} = {}) {
+    async function assetTransfer({asset, newOwner, witness=''} = {}) {
         ow(asset, ow.string.label("assetTransfer:asset").not.empty);
-        ow(ownerTo, ow.string.label("assetTransfer:ownerTo").not.empty);
-        ow(witness, ow.string.label("assetTransfer:witness").not.empty);
+        ow(newOwner, ow.string.label("assetTransfer:newOwner").not.empty);
+        ow(witness, ow.string.label("assetTransfer:witness").minLength(0));
         return await callRpc('assettransfer', [asset, ownerTo, witness]);
     }
 
-    async function assetUpdate({asset, publicValue, category, supply, interestRate, witness} = {}) {
+    async function assetUpdate({asset, publicValue, category, supply, interestRate, witness=''} = {}) {
         ow(asset, ow.string.label("assetUpdate:asset").not.empty);
         ow(publicValue, ow.string.label("assetUpdate:publicValue").minLength(0));
         ow(category, ow.string.label("assetUpdate:category").not.empty);
         ow(supply, ow.number.label("assetUpdate:supply").integer.greaterThan(0));
         ow(interestRate, ow.number.label("assetUpdate:interestRate").integer.greaterThan(0));
-        ow(witness, ow.string.label("assetUpdate:witness").not.empty);
+        ow(witness, ow.string.label("assetUpdate:witness").minLength(0));
         return await callRpc('assetUpdate', [asset, publicValue, category, supply, interestRate, witness]);
     }   
     
