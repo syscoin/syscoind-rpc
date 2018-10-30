@@ -1,4 +1,4 @@
-export default interface AssetServices {
+export default interface WalletAssetServices {
 
     assetInfo({asset, getInputs}: {asset:string, getInputs:boolean});
     assetNew({symbol, owner, publicValue, category, precision, useInputRanges,
