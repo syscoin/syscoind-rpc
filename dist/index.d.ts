@@ -57,6 +57,6 @@ declare module 'syscoin-js' {
         utilityServices: UtilityServices;
         walletServices: WalletServices;
 
-        callRpc(methodName: string, arguments?: Array<string>): Promise<any>;
+        callRpc(methodName: string, arguments?: Array<any>): Promise<any>;
     }
 }
