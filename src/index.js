@@ -22,6 +22,7 @@ import RpcMethodNotFoundErrorHandler from './error-handlers/rpc-method-not-found
 import RpcException from './rpc-exception';
 import RpcErrorHandler from './error-handlers/rpc-error-handler';
 import NonSpecificNetworkErrorHandler from './error-handlers/non-specific-network-error-handler';
+import { callRpcWithCoercedStringArguments } from './call-rpc-with-coerced-arguments';
 
 export default class SyscoinRpcClient {
 
@@ -70,24 +71,7 @@ export default class SyscoinRpcClient {
             }
         }
 
-
-        let callRpcCoerced = async (methodName, args=[]) => {
-            let arrayedArgs = Array.from(args).filter(element => element !== undefined);
-            let numbersInArray = arrayedArgs.map(obj => { return isNaN(obj) ? obj : +obj});
-            let booleansInArray = numbersInArray.map(obj => {
-                if (typeof obj === 'string' || obj instanceof String) {
-                    if (obj.toLowerCase() === "true") {
-                        return true;
-                    } else if (obj.toLowerCase() === "false") {
-                        return false;
-                    }
-                }
-                return obj;
-            })
-            return await callRpc(methodName, booleansInArray);
-        }
-
-        this.callRpc = callRpcCoerced;
+        this.callRpc = callRpcWithCoercedStringArguments(callRpc);
         this.addressIndexServices = syscoinRpcAddressIndexServices(callRpc);
         this.blockchainServices = syscoinRpcBlockchainServices(callRpc);
         this.diagnosticServices = syscoinRpcDiagnosticServices(callRpc);
