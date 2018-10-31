@@ -22,6 +22,7 @@ import RpcMethodNotFoundErrorHandler from './error-handlers/rpc-method-not-found
 import RpcException from './rpc-exception';
 import RpcErrorHandler from './error-handlers/rpc-error-handler';
 import NonSpecificNetworkErrorHandler from './error-handlers/non-specific-network-error-handler';
+import { callRpcWithCoercedStringArguments } from './call-rpc-with-coerced-arguments';
 
 export default class SyscoinRpcClient {
 
@@ -70,7 +71,7 @@ export default class SyscoinRpcClient {
             }
         }
 
-        this.callRpc = callRpc;
+        this.callRpc = callRpcWithCoercedStringArguments(callRpc);
         this.addressIndexServices = syscoinRpcAddressIndexServices(callRpc);
         this.blockchainServices = syscoinRpcBlockchainServices(callRpc);
         this.diagnosticServices = syscoinRpcDiagnosticServices(callRpc);

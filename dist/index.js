@@ -86,6 +86,8 @@ var _nonSpecificNetworkErrorHandler = require('./error-handlers/non-specific-net
 
 var _nonSpecificNetworkErrorHandler2 = _interopRequireDefault(_nonSpecificNetworkErrorHandler);
 
+var _callRpcWithCoercedArguments = require('./call-rpc-with-coerced-arguments');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var SyscoinRpcClient = function SyscoinRpcClient() {
@@ -210,7 +212,7 @@ var SyscoinRpcClient = function SyscoinRpcClient() {
         };
     }();
 
-    this.callRpc = callRpc;
+    this.callRpc = (0, _callRpcWithCoercedArguments.callRpcWithCoercedStringArguments)(callRpc);
     this.addressIndexServices = (0, _syscoinRpcAddressIndexServices.syscoinRpcAddressIndexServices)(callRpc);
     this.blockchainServices = (0, _syscoinRpcBlockchainServices.syscoinRpcBlockchainServices)(callRpc);
     this.diagnosticServices = (0, _syscoinRpcDiagnosticServices.syscoinRpcDiagnosticServices)(callRpc);
