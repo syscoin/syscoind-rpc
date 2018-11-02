@@ -6,7 +6,7 @@ export function walletAssetServices(callRpc) {
         info: get(assetInfo),
         list: get(listAssets),
         listAfterBlock: get(listAssetsAfterBlock),
-        new: get(assetNew),
+        create: get(assetNew),
         send: post(assetSend),
         transfer: get(assetTransfer),
         update: get(assetUpdate)

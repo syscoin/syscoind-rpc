@@ -302,7 +302,7 @@ function walletAssetServices(callRpc) {
         info: (0, _endpointDecorators.get)(assetInfo),
         list: (0, _endpointDecorators.get)(listAssets),
         listAfterBlock: (0, _endpointDecorators.get)(listAssetsAfterBlock),
-        new: (0, _endpointDecorators.get)(assetNew),
+        create: (0, _endpointDecorators.get)(assetNew),
         send: (0, _endpointDecorators.post)(assetSend),
         transfer: (0, _endpointDecorators.get)(assetTransfer),
         update: (0, _endpointDecorators.get)(assetUpdate)
