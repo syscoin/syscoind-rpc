@@ -10,14 +10,14 @@ export function walletAliasServices(callRpc) {
         estimatedFeeForNew: get(aliasNewEstimatedFee),
         list: get(listAliases),
         listAfterBlock: get(listAliasesAfterBlock),
-        new: post(aliasNew),
+        create: post(aliasNew), // "new" is a reserved word in typescript
         pay: post(aliasPay),
         update: post(aliasUpdate),
         updateEstimatedFee: get(aliasUpdateEstimatedFee),
         updateWhiteList: post(aliasUpdateWhiteList),
         validate: post(validateAlias),
         whiteList: get(aliasWhiteList),
-        aliasAddScript: post(aliasAddScript)
+        addScript: post(aliasAddScript)
     }
 
 

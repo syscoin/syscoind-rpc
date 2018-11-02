@@ -649,13 +649,13 @@ function walletAliasServices(callRpc) {
         estimatedFeeForNew: (0, _endpointDecorators.get)(aliasNewEstimatedFee),
         list: (0, _endpointDecorators.get)(listAliases),
         listAfterBlock: (0, _endpointDecorators.get)(listAliasesAfterBlock),
-        new: (0, _endpointDecorators.post)(aliasNew),
+        create: (0, _endpointDecorators.post)(aliasNew), // "new" is a reserved word in typescript
         pay: (0, _endpointDecorators.post)(aliasPay),
         update: (0, _endpointDecorators.post)(aliasUpdate),
         updateEstimatedFee: (0, _endpointDecorators.get)(aliasUpdateEstimatedFee),
         updateWhiteList: (0, _endpointDecorators.post)(aliasUpdateWhiteList),
         validate: (0, _endpointDecorators.post)(validateAlias),
         whiteList: (0, _endpointDecorators.get)(aliasWhiteList),
-        aliasAddScript: (0, _endpointDecorators.post)(aliasAddScript)
+        addScript: (0, _endpointDecorators.post)(aliasAddScript)
     };
 }

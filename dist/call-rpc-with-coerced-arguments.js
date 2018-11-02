@@ -58,7 +58,7 @@ function callRpcWithCoercedStringArguments(callRpc) {
                     switch (_context.prev = _context.next) {
                         case 0:
                             coercedArgumentArray = args.map(function (arg) {
-                                if (!(typeof obj === 'string' || obj instanceof String)) {
+                                if (!(typeof arg === 'string' || arg instanceof String)) {
                                     return arg; // Not a string, no need to coerce
                                 }
                                 // Run through coercers in order of likelihood - if we match one of the types return and
