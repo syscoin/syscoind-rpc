@@ -22,7 +22,7 @@ export function walletCertificateServices(callRpc) {
         ow(publicValue, ow.string.label("certNew:publicValue").string.minLength(0));
         ow(category, ow.string.label("certNew:category").not.empty);
         ow(witness, ow.string.label("certNew:witness").not.empty);
-        return await callRpc('certnew', arguments);
+        return await callRpc('certnew', [alias, title, publicValue, category, witness]);
     }
 
     async function certTransfer({guid, alias, publicValue, accessFlags, witness}= {}) {
@@ -31,7 +31,7 @@ export function walletCertificateServices(callRpc) {
         ow(publicValue, ow.string.label("certTransfer:publicValue").string.minLength(0));
         ow(accessFlags, ow.number.label("certTransfer:accessFlags").is(x => (0 <= x && x <= 2)));
         ow(witness, ow.string.label("certTransfer:witness").not.empty);
-        return await callRpc('certtransfer', arguments);
+        return await callRpc('certtransfer', [guid, alias, publicValue, accessFlags, witness]);
     }
 
     async function certUpdate({guid, title, publicValue, category, witness} = {}) {
@@ -40,7 +40,7 @@ export function walletCertificateServices(callRpc) {
         ow(publicValue, ow.string.label("certUpdate:publicValue").string.minLength(0));
         ow(category, ow.string.label("certUpdate:category").not.empty);
         ow(witness, ow.string.label("certUpdate:witness").not.empty);
-        return await callRpc('certupdate', arguments);
+        return await callRpc('certupdate', [guid, title, publicValue, category, witness]);
     }
 
     async function listCerts({count, from, options} = {}) {
@@ -53,7 +53,7 @@ export function walletCertificateServices(callRpc) {
         if(options) {
             ow(options, ow.objects.label("listCerts:options").not.empty);
         }
-        return await callRpc('listcerts', arguments);
+        return await callRpc('listcerts', [count, from, options]);
     }
 
     async function listCertificatesAfterBlock({blockNumber} = {}) {

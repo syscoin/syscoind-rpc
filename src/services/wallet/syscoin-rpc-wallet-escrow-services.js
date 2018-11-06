@@ -17,13 +17,13 @@ export function walletEscrowServices(callRpc) {
         release: post(escrowRelease)
     }
 
-    async function escrowAcknowledge(escrowGuid, witness) {
+    async function escrowAcknowledge({escrowGuid, witness=''} = {}) {
         ow(escrowGuid, ow.string.label("escrowAcknowledge:escrowGuid").not.empty);
-        ow(witness, ow.string.label("escrowAcknowledge:alias").not.empty);
+        ow(witness, ow.string.label("escrowAcknowledge:witness").not.empty);
         return await callRpc('escrowacknowledge', [escrowGuid, witness]);
     }
 
-    async function escrowBid(alias, escrow, bidInPaymentOption, bidInOfferCurrency, witness) {
+    async function escrowBid({alias, escrow, bidInPaymentOption, bidInOfferCurrency, witness=''} = {}) {
         ow(alias, ow.string.label("escrowBid:alias").not.empty);
         ow(escrow, ow.string.label("escrowBid:escrow").not.empty);
         ow(bidInPaymentOption, ow.string.label("escrowBid:bidInPaymentOption").not.empty);
@@ -32,14 +32,14 @@ export function walletEscrowServices(callRpc) {
         return await callRpc('escrowbid', arguments);
     }
 
-    async function escrowCompleteRefund(escrowGuid, rawTx, witness) {
+    async function escrowCompleteRefund({escrowGuid, rawTx, witness=''} = {}) {
         ow(escrowGuid, ow.string.label("escrowCompleteRefund:escrowGuid").not.empty);
         ow(rawTx, ow.string.label("escrowCompleteRefund:rawTx").not.empty);
         ow(witness, ow.string.label("escrowCompleteRefund:witness").not.empty);
         return await callRpc('escrowcompleterefund', [escrowGuid, rawTx, witness]);
     }
 
-    async function escrowCreateRawTransaction(type, escrowGuid, inputs, userRole) {
+    async function escrowCreateRawTransaction({type, escrowGuid, inputs, userRole} = {}) {
         ow(type, ow.string.label("escrowCreateRawTransaction:type").not.empty);
         ow(escrowGuid, ow.string.label("escrowCreateRawTransaction:escrowGuid").not.empty);
         ow(inputs, ow.object.label("escrowCreateRawTransaction:inputs").not.empty);
@@ -47,14 +47,14 @@ export function walletEscrowServices(callRpc) {
         return await callRpc('escrowcreaterawtransaction', [type, escrowGuid, inputs, userRole]);
     }
 
-    async function escrowCompleteRelease(escrowGuid, rawTx, witness) {
+    async function escrowCompleteRelease({escrowGuid, rawTx, witness=''} = {}) {
         ow(escrowGuid, ow.string.label("escrowCompleteRelease:escrowGuid").not.empty);
         ow(rawTx, ow.string.label("escrowCompleteRelease:rawTx").not.empty);
         ow(witness, ow.string.label("escrowCompleteRelease:witness").not.empty);
         return await callRpc('escrowcompleterelease', [escrowGuid, rawTx, witness]);
     }
 
-    async function escrowFeedback(escrowGuid, userFrom, feedback, rating, userTo, witness) {
+    async function escrowFeedback({escrowGuid, userFrom, feedback, rating, userTo, witness=''} = '') {
         ow(escrowGuid, ow.string.label("escrowCompleteRelease:escrowGuid").not.empty);
         ow(userFrom, ow.string.label("escrowCompleteRelease:userFrom").not.empty);
         ow(feedback, ow.string.label("escrowCompleteRelease:feedback").string.minLength(0));
@@ -64,14 +64,17 @@ export function walletEscrowServices(callRpc) {
         return await callRpc('escrowfeedback', arguments);
     }
 
-    async function escrowInfo(guid) {
+    async function escrowInfo({guid}= {}) {
         ow(guid, ow.string.label("escrowInfo:guid").not.empty);
         return await callRpc('escrowinfo', arguments);
     }
 
-    async function escrowNew(getAmountAndAddress, alias, arbiterAlias, offer, quantity, buyNow, pricePerUnitInPaymentOption, shippingAmount, networkFee, arbiterFee, witnessFee, extTx, payment, option, bidInPaymentOption, bidInOfferCurrency, witness) {
+    async function escrowNew({getAmountAndAddress, alias, arbiterAlias, offer, quantity, buyNow, 
+        pricePerUnitInPaymentOption, shippingAmount, networkFee, arbiterFee, witnessFee, extTx, 
+        payment, option, bidInPaymentOption, bidInOfferCurrency, witness=''} = {}) {
         ow(getAmountAndAddress, ow.boolean.label("escrowNew:getAmountAndAddress").so(x => x == true || x == false));
         ow(alias, ow.string.label("escrowNew:alias").not.empty);
+        ow(arbiterAlias, ow.string.label("escrowNew:alias").not.empty);
         ow(offer, ow.string.label("escrowNew:offer").not.empty);
         ow(quantity, ow.number.label("escrowNew:quantity").integer.greaterThan(0));
         ow(buyNow, ow.boolean.label("escrowNew:buyNow").so(x => x == true || x == false));
@@ -86,10 +89,11 @@ export function walletEscrowServices(callRpc) {
         ow(bidInPaymentOption, ow.string.label("escrowNew:bidInPaymentOption").not.empty);
         ow(bidInOfferCurrency, ow.string.label("escrowNew:bidInOfferCurrency").not.empty);
         ow(witness, ow.string.label("escrowNew:witness").not.empty);
-        return await callRpc('escrownew', arguments);
+        return await callRpc('escrownew', [getAmountAndAddress,alias,arbiterAlias,offer,quantity,buyNow,pricePerUnitInPaymentOption,
+            shippingAmount, networkFee, arbiterFee, witnessFee, extTx, payment, option, bidInPaymentOption, bidInOfferCurrency, witness]);
     }
 
-    async function escrowRefund(escrowGuid, userRole, rawTx, witness) {
+    async function escrowRefund({escrowGuid, userRole, rawTx, witness=''} = {}) {
         ow(escrowGuid, ow.string.label("escrowRefund:escrowGuid").not.empty);
         ow(userRole, ow.string.label("escrowRefund:userRole").not.empty);
         ow(rawTx, ow.string.label("escrowRefund:rawTx").not.empty);
@@ -97,7 +101,7 @@ export function walletEscrowServices(callRpc) {
         return await callRpc('escrowrefund', arguments);
     }
 
-    async function escrowRelease(escrowGuid, userRole, rawTx, witness) {
+    async function escrowRelease({escrowGuid, userRole, rawTx, witness} = {}) {
         ow(escrowGuid, ow.string.label("escrowRelease:escrowGuid").not.empty);
         ow(userRole, ow.string.label("escrowRelease:userRole").not.empty);
         ow(rawTx, ow.string.label("escrowRelease:rawTx").not.empty);
@@ -105,7 +109,7 @@ export function walletEscrowServices(callRpc) {
         return await callRpc('escrowrelease', arguments);
     }
 
-    async function listEscrows(count, from, options) {
+    async function listEscrows({count, from, options} = {}) {
         if(count) {
             ow(count, ow.number.label("listEscrows:count").integer.greaterThan(0));
         }
@@ -118,7 +122,7 @@ export function walletEscrowServices(callRpc) {
         return await callRpc('listescrows', arguments);
     }
 
-    async function listEscrowsAfterBlock(blockNumber) {
+    async function listEscrowsAfterBlock({blockNumber} = {}) {
         ow(blockNumber, ow.number.label("listEscrowsAfterBlock:blockNumber").integer.greaterThan(0));
         let options = {
             startblock: blockNumber
