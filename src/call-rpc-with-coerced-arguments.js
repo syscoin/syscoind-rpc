@@ -55,7 +55,7 @@ class BooleanTypeCoercer {
     }
 
     coerce(input) {
-        return input.toLowercase() === "true"; // We assume this is only getting called if matchesType.
+        return input.toLowerCase() === "true"; // We assume this is only getting called if matchesType.
     }
 }
 
