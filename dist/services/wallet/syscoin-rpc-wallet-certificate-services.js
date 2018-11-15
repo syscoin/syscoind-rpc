@@ -219,7 +219,7 @@ function walletCertificateServices(callRpc) {
                                 startblock: blockNumber
                             };
                             _context6.next = 4;
-                            return listCerts(0, 0, options);
+                            return listCerts({ count: 0, from: 0, options: options });
 
                         case 4:
                             certs = _context6.sent;

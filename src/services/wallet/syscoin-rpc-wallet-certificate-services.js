@@ -61,7 +61,7 @@ export function walletCertificateServices(callRpc) {
         let options = {
             startblock: blockNumber
         }
-        let certs = await listCerts(0, 0, options);
+        let certs = await listCerts({count: 0, from: 0, options: options});
         return certs;
     }
 }
