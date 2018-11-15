@@ -2,7 +2,7 @@ export default interface WalletEscrowServices {
     acknowledge({escrowGuid, witness} : {escrowGuid: string, witness:string}): Promise<any>;
     bid({alias, escrow, bidInPaymentOption, bidInOfferCurrency, witness}: 
         {alias: string, escrow: string, bidInPaymentOption: string, bidInOfferCurrency: string, witness: string}) : Promise<any>;
-    completeRefund({escrowGuid, raxTx, witness}: {escrowGuid: string, rawTx: string, witness: string}) : Promise<any>;
+    completeRefund({escrowGuid, rawTx, witness}: {escrowGuid: string, rawTx: string, witness: string}) : Promise<any>;
     createRawTransaction({type, escrowGuid,inputs,userRole}: {type:string,escrowGuid:string,inputs:any,userRole:string}) : Promise<any>;
     escrowCompleteRelease({escrowGuid, rawTx, witness}: {escrowGuid: string, rawTx: string, witness: string}): Promise<any>;
     feedback({escrowGuid, userFrom, feedback, rating, userTo, witness}: {escrowGuid:string, userFrom:string, feedback:string, rating:string, userTo:string, witness: string});
