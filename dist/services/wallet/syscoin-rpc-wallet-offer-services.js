@@ -24,15 +24,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function walletOfferServices(callRpc) {
     var offerInfo = function () {
-        var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(guid) {
-            var _args = arguments;
+        var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+            var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+                guid = _ref2.guid;
+
             return _regenerator2.default.wrap(function _callee$(_context) {
                 while (1) {
                     switch (_context.prev = _context.next) {
                         case 0:
                             (0, _syscoinOw2.default)(guid, _syscoinOw2.default.string.label("offerInfo:guid").not.empty);
                             _context.next = 3;
-                            return callRpc('offerinfo', _args);
+                            return callRpc('offerinfo', [guid]);
 
                         case 3:
                             return _context.abrupt("return", _context.sent);
@@ -45,14 +47,21 @@ function walletOfferServices(callRpc) {
             }, _callee, this);
         }));
 
-        return function offerInfo(_x) {
+        return function offerInfo() {
             return _ref.apply(this, arguments);
         };
     }();
 
     var offerLink = function () {
-        var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(alias, guid, commission, description, witness) {
-            var _args2 = arguments;
+        var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2() {
+            var _ref4 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+                alias = _ref4.alias,
+                guid = _ref4.guid,
+                commission = _ref4.commission,
+                description = _ref4.description,
+                _ref4$witness = _ref4.witness,
+                witness = _ref4$witness === undefined ? '' : _ref4$witness;
+
             return _regenerator2.default.wrap(function _callee2$(_context2) {
                 while (1) {
                     switch (_context2.prev = _context2.next) {
@@ -64,7 +73,7 @@ function walletOfferServices(callRpc) {
                             (0, _syscoinOw2.default)(witness, _syscoinOw2.default.string.label("offerLink:witness").not.empty);
 
                             _context2.next = 7;
-                            return callRpc('offerlink', _args2);
+                            return callRpc('offerlink', [alias, guid, commission, description, witness]);
 
                         case 7:
                             return _context2.abrupt("return", _context2.sent);
@@ -77,14 +86,33 @@ function walletOfferServices(callRpc) {
             }, _callee2, this);
         }));
 
-        return function offerLink(_x2, _x3, _x4, _x5, _x6) {
-            return _ref2.apply(this, arguments);
+        return function offerLink() {
+            return _ref3.apply(this, arguments);
         };
     }();
 
     var offerNew = function () {
-        var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(alias, category, title, quantity, price, description, currency, certGuid, paymentOptions, priv, units, offerType, auctionExpires, auctionReserve, auctionRequireWitness, auctionDeposit, witness) {
-            var _args3 = arguments;
+        var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3() {
+            var _ref6 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+                alias = _ref6.alias,
+                category = _ref6.category,
+                title = _ref6.title,
+                quantity = _ref6.quantity,
+                price = _ref6.price,
+                description = _ref6.description,
+                currency = _ref6.currency,
+                certGuid = _ref6.certGuid,
+                paymentOptions = _ref6.paymentOptions,
+                priv = _ref6.priv,
+                units = _ref6.units,
+                offerType = _ref6.offerType,
+                auctionExpires = _ref6.auctionExpires,
+                auctionReserve = _ref6.auctionReserve,
+                auctionRequireWitness = _ref6.auctionRequireWitness,
+                auctionDeposit = _ref6.auctionDeposit,
+                _ref6$witness = _ref6.witness,
+                witness = _ref6$witness === undefined ? '' : _ref6$witness;
+
             return _regenerator2.default.wrap(function _callee3$(_context3) {
                 while (1) {
                     switch (_context3.prev = _context3.next) {
@@ -101,15 +129,17 @@ function walletOfferServices(callRpc) {
                             (0, _syscoinOw2.default)(priv, _syscoinOw2.default.boolean.label("offerNew:priv").is(function (x) {
                                 return x == true || x == false;
                             }));
-                            (0, _syscoinOw2.default)(units, _syscoinOw2.default.string.label("offerNew:units").not.empty);
+                            (0, _syscoinOw2.default)(units, _syscoinOw2.default.number.label("offerNew:units").integer.greaterThan(0));
                             (0, _syscoinOw2.default)(offerType, _syscoinOw2.default.string.label("offerNew:offerType").not.empty);
                             (0, _syscoinOw2.default)(auctionExpires, _syscoinOw2.default.string.label("offerNew:auctionExpires").not.empty);
                             (0, _syscoinOw2.default)(auctionReserve, _syscoinOw2.default.string.label("offerNew:auctionReserve").not.empty);
-                            (0, _syscoinOw2.default)(auctionRequireWitness, _syscoinOw2.default.string.label("offerNew:auctionRequireWitness").not.empty);
-                            (0, _syscoinOw2.default)(auctionDeposit, _syscoinOw2.default.string.label("offerNew:auctionDeposit").not.empty);
+                            (0, _syscoinOw2.default)(auctionRequireWitness, _syscoinOw2.default.boolean.label("offerNew:priv").is(function (x) {
+                                return x == true || x == false;
+                            }));
+                            (0, _syscoinOw2.default)(auctionDeposit, _syscoinOw2.default.number.label("offerNew:units").integer.greaterThan(0));
                             (0, _syscoinOw2.default)(witness, _syscoinOw2.default.string.label("offerNew:witness").not.empty);
                             _context3.next = 19;
-                            return callRpc('offernew', _args3);
+                            return callRpc('offernew', [alias, category, title, quantity, price, description, currency, certGuid, paymentOptions, priv, units, offerType, auctionExpires, auctionReserve, auctionRequireWitness, auctionDeposit, witness]);
 
                         case 19:
                             return _context3.abrupt("return", _context3.sent);
@@ -122,19 +152,39 @@ function walletOfferServices(callRpc) {
             }, _callee3, this);
         }));
 
-        return function offerNew(_x7, _x8, _x9, _x10, _x11, _x12, _x13, _x14, _x15, _x16, _x17, _x18, _x19, _x20, _x21, _x22, _x23) {
-            return _ref3.apply(this, arguments);
+        return function offerNew() {
+            return _ref5.apply(this, arguments);
         };
     }();
 
     var offerUpdate = function () {
-        var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4(alias, category, title, quantity, price, description, currency, certGuid, paymentOptions, priv, units, offerType, auctionExpires, auctionReserve, auctionRequireWitness, auctionDeposit, witness) {
-            var _args4 = arguments;
+        var _ref7 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4() {
+            var _ref8 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+                alias = _ref8.alias,
+                guid = _ref8.guid,
+                category = _ref8.category,
+                title = _ref8.title,
+                quantity = _ref8.quantity,
+                price = _ref8.price,
+                description = _ref8.description,
+                currency = _ref8.currency,
+                certGuid = _ref8.certGuid,
+                paymentOptions = _ref8.paymentOptions,
+                priv = _ref8.priv,
+                units = _ref8.units,
+                offerType = _ref8.offerType,
+                auctionExpires = _ref8.auctionExpires,
+                auctionReserve = _ref8.auctionReserve,
+                auctionRequireWitness = _ref8.auctionRequireWitness,
+                auctionDeposit = _ref8.auctionDeposit,
+                witness = _ref8.witness;
+
             return _regenerator2.default.wrap(function _callee4$(_context4) {
                 while (1) {
                     switch (_context4.prev = _context4.next) {
                         case 0:
                             (0, _syscoinOw2.default)(alias, _syscoinOw2.default.string.label("offerUpdate:alias").not.empty);
+                            (0, _syscoinOw2.default)(guid, _syscoinOw2.default.string.label("offerUpdate:guid").not.empty);
                             (0, _syscoinOw2.default)(category, _syscoinOw2.default.string.label("offerUpdate:category").not.empty);
                             (0, _syscoinOw2.default)(title, _syscoinOw2.default.string.label("offerUpdate:title").not.empty);
                             (0, _syscoinOw2.default)(quantity, _syscoinOw2.default.number.label("offerUpdate:quantity").integer.greaterThan(0));
@@ -146,20 +196,22 @@ function walletOfferServices(callRpc) {
                             (0, _syscoinOw2.default)(priv, _syscoinOw2.default.boolean.label("offerUpdate:priv").is(function (x) {
                                 return x == true || x == false;
                             }));
-                            (0, _syscoinOw2.default)(units, _syscoinOw2.default.string.label("offerUpdate:units").not.empty);
+                            (0, _syscoinOw2.default)(units, _syscoinOw2.default.number.label("offerUpdate:units").integer.greaterThan(0));
                             (0, _syscoinOw2.default)(offerType, _syscoinOw2.default.string.label("offerUpdate:offerType").not.empty);
                             (0, _syscoinOw2.default)(auctionExpires, _syscoinOw2.default.string.label("offerUpdate:auctionExpires").not.empty);
                             (0, _syscoinOw2.default)(auctionReserve, _syscoinOw2.default.string.label("offerUpdate:auctionReserve").not.empty);
-                            (0, _syscoinOw2.default)(auctionRequireWitness, _syscoinOw2.default.string.label("offerUpdate:auctionRequireWitness").not.empty);
-                            (0, _syscoinOw2.default)(auctionDeposit, _syscoinOw2.default.string.label("offerUpdate:auctionDeposit").not.empty);
+                            (0, _syscoinOw2.default)(auctionRequireWitness, _syscoinOw2.default.boolean.label("offerUpdate:priv").is(function (x) {
+                                return x == true || x == false;
+                            }));
+                            (0, _syscoinOw2.default)(auctionDeposit, _syscoinOw2.default.number.label("offerUpdate:units").integer.greaterThan(0));
                             (0, _syscoinOw2.default)(witness, _syscoinOw2.default.string.label("offerUpdate:witness").not.empty);
-                            _context4.next = 19;
-                            return callRpc('offerUpdate', _args4);
-
-                        case 19:
-                            return _context4.abrupt("return", _context4.sent);
+                            _context4.next = 20;
+                            return callRpc('offerupdate', [alias, guid, category, title, quantity, price, description, currency, certGuid, paymentOptions, priv, units, offerType, auctionExpires, auctionReserve, auctionRequireWitness, auctionDeposit, witness]);
 
                         case 20:
+                            return _context4.abrupt("return", _context4.sent);
+
+                        case 21:
                         case "end":
                             return _context4.stop();
                     }
@@ -167,13 +219,18 @@ function walletOfferServices(callRpc) {
             }, _callee4, this);
         }));
 
-        return function offerUpdate(_x24, _x25, _x26, _x27, _x28, _x29, _x30, _x31, _x32, _x33, _x34, _x35, _x36, _x37, _x38, _x39, _x40) {
-            return _ref4.apply(this, arguments);
+        return function offerUpdate() {
+            return _ref7.apply(this, arguments);
         };
     }();
 
     var listOffers = function () {
-        var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5(count, from, options) {
+        var _ref9 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5() {
+            var _ref10 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+                count = _ref10.count,
+                from = _ref10.from,
+                options = _ref10.options;
+
             var _args5 = arguments;
             return _regenerator2.default.wrap(function _callee5$(_context5) {
                 while (1) {
@@ -202,13 +259,16 @@ function walletOfferServices(callRpc) {
             }, _callee5, this);
         }));
 
-        return function listOffers(_x41, _x42, _x43) {
-            return _ref5.apply(this, arguments);
+        return function listOffers() {
+            return _ref9.apply(this, arguments);
         };
     }();
 
     var listOffersAfterBlock = function () {
-        var _ref6 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee6(blockNumber) {
+        var _ref11 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee6() {
+            var _ref12 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+                blockNumber = _ref12.blockNumber;
+
             var options, offers;
             return _regenerator2.default.wrap(function _callee6$(_context6) {
                 while (1) {
@@ -219,7 +279,7 @@ function walletOfferServices(callRpc) {
                                 startblock: blockNumber
                             };
                             _context6.next = 4;
-                            return listOffers(0, 0, options);
+                            return listOffers({ count: 0, from: 0, options: options });
 
                         case 4:
                             offers = _context6.sent;
@@ -233,8 +293,8 @@ function walletOfferServices(callRpc) {
             }, _callee6, this);
         }));
 
-        return function listOffersAfterBlock(_x44) {
-            return _ref6.apply(this, arguments);
+        return function listOffersAfterBlock() {
+            return _ref11.apply(this, arguments);
         };
     }();
 
@@ -243,7 +303,7 @@ function walletOfferServices(callRpc) {
         link: (0, _endpointDecorators.post)(offerLink),
         list: (0, _endpointDecorators.get)(listOffers),
         listAfterBlock: (0, _endpointDecorators.get)(listOffersAfterBlock),
-        new: (0, _endpointDecorators.post)(offerNew),
+        create: (0, _endpointDecorators.post)(offerNew),
         update: (0, _endpointDecorators.post)(offerUpdate)
     };
 }
