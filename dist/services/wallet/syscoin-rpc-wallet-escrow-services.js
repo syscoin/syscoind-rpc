@@ -65,7 +65,6 @@ function walletEscrowServices(callRpc) {
                 _ref4$witness = _ref4.witness,
                 witness = _ref4$witness === undefined ? '' : _ref4$witness;
 
-            var _args2 = arguments;
             return _regenerator2.default.wrap(function _callee2$(_context2) {
                 while (1) {
                     switch (_context2.prev = _context2.next) {
@@ -76,7 +75,7 @@ function walletEscrowServices(callRpc) {
                             (0, _syscoinOw2.default)(bidInOfferCurrency, _syscoinOw2.default.number.label("escrowBid:bidInOfferCurrency").integer.greaterThan(0));
                             (0, _syscoinOw2.default)(witness, _syscoinOw2.default.string.label("escrowBid:witness").not.empty);
                             _context2.next = 7;
-                            return callRpc('escrowbid', _args2);
+                            return callRpc('escrowbid', [alias, escrow, bidInPaymentOption, bidInOfferCurrency, witness]);
 
                         case 7:
                             return _context2.abrupt('return', _context2.sent);
@@ -208,7 +207,6 @@ function walletEscrowServices(callRpc) {
                 _ref12$witness = _ref12.witness,
                 witness = _ref12$witness === undefined ? '' : _ref12$witness;
 
-            var _args6 = arguments;
             return _regenerator2.default.wrap(function _callee6$(_context6) {
                 while (1) {
                     switch (_context6.prev = _context6.next) {
@@ -220,7 +218,7 @@ function walletEscrowServices(callRpc) {
                             (0, _syscoinOw2.default)(userTo, _syscoinOw2.default.string.label("escrowCompleteRelease:userTo").not.empty);
                             (0, _syscoinOw2.default)(witness, _syscoinOw2.default.string.label("escrowCompleteRelease:witness").not.empty);
                             _context6.next = 8;
-                            return callRpc('escrowfeedback', _args6);
+                            return callRpc('escrowfeedback', [escrowGuid, userFrom, feedback, rating, userTo, witness]);
 
                         case 8:
                             return _context6.abrupt('return', _context6.sent);
@@ -243,14 +241,13 @@ function walletEscrowServices(callRpc) {
             var _ref14 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
                 guid = _ref14.guid;
 
-            var _args7 = arguments;
             return _regenerator2.default.wrap(function _callee7$(_context7) {
                 while (1) {
                     switch (_context7.prev = _context7.next) {
                         case 0:
                             (0, _syscoinOw2.default)(guid, _syscoinOw2.default.string.label("escrowInfo:guid").not.empty);
                             _context7.next = 3;
-                            return callRpc('escrowinfo', _args7);
+                            return callRpc('escrowinfo', [guid]);
 
                         case 3:
                             return _context7.abrupt('return', _context7.sent);
@@ -343,7 +340,6 @@ function walletEscrowServices(callRpc) {
                 _ref18$witness = _ref18.witness,
                 witness = _ref18$witness === undefined ? '' : _ref18$witness;
 
-            var _args9 = arguments;
             return _regenerator2.default.wrap(function _callee9$(_context9) {
                 while (1) {
                     switch (_context9.prev = _context9.next) {
@@ -353,7 +349,7 @@ function walletEscrowServices(callRpc) {
                             (0, _syscoinOw2.default)(rawTx, _syscoinOw2.default.string.label("escrowRefund:rawTx").not.empty);
                             (0, _syscoinOw2.default)(witness, _syscoinOw2.default.string.label("escrowRefund:witness").not.empty);
                             _context9.next = 6;
-                            return callRpc('escrowrefund', _args9);
+                            return callRpc('escrowrefund', [escrowGuid, userRole, rawTx, witness]);
 
                         case 6:
                             return _context9.abrupt('return', _context9.sent);
@@ -377,9 +373,9 @@ function walletEscrowServices(callRpc) {
                 escrowGuid = _ref20.escrowGuid,
                 userRole = _ref20.userRole,
                 rawTx = _ref20.rawTx,
-                witness = _ref20.witness;
+                _ref20$witness = _ref20.witness,
+                witness = _ref20$witness === undefined ? '' : _ref20$witness;
 
-            var _args10 = arguments;
             return _regenerator2.default.wrap(function _callee10$(_context10) {
                 while (1) {
                     switch (_context10.prev = _context10.next) {
@@ -389,7 +385,7 @@ function walletEscrowServices(callRpc) {
                             (0, _syscoinOw2.default)(rawTx, _syscoinOw2.default.string.label("escrowRelease:rawTx").not.empty);
                             (0, _syscoinOw2.default)(witness, _syscoinOw2.default.string.label("escrowRelease:witness").not.empty);
                             _context10.next = 6;
-                            return callRpc('escrowrelease', _args10);
+                            return callRpc('escrowrelease', [escrowGuid, userRole, rawTx, witness]);
 
                         case 6:
                             return _context10.abrupt('return', _context10.sent);
@@ -414,7 +410,6 @@ function walletEscrowServices(callRpc) {
                 from = _ref22.from,
                 options = _ref22.options;
 
-            var _args11 = arguments;
             return _regenerator2.default.wrap(function _callee11$(_context11) {
                 while (1) {
                     switch (_context11.prev = _context11.next) {
@@ -429,7 +424,7 @@ function walletEscrowServices(callRpc) {
                                 (0, _syscoinOw2.default)(options, _syscoinOw2.default.objects.label("listEscrows:options").not.empty);
                             }
                             _context11.next = 5;
-                            return callRpc('listescrows', _args11);
+                            return callRpc('listescrows', [count, from, options]);
 
                         case 5:
                             return _context11.abrupt('return', _context11.sent);
@@ -462,7 +457,7 @@ function walletEscrowServices(callRpc) {
                                 startblock: blockNumber
                             };
                             _context12.next = 4;
-                            return listEscrows(0, 0, options);
+                            return listEscrows({ count: 0, from: 0, options: options });
 
                         case 4:
                             escrows = _context12.sent;
@@ -491,7 +486,7 @@ function walletEscrowServices(callRpc) {
         info: (0, _endpointDecorators.get)(escrowInfo),
         list: (0, _endpointDecorators.get)(listEscrows),
         listAfterBlock: (0, _endpointDecorators.get)(listEscrowsAfterBlock),
-        new: (0, _endpointDecorators.post)(escrowNew),
+        create: (0, _endpointDecorators.post)(escrowNew),
         refund: (0, _endpointDecorators.post)(escrowRefund),
         release: (0, _endpointDecorators.post)(escrowRelease)
     };
