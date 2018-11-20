@@ -34,7 +34,9 @@ export default class SyscoinRpcClient {
                 useSsl=false,
                 timeout=30000,
                 customHttpAgent,
-                loggerLevel=LOG_LEVELS.silent, whitelist=[], blacklist=[]} = {}) {
+                loggerLevel=LOG_LEVELS.silent, 
+                whitelist=[], 
+                blacklist=[]} = {}) {
 
         let configOptions = { baseUrl, port, username, password, useSsl, timeout, customHttpAgent, loggerLevel }
 
