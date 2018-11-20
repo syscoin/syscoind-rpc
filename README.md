@@ -7,7 +7,9 @@ syscoin-js is an updated Javascript SDK for the Syscoin cryptocurrency, allowing
   - [Installation](#installation)
   - [Typescript](#typescript)
 
-- Usage
+- [Pull requests](#pull-requests)
+
+- [Usage](#usage)
 
   - [Client](#client)
   - [Root methods](#root-methods)
@@ -34,6 +36,10 @@ syscoin-js is an updated Javascript SDK for the Syscoin cryptocurrency, allowing
       - [Escrow](#escrow)
       - [Offer](#offer)
 
+- [Method parity checking](#method-parity-checking)
+
+- [Testing](#testing)
+
 
 ## Overview
 
@@ -48,6 +54,17 @@ npm install syscoin-js --save
 ### Typescript
 
 A set of Typescript definitions for the entirety of the API has been provided in the distributable package.  If you are making edits to this library, please ensure that you also keep the Typescript definitions up to date.
+
+## Contributing
+
+syscoin-js is under (a license to be determined).  Pull requests are welcomed.  A PR should ideally contain:
+
+- only one change per PR (i.e. a new helper method, a change to an existing one)
+- either changes to and/or (preferably) a new integration test (see below)
+
+It's heavily recommended to be running the syscoin-integration tests against syscoin-docker.  Contributions that do not have accompanying unit / integration tests need an appropriate justification as to their absence (for example, setting up masternode integration tests is inordinately complicated for the ROI received, so this library eschews them). 
+
+Please ensure that new methods also are added into the parity registry check so as to keep it up to date. 
 
 ## Usage
 
@@ -114,6 +131,10 @@ Connection Refused
 Authorization Failed (could connect to the RPC, but the credentials supplied to the RPC are incorrect)
 
 RPC method not found (the method asked for is unsupported by the RPC)
+
+### Decorations
+
+Each service method in *syscoin-js* is decorated with an identifier indicating whether it would logically correspond to an HTTP GET or POST method if it were exposed (as the RPC treats every HTTP call as a POST, which is semantically incorrect by REST standards).  This decoration does not impact a consumer, but if you were building a library that generates endpoints on the basis of syscoin-js methods, you can read the *httpMethod* property attached to the method in question to find out what it would be.  
 
 ### Services
 
@@ -409,67 +430,125 @@ startMixing(): Promise<any>;
 stopMixing(): Promise<any>;
 ~~~~
 
+#### networkServices
+
+~~~~
+activateNetwork(): Promise<any>;
+
+addNode({nodeAddress}: {nodeAddress:string}): Promise<any>;
+
+aliasClearWhiteList({ownerAddress, witness}: {ownerAddress: string, witness:string}): Promise<any>;
+
+banNodeForLengthOfTime({subnetOrIp, banTimeInSeconds}: {subnetOrIp: string, banTimeInSeconds:number}): Promise<any>;
+
+banNodeUntilDate({subnetOrIp, banDateTimeEpoch}: {subnetOrIp:string, banDateTimeEpoch:number}): Promise<any>;
+
+clearBannedIps(): Promise<any>;
+
+deactivateNetwork(): Promise<any>;
+
+disconnectNode({nodeAddress}: {nodeAddress: string}): Promise<any>;
+
+getAddedNodeInfo({nodeAddress}: {nodeAddress: string}): Promise<any>;
+
+getChainTxStats({nBlocks, blockHash}: {nBlocks?: number, blockHash?:string});
+
+getConnectionCount(): Promise<any>;
+
+getMemoryInfo(): Promise<any>;
+
+getNetTotals(): Promise<any>;
+
+getNetworkInfo(): Promise<any>;
+
+getPeerInfo(): Promise<any>;
+
+getInfo() : Promise<any>;
+
+listBannedIps(): Promise<any>;
+
+ping(): Promise<any>;
+
+removeNode({nodeAddress}: {nodeAddress:string}): Promise<any>; 
+
+sentinelPing({version} : {version: string}): Promise<any>;
+
+sporks: Sporks;
+
+stop(): Promise<any>;
+
+tryToConnectToNode({nodeAddress}: {nodeAddress:string}): Promise<any>;
+
+unbanNode({subnetOrIp}: {subnetOrIp:string}): Promise<any>;
+~~~~
+
+All methods  with *node* in the name (unban, ban, tryToConnect, etc) are abstractions around the confusingly named "addnode" method in the RPC.
+
+#### synchronizationServices
+
+The methods in this service section are abstractions on top of the RPC 'msync' method.
+
+~~~~
+resetSync(): Promise<any>;
+status(): Promise<any>;
+updateToNextStep(): Promise<any>;
+~~~~
 
 
 
+#### transactionServices
 
-### Methods in the RPC that return different types depending on arguments
+~~~~
+   createRawTransaction({inputs, outputs, lockTime}: {inputs:Array<string>, outputs:Array<string>, lockTime:number}): Promise<any>;
+    decodeRawTransaction({hexString}: {hexString: string}): Promise<any>;
+    decodeScript({hexString}: {hexString: string}): Promise<any>;
+    fundRawTransaction({hexString, options}: {hexString: string, options: any}): Promise<any>;
+    getRawTransaction({txId}: {txId:string}): Promise<any>;
+    getRawTransactionVerbose({txId}: {txId:string}): Promise<any>;
+    sendRawTransaction({hexString, allowHighFees,instantSend,bypassLimits}: {hexString:string, allowHighFees?:boolean,instantSend?:boolean,bypassLimits?:boolean}): Promise<any>;
+    signRawTransaction({hexString, previousTransactionOutputs, privateKeys, signatureHashType}: 
+        {hexString: string, previousTransactionOutputs?: Array<any>, privateKeys?: Array<string>, signatureHashType?: string})
 
-Several methods in the RPC return completely different objects based on the presence of a boolean parameter.  As this is not generally considered maintainable software practice, syscoin-js creates abstractions over top of these RPC methods and has a function per object type returned.  
+~~~~
 
-For instance, the direct RPC getaddressbalance call has a second argument called "separated_output".  If this is set to true it returns an array of objects.  If this is set to false, it returns a single object.  Rather than force the end user to deal with this knowledge, the SDK exposes *two* methods:
+#### utilityServices
 
-```
-client.addressIndexServices.getAddressBalancesAsArray(addresses)
-client.addressIndexServices.getSummedAddressBalance(addresses)
-```
+~~~~
+createMultiSig({numberOfRequiredSignatures, keys}: {numberOfRequiredSignatures:number,keys:Array<string>}): Promise<any>;
 
-Likewise with any methods in the RPC that have a 'verbose' boolean parameter that changes the output format, the SDK represents these as two different methods, e.g. getMempoolAncestors and getMempoolAncestorsVerbose.  
+validateAddress({address}: {address: string}): Promise<any>;
 
-### Helper methods with no corresponding RPC call
+debug({category}: {category:string}): Promise<any>;
 
-There are several calls within the SDK that do not correspond directly to an RPC method but have been added for convenience or readability.  These include the following:
+help({command}: {command:string}): Promise<any>;
 
-* blockchainServices.getBlockAtHeight(height) and blockchainServices.getBlockAtHeightVerbose(height)
-* mixingServices.resetMixing,startMixing,stopMixing (these are abstractions over the RPC's 'privatesend')
-* networkServices.xxxNode actions (addNode, banNode, etc - these are abstractions over the RPC's 'addnode' to more clearly indicate the behavior)
-* synchronizationServices.resetSync,status,updateToNextStep - these are abstractions over the RPC's 'msync'
-* transactionServices.getRawTransaction(txId)
-* transactionServices.getRawTransactionVerbose(txId)
-* walletServices.alias.listAfterBlock(blockNumber) - this retrieves all aliases added to the system after a certain block height
-* The same as the above, but for the other Syscoin domain objects (asset, assetAllocation, certificate, escrow, offer)
-* walletServices.getWalletLoadPercentage() - due to a quirk in how the RPC handles communication of wallet percentage, this is an explicit abstraction that will either return the % load of the wallet or 100% if loaded.
+tpsTestSetEnabled({enabled}: {enabled:boolean}): Promise<any>;
 
-## Method parity
-There is an object in syscoin-js called SyscoinParityRegistry.  This class runs against the core RPC, attempts to check its internal registry to determine whether or not all methods in the RPC are 'covered' by one or more methods in the SDK, and returns the following information:
-`
+tpsTestAdd({startTime, rawTx}: {startTime:number,rawTx:Array<string>}): Promise<any>;
+~~~~
+
+## Method parity checking
+There is an object in syscoin-js called *SyscoinParityRegistry*.  This class runs against the core RPC, attempts to check its internal registry to determine whether or not all methods in the RPC are 'covered' by one or more methods in the SDK, and returns the following information:
+
+~~~~
 {
   coreMethodCount: // count of all methods exposed in the RPC as determined by the 'help',
   registryMapCount: // count of all registry entries (expected to equal coreMethodCount),
   percentageCoverage: // SDK coverage of the RPC methods
   missingMethods: // an array containing all RPC methods that do not have a corresponding mapped entry in the SDK
 }
-`
+
+~~~~
+
+
+
 One of the integration tests in syscoin-js looks explicitly for parity to be at 100% and will fail if the parity check gives less.  This allows a user of the library to check coverage against the version of the syscoind core they are using.  
-
-
-## Contributing
-
-syscoin-js is under (a license to be determined).  Pull requests are welcomed.  A PR should ideally contain:
-* only one change per PR (i.e. a new helper method, a change to an existing one)
-* either changes to and/or (preferably) a new integration test (see below)
-
-It's heavily recommended to be running the syscoin-integration tests against syscoin-docker.  Contributions that do not have accompanying unit / integration tests need an appropriate justification as to their absence (for example, setting up masternode integration tests is inordinately complicated for the ROI received, so this library eschews them). 
-
-Please ensure that new methods also are added into the parity registry check so as to keep it up to date. 
-
-
-
-
 
 ## Testing 
 
-syscoin-js uses jest as its testing library of choice, along with a dockerized container running syscoind set to regtest.  Of note is that the tests will *automatically fail and exit* if the environment being tested against is set to anything other than regtest.  If you decide to change this behavior, you do so at your own risk.  PRs where this behavior is disabled will be rejected.
+syscoin-js uses jest as its testing library of choice, along with a dockerized container running syscoind set to regtest.  Of note is that the tests will ***automatically fail and exit*** if the environment being tested against is set to anything other than regtest.  If you decide to change this behavior, you do so at your own risk.  PRs where this behavior is disabled will be rejected.
+
+You do not need the docker image to be able to run your tests - you can also simply test against a node on your machine if so desired (with the environment set to regtest).
 
 
 ### Pre-requisites for docker testing.
