@@ -249,8 +249,6 @@ getAllRawRpcMethods(): Promise<Array<{method:string,arguments:string}>>;
 
 #### estimateServices 
 
-
-
 ```
 estimateFee({numberOfBlocks}: {numberOfBlocks:number}) : Promise<any>;
 
@@ -266,6 +264,66 @@ estimateSmartPriority({numberOfBlocks}: {numberOfBlocks:number}): Promise<any>;
 aliasUpdateEstimatedFee({aliasName, publicValue, address, transfersFlag, expireTimestamp, encPrivateKey, encPublicKey, witness}: {aliasName: string, publicValue: string, address: string, transfersFlag: number, expireTimestamp: number, encPrivateKey: string, encPublicKey: string, witness: string}): Promise<any>;
 
 ```
+
+#### generationServices
+
+~~~~
+    generate({numberOfBlocks, maxTries}: {numberOfBlocks:number,maxTries?:number}) : Promise<any>;
+    
+    generateToAddress({numberOfBlocks, address, maxTries}: {numberOfBlocks:number, address:string, maxTries?:number}) : Promise<any>;
+~~~~
+
+#### governanceServices
+
+Most of the calls in *governanceServices* are abstractions around the RPC's *gobject* call. 
+
+~~~~
+checkProposal({hex}: {hex: string}) : Promise<any>;
+
+count({format} : {format:string}) : Promise<any>;
+
+deserializeGovernanceObject({dataHex} : {dataHex: string}) : Promise<any>;
+
+differencesSinceLastComparison() : Promise<any>;
+
+getByHash({hash} : {hash:string}) : Promise<any>;
+
+getGovernanceInfo() : Promise<any>;
+
+getSuperblockBudget({blockIndex} : {blockIndex:number}) : Promise<any>;
+
+getCurrentVotes(): Promise<any>;
+
+getVotes({hash}: {hash:string}): Promise<any>;
+
+listAll() : Promise<any>;
+
+listValid() : Promise<any>; 
+
+listFunding(): Promise<any>;
+
+listDelete(): Promise<any>;
+
+listEndorsed(): Promise<any>;
+
+prepareGovernanceObject({parentHash,revision,time,dataHex}: {parentHash:string, revision:number, time:number, dataHex:string}): Promise<any>;
+
+submitGovernanceObject({parentHash,revision,time,dataHex,feeTxId} : {parentHash:string, revision: number, time: number, dataHex: string, feeTxId: string}) : Promise<any>;
+
+governanceVote() : Promise<any>;
+    
+governanceVoteByName(): Promise<any>;
+
+governanceVoteMany(): Promise<any>;
+
+governanceVoteRaw({masterNodeTxHash,
+        masterNodeTxIndex,
+        governanceHash,
+        voteSignal,
+        vote,
+        time,
+        voteSignature}: {masterNodeTxHash:string,masterNodeTxIndex:number,governanceHash:string, voteSignal: string, vote: string, time: number, voteSignature: string}): Promise<any>;
+~~~~
 
 
 
