@@ -69,13 +69,31 @@ The client can be instantiated with the following call (defaults shown):
 ```
 
 1. `baseUrl="localhost"` - url for connecting.  
+
 2. `port=8368` - port to use.  
+
 3. `username=''` - user credentials.
+
 4. `password=''` - password credentials.
+
 5. `useSsl=false` - whether to use ssl 
+
 6. `timeout=30000` - How long before the request times out in ms.
+
 7. `customHttpAgent` - Optional custom http agent.
+
 8. `loggerLevel=LOG_LEVELS.silent` - Sets logging behavior.  Default is to silent.  Levels are debug, error, info, silent, trace, and warn.  
+
+9. `whitelist` - An array of RPC methods that you want logged - this will effectively "blacklist" all other methods from logging, leaving only the whitelist.  The presence of a non-empty whitelist overrides the blacklist below.
+
+10. `blacklist` - An array of RPC methods that you do *not* want logged by the library.  As mentioned above, the blacklist is overridden by a non-empty whitelist; for example, setting the following:
+
+    ~~~~
+    whitelist=['getinfo']
+    blacklist=['aliasnew']
+    ~~~~
+
+    results in only *getinfo* being logged and all other methods effectively blacklisted. 
 
 ### Root methods
 
@@ -99,7 +117,7 @@ RPC method not found (the method asked for is unsupported by the RPC)
 
 ### Services
 
-The client is segmented into several different "service areas" that mostly correspond to the areas in the syscoin core help and syscoin.readme.io.   All service methods listed below:
+The client is segmented into several different "service areas" that mostly correspond 1 to 1 to the areas in the syscoin core help and syscoin.readme.io.   All service methods listed below:
 
 * perform validation on the arguments they receive (a combination of type checking and format checking...for example, calling client.generationServices.generate(-5000) will throw an exception).
 * on successful validation, format the arguments into an RPC call (or multiple RPC calls in certain situations), which is delegated to the *callRpc* method listed above
@@ -110,36 +128,43 @@ Certain services have special methods that fall into one of the following three 
 - helper methods that package several RPC calls together or abstract a call slightly differently (e.g. *aliasExists*, *getBlockAtHeight*, *listAssetsAfterBlock*)
 - methods that perform a special sort of processing/formatting outside of the RPC (e.g. *getAllRawRpcMethods*)
 
+Typically, a call to the SDK will involve invoking the client, followed by the service subsection you wish to use, along with the method you would like to call.
 
-
-
-
-These service segmentations are:
-
-addressindex
-blockchain
-diagnostic
-estimate
-generation
-governance
-masternode
-messaging
-mining
-network
-synchronization
-transaction
-utility
-wallet
-
-For example, a call to the syscoind getInfo looks like:
+For example, a call to the syscoind *getInfo* looks like:
 ```
 let client = new SyscoinRpcClient(configOptions);
 let info = await client.networkServices.getInfo();
 ```
 
-All calls made are asynchronous by default.
+All calls made are asynchronous by default, returning a promise and can be *await*ed.
 
-Most methods in these services correspond as a 1 to 1 from the syscoin readme.io page.  Exceptions are listed below.
+Most methods in these services correspond as a 1 to 1 from the syscoin readme.io page.  Exceptions are listed in each subsection.
+
+All service calls utilize Js destructured arguments, including those with only a single argument.
+
+#### addressindex
+
+~~~~
+getAddressDeltas({addresses, startingBlockHeight, endingBlockHeight}: {addresses: Array<string>, startingBlockHeight?:number, endingBlockHeight?:number}): Promise<any>;
+
+getAddressBalancesAsArray({addresses}: {addresses: Array<string>}): Promise<any>;
+
+getSummedAddressBalance({addresses}: {addresses: Array<string>}): Promise<any>;
+
+getAddressMempool({addresses}: {addresses: Array<string>}): Promise<any>;
+
+getAddressTxids({addresses,startingBlockHeight,endingBlockHeight}: {addresses: Array<string>, startingBlockHeight?: number, endingBlockHeight?: number}): Promise<any>;
+
+getAddressUtxos({addresses}: {addresses: Array<string>}): Promise<any>;
+~~~~
+
+*getAddressBalancesAsArray* and *getSummedAddressBalance* are abstractions overtop of the RPC *addressBalance*, which returns two different objects depending on parameters sent to it (?!)
+
+
+
+
+
+
 
 ### diagnosticServices.getAllRawRpcMethods
 
