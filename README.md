@@ -47,7 +47,7 @@ npm install syscoin-js --save
 
 ### Typescript
 
-A set of Typescript definitions for the entirety of the API has been provided in the distributable package.  If you are making edits to this library, please ensure that you also keep the Typescript definition
+A set of Typescript definitions for the entirety of the API has been provided in the distributable package.  If you are making edits to this library, please ensure that you also keep the Typescript definitions up to date.
 
 ## Usage
 
@@ -77,9 +77,44 @@ The client can be instantiated with the following call (defaults shown):
 7. `customHttpAgent` - Optional custom http agent.
 8. `loggerLevel=LOG_LEVELS.silent` - Sets logging behavior.  Default is to silent.  Levels are debug, error, info, silent, trace, and warn.  
 
+### Root methods
+
+### callRpc(methodName, args=[])
+
+*callRpc* represents a direct call to the RPC with a string for a methodname and your arguments stored in an array, much like *bitcoinlib-js* and various other RPC based libraries do things.   This call allows for someone to make a call to the RPC without being constrainted by a method not being directly implemented by this SDK.   
+
+Unlike other exposed SDK methods, this method does not validate any of the arguments passed to it and goes straight through to the RPC (which is then responsible for validating).  
+
+callRpc is set up to return explicit errors in the event that:
+a) it cannot successfully connect to the RPC
+b) it can connect but cannot successfully authenticate
+
+This call will throw a custom *RpcException* in the event of an error.  It will throw fairly explicit errors in the event of situations outside of the RPC's boundaries, including:
+
+Connection Refused
+
+Authorization Failed (could connect to the RPC, but the credentials supplied to the RPC are incorrect)
+
+RPC method not found (the method asked for is unsupported by the RPC)
+
 ### Services
 
-The client is segmented into several different "service areas" that correspond to the areas in the syscoin core help and syscoin.readme.io.  These service segmentations are:
+The client is segmented into several different "service areas" that mostly correspond to the areas in the syscoin core help and syscoin.readme.io.   All service methods listed below:
+
+* perform validation on the arguments they receive (a combination of type checking and format checking...for example, calling client.generationServices.generate(-5000) will throw an exception).
+* on successful validation, format the arguments into an RPC call (or multiple RPC calls in certain situations), which is delegated to the *callRpc* method listed above
+
+Certain services have special methods that fall into one of the following three categories:
+
+- cleaner abstractions over the original RPC calls (sometimes represented by more than one method) - for example, *getAddressBalancesAsArray* and *getSummedAddressBalance*
+- helper methods that package several RPC calls together or abstract a call slightly differently (e.g. *aliasExists*, *getBlockAtHeight*, *listAssetsAfterBlock*)
+- methods that perform a special sort of processing/formatting outside of the RPC (e.g. *getAllRawRpcMethods*)
+
+
+
+
+
+These service segmentations are:
 
 addressindex
 blockchain
@@ -105,24 +140,6 @@ let info = await client.networkServices.getInfo();
 All calls made are asynchronous by default.
 
 Most methods in these services correspond as a 1 to 1 from the syscoin readme.io page.  Exceptions are listed below.
-
-### callRpc(methodName, args=[])
-
-This represents a direct call to the RPC with a string for a methodname and your arguments stored in an array.  This allows for someone to make a call to the RPC without being constrainted by a method not necessarily being directly implemented in the SDK.  
-
-callRpc is set up to return explicit errors in the event that:
-a) it cannot successfully connect to the RPC
-b) it can connect but cannot successfully authenticate
-
-It will also attempt to return errors in the format that the RPC tends to return them (that being 
-
-```
-{
-  result=null,
-  error=[your message here],
-  code=-1
-}
-```
 
 ### diagnosticServices.getAllRawRpcMethods
 
