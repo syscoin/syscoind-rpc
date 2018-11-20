@@ -236,24 +236,38 @@ getAddressUtxos({addresses}: {addresses: Array<string>}): Promise<any>;
 
 The majority of the methods with an *xxVerbose* method indicate a situation where the RPC returned two different argument formats depending on whether "verbose" was passed as a flag. (!?).  The only exception to the above in *blockchainServices* is the pair *getBlockAtHeight* and *getBlockAtHeightVerbose* which are abstractions to get a block directly by height argument.
 
+#### diagnosticServices
+
+diagnosticServices is not a listed division in readme.io but has been added in the SDK for convenience.  
+
+~~~~
+getAllRawRpcMethods(): Promise<Array<{method:string,arguments:string}>>;
+    helpForRpcCommand({commandName}:{commandName:string}): Promise<any>;
+~~~~
+
+*getAllRawRpcMethods* retrieves the contents of syscoind 'help' and formats it into a JSON array as described above.  This provides the consumer a way to get the full list of methods supported in the instance of syscoind that's been activated, along with the suggested RPC arguments for that method.
+
+#### estimateServices 
 
 
 
-
-
-
-### diagnosticServices.getAllRawRpcMethods
-
-This call retrieves the contents of the syscoind 'help' and formats it into a JSON array with the format of 
 ```
-[
-  {
-    methodName='my method name',
-    arguments='string representation of those arguments'
-]
+estimateFee({numberOfBlocks}: {numberOfBlocks:number}) : Promise<any>;
+
+estimatePriority({numberOfBlocks}: {numberOfBlocks:number}): Promise<any>; 
+
+estimateSmartFee({numberOfBlocks}: {numberOfBlocks:number}): Promise<any>;
+
+estimateSmartPriority({numberOfBlocks}: {numberOfBlocks:number}): Promise<any>;
+   aliasNewEstimatedFee({aliasName,publicValue,transfersFlag,expireTimestamp,address,encPrivateKey,encPublicKey,witness}:
+            {aliasName: string, publicValue: string, transfersFlag: number, expireTimestamp: number,
+            address: string, encPrivateKey: string, encPublicKey: string, witness: string}) : Promise<any>;
+            
+aliasUpdateEstimatedFee({aliasName, publicValue, address, transfersFlag, expireTimestamp, encPrivateKey, encPublicKey, witness}: {aliasName: string, publicValue: string, address: string, transfersFlag: number, expireTimestamp: number, encPrivateKey: string, encPublicKey: string, witness: string}): Promise<any>;
+
 ```
 
-so as to provide the consumer with a way to determine what methods are supported in their current instance of syscoind.  
+
 
 ### Methods in the RPC that return different types depending on arguments
 
