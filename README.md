@@ -325,6 +325,92 @@ governanceVoteRaw({masterNodeTxHash,
         voteSignature}: {masterNodeTxHash:string,masterNodeTxIndex:number,governanceHash:string, voteSignal: string, vote: string, time: number, voteSignature: string}): Promise<any>;
 ~~~~
 
+#### masternodeServices
+
+The majority of calls in *masternodeServices* are delegations to the RPC calls "masternode", "masternodebroadcast", and "masternodelist", done up in a more discoverable/abstracted format.
+
+~~~~
+broadcastByAssignedName({name}: {name:string}) : Promise<any>;
+broadcastForAllMasternodes(): Promise<any>;
+count({format}: {format:string}): Promise<any>;
+decodeMessage({message}: {message:string}): Promise<any>;
+generatePrivateKey(): Promise<any>;
+getConfiguration(): Promise<any>;
+getCurrentMasternodeWinner(): Promise<any>;
+initialize({name}:{name:string}): Promise<any>;
+list: {
+	activeSeconds({filter}: {filter?:string}): Promise<any>;
+	address({filter}: {filter?:string}): Promise<any>;
+    daemon({filter}: {filter?:string}): Promise<any>;
+    info({filter}: {filter?:string}): Promise<any>;
+    json({filter}: {filter?:string}): Promise<any>;
+    lastPaidBlock({filter}: {filter?:string}): Promise<any>;
+    lastPaidTime({filter}: {filter?:string}): Promise<any>;
+    lastSeen({filter}: {filter?:string}): Promise<any>;
+    payee({filter}: {filter?:string}): Promise<any>;
+    protocol({filter}: {filter?:string}): Promise<any>;
+    pubkey({filter}: {filter?:string}): Promise<any>;
+    rank({filter}: {filter?:string}): Promise<any>;
+    sentinel({filter}: {filter?:string}): Promise<any>;
+    status({filter}: {filter?:string}): Promise<any>;
+    full({filter}: {filter?:string}): Promise<any>;
+}
+outputs() : Promise<any>;
+relayMessage({msg}:{msg:string}): Promise<any>;
+startAll(): Promise<any>;
+startMissing(): Promise<any>;
+startDisabled(): Promise<any>;
+status(): Promise<any>;
+winner(): Promise<any>;
+winners(): Promise<any>;
+masternodeList({mode,filter}: {mode:string,filter:string}): Promise<any>;
+masternodeBroadcast({command, arg}: {command:string, arg:string}) : Promise<any>;
+   
+~~~~
+
+#### messagingServices
+
+~~~~
+   signMessage({privateKey, message}: {privateKey: string, message:string}): Promise<any>;
+   verifyMessage({address, signature, message}: {address: string, signature: string, message: string}): Promise<any>;
+~~~~
+
+#### miningServices
+
+~~~~
+createAuxBlock({address}: {address:string}): Promise<any>;
+
+getAuxBlock({blockHash, auxPow}: {blockHash?:string,auxPow?:string}): Promise<any>;
+
+getBlockTemplate({blockTemplate}: {blockTemplate?:string}): Promise<any>;
+
+getMiningInfo(): Promise<any>;
+
+getPoolInfo(): Promise<any>;
+
+getNetworkHashesPerSecond({numberOfBlocks, blockHeight} : {numberOfBlocks:number, blockHeight:number}): Promise<any>;
+
+prioritiseTransaction({txid,priorityDelta,feeDeltaInSatoshis}: {txid:string, priorityDelta:number,feeDeltaInSatoshis:number}): Promise<any>;
+
+submitAuxBlock({blockHash,auxPow}: {blockHash:string,auxPow:string}): Promise<any>;
+
+submitBlock({hexDataToSubmit}: {hexDataToSubmit:string}): Promise<any>;
+~~~~
+
+
+
+#### mixingServices
+
+The calls in mixing services are more explicit commands for the 'privatesend' RPC call.
+
+~~~~
+resetMixing(): Promise<any>;
+startMixing(): Promise<any>;
+stopMixing(): Promise<any>;
+~~~~
+
+
+
 
 
 ### Methods in the RPC that return different types depending on arguments
