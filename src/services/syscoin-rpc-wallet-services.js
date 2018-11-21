@@ -76,112 +76,118 @@ export function syscoinRpcWalletServices(callRpc, utilityServices) {
         getWalletLoadPercentage: getWalletLoadPercentage
     }
 
-    async function abandonTransaction(txId) {
+    async function abandonTransaction({ txId }) {
         ow(txId, ow.string.label("abandonTransaction:txId").not.empty);
         return await callRpc('abandontransaction', [txId]);
     }
 
-    async function addMultiSigAddress(nRequired, keys, account) {
+    async function addMultiSigAddress({ nRequired, keys, account }) {
         ow(nRequired, ow.number.label("addMultiSigAddress:nRequired").integer.greaterThan(0));
         ow(keys, ow.array.label("addMultiSigAddress:keys").not.empty);
         if(account) {
             ow(account, ow.string.label("addMultiSigAddress: account").not.empty);
+            await callRpc('addmultisigaddress', [nRequired, keys, account]);
         }
         return account ? await callRpc('addmultiSigAddress', [nRequired, keys, account]) :
             await callRpc('addmultisigaddress', [nRequired, keys]);
     }
-    
-    async function backupWallet(destination) {
-        ow(destination, ow.string.label("backupWallet:destination").not.empty);
-        return await callRpc('backupwallet', arguments);
-    }
 
+    async function backupWallet({ destination }) {
+        ow(destination, ow.string.label("backupWallet:destination").not.empty);
+        return await callRpc('backupwallet', [destination]);
+    }
 
     async function dumpHdInfo() {
         return await callRpc('dumphdinfo');
     }
 
-    async function dumpPrivKey(address) {
+    async function dumpPrivKey({ address }) {
         ow(address, ow.string.label("dumpPrivKey:address").not.empty);
         return await callRpc('dumpprivkey', [address]);
     }
 
-    async function dumpWallet(fileName) {
+    async function dumpWallet({ fileName }) {
         ow(fileName, ow.string.label("dumpWallet:fileName").not.empty);
         return await callRpc('dumpwallet', [fileName]);
     }
 
-    
-
-    async function getAccount(address) {
+    async function getAccount({ address }) {
         ow(address, ow.string.label("getAccount:address").not.empty);
         return await callRpc('getaccount', [address]);
     }
 
-    async function getAccountAddress(account) {
+    async function getAccountAddress({ account }) {
         ow(account, ow.string.label("getAccountAddress:account").not.empty);
-        return await callRpc('getaccountaddress', arguments);
+        return await callRpc('getaccountaddress', [account]);
     }
 
-    async function getAddressesByAccount(account) {
+    async function getAddressesByAccount({ account }) {
         ow(account, ow.string.label("getAddressesByAccount:account").not.empty);
-        return await callRpc('getaddressesbyaccount', arguments);
+        return await callRpc('getaddressesbyaccount', [account]);
     }
 
-    async function getBalance(account, minConf, addLocked, includeWatchOnly) {
+    async function getBalance({ account, minConf, addLocked, includeWatchOnly }) {
         ow(account, ow.string.label("getBalance:account").not.empty);
         if(minConf) {
             ow(minConf, ow.number.label("getBalance:minConf").integer.greaterThanOrEqual(1));
+            return await callRpc('getbalance', [account, minConf]);
         }
         if(addLocked) {
             ow(addLocked, ow.boolean.label("getBalance:addLocked").is(x => x == true || x == false));
+            return await callRpc('getbalance', [account, minConf, addLocked]);
         }
         if(includeWatchOnly) {
             ow(includeWatchOnly, ow.boolean.label("getBalance:includeWatchOnly").is(x => x == true || x == false));
+            return await callRpc('getbalance', [account, minConf, addLocked, includeWatchOnly]);
         }
-        return await callRpc('getbalance', arguments);
+        return await callRpc('getbalance', [account]);
     }
 
-    async function getNewAddress(account) {
+    async function getNewAddress({ account }) {
         if(account){
             ow(account, ow.string.label("getNewAddress:account").not.empty);
+            return await callRpc('getnewaddress', [account]);
         }
-        return await callRpc('getnewaddress', arguments);
+        return await callRpc('getnewaddress');
     }
 
-    async function getRawChangeAddress(address) {
+    async function getRawChangeAddress({ address }) {
         ow(address, ow.string.label("getRawChangeAddress:address").not.empty);
         return await callRpc('getrawchangeaddress', [address]);
     }
 
-    async function getReceivedByAccount(account, minConf, addLocked) {
+    async function getReceivedByAccount({ account, minConf, addLocked }) {
         ow(account, ow.string.label("getReceivedByAccount:account").not.empty);
         if(minConf) {
             ow(minConf, ow.number.label("getReceivedByAccount:minConf").integer.greaterThanOrEqual(1));
+            return await callRpc('getreceivedbyaccount', [account, minConf]);
         }
         if(addLocked) {
             ow(addLocked, ow.boolean.label("getReceivedByAccount:addLocked").is(x => x == true || x == false));
         }
-        return await callRpc('getreceivedbyaccount', arguments);
+        return await callRpc('getreceivedbyaccount', [account]);
     }
 
-    async function getReceivedByAddress(account, minConf, addLocked) {
+    async function getReceivedByAddress({ account, minConf, addLocked }) {
         ow(account, ow.string.label("getReceivedByAddress:account").not.empty);
         if(minConf) {
             ow(minConf, ow.number.label("getReceivedByAddress:minConf").integer.greaterThanOrEqual(1));
+            return await callRpc('getreceivedbyaddress', [account, minConf])
         }
         if(addLocked) {
             ow(addLocked, ow.boolean.label("getReceivedByAddress:addLocked").is(x => x == true || x == false));
+            return await callRpc('getreceivedbyaddress', [account, minConf, addLocked])
         }
-        return await callRpc('getreceivedbyaddress', arguments)
+        return await callRpc('getreceivedbyaddress', [account])
     }
 
-    async function getTransaction(txId, includeWatchOnly) {
+    async function getTransaction({ txId, includeWatchOnly }) {
         ow(txId, ow.string.label("getTransaction:txId").not.empty);
         if(includeWatchOnly) {
             ow(script, ow.boolean.label("getTransaction:includeWatchOnly").is(x => x == true || x == false));
+            return await callRpc('gettransaction', [txId, includeWatchOnly]);
         }
-        return await callRpc('gettransaction', arguments);
+        return await callRpc('gettransaction', [txId]);
     }
 
     async function getUnconfirmedBalance() {
@@ -192,55 +198,62 @@ export function syscoinRpcWalletServices(callRpc, utilityServices) {
         return await callRpc('getwalletinfo');
     }
 
-    async function importAddress(script, label, rescan, p2sh) {
+    async function importAddress({ script, label, rescan, p2sh }) {
         ow(script, ow.string.label("importAddress:script").not.empty);
         if(label) {
             ow(label, ow.array.label("importAddress:label").not.empty);
+            return await callRpc('importaddress', [script, label]);
         }
         if(recan) {
             ow(rescan, ow.boolean.label("importAddress:rescan").is(x => x == true || x == false));
+            return await callRpc('importaddress', [script, label, rescan]);
         }
         if(p2sh) {
             ow(p2sh, ow.boolean.label("importAddress:p2sh").is(x => x == true || x == false));
-
+            return await callRpc('importaddress', [script, label, rescan, p2sh]);
         }
-        return await callRpc('importaddress', arguments);
+        return await callRpc('importaddress', [script]);
     }
 
-    async function importElectrumWallet(fileName, index) {
+    async function importElectrumWallet({ fileName, index }) {
         ow(fileName, ow.string.label("importMulti:requests").not.empty);
         if(index) {
             ow(index, ow.number.label("importMulti:index").integer.greaterThan(0));
+            return await callRpc('importelectrumwallet', [fileName, index]);
         }
-        return await callRpc('importelectrumwallet', arguments);
+        return await callRpc('importelectrumwallet', [fileName]);
     }
 
-    async function importMulti(requests, options) {
+    async function importMulti({ requests, options }) {
         ow(requests, ow.array.label("importMulti:requests").not.empty);
         if(options) {
             ow(options, ow.array.label("importMulti:options").not.empty);
+            return await callRpc('importmulti', [requests, options]);
+
         }
-        return await callRpc('importmulti', arguments);
+        return await callRpc('importmulti', [requests]);
     }
 
-    async function importPrivKey(syscoinPrivKey, label, rescan) {
+    async function importPrivKey({ syscoinPrivKey, label, rescan }) {
         ow(syscoinPrivKey, ow.string.label("importPrivKey:syscoinPrivKey").not.empty);
         if(label) {
             ow(label, ow.string.label("importPrivKey:label").not.empty);
+            return await callRpc('importprivkey', [syscoinPrivKey, label]);
         }
         if(rescan) {
             ow(rescan, ow.boolean.label("importPrivKey:rescan").is(x => x == true || x == false));
+            return await callRpc('importprivkey', [syscoinPrivKey, label, rescan]);
         }
-        return await callRpc('importprivkey', arguments);
+        return await callRpc('importprivkey', [syscoinPrivKey]);
     }
 
-    async function importPrunedFunds(rawTransaction, txOutProof) {
+    async function importPrunedFunds({ rawTransaction, txOutProof }) {
         ow(rawTransaction, ow.string.label("importPrunedFunds:rawTransaction").not.empty);
         ow(txOutProof, ow.string.label("importPrunedFunds:txOutProof").not.empty);
         return await callRpc('importprunedfunds', [rawTransaction, txOutProof]);
     }
 
-    async function importPubKey(pubKey, label, rescan) {
+    async function importPubKey({ pubKey, label, rescan }) {
         ow(pubKey, ow.string.label("importPubKey:pubKey").not.empty);
         if(label) {
             ow(label, ow.string.label("importPubKey:label").not.empty);
@@ -252,58 +265,67 @@ export function syscoinRpcWalletServices(callRpc, utilityServices) {
         return await callRpc('importpubkey', arguments);
     }
 
-    async function importWallet(fileName) {
+    async function importWallet({ fileName }) {
         ow(fileName, ow.string.label("importWallet:fileName").not.empty);
         return await callRpc('importwallet', [fileName]);
     }
 
-    async function instantSendToAddress(address, amount, comment, commentTo, subtractFeeFromAmount) {
+    async function instantSendToAddress({ address, amount, comment, commentTo, subtractFeeFromAmount }) {
         ow(minConf, ow.string.label("listUnspent:minConf").not.empty);
         ow(amount, ow.number.label("listUnspent:amount").integer.greaterThan(0));
         if(comment) {
             ow(comment, ow.string.label("listUnspent:comment").minLength(0));
+            return await callRpc('instantsendtoaddress', [minConf, amount, comment]);
         }
         if(commentTo) {
             ow(commentTo, ow.string.label("listUnspent:commentTo").minLength(0));
+            return await callRpc('instantsendtoaddress', [minConf, amount, comment, commentTo]);
         }
         if(subtractFeeFromAmount) {
             ow(subtractFeeFromAmount, ow.boolean.label("listUnspent:subtractFeeFromAmount").is(x => x == true  || x == false));
+            return await callRpc('instantsendtoaddress', [minConf, amount, comment, commentTo, subtractFeeFromAmount]);
         }
-        return await callRpc('instantsendtoaddress', arguments);
+        return await callRpc('instantsendtoaddress', [minConf, amount]);
     }
 
-    async function keePass(genKey) {
+    async function keePass({ genKey }) {
         if(genKey) {
             ow(genKey, ow.number.label("keePassn:genKey").integer.greaterThanOrEqual(1));
+            return await callRpc('keepass', [genKey]);
         }
-        return await callRpc('keepass', genKey);
+        return await callRpc('keepass');
     }
 
-    async function keyPoolRefill(newSize) {
+    async function keyPoolRefill({ newSize }) {
         if(newSize) {
             ow(newSize, ow.number.label("keyPoolRefill:newSize").integer.greaterThanOrEqual(1));
+            return await callRpc('keypoolrefill', [newSize]);
         }
-        return await callRpc('keypoolrefill', arguments);
+        return await callRpc('keypoolrefill');
     }
 
-    async function listAccounts(minConf, addLocked, includeWatchOnly) {
+    async function listAccounts({ minConf, addLocked, includeWatchOnly }) {
         if(minConf){
             ow(minConf, ow.number.label("listAccounts:minConf").integer.greaterThanOrEqual(1));
+            return await callRpc('listaccounts', [minConf]);
         }
         if(addLocked){
             ow(addLocked, ow.boolean.label("listAccounts:addLocked").is(x => x == true || x == false));
+            return await callRpc('listaccounts', [minConf, addLocked]);
         }
         if(includeWatchOnly){
             ow(includeWatchOnly, ow.boolean.label("listAccounts:includeWatchOnly").is(x => x == true || x == false));
+            return await callRpc('listaccounts', [minConf, addLocked, includeWatchOnly]);
         }
-        return await callRpc('listaccounts', arguments);
+        return await callRpc('listaccounts');
     }
 
-    async function listAddressBalances(minAmount) {
+    async function listAddressBalances({ minAmount }) {
         if(minAmount) {
             ow(minAmount, ow.number.label("listAddressBalances:minAmount").integer.greaterThan(0));
+            return await callRpc('listaddressbalances', [minAmount]);
         }
-        return await callRpc('listaddressbalances', arguments);
+        return await callRpc('listaddressbalances');
     }
 
     async function listAddressGroupings() {
@@ -314,85 +336,102 @@ export function syscoinRpcWalletServices(callRpc, utilityServices) {
         return await callRpc('listlockunspent');
     }
 
-    async function listReceivedByAccount(minConf, addLocked, includeEmpty, includeWatchOnly) {
+    async function listReceivedByAccount({ minConf, addLocked, includeEmpty, includeWatchOnly }) {
         if(minConf){
             ow(minConf, ow.number.label("listReceivedByAccount:minConf").integer.greaterThanOrEqual(1));
+            return await callRpc('listreceivedbyaccount', [minConf]);
         }
         if(addLocked) {
             ow(addLocked, ow.boolean.label("listReceivedByAccount:addLocked").is(x => x == true || x == false));
+            return await callRpc('listreceivedbyaccount', [minConf, addLocked]);
         }
         if(addressess) {
             ow(includeEmpty, ow.boolean.label("listReceivedByAccount:includeEmpty").is(x => x == true || x == false));
+            return await callRpc('listreceivedbyaccount', [minConf, addLocked, includeEmpty]);
         }
         if(includeUnsafe){
             ow(includeWatchOnly, ow.boolean.label("listReceivedByAccount:includeWatchOnly").is(x => x == true || x == false));
+            return await callRpc('listreceivedbyaccount', [minConf, addLocked, includeEmpty, includeWatchOnly]);
         }
-        return await callRpc('listreceivedbyaccount', arguments);
+        return await callRpc('listreceivedbyaccount');
     }
 
-    async function listReceivedByAddress(minConf, addLocked, includeEmpty, includeWatchOnly) {
+    async function listReceivedByAddress({ minConf, addLocked, includeEmpty, includeWatchOnly }) {
         if(minConf){
             ow(minConf, ow.number.label("listReceivedByAddress:minConf").integer.greaterThanOrEqual(1));
+            return await callRpc('listreceivedbyaddress', [minConf]);
         }
         if(addLocked) {
             ow(addLocked, ow.boolean.label("listReceivedByAddress:addLocked").is(x => x == true || x == false));
+            return await callRpc('listreceivedbyaddress', [minConf, addLocked]);
         }
         if(addressess) {
             ow(includeEmpty, ow.boolean.label("listReceivedByAddress:includeEmpty").is(x => x == true || x == false));
+            return await callRpc('listreceivedbyaddress', [minConf, addLocked, addresses]);
         }
         if(includeUnsafe){
             ow(includeWatchOnly, ow.boolean.label("listReceivedByAddress:includeWatchOnly").is(x => x == true || x == false));
+            return await callRpc('listreceivedbyaddress', [minConf, addLocked, addresses, includeUnsafe]);
         }
-        return await callRpc('listreceivedbyaddress', arguments);
+        return await callRpc('listreceivedbyaddress');
     }
 
-    async function listSinceBlock(blockHash, targetConfirmations, includeWatchOnly) {
+    async function listSinceBlock({ blockHash, targetConfirmations, includeWatchOnly }) {
         if(blockHash) {
             ow(blockHash, ow.string.label("listSinceBlock:blockHash").not.empty);
+            return await callRpc('listsinceblock', [blockHash]);
         }
         if(targetConfirmations) {
             ow(targetConfirmations, ow.number.label("listSinceBlock:targetConfirmations").integer.greaterThan(0));
-
+            return await callRpc('listsinceblock', [blockHash, targetConfirmations]);
         }
         if(includeWatchOnly) {
             ow(includeWatchOnly, ow.boolean.label("listSinceBlock:includeWatchOnly").is(x => x == true || x == false));
+            return await callRpc('listsinceblock', [blockHash, targetConfirmations, includeWatchOnly]);
         }
-        return await callRpc('listsinceblock', arguments);
+        return await callRpc('listsinceblock');
     }
 
-    async function listTransactions(count = 10, skip = 0, includeWatchOnly = false) {
+    async function listTransactions({ count = 10, skip = 0, includeWatchOnly = false }) {
         if(count) {
             ow(count, ow.number.label("listUnspent:count").integer.greaterThan(0));
+            return await callRpc('listtransactions', ["*", count]);
         }
         if(skip) {
             ow(skip, ow.number.label("listUnspent:skip").integer.greaterThan(0));
+            return await callRpc('listtransactions', ["*", count, skip]);
         }
         if(includeWatchOnly) {
             ow(includeUnsafe, ow.boolean.label("listUnspent:includeUnsafe").is(x => x == true || x == false));
+            return await callRpc('listtransactions', ["*", count, skip, includeWatchOnly]);
         }
-        return await callRpc('listtransactions', ["*", count, skip, includeWatchOnly]);
+        return await callRpc('listtransactions', ["*"]);
     }
 
-    async function listUnspent(minConf, maxConf, addresses, includeUnsafe) {
+    async function listUnspent({ minConf, maxConf, addresses, includeUnsafe }) {
         if(minConf){
             ow(minConf, ow.number.label("listUnspent:minConf").integer.greaterThanOrEqual(1));
+            return await callRpc('listunspent', [minConf]);
         }
         if(maxConf) {
             ow(maxConf, ow.number.label("listUnspent:maxConf").integer.greaterThanOrEqual(1));
+            return await callRpc('listunspent', [minConf, maxConf]);
         }
         if(addressess) {
             ow(addresses, ow.object.label("listUnspent:addresses").not.empty);
+            return await callRpc('listunspent', [minConf, maxConf, addresses]);
         }
         if(includeUnsafe){
             ow(includeUnsafe, ow.boolean.label("listUnspent:includeUnsafe").is(x => x == true || x == false));
+            return await callRpc('listunspent', [minConf, maxConf, addresses, includeUnsafe]);
         }
-        return await callRpc('listunspent', arguments);
+        return await callRpc('listunspent');
     }
 
-    async function lockUnspent(unlock, transactions) {
+    async function lockUnspent({ unlock, transactions }) {
         ow(unlock, ow.string.label("lockUnspent:unlock").not.empty);
         ow(transactions, ow.string.label("lockUnspent:transactions").not.empty);
-        return await callRpc('lockunspent', arguments);
+        return await callRpc('lockunspent', [unlock, transactions]);
     }
 
     async function move(fromAccount, toAccount, amount, dummy, comment) {
@@ -401,87 +440,102 @@ export function syscoinRpcWalletServices(callRpc, utilityServices) {
         ow(amount, ow.number.label("move:amount").integer.greaterThan(0));
         ow(dummy, ow.string.label("move:dummy").not.empty);
         ow(comment, ow.string.label("move:comment").string.minLength(0));
-        return await callRpc('move', arguments);
+        return await callRpc('move', [fromAccount, toAccount, amount, dummy, comment]);
     }
 
     async function pruneSyscoinServices() {
         return await callRpc('prunesyscoinservices');
     }
 
-    async function removePrunedFunds(txId) {
+    async function removePrunedFunds({ txId }) {
         ow(txId, ow.string.label("removePrunedFunds:txId").not.empty);
         return await callRpc('removeprunedfunds', [txId]);
     }
 
-    async function sendFrom(fromAccount, toAddress, amount, minConf, addLocked, comment, commentTo) {
+    async function sendFrom({ fromAccount, toAddress, amount, minConf, addLocked, comment, commentTo }) {
         ow(fromAccount, ow.string.label("sendFrom:fromAccount").not.empty);
         ow(toAddress, ow.string.label("sendFrom:fromAccount").not.empty);
         ow(amount, ow.number.label("sendFrom:fromAccount").not.empty);
         if(minConf) {
             ow(number, ow.number.label("sendFrom:minConf").integer.greaterThanOrEqual(1));
+            return await callRpc('sendfrom', [fromAccount, toAddress, amount, minConf]);
         }
         if(addLocked) {
             ow(addLocked, ow.boolean.label("sendFrom:addLocked").is(x => x == true || x == false));
+            return await callRpc('sendfrom', [fromAccount, toAddress, amount, minConf, addLocked]);
         }
         if(comment) {
             ow(comment, ow.string.label("sendFrom:comment").string.minLength(0));
+            return await callRpc('sendfrom', [fromAccount, toAddress, amount, minConf, addLocked, comment]);
         }
         if(commentTo) {
             ow(comment, ow.string.label("sendFrom:comment").string.minLength(0));
+            return await callRpc('sendfrom', [fromAccount, toAddress, amount, minConf, addLocked, comment, commentTo]);
         }
-        return await callRpc('sendfrom', arguments);
+        return await callRpc('sendfrom', [fromAccount, toAddress, amount]);
     }
 
-    async function sendMany(fromAccount, amounts, minConf, addLocked, comment, subtractFeeFromAmount, useIs, usePs) {
+    async function sendMany({ fromAccount, amounts, minConf, addLocked, comment, subtractFeeFromAmount, useIs, usePs }) {
         ow(fromAccount, ow.string.label("sendMany:fromAccount").not.empty);
         ow(amounts, ow.number.label("sendMany:amounts").integer.greaterThan(0));
         if(minConf) {
             ow(minConf, ow.number.label("sendMany:minConf").integer.greaterThanOrEqual(1));
+            return await callRpc('sendmany', [fromAccount, amounts, minConf]);
         }
         if(addLocked) {
             ow(addLocked, ow.string.label("sendMany:addLocked").not.empty);
+            return await callRpc('sendmany', [fromAccount, amounts, minConf, addLocked]);
         }
         if(comment) {
             ow(comment, ow.string.label("sendMany:comment").string.minLength(0));
+            return await callRpc('sendmany', [fromAccount, amounts, minConf, addLocked, comment]);
         }
         if(subtractFeeFromAmount) {
             ow(subtractFeeFromAmount, ow.boolean.label("sendToAddress:subtractFeeFromAmount").is(x => x == true || x == false));
+            return await callRpc('sendmany', [fromAccount, amounts, minConf, addLocked, comment, subtractFeeFromAmount]);
         }
         if(useIs) {
             ow(useIs, ow.string.label("sendToAddress:useIs").not.empty);
+            return await callRpc('sendmany', [fromAccount, amounts, minConf, addLocked, comment, subtractFeeFromAmount, useIs]);
         }
         if(usePs) {
             ow(usePs, ow.string.label("sendToAddress:usePs").not.empty);
+            return await callRpc('sendmany', [fromAccount, amounts, minConf, addLocked, comment, subtractFeeFromAmount, useIs, usePs]);
         }
 
-        return await callRpc('sendmany', arguments);
+        return await callRpc('sendmany', [fromAccount, amounts]);
     }
 
-    async function sendToAddress(address, amount, comment, commentTo, subtractFeeFromAmount, useIs, usePs) {
+    async function sendToAddress({ address, amount, comment, commentTo, subtractFeeFromAmount, useIs, usePs }) {
         ow(address, ow.string.label("sendToAddress:address").not.empty);
         ow(amount, ow.number.label("sendToAddress:amount").integer.greaterThan(0));
         if(comment){
             ow(comment, ow.string.label("sendToAddress:comment").not.empty);
+            return await callRpc('sendtoaddress', [address, amount, comment]);
         }
         if(commentTo) {
             ow(commentTo, ow.string.label("sendToAddress:commentTo").not.empty);
+            return await callRpc('sendtoaddress', [address, amount, comment, commentTo]);
         }
         if(subtractFeeFromAmount) {
             ow(subtractFeeFromAmount, ow.boolean.label("sendToAddress:subtractFeeFromAmount").is(x => x == true || x == false));
+            return await callRpc('sendtoaddress', [address, amount, comment, commentTo, subtractFeeFromAmount]);
         }
         if(useIs) {
             ow(useIs, ow.string.label("sendToAddress:useIs").not.empty);
+            return await callRpc('sendtoaddress', [address, amount, comment, commentTo, subtractFeeFromAmount, useIs]);
         }
         if(usePs) {
             ow(usePs, ow.string.label("sendToAddress:usePs").not.empty);
+            return await callRpc('sendtoaddress', [address, amount, comment, commentTo, subtractFeeFromAmount, useIs, usePs]);
         }
-        return await callRpc('sendtoaddress', arguments);
+        return await callRpc('sendtoaddress', [address, amount]);
     }
 
-    async function setAccount(address, account) {
+    async function setAccount({ address, account }) {
         ow(address, ow.string.label("setAccount:address").not.empty);
         ow(account, ow.string.label("setAccount:account").string.minLength(0));
-        return await callRpc('setaccount', arguments);
+        return await callRpc('setaccount', [address, account]);
     }
 
     async function setTxFee(amount) {
@@ -489,13 +543,13 @@ export function syscoinRpcWalletServices(callRpc, utilityServices) {
         return await callRpc('settxfee', [amount]);
     }
 
-    async function signMessage(address, message) {
+    async function signMessage({ address, message }) {
         ow(address, ow.string.label("signMessage:address").not.empty);
         ow(message, ow.string.label("signMessage:message").not.empty);
         return await callRpc('signmessage', [address, message]);
     }
 
-    async function syscoinDecodeRawTransaction(hexString) {
+    async function syscoinDecodeRawTransaction({ hexString }) {
         ow(hexString, ow.string.label("syscoinDecodeRawTransaction:hexString").not.empty);
         return await callRpc('syscoindecoderawtransaction', [hexString]);
     }
@@ -504,7 +558,7 @@ export function syscoinRpcWalletServices(callRpc, utilityServices) {
         return await callRpc('syscoinlistreceivedbyaddress');
     }
 
-    async function syscoinSendRawTransaction(hexString, allowHighFees, instantSend) {
+    async function syscoinSendRawTransaction({ hexString, allowHighFees, instantSend }) {
         ow(hexString, ow.string.label("syscoinSendRawTransaction:hexString").not.empty);
         if(allowHighFees) {
             ow(allowHighFees, ow.boolean.label("syscoinSendRawTransaction:allowHighFees").is(x => x == true || x == false));
@@ -512,24 +566,24 @@ export function syscoinRpcWalletServices(callRpc, utilityServices) {
         if(instantSend) {
             ow(instantSend, ow.boolean.label("syscoinSendRawTransaction:instantSend").is(x => x == true || x == false));
         }
-        return await callRpc('syscoinsendrawtransaction', arguments);
+        return await callRpc('syscoinsendrawtransaction', [hexString, allowHighFees, instantSend]);
     }
 
-    async function syscoinTxFund(hexString, addresses) {
+    async function syscoinTxFund({ hexString, addresses }) {
         ow(hexString, ow.string.label("syscoinTxFund:hexString").not.empty);
         if(addresses){
             ow(addresses, ow.object.label("syscoinTxFund:address").not.empty);
         }
-        return await callRpc('syscointxfund', arguments);
+        return await callRpc('syscointxfund', [hexString, addresses]);
     }
 
-    async function tpsTestAdd(startTime, rawTransactions) {
+    async function tpsTestAdd({ startTime, rawTransactions }) {
         ow(startTime, ow.number.label("tpsTestAdd:startTime").integer.greaterThan(0));
         ow(rawTransactions, ow.array.label("tpsTestEnabled:enabled").not.empty);
-        return await callRpc('tpstestadd', arguments);
+        return await callRpc('tpstestadd', [startTime, rawTransactions]);
     }
 
-    async function tpsTestEnabled(enabled) {
+    async function tpsTestEnabled({ enabled }) {
         ow(enabled, ow.boolean.label("tpsTestEnabled:enabled").is(x => x == true || x == false));
         return await callRpc('tpstestenabled', [enabled]);
     }
@@ -543,22 +597,22 @@ export function syscoinRpcWalletServices(callRpc, utilityServices) {
         return await callRpc('walletlock');
     }
 
-    async function walletPassPhrase(passPhrase, timeout, mixingOnly) {
+    async function walletPassPhrase({ passPhrase, timeout, mixingOnly }) {
         ow(passphrase, ow.string.label("walletPassPhrase:passphrase").not.empty);
         ow(timeout, ow.number.label("walletPassPhrase:timeout").integer.greaterThan(0));
         ow(mixingOnly, ow.boolean.label("walletPassPhrase:mixingOnly").is(x => x == true || x == false));
-        return await callRpc('walletpassphrase', arguments);
+        return await callRpc('walletpassphrase', [passPhrase, timeout, mixingOnly] );
     }
 
-    async function walletPassPhraseChange(oldPassphrase, newPassphrase) {
+    async function walletPassPhraseChange({ oldPassphrase, newPassphrase }) {
         ow(passphrase, ow.string.label("walletPassPhraseChange:oldPassphrase").not.empty);
         ow(newPassphrase, ow.string.label("walletPassPhraseChange:newPassphrase").not.empty);
         return await callRpc('walletpassphrasechange', [oldPassphrase, newPassphrase]);
     }
 
-    async function encryptWallet(passphrase) {
+    async function encryptWallet({ passphrase }) {
         ow(passphrase, ow.string.label("encryptWallet:passphrase").not.empty);
-        return await callRpc('encryptwallet', passphrase);
+        return await callRpc('encryptwallet', [passphrase]);
     }
 
     async function getWalletLoadPercentage() {
@@ -567,11 +621,11 @@ export function syscoinRpcWalletServices(callRpc, utilityServices) {
     }
 }
 
-export function getPercentageFromWalletInfo(walletInfo) {
+export function getPercentageFromWalletInfo({ walletInfo }) {
     if (walletInfo.walletversion) { return 100 }
     if (walletInfo.code === constants.ERROR_CODE_NO_CONNECTION) { return false }
     if (walletInfo.message || walletInfo.code === constants.ERROR_CODE_WALLET_LOADING) {
         return walletInfo.message.replace(/\D/g, '') / 100;
     }
     return 0
-} 
+}
