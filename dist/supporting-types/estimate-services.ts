@@ -8,5 +8,5 @@ export default interface EstimateServices {
             address: string, encPrivateKey: string, encPublicKey: string, witness: string}) : Promise<any>;
      aliasUpdateEstimatedFee({aliasName, publicValue, address, transfersFlag, expireTimestamp, encPrivateKey,
                                         encPublicKey, witness}: {aliasName: string, publicValue: string, address: string, transfersFlag: number,
-                                        expireTimestamp: number, encPrivateKey: string, encPublicKey: string, witness: string});
+                                        expireTimestamp: number, encPrivateKey: string, encPublicKey: string, witness: string}): Promise<any>;
 }
