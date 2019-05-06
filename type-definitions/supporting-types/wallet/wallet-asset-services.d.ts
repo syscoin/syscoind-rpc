@@ -1,6 +1,6 @@
 export default interface WalletAssetServices {
 
-    info({asset, getInputs}: {asset:string, getInputs:boolean});
+    assetInfo({asset}: {asset:string});
     create({symbol, owner, publicValue, category, precision, useInputRanges,
         supply, maxSupply, interestRate, canAdjustInterestRate, witness}: {symbol: string, 
             owner: string, publicValue: string, category: string, precision: number, useInputRanges: boolean,

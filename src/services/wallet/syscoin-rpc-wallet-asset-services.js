@@ -3,7 +3,7 @@ import {get, post} from '../../endpoint-decorators';
 
 export function walletAssetServices(callRpc) {
     return {
-        info: get(assetInfo),
+        assetInfo: get(assetInfo),
         list: get(listAssets),
         listAfterBlock: get(listAssetsAfterBlock),
         create: get(assetNew),
@@ -12,10 +12,9 @@ export function walletAssetServices(callRpc) {
         update: get(assetUpdate)
     }
 
-    async function assetInfo({asset, getInputs} = {}) {
+    async function assetInfo({asset} = {}) {
         ow(asset, ow.string.label("assetInfo:asset").not.empty);
-        ow(getInputs, ow.boolean.label("assetInfo:getInputs").is(x => x == true || x == false));
-        return await callRpc('assetinfo', [asset, getInputs]);
+        return await callRpc('assetinfo', [asset]);
     }
 
     async function assetNew({symbol, owner, publicValue, category, precision, useInputRanges,

@@ -52,6 +52,13 @@ describe('Blockchain Services Tests', () => {
         });
     });
 
+    describe('getBlockHash', () => {
+        it('getBlock is consistent with getBlockHash', async() => {
+            let res = await client.blockchainServices.getBlockHash({height: 1});
+            expect(res).toMatch(new RegExp('^[a-zA-Z0-9_.-]*$'));
+        });
+    });
+
     describe('getBlockAtHeight', () => {
         it('fails with block hash', async() => {
             let res = await client.blockchainServices.getBlockAtHeight({height: 30});
