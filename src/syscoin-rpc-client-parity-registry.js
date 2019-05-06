@@ -270,52 +270,7 @@ export default class SyscoinParityRegistry {
         let methodMaps = [];
         methodMaps.push(this.createMethodRecord('abandontransaction', walletServices.abandonTransaction));
         methodMaps.push(this.createMethodRecord('addmultisigaddress', walletServices.addMultiSigAddress));
-        methodMaps.push(this.createMethodRecord('aliasbalance', walletServices.alias.balance));
-        methodMaps.push(this.createMethodRecord('aliasbalancemulti', walletServices.alias.balanceMulti));
-        methodMaps.push(this.createMethodRecord('aliasinfo', walletServices.alias.info));
-        methodMaps.push(this.createMethodRecord('listaliases', walletServices.alias.list));
-        methodMaps.push(this.createMethodRecord('aliasnew', walletServices.alias.new));
-        methodMaps.push(this.createMethodRecord('aliaspay', walletServices.alias.pay));
-        methodMaps.push(this.createMethodRecord('aliasupdate',
-            walletServices.alias.update,
-            walletServices.alias.updateEstimatedFee));
-        methodMaps.push(this.createMethodRecord('aliasupdatewhitelist', walletServices.alias.updateWhiteList));
-        methodMaps.push(this.createMethodRecord('aliaswhitelist', walletServices.alias.whiteList));
-        methodMaps.push(this.createMethodRecord('aliasaddscript', walletServices.alias.aliasAddScript));
-        methodMaps.push(this.createMethodRecord('assetallocationcollectinterest', walletServices.assetAllocation.collectInterest));
-        methodMaps.push(this.createMethodRecord('assetallocationinfo', walletServices.assetAllocation.info));
-        methodMaps.push(this.createMethodRecord('listassetallocations', walletServices.assetAllocation.list));
-        methodMaps.push(this.createMethodRecord('listassetallocationtransactions', walletServices.assetAllocation.listTransactions()));
-        methodMaps.push(this.createMethodRecord('assetallocationsend', walletServices.assetAllocation.send));
-        methodMaps.push(this.createMethodRecord('assetallocationsenderstatus', walletServices.assetAllocation.senderStatus()));
-        methodMaps.push(this.createMethodRecord('assetinfo', walletServices.asset.info));
-        methodMaps.push(this.createMethodRecord('listassets', walletServices.asset.list));
-        methodMaps.push(this.createMethodRecord('assetnew', walletServices.asset.new));
-        methodMaps.push(this.createMethodRecord('assetsend', walletServices.asset.send));
-        methodMaps.push(this.createMethodRecord('assettransfer', walletServices.asset.transfer));
-        methodMaps.push(this.createMethodRecord('assetupdate', walletServices.asset.update));
         methodMaps.push(this.createMethodRecord('backupwallet', walletServices.backupWallet));
-        methodMaps.push(this.createMethodRecord('certinfo', walletServices.certificate.info));
-        methodMaps.push(this.createMethodRecord('listcerts', walletServices.certificate.list));
-        methodMaps.push(this.createMethodRecord('certnew', walletServices.certificate.new));
-        methodMaps.push(this.createMethodRecord('certtransfer', walletServices.certificate.transfer()));
-        methodMaps.push(this.createMethodRecord('certupdate', walletServices.certificate.update));
-        methodMaps.push(this.createMethodRecord('escrowacknowledge', walletServices.escrow.acknowledge));
-        methodMaps.push(this.createMethodRecord('escrowbid', walletServices.escrow.bid));
-        methodMaps.push(this.createMethodRecord('escrowcompleterefund', walletServices.escrow.completeRefund));
-        methodMaps.push(this.createMethodRecord('escrowcreaterawtransaction', walletServices.escrow.createRawTransaction));
-        methodMaps.push(this.createMethodRecord('escrowcompleterelease', walletServices.escrow.completeRelease()));
-        methodMaps.push(this.createMethodRecord('escrowfeedback', walletServices.escrow.feedback()));
-        methodMaps.push(this.createMethodRecord('escrowinfo', walletServices.escrow.info));
-        methodMaps.push(this.createMethodRecord('listescrows', walletServices.escrow.list));
-        methodMaps.push(this.createMethodRecord('escrownew', walletServices.escrow.new));
-        methodMaps.push(this.createMethodRecord('escrowrefund', walletServices.escrow.refund));
-        methodMaps.push(this.createMethodRecord('escrowrelease', walletServices.escrow.release));
-        methodMaps.push(this.createMethodRecord('offerinfo', walletServices.offer.info));
-        methodMaps.push(this.createMethodRecord('offerlink', walletServices.offer.link));
-        methodMaps.push(this.createMethodRecord('listoffers', walletServices.offer.list));
-        methodMaps.push(this.createMethodRecord('offernew', walletServices.offer.new));
-        methodMaps.push(this.createMethodRecord('offerupdate', walletServices.offer.update));
         methodMaps.push(this.createMethodRecord('getaccount', walletServices.getAccount));
         methodMaps.push(this.createMethodRecord('getaccountaddress', walletServices.getAccountAddress));
         methodMaps.push(this.createMethodRecord('getaddressesbyaccount', walletServices.getAddressesByAccount));
@@ -365,6 +320,22 @@ export default class SyscoinParityRegistry {
         methodMaps.push(this.createMethodRecord('dumphdinfo', walletServices.dumpHdInfo));
         methodMaps.push(this.createMethodRecord('dumpprivkey', walletServices.dumpPrivKey));
         methodMaps.push(this.createMethodRecord('encryptwallet', walletServices.encryptWallet()));
+
+        //syscoin
+        methodMaps.push(this.createMethodRecord('assetallocationcollectinterest', walletServices.assetAllocation.collectInterest));
+        methodMaps.push(this.createMethodRecord('assetallocationinfo', walletServices.assetAllocation.info));
+        methodMaps.push(this.createMethodRecord('listassetallocations', walletServices.assetAllocation.list));
+        methodMaps.push(this.createMethodRecord('listassetallocationtransactions', walletServices.assetAllocation.listTransactions()));
+        methodMaps.push(this.createMethodRecord('assetallocationsend', walletServices.assetAllocation.send));
+        methodMaps.push(this.createMethodRecord('assetallocationsenderstatus', walletServices.assetAllocation.senderStatus()));
+        methodMaps.push(this.createMethodRecord('assetinfo', walletServices.asset.info));
+        methodMaps.push(this.createMethodRecord('listassets', walletServices.asset.list));
+        methodMaps.push(this.createMethodRecord('assetnew', walletServices.asset.new));
+        methodMaps.push(this.createMethodRecord('assetsend', walletServices.asset.send));
+        methodMaps.push(this.createMethodRecord('assettransfer', walletServices.asset.transfer));
+        methodMaps.push(this.createMethodRecord('assetupdate', walletServices.asset.update));
+
+
         return methodMaps;
     }
 }
