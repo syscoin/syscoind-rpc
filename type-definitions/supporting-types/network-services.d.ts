@@ -1,32 +1,20 @@
-
-export interface Sporks {
-    showCurrentValues() : Promise<any>;
-    showActivationStatus(): Promise<any>;
-}
+// export interface Sporks {
+//     showCurrentValues() : Promise<any>;
+//     showActivationStatus(): Promise<any>;
+// }
 
 export default interface NetworkServices {
-    activateNetwork(): Promise<any>;
-    addNode({nodeAddress}: {nodeAddress:string}): Promise<any>;
-    aliasClearWhiteList({ownerAddress, witness}: {ownerAddress: string, witness:string}): Promise<any>;
-    banNodeForLengthOfTime({subnetOrIp, banTimeInSeconds}: {subnetOrIp: string, banTimeInSeconds:number}): Promise<any>;
-    banNodeUntilDate({subnetOrIp, banDateTimeEpoch}: {subnetOrIp:string, banDateTimeEpoch:number}): Promise<any>;
-    clearBannedIps(): Promise<any>;
-    deactivateNetwork(): Promise<any>;
-    disconnectNode({nodeAddress}: {nodeAddress: string}): Promise<any>;
-    getAddedNodeInfo({nodeAddress}: {nodeAddress: string}): Promise<any>;
-    getChainTxStats({nBlocks, blockHash}: {nBlocks?: number, blockHash?:string});
-    getConnectionCount(): Promise<any>;
-    getMemoryInfo(): Promise<any>;
-    getNetTotals(): Promise<any>;
-    getNetworkInfo(): Promise<any>;
-    getPeerInfo(): Promise<any>;
-    getInfo() : Promise<any>;
-    listBannedIps(): Promise<any>;
-    ping(): Promise<any>;
-    removeNode({nodeAddress}: {nodeAddress:string}): Promise<any>; 
-    sentinelPing({version} : {version: string}): Promise<any>;
-    sporks: Sporks;
-    stop(): Promise<any>;
-    tryToConnectToNode({nodeAddress}: {nodeAddress:string}): Promise<any>;
-    unbanNode({subnetOrIp}: {subnetOrIp:string}): Promise<any>;
+  addNode({nodeAddress}: { nodeAddress: string }): Promise<any>;
+  clearBanned(): Promise<any>;
+  disconnectNode({nodeAddress, nodeId}: { nodeAddress: string, nodeId: number }): Promise<any>;
+  getAddedNodeInfo({nodeAddress}: { nodeAddress: string }): Promise<any>;
+  getConnectionCount(): Promise<any>;
+  getNetTotals(): Promise<any>;
+  getNetworkInfo(): Promise<any>;
+  getNodeAddresses(): Promise<any>;
+  getPeerInfo(): Promise<any>;
+  getInfo(): Promise<any>;
+  listBanned(): Promise<any>;
+  ping(): Promise<any>;
+  setBan({subnet,command,banTime}: { subnet: string, command: string, banTime?: number}):Promise<any>;
 }
