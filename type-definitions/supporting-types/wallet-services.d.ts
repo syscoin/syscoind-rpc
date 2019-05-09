@@ -1,7 +1,64 @@
-import WalletAssetServices from "./wallet/wallet-asset-services";
-import WalletAssetAllocationServices from "./wallet/wallet-asset-allocation-services";
-
 export default interface WalletServices {
-    asset: WalletAssetServices
-    assetAllocation: WalletAssetAllocationServices
+  abandonTransaction({txid}: { txid: string }): Promise<any>;
+  abortRescan(): Promise<any>;
+  addMultiSigAddress({nRequired, keys, label, addressType}: { nRequired: number, keys: Array<string>, label?: string, addressType?: string }): Promise<any>;
+  backupWallet({destination}: { destination: string }): Promise<any>;
+  bumpFee({txid, options}: { txid: string, options?: any }): Promise<any>;
+  createWallet({walletName, disablePrivKeys}: { walletName: string, disablePrivKeys: number }): Promise<any>;
+  dumpPrivKey({address}: { address: string }): Promise<any>;
+  dumpWallet({fileName}: { fileName: string }): Promise<any>;
+  encryptWallet({passphrase}: { passphrase: string }): Promise<any>;
+  getAddressesByLabel({label}: { label: string }): Promise<any>;
+  getAddressInfo({address}: { address: string }): Promise<any>;
+  getBalance({dummy, minconf, includeWatchOnly}: { dummy?: string, minconf: number, includeWatchOnly: number }): Promise<any>;
+  getNewAddress({label, addressType}: { label: string, addressType: string }): Promise<any>;
+  getRawChangeAddress({addressType}: { addressType?: string }): Promise<any>;
+  getReceivedByAddress({address, minConf}: { address: string, minConf?: number }): Promise<any>;
+  getReceivedByLabel({label, minConf}: { label: string, minConf?: number }): Promise<any>;
+  getTransaction({txid, includeWatchOnly}: { txid: string, includeWatchOnly: number }): Promise<any>;
+  getUnconfirmedBalance({}: {}): Promise<any>;
+  getWalletInfo({}: {}): Promise<any>;
+  importAddress({address, label, rescan, p2sh}: { address: string, label?: string, rescan?: number, p2sh?: number }): Promise<any>;
+  importMulti({requests, options}: { requests: string, options: any }): Promise<any>;
+  importPrivKey({key, label, rescan}: { key: string, label?: string, rescan?: number }): Promise<any>;
+  importPrunedFunds({rawTx, txOutProof}: { rawTx: string, txOutProof: string }): Promise<any>;
+  importPubKey({pubKey, label, rescan}: { pubKey: string, label?: string, rescan?: number }): Promise<any>;
+  importWallet({fileName}: { fileName: string }): Promise<any>;
+  keypoolRefill({newSize}: { newSize?: number }): Promise<any>;
+  listAddressGroupings({}: {}): Promise<any>;
+  listLabels({purpose}: { purpose?: string }): Promise<any>;
+  listLockUnspent({}: {}): Promise<any>;
+  listReceivedByAddress({minConf, includeEmpty, includeWatchOnly, addressFilter}: { minConf?: number, includeEmpty?: number, includeWatchOnly?: number, addressFilter?: string }): Promise<any>;
+  listReceivedByLabel({minConf, includeEmpty, includeWatchOnly}: { minConf?: number, includeEmpty?: number, includeWatchOnly?: number }): Promise<any>;
+  listSinceBlock({blockHash, targetConfs, includeWatchOnly, includeRemoved}: { blockHash?: string, targetConfs?: number, includeWatchOnly?: number, includeRemoved?: number }): Promise<any>;
+  listTransactions({label, count, skip, includeWatchOnly}: { label?: string, count?: number, skip?: number, includeWatchOnly?: number }): Promise<any>;
+  listUnspent({minConf, maxConf, addresses, includeUnsafe, query, options}: { minConf?: number, maxConf?: number, addresses?: Array<string>, includeUnsafe?: number, query?: any, options?: any }): Promise<any>;
+  listWalletDir({}: {}): Promise<any>;
+  listWallets({}: {}): Promise<any>;
+  loadWallet({fileName}: { fileName: string }): Promise<any>;
+  lockUnspent({unlock, txs}: { unlock: number, txs?: Array<{ txid: string, vout: number }> }): Promise<any>;
+  removePrunedFunds({txid}: { txid: string }): Promise<any>;
+  rescanBlockchain({start, stop}: { start?: number, stop?: number }): Promise<any>;
+  sendMany({dummy, amounts, minConf, comment, subtractFeeFrom, replaceable, confTarget, estimateMode}: { dummy: string, amounts: Array<{ [address: string]: number }>, minConf?: number, comment?: string, subtractFeeFrom?: Array<string>, replaceable?: boolean, confTarget?: number, estimateMode?: string }): Promise<any>;
+  sendToAddress({address, amount, minConf, comment, comment_to, subtractFeeFromAmount, replaceable, confTarget, estimateMode}: { address: string, amount: number, comment?: string, comment_to?: string, subtractFeeFromAmount?: number, replaceable?: boolean, confTarget?: number, estimateMode?: string }): Promise<any>;
+  setHdSeed({newKeyPool, seed}: { newKeyPool?: number, seed?: string }): Promise<any>;
+  setLabel({address, label}: { address: string, label: string }): Promise<any>;
+  setTxFee({amount}: { amount: number }): Promise<any>;
+  signMessage({address, message}: { address: string, message: string }): Promise<any>;
+  signRawTransactionWithWallet({hexString, rawTxs, sigHashType}: { hexString: string, rawTxs?: Array<RawTx>, sigHashType?: string }): Promise<any>;
+  unloadWallet({walletName}: { walletName?: string }): Promise<any>;
+  walletCreateFundedPsbt({txs, amounts, lockTime, options, bip32derivs}: { txs: any, amounts: any, lockTime?: any, options?: any, bip32derivs?: any }): Promise<any>;
+  walletLock({}: {}): Promise<any>;
+  walletPassphrase({passphrase, timeout}: { passphrase: string, timeout: number }): Promise<any>;
+  walletPassphraseChange({oldPass, newPass}: { oldPass: string, newPass: string }): Promise<any>;
+  walletProcessPsbt({psbt, sign, sigHashType, bip32derivs}: { pbst: string, sign?: number, sigHashType?: string, bip32derivs?: number }): Promise<any>;
+}
+
+export interface RawTx {
+  txid: string;
+  vout: number;
+  scriptPubKey: string;
+  redeemScript: string;
+  witnessScript: string;
+  amount: number;
 }

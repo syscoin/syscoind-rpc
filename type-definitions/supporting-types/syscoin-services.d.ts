@@ -22,14 +22,13 @@ export interface SyscoinServices {
   listAssetAllocationMempoolBalances({count, from, query}: { count?: number, from?: number, query?: AssetAllocationBalanceQuery }): Promise<any>;
   listAssetAllocations({count, from, query}: { count?: number, from?: number, query?: AssetAllocationBalanceQueryWithGuid }): Promise<any>;
   listAssetIndex({page, options}: { page?: number, options?: ListAssetIndexOptions }): Promise<any>;
-
   listAssetIndexAllocations({address}: { address: string }): Promise<any>;
   listAssetIndexAssets({address}: { address: string }): Promise<any>;
   listAssets({count, from, options}: { count?: number, from?: number, options?: ListAssetOptions }): Promise<any>;
   masternode({command}: { command: string }): Promise<any>;
   masternodeBroadcast({command}: { command: string }): Promise<any>;
   masternodeList({mode, filter}: { mode?: string, filter?: string }): Promise<any>;
-  mnsync({command}: { command: string }): Promise<any>;
+  mnSync({command}: { command: string }): Promise<any>;
   sentinelPing({version}: { version: number }): Promise<any>;
   spork({command}: { command: string }): Promise<any>;
   syscoinBurn({fundingAddress, amount, ethAddress}: { fundingAddress: string, amount: number, ethAddress: string }): Promise<any>;
@@ -43,9 +42,9 @@ export interface SyscoinServices {
   syscoinStopGeth({}: {}): Promise<any>;
   syscoinTxFund({hexStrinig, address, outputIndex}: { hexString: string, address: string, outputIndex: number }): Promise<any>;
   tpsTestAdd({startTime, rawTxs}: { startTime, rawTxs?: Array<TpsRawTx> }): Promise<any>;
-  tpsTestIInfo({}: {}): Promise<any>;
+  tpsTestInfo({}: {}): Promise<any>;
   tpsTestSetEnabled({enabled}: { enabled: number }): Promise<any>;
-  voteRaw({mnTxhash, mnTxIndex, govHash, votSignal, vote, time, voteSig}: { mnTxhash: string, mnTxIndex: number, govHash: string, votSignal: string, vote: string, time: number, voteSig: string }): Promise<any>;
+  voteRaw({mnTxHash, mnTxIndex, govHash, votSignal, vote, time, voteSig}: { mnTxHash: string, mnTxIndex: number, govHash: string, votSignal: string, vote: string, time: number, voteSig: string }): Promise<any>;
 }
 
 export interface AssetAllocationSend {
