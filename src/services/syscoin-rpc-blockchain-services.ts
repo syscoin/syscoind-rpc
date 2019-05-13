@@ -1,7 +1,8 @@
 import ow from 'syscoin-ow';
 import { get, post } from '../endpoint-decorators';
+import BlockchainServices from "../../type-definitions/supporting-types/blockchain-services";
 
-export function syscoinRpcBlockchainServices(callRpc) {
+export function syscoinRpcBlockchainServices(callRpc): BlockchainServices {
   return {
     getBestBlockHash: get(getBestBlockHash),
     getBlock: get(getBlock),

@@ -47,7 +47,7 @@
   },
   "jest": {
     "setupFiles": [
-      "./_tests_/setup.js"
+      "./_tests_/setup.ts"
     ]
   }
 }
