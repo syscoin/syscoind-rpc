@@ -10,10 +10,16 @@ import RpcErrorHandler from './error-handlers/rpc-error-handler';
 import NonSpecificNetworkErrorHandler from './error-handlers/non-specific-network-error-handler';
 import { callRpcWithCoercedStringArguments } from './call-rpc-with-coerced-arguments';
 import BlockchainServices from "../type-definitions/supporting-types/blockchain-services";
+import DiagnosticServices from "../type-definitions/supporting-types/diagnostic-services";
+import { syscoinRpcDiagnosticServices } from "./services/syscoin-rpc-diagnostic-services";
+import { syscoinRpcUtilityServices } from "./services/syscoin-rpc-utility-services";
+import UtilityServices from "../type-definitions/supporting-types/utility-services";
 
 export default class SyscoinRpcClient {
     public callRpc: any;
     public blockchainServices: BlockchainServices;
+    public diagnosticServices: DiagnosticServices;
+    public utilityServices: UtilityServices;
 
     constructor({baseUrl="localhost",
                 port=8368,
@@ -64,8 +70,7 @@ export default class SyscoinRpcClient {
         this.callRpc = callRpcWithCoercedStringArguments(callRpc);
         // this.addressIndexServices = syscoinRpcAddressIndexServices(callRpc);
         this.blockchainServices = syscoinRpcBlockchainServices(callRpc);
-        // this.diagnosticServices = syscoinRpcDiagnosticServices(callRpc);
-        // this.estimateServices = syscoinRpcEstimateServices(callRpc);
+        this.diagnosticServices = syscoinRpcDiagnosticServices(callRpc);
         // this.generationServices = syscoinRpcGenerationServices(callRpc);
         // this.governanceServices = syscoinRpcGovernanceServices(callRpc);
         // this.masternodeServices = syscoinRpcMasternodeServices(callRpc);
@@ -75,7 +80,7 @@ export default class SyscoinRpcClient {
         // this.networkServices = syscoinRpcNetworkServices(callRpc);
         // this.synchronizationServices = syscoinRpcSynchronizationServices(callRpc);
         // this.transactionServices = syscoinRpcTransactionServices(callRpc);
-        // this.utilityServices = syscoinRpcUtilityServices(callRpc);
+        this.utilityServices = syscoinRpcUtilityServices(callRpc);
         // this.walletServices = syscoinRpcWalletServices(callRpc, this.utilityServices);
 
         let createCustomErrorResponse = (errorMessage, code=-1000) => {
