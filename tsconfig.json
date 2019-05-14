@@ -3,17 +3,21 @@
     "module": "commonjs",
     "target": "es5",
     "outDir": "dist",
-    "rootDir": ".",
+    "rootDir": "./src",
+    "declaration": true,
     /* because libs is outside of src */
     "sourceMap": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "noStrictGenericChecks": true,
+    "noImplicitUseStrict": true,
     "lib": ["es6", "dom"]
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist",
+    "_tests_"
   ],
   "awesomeTypescriptLoaderOptions": {
     "useWebpackText": true
@@ -22,7 +26,7 @@
     "debug": false
   },
   "compileOnSave": false,
-  "buildOnSave": false,
+  "buildOnSave": true,
   "atom": {
     "rewriteTsconfig": false
   }
