@@ -1,5 +1,5 @@
 import config from "./config";
-import SyscoinRpcClient from "./SyscoinRpcClient";
+import { SyscoinRpcClient } from "./SyscoinRpcClient";
 import { rpcServices } from "./rpcServices";
 
 let client = new SyscoinRpcClient(config);

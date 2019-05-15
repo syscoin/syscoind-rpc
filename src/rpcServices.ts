@@ -204,7 +204,23 @@ export function rpcServices(callRpc) {
   };
 
   function callThroughToRpc(args): Promise<any> {
-    let argArr: Array<any> = Array.prototype.slice.call(args).pop();
-    return callRpc(args.callee.name, argArr);
+    let argArr: Array<any> = Array.prototype.slice.call(args);
+
+    //expect arg array to be a single object
+    if(argArr.length > 1 && typeof argArr[0] !== 'object') {
+      throw new Error(`callThroughToRpc received unknown params: ${JSON.stringify(argArr)}`);
+    }
+
+    let paramArr = [];
+    if(argArr.length > 0) {
+      //get the ordered keys of the object
+      let argObj = argArr[0];
+      let orderedKeys = Reflect.ownKeys(argObj);
+
+      //create an ordered array of just values
+      paramArr = orderedKeys.map((value, index, arr) => argObj[value]);
+    }
+
+    return callRpc(args.callee.name.toLowerCase(), paramArr);
   }
 }

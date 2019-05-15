@@ -64,3 +64,14 @@ export interface Transaction {
   amount: number;
 }
 
+export interface RpcConfigOptions {
+  baseUrl: string;
+  port: number;
+  username: string;
+  password: string;
+  useSsl: boolean;
+  timeout: number;
+  customHttpAgent: any;
+}
+
+

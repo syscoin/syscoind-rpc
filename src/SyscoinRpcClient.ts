@@ -1,6 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
+import { RpcConfigOptions } from "./global";
 
-export default class SyscoinRpcClient {
+export class SyscoinRpcClient {
 
   private instance: AxiosInstance;
   private configOptions: RpcConfigOptions;
@@ -66,14 +67,4 @@ export default class SyscoinRpcClient {
 
     return configurationObject;
   }
-}
-
-export interface RpcConfigOptions {
-  baseUrl: string;
-  port: number;
-  username: string;
-  password: string;
-  useSsl: boolean;
-  timeout: number;
-  customHttpAgent: any;
 }
