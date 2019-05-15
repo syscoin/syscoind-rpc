@@ -1,7 +1,7 @@
 export * from "./SyscoinRpcClient"
 export * from "./rpcServices"
 
-export default interface RawTx {
+export interface RawTx {
   txid: string;
   vout: number;
   scriptPubKey: string;
