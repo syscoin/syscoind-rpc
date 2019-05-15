@@ -68,13 +68,13 @@ export interface Transaction {
 }
 
 export interface RpcConfigOptions {
-  baseUrl: string;
-  port: number;
+  host: string;
+  rpcPort: number;
   username: string;
   password: string;
-  useSsl: boolean;
-  timeout: number;
-  customHttpAgent: any;
+  useSsl?: boolean;
+  timeout?: number;
+  customHttpAgent?: any;
 }
 
 

@@ -4,18 +4,9 @@ import { RpcConfigOptions } from "./index";
 export class SyscoinRpcClient {
 
   private instance: AxiosInstance;
-  private configOptions: RpcConfigOptions;
   public callRpc: (method: string, params?: Array<any>) => Promise<any>;
 
-  constructor({baseUrl="localhost",
-                port=8368,
-                username='',
-                password='',
-                useSsl=false,
-                timeout=30000,
-                customHttpAgent=null} = {}) {
-
-    this.configOptions = { baseUrl, port, username, password, useSsl, timeout, customHttpAgent };
+  constructor(private configOptions: RpcConfigOptions) {
 
     this.instance = axios.create(SyscoinRpcClient.createConfigurationObject(
       this.configOptions.username,
@@ -26,7 +17,7 @@ export class SyscoinRpcClient {
 
     //this needs to be defined in constructor so the THIS references get setup
     this.callRpc = async (methodName: string, args?: Array<any>) => {
-      let url = `${this.configOptions.useSsl ? "https" : "http"}://${this.configOptions.baseUrl}:${this.configOptions.port}`;
+      let url = `${this.configOptions.useSsl ? "https" : "http"}://${this.configOptions.host}:${this.configOptions.rpcPort}`;
       let data = {
         jsonrpc: "1.0",
         method: methodName.toLowerCase(),  // safety check: the RPC expects methods in all lowercase,
