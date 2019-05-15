@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
-import { RpcConfigOptions } from "./global";
+import { RpcConfigOptions } from "./index";
 
 export class SyscoinRpcClient {
 

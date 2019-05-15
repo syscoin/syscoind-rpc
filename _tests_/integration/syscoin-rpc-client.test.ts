@@ -1,6 +1,6 @@
 import { createClient } from '../utilities';
 import config from "../config";
-import SyscoinRpcClient from "../../src/SyscoinRpcClient";
+import { SyscoinRpcClient } from "../../src/SyscoinRpcClient";
 
 const configOptions = config;
 

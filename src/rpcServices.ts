@@ -1,4 +1,4 @@
-import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, AssetAllocationSend, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, TpsRawTx, Transaction, TxHeader } from "./global";
+import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, AssetAllocationSend, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, TpsRawTx, Transaction, TxHeader } from "./index";
 
 export function rpcServices(callRpc) {
   return {
