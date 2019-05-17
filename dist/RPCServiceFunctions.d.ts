@@ -2,8 +2,8 @@ import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, Asset
 export interface RPCServiceFunctions {
     getBestBlockHash(): Promise<any>;
     getBlock({ blockHash, verbosity }: {
-        blockHash: any;
-        verbosity: any;
+        blockHash: string;
+        verbosity?: number;
     }): Promise<any>;
     getBlockchainInfo(): Promise<any>;
     getBlockCount(): Promise<any>;

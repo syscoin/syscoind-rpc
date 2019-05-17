@@ -3,7 +3,7 @@
 import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, AssetAllocationSend, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, TpsRawTx, Transaction, TxHeader } from "./index";
 export interface RPCServiceFunctions {
     getBestBlockHash(): Promise<any>;
-    getBlock({blockHash, verbosity}): Promise<any>;
+    getBlock({blockHash, verbosity}: { blockHash: string, verbosity?: number }): Promise<any>;
     getBlockchainInfo(): Promise<any>;
     getBlockCount(): Promise<any>;
     getBlockFilter({blockHash, filterType}: { blockHash: string, filterType?: string }): Promise<any>;
