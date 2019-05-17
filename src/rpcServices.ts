@@ -1,46 +1,47 @@
 import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, AssetAllocationSend, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, TpsRawTx, Transaction, TxHeader } from "./index";
+import { RPCServiceFunctions } from "./RPCServiceFunctions";
 
-export function rpcServices(callRpc) {
+export function rpcServices(callRpc): RPCServiceFunctions {
   return {
     // @formatter:off
     // == Blockchain ==
     getBestBlockHash(): Promise<any> { return callThroughToRpc(arguments) },
-    getBlock({blockHash, verbosity}: { blockHash: string, verbosity?: number }): Promise<any> { return callThroughToRpc(arguments) },
+    getBlock({blockHash, verbosity}): Promise<any> { return callThroughToRpc(arguments) },
     getBlockchainInfo(): Promise<any> { return callThroughToRpc(arguments) },
     getBlockCount(): Promise<any> { return callThroughToRpc(arguments) },
-    getBlockFilter({blockHash, filterType}: { blockHash: string, filterType?: string }): Promise<any> { return callThroughToRpc(arguments) },
-    getBlockHash({height}: { height: number }): Promise<any> { return callThroughToRpc(arguments) },
-    getBlockHeader({blockHash, verbose}: { blockHash: string, verbose?: number }): Promise<any> { return callThroughToRpc(arguments) },
-    getBlockStats({hashOrHeight, stats}: { hashOrHeight: string, stats?: number }): Promise<any> { return callThroughToRpc(arguments) },
-    getChainTips({count, branchLength}: { count?: number, branchLength?: number }): Promise<any> { return callThroughToRpc(arguments) },
-    getChainTxStats({nBlocks, blockHash}: { nBlocks?: number, blockHash?: number}): Promise<any> { return callThroughToRpc(arguments) },
+    getBlockFilter({blockHash, filterType}): Promise<any> { return callThroughToRpc(arguments) },
+    getBlockHash({height}): Promise<any> { return callThroughToRpc(arguments) },
+    getBlockHeader({blockHash, verbose}): Promise<any> { return callThroughToRpc(arguments) },
+    getBlockStats({hashOrHeight, stats}): Promise<any> { return callThroughToRpc(arguments) },
+    getChainTips({count, branchLength}): Promise<any> { return callThroughToRpc(arguments) },
+    getChainTxStats({nBlocks, blockHash}): Promise<any> { return callThroughToRpc(arguments) },
     getDifficulty(): Promise<any> { return callThroughToRpc(arguments) },
-    getMemPoolAncestors({txid, verbose}: { txid: string, verbose?: number }): Promise<any> { return callThroughToRpc(arguments) },
-    getMemPoolDescendants({txid, verbose}: { txid: string, verbose?: number}): Promise<any> { return callThroughToRpc(arguments) },
-    getMemPoolEntry({txid}: { txid: string }): Promise<any> { return callThroughToRpc(arguments) },
+    getMemPoolAncestors({txid, verbose}): Promise<any> { return callThroughToRpc(arguments) },
+    getMemPoolDescendants({txid, verbose}): Promise<any> { return callThroughToRpc(arguments) },
+    getMemPoolEntry({txid}): Promise<any> { return callThroughToRpc(arguments) },
     getMemPoolInfo(): Promise<any> { return callThroughToRpc(arguments) },
-    getRawMemPool({verbose}: { verbose?: number }): Promise<any> { return callThroughToRpc(arguments) },
-    getTxOut({txid, voutNumber, includeMempool}: { txid: string, voutNumber: number, includeMempool?: boolean }): Promise<any> { return callThroughToRpc(arguments) },
-    getTxOutProof({txids, blockHash}: { txids: Array<string>, blockHash: string }): Promise<any> { return callThroughToRpc(arguments) },
+    getRawMemPool({verbose}): Promise<any> { return callThroughToRpc(arguments) },
+    getTxOut({txid, voutNumber, includeMempool}): Promise<any> { return callThroughToRpc(arguments) },
+    getTxOutProof({txids, blockHash}): Promise<any> { return callThroughToRpc(arguments) },
     getTxOutSetInfo(): Promise<any> { return callThroughToRpc(arguments) },
-    preciousBlock({blockHash}: { blockHash: string }): Promise<any> { return callThroughToRpc(arguments) },
-    pruneBlockchain({blockHeight}: { blockHeight: number }): Promise<any> { return callThroughToRpc(arguments) },
+    preciousBlock({blockHash}): Promise<any> { return callThroughToRpc(arguments) },
+    pruneBlockchain({blockHeight}): Promise<any> { return callThroughToRpc(arguments) },
     saveMemPool(): Promise<any> { return callThroughToRpc(arguments) },
-    scanTxOutSet({action, scanObjects}: { action: string, scanObjects: Array<any>}) { return callThroughToRpc(arguments) },
-    verifyChain({checkLevel, numberOfBlocksToCheck}: { checkLevel?: number, numberOfBlocksToCheck?: number }): Promise<any> { return callThroughToRpc(arguments) },
-    verifyTxOutProof({proof}: { proof: string }): Promise<any> { return callThroughToRpc(arguments) },
+    scanTxOutSet({action, scanObjects}) { return callThroughToRpc(arguments) },
+    verifyChain({checkLevel, numberOfBlocksToCheck}): Promise<any> { return callThroughToRpc(arguments) },
+    verifyTxOutProof({proof}): Promise<any> { return callThroughToRpc(arguments) },
 
     // == Control ==
-    getMemoryInfo({mode}: { mode?: string }): Promise<any> { return callThroughToRpc(arguments) },
+    getMemoryInfo({mode}): Promise<any> { return callThroughToRpc(arguments) },
     getRpcInfo(): Promise<any> { return callThroughToRpc(arguments) },
-    help({command}: { command?: string }): Promise<any> { return callThroughToRpc(arguments) },
-    logging({includeCategories, excludeCategories}: { includeCategories?: Array<string>, excludeCategories: Array<string> }): Promise<any> { return callThroughToRpc(arguments) },
+    help({command}): Promise<any> { return callThroughToRpc(arguments) },
+    logging({includeCategories, excludeCategories}): Promise<any> { return callThroughToRpc(arguments) },
     stop(): Promise<any> { return callThroughToRpc(arguments) },
     uptime(): Promise<any> { return callThroughToRpc(arguments) },
 
     // == Generating ==
-    generate({numberOfBlocks, maxTries}: { numberOfBlocks: number, maxTries?: number }): Promise<any> { return callThroughToRpc(arguments) },
-    generateToAddress({numberOfBlocks, address, maxTries}: { numberOfBlocks: number, address: string, maxTries?: number }): Promise<any> { return callThroughToRpc(arguments) },
+    generate({numberOfBlocks, maxTries}): Promise<any> { return callThroughToRpc(arguments) },
+    generateToAddress({numberOfBlocks, address, maxTries}): Promise<any> { return callThroughToRpc(arguments) },
 
     // == Mining ==
     createAuxBlock({address}: { address: string }): Promise<any> { return callThroughToRpc(arguments) },
