@@ -374,7 +374,7 @@ function rpcServices(callRpc) {
             var txid = _a.txid, blockHash = _a.blockHash;
             return callThroughToRpc(arguments);
         },
-        syscoinListReceivedByAddress: function (_a) { return callThroughToRpc(arguments); },
+        syscoinListReceivedByAddress: function () { return callThroughToRpc(arguments); },
         syscoinMint: function (_a) {
             var address = _a.address, amount = _a.amount, blockNum = _a.blockNum, txHex = _a.txHex, txRootHex = _a.txRootHex, txMerkleProofHex = _a.txMerkleProofHex, witness = _a.witness;
             return callThroughToRpc(arguments);
@@ -387,8 +387,8 @@ function rpcServices(callRpc) {
             var syncStatus = _a.syncStatus, highestBlock = _a.highestBlock;
             return callThroughToRpc(arguments);
         },
-        syscoinStartGeth: function (_a) { return callThroughToRpc(arguments); },
-        syscoinStopGeth: function (_a) { return callThroughToRpc(arguments); },
+        syscoinStartGeth: function () { return callThroughToRpc(arguments); },
+        syscoinStopGeth: function () { return callThroughToRpc(arguments); },
         syscoinTxFund: function (_a) {
             var hexString = _a.hexString, address = _a.address, outputIndex = _a.outputIndex;
             return callThroughToRpc(arguments);
@@ -397,7 +397,7 @@ function rpcServices(callRpc) {
             var startTime = _a.startTime, rawTxs = _a.rawTxs;
             return callThroughToRpc(arguments);
         },
-        tpsTestInfo: function (_a) { return callThroughToRpc(arguments); },
+        tpsTestInfo: function () { return callThroughToRpc(arguments); },
         tpsTestSetEnabled: function (_a) {
             var enabled = _a.enabled;
             return callThroughToRpc(arguments);
@@ -501,8 +501,8 @@ function rpcServices(callRpc) {
             var txid = _a.txid, includeWatchOnly = _a.includeWatchOnly;
             return callThroughToRpc(arguments);
         },
-        getUnconfirmedBalance: function (_a) { return callThroughToRpc(arguments); },
-        getWalletInfo: function (_a) { return callThroughToRpc(arguments); },
+        getUnconfirmedBalance: function () { return callThroughToRpc(arguments); },
+        getWalletInfo: function () { return callThroughToRpc(arguments); },
         importAddress: function (_a) {
             var address = _a.address, label = _a.label, rescan = _a.rescan, p2sh = _a.p2sh;
             return callThroughToRpc(arguments);
@@ -531,12 +531,12 @@ function rpcServices(callRpc) {
             var newSize = _a.newSize;
             return callThroughToRpc(arguments);
         },
-        listAddressGroupings: function (_a) { return callThroughToRpc(arguments); },
+        listAddressGroupings: function () { return callThroughToRpc(arguments); },
         listLabels: function (_a) {
             var purpose = _a.purpose;
             return callThroughToRpc(arguments);
         },
-        listLockUnspent: function (_a) { return callThroughToRpc(arguments); },
+        listLockUnspent: function () { return callThroughToRpc(arguments); },
         listReceivedByAddress: function (_a) {
             var minConf = _a.minConf, includeEmpty = _a.includeEmpty, includeWatchOnly = _a.includeWatchOnly, addressFilter = _a.addressFilter;
             return callThroughToRpc(arguments);
@@ -557,8 +557,8 @@ function rpcServices(callRpc) {
             var minConf = _a.minConf, maxConf = _a.maxConf, addresses = _a.addresses, includeUnsafe = _a.includeUnsafe, query = _a.query, options = _a.options;
             return callThroughToRpc(arguments);
         },
-        listWalletDir: function (_a) { return callThroughToRpc(arguments); },
-        listWallets: function (_a) { return callThroughToRpc(arguments); },
+        listWalletDir: function () { return callThroughToRpc(arguments); },
+        listWallets: function () { return callThroughToRpc(arguments); },
         loadWallet: function (_a) {
             var fileName = _a.fileName;
             return callThroughToRpc(arguments);
@@ -611,7 +611,7 @@ function rpcServices(callRpc) {
             var txs = _a.txs, amounts = _a.amounts, lockTime = _a.lockTime, options = _a.options, bip32derivs = _a.bip32derivs;
             return callThroughToRpc(arguments);
         },
-        walletLock: function (_a) { return callThroughToRpc(arguments); },
+        walletLock: function () { return callThroughToRpc(arguments); },
         walletPassphrase: function (_a) {
             var passphrase = _a.passphrase, timeout = _a.timeout;
             return callThroughToRpc(arguments);

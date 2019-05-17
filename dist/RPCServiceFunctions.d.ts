@@ -377,7 +377,7 @@ export interface RPCServiceFunctions {
         txid: string;
         blockHash?: string;
     }): Promise<any>;
-    syscoinListReceivedByAddress({}: {}): Promise<any>;
+    syscoinListReceivedByAddress(): Promise<any>;
     syscoinMint({ address, amount, blockNum, txHex, txRootHex, txMerkleProofHex, witness }: {
         address: string;
         amount: number;
@@ -394,8 +394,8 @@ export interface RPCServiceFunctions {
         syncStatus: string;
         highestBlock: number;
     }): Promise<any>;
-    syscoinStartGeth({}: {}): Promise<any>;
-    syscoinStopGeth({}: {}): Promise<any>;
+    syscoinStartGeth(): Promise<any>;
+    syscoinStopGeth(): Promise<any>;
     syscoinTxFund({ hexString, address, outputIndex }: {
         hexString: string;
         address: string;
@@ -405,7 +405,7 @@ export interface RPCServiceFunctions {
         startTime: any;
         rawTxs?: Array<TpsRawTx>;
     }): Promise<any>;
-    tpsTestInfo({}: {}): Promise<any>;
+    tpsTestInfo(): Promise<any>;
     tpsTestSetEnabled({ enabled }: {
         enabled: number;
     }): Promise<any>;
@@ -506,8 +506,8 @@ export interface RPCServiceFunctions {
         txid: string;
         includeWatchOnly: number;
     }): Promise<any>;
-    getUnconfirmedBalance({}: {}): Promise<any>;
-    getWalletInfo({}: {}): Promise<any>;
+    getUnconfirmedBalance(): Promise<any>;
+    getWalletInfo(): Promise<any>;
     importAddress({ address, label, rescan, p2sh }: {
         address: string;
         label?: string;
@@ -538,11 +538,11 @@ export interface RPCServiceFunctions {
     keypoolRefill({ newSize }: {
         newSize?: number;
     }): Promise<any>;
-    listAddressGroupings({}: {}): Promise<any>;
+    listAddressGroupings(): Promise<any>;
     listLabels({ purpose }: {
         purpose?: string;
     }): Promise<any>;
-    listLockUnspent({}: {}): Promise<any>;
+    listLockUnspent(): Promise<any>;
     listReceivedByAddress({ minConf, includeEmpty, includeWatchOnly, addressFilter }: {
         minConf?: number;
         includeEmpty?: number;
@@ -574,8 +574,8 @@ export interface RPCServiceFunctions {
         query?: any;
         options?: any;
     }): Promise<any>;
-    listWalletDir({}: {}): Promise<any>;
-    listWallets({}: {}): Promise<any>;
+    listWalletDir(): Promise<any>;
+    listWallets(): Promise<any>;
     loadWallet({ fileName }: {
         fileName: string;
     }): Promise<any>;
@@ -646,7 +646,7 @@ export interface RPCServiceFunctions {
         options?: any;
         bip32derivs?: any;
     }): Promise<any>;
-    walletLock({}: {}): Promise<any>;
+    walletLock(): Promise<any>;
     walletPassphrase({ passphrase, timeout }: {
         passphrase: string;
         timeout: number;
