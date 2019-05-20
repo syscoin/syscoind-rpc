@@ -17,7 +17,9 @@
   "exclude": [
     "node_modules",
     "dist",
-    "_tests_"
+    "_tests_",
+    "src/node-test.ts",
+    "src/config.ts"
   ],
   "awesomeTypescriptLoaderOptions": {
     "useWebpackText": true

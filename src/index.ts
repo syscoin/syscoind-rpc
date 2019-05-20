@@ -1,5 +1,7 @@
 export * from "./SyscoinRpcClient"
 export * from "./rpcServices"
+export * from "./RPCServiceFunctions"
+export * from "./model/models";
 
 export interface RawTx {
   txid: string;
@@ -58,7 +60,7 @@ export interface PbstPayloadInfo {
   data?: string;
 }
 
-export interface Transaction {
+export interface TransactionData {
   txid: string;
   vout: number;
   scriptPubKey: string;

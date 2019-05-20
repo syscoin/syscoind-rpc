@@ -2,7 +2,8 @@
   "name": "syscoin-js",
   "version": "3.1.0",
   "description": "Javascript SDK for the Syscoin cryptocurrency.",
-  "main": "dist/index.js",
+  "main": "dist/",
+  "typings": "dist/",
   "scripts": {
     "build": "tsc",
     "test": "node dist/test.js",

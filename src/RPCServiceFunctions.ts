@@ -1,6 +1,6 @@
 // @formatter:off
     // == Blockchain ==
-import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, AssetAllocationSend, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, TpsRawTx, Transaction, TxHeader } from "./index";
+import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, AssetAllocationSend, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, TpsRawTx, Transaction, TransactionData, TxHeader } from "./index";
 export interface RPCServiceFunctions {
     getBestBlockHash(): Promise<any>;
     getBlock({blockHash, verbosity}: { blockHash: string, verbosity?: number }): Promise<any>;
@@ -81,7 +81,7 @@ export interface RPCServiceFunctions {
     getRawTransaction({txid, verbose, blockHash}: { txid: string, verbose?: number, blockHash?: string }): Promise<any>;
     joinPsbts({pbsts}: { pbsts: Array<string> }): Promise<any>;
     sendRawTransaction({hexString, maxFeeRate}: { hexString: string, maxFeeRate?: number }): Promise<any>;
-    signRawTransactionWithKey({hexString, privateKeys, txs, sigHashType}: { hexString: string, privateKeys: Array<string>, txs?: Array<Transaction>, sigHashType?: string }): Promise<any>;
+    signRawTransactionWithKey({hexString, privateKeys, txs, sigHashType}: { hexString: string, privateKeys: Array<string>, txs?: Array<TransactionData>, sigHashType?: string }): Promise<any>;
     testMempoolAccept({rawTxs, maxFeeRate}: { rawTxs: Array<string>, maxFeeRate?: number }): Promise<any>;
     utxoUpdatePsbt({pbst}: { pbst: string }): Promise<any>;
 
@@ -155,11 +155,11 @@ export interface RPCServiceFunctions {
     getAddressesByLabel({label}: { label: string }): Promise<any>;
     getAddressInfo({address}: { address: string }): Promise<any>;
     getBalance({dummy, minconf, includeWatchOnly}: { dummy?: string, minconf: number, includeWatchOnly: number }): Promise<any>;
-    getNewAddress({label, addressType}: { label: string, addressType: string }): Promise<any>;
+    getNewAddress({label, addressType}: { label?: string, addressType?: string }): Promise<any>;
     getRawChangeAddress({addressType}: { addressType?: string }): Promise<any>;
     getReceivedByAddress({address, minConf}: { address: string, minConf?: number }): Promise<any>;
     getReceivedByLabel({label, minConf}: { label: string, minConf?: number }): Promise<any>;
-    getTransaction({txid, includeWatchOnly}: { txid: string, includeWatchOnly: number }): Promise<any>;
+    getTransaction({txid, includeWatchOnly}: { txid: string, includeWatchOnly?: number | boolean }): Promise<Transaction>;
     getUnconfirmedBalance(): Promise<any>;
     getWalletInfo(): Promise<any>;
     importAddress({address, label, rescan, p2sh}: { address: string, label?: string, rescan?: number, p2sh?: number }): Promise<any>;
