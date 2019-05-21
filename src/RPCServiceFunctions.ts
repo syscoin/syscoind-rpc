@@ -121,7 +121,7 @@ export interface RPCServiceFunctions {
     syscoinBurn({fundingAddress, amount, ethAddress}: { fundingAddress: string, amount: number, ethAddress: string }): Promise<any>;
     syscoinDecodeRawTransaction({hexString}: { hexString: number }): Promise<any>;
     syscoinGetSpvProof({txid, blockHash}: { txid: string, blockHash?: string }): Promise<any>;
-    syscoinMint({address, amount, blockNum, txHex, txRootHex, txMerkleProofHex, witness}: { address: string, amount: number, blockNum: number, txHex: string, txRootHex: string, txMerkleProofHex: string, witness?: string }): Promise<SyscoinAddressEntry[]>;
+    syscoinMint({address, amount, blockNum, txHex, txRootHex, txMerkleProofHex, witness}: { address: string, amount: number, blockNum: number, txHex: string, txRootHex: string, txMerkleProofHex: string, witness?: string }): Promise<any>;
     syscoinSetEthHeaders({headers}: { headers: EthHeaders }): Promise<any>;
     syscoinSetEthStatus({syncStatus, highestBlock}: { syncStatus: string, highestBlock: number }): Promise<any>;
     syscoinStartGeth(): Promise<any>;
@@ -171,7 +171,7 @@ export interface RPCServiceFunctions {
     listAddressGroupings(): Promise<any>;
     listLabels({purpose}: { purpose?: string }): Promise<any>;
     listLockUnspent(): Promise<any>;
-    listReceivedByAddress({minConf, includeEmpty, includeWatchOnly, addressFilter}: { minConf?: number, includeEmpty?: number | boolean, includeWatchOnly?: number | boolean, addressFilter?: string }): Promise<any>;
+    listReceivedByAddress({minConf, includeEmpty, includeWatchOnly, addressFilter}: { minConf?: number, includeEmpty?: number | boolean, includeWatchOnly?: number | boolean, addressFilter?: string }): Promise<SyscoinAddressEntry[]>;
     listReceivedByLabel({minConf, includeEmpty, includeWatchOnly}: { minConf?: number, includeEmpty?: number | boolean, includeWatchOnly?: number | boolean }): Promise<any>;
     listSinceBlock({blockHash, targetConfs, includeWatchOnly, includeRemoved}: { blockHash?: string, targetConfs?: number, includeWatchOnly?: number, includeRemoved?: number }): Promise<any>;
     listTransactions({label, count, skip, includeWatchOnly}: { label?: string, count?: number, skip?: number, includeWatchOnly?: number }): Promise<any>;

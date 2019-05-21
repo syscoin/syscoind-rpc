@@ -385,7 +385,7 @@ export interface RPCServiceFunctions {
         txRootHex: string;
         txMerkleProofHex: string;
         witness?: string;
-    }): Promise<SyscoinAddressEntry[]>;
+    }): Promise<any>;
     syscoinSetEthHeaders({ headers }: {
         headers: EthHeaders;
     }): Promise<any>;
@@ -547,7 +547,7 @@ export interface RPCServiceFunctions {
         includeEmpty?: number | boolean;
         includeWatchOnly?: number | boolean;
         addressFilter?: string;
-    }): Promise<any>;
+    }): Promise<SyscoinAddressEntry[]>;
     listReceivedByLabel({ minConf, includeEmpty, includeWatchOnly }: {
         minConf?: number;
         includeEmpty?: number | boolean;
