@@ -79,5 +79,11 @@ export interface RpcConfigOptions {
   customHttpAgent?: any;
 }
 
+export interface RpcResponse {
+  result?: any;
+  error?: any;
+  id?: any;
+}
+
 
 

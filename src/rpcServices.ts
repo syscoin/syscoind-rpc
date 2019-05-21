@@ -1,4 +1,4 @@
-import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, AssetAllocationSend, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, TpsRawTx, Transaction, TxHeader } from "./index";
+import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, AssetAllocationSend, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, RpcResponse, TpsRawTx, Transaction, TxHeader } from "./index";
 import { RPCServiceFunctions } from "./RPCServiceFunctions";
 
 export function rpcServices(callRpc): RPCServiceFunctions {
@@ -201,10 +201,12 @@ export function rpcServices(callRpc): RPCServiceFunctions {
     walletProcessPsbt({pbst, sign, sigHashType, bip32derivs}) { return callThroughToRpc(arguments) },
     // @formatter:on
 
-    callThroughToRpc //exposed for unit testing
+    //exposed for unit testing
+    callThroughToRpc,
+    unwrapRpcResponse
   };
 
-  function callThroughToRpc(args) {
+  async function callThroughToRpc(args): Promise<any> {
     let argArr: Array<any> = Array.prototype.slice.call(args);
 
     //expect arg array to be a single object
@@ -222,6 +224,18 @@ export function rpcServices(callRpc): RPCServiceFunctions {
       paramArr = orderedKeys.map((value, index, arr) => argObj[value]);
     }
 
-    return callRpc(args.callee.name.toLowerCase(), paramArr);
+    const response = await callRpc(args.callee.name.toLowerCase(), paramArr);
+
+    return unwrapRpcResponse(response);
+  }
+
+  function unwrapRpcResponse(response: RpcResponse): any {
+    if(response.result !== null && response.error === null) {
+      return response.result;
+    }else if(response.result === null && response.error !== null) {
+      return response.error;
+    }
+
+    return response; //get requests are not wrapped
   }
 }

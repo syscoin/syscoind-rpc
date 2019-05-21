@@ -1,6 +1,6 @@
 // @formatter:off
     // == Blockchain ==
-import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, AssetAllocationSend, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, TpsRawTx, Transaction, TransactionData, TxHeader } from "./index";
+import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, AssetAllocationSend, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, RpcResponse, TpsRawTx, Transaction, TransactionData, TxHeader } from "./index";
 export interface RPCServiceFunctions {
     getBestBlockHash(): Promise<any>;
     getBlock({blockHash, verbosity}: { blockHash: string, verbosity?: number }): Promise<any>;
@@ -198,5 +198,8 @@ export interface RPCServiceFunctions {
     walletProcessPsbt({pbst, sign, sigHashType, bip32derivs}: { pbst: string, sign?: number, sigHashType?: string, bip32derivs?: number }): Promise<any>;
     // @formatter:on
 
-    callThroughToRpc(args): Promise<any>; //exposed for unit testing
+    //exposed for unit testing
+    callThroughToRpc(args): Promise<any>;
+    unwrapRpcResponse(response: RpcResponse | any): any;
+
 }
