@@ -1,4 +1,4 @@
-import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, AssetAllocationSend, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, RpcResponse, TpsRawTx, Transaction, TransactionData, TxHeader } from "./index";
+import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, AssetAllocationSend, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, RpcResponse, SyscoinAddressEntry, TpsRawTx, Transaction, TransactionData, TxHeader } from "./index";
 export interface RPCServiceFunctions {
     getBestBlockHash(): Promise<any>;
     getBlock({ blockHash, verbosity }: {
@@ -377,7 +377,6 @@ export interface RPCServiceFunctions {
         txid: string;
         blockHash?: string;
     }): Promise<any>;
-    syscoinListReceivedByAddress(): Promise<any>;
     syscoinMint({ address, amount, blockNum, txHex, txRootHex, txMerkleProofHex, witness }: {
         address: string;
         amount: number;
@@ -386,7 +385,7 @@ export interface RPCServiceFunctions {
         txRootHex: string;
         txMerkleProofHex: string;
         witness?: string;
-    }): Promise<any>;
+    }): Promise<SyscoinAddressEntry[]>;
     syscoinSetEthHeaders({ headers }: {
         headers: EthHeaders;
     }): Promise<any>;

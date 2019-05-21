@@ -124,7 +124,6 @@ export function rpcServices(callRpc): RPCServiceFunctions {
     syscoinBurn({fundingAddress, amount, ethAddress}) { return callThroughToRpc(arguments) },
     syscoinDecodeRawTransaction({hexString}) { return callThroughToRpc(arguments) },
     syscoinGetSpvProof({txid, blockHash}) { return callThroughToRpc(arguments) },
-    syscoinListReceivedByAddress() { return callThroughToRpc(arguments) },
     syscoinMint({address, amount, blockNum, txHex, txRootHex, txMerkleProofHex, witness}) { return callThroughToRpc(arguments) },
     syscoinSetEthHeaders({headers}) { return callThroughToRpc(arguments) },
     syscoinSetEthStatus({syncStatus, highestBlock}) { return callThroughToRpc(arguments) },

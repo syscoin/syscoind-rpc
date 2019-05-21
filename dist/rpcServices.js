@@ -409,7 +409,6 @@ function rpcServices(callRpc) {
             var txid = _a.txid, blockHash = _a.blockHash;
             return callThroughToRpc(arguments);
         },
-        syscoinListReceivedByAddress: function () { return callThroughToRpc(arguments); },
         syscoinMint: function (_a) {
             var address = _a.address, amount = _a.amount, blockNum = _a.blockNum, txHex = _a.txHex, txRootHex = _a.txRootHex, txMerkleProofHex = _a.txMerkleProofHex, witness = _a.witness;
             return callThroughToRpc(arguments);

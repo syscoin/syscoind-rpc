@@ -1,6 +1,6 @@
 // @formatter:off
     // == Blockchain ==
-import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, AssetAllocationSend, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, RpcResponse, TpsRawTx, Transaction, TransactionData, TxHeader } from "./index";
+import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, AssetAllocationSend, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, RpcResponse, SyscoinAddressEntry, TpsRawTx, Transaction, TransactionData, TxHeader } from "./index";
 export interface RPCServiceFunctions {
     getBestBlockHash(): Promise<any>;
     getBlock({blockHash, verbosity}: { blockHash: string, verbosity?: number }): Promise<any>;
@@ -121,8 +121,7 @@ export interface RPCServiceFunctions {
     syscoinBurn({fundingAddress, amount, ethAddress}: { fundingAddress: string, amount: number, ethAddress: string }): Promise<any>;
     syscoinDecodeRawTransaction({hexString}: { hexString: number }): Promise<any>;
     syscoinGetSpvProof({txid, blockHash}: { txid: string, blockHash?: string }): Promise<any>;
-    syscoinListReceivedByAddress(): Promise<any>;
-    syscoinMint({address, amount, blockNum, txHex, txRootHex, txMerkleProofHex, witness}: { address: string, amount: number, blockNum: number, txHex: string, txRootHex: string, txMerkleProofHex: string, witness?: string }): Promise<any>;
+    syscoinMint({address, amount, blockNum, txHex, txRootHex, txMerkleProofHex, witness}: { address: string, amount: number, blockNum: number, txHex: string, txRootHex: string, txMerkleProofHex: string, witness?: string }): Promise<SyscoinAddressEntry[]>;
     syscoinSetEthHeaders({headers}: { headers: EthHeaders }): Promise<any>;
     syscoinSetEthStatus({syncStatus, highestBlock}: { syncStatus: string, highestBlock: number }): Promise<any>;
     syscoinStartGeth(): Promise<any>;
