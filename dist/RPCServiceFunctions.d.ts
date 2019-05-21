@@ -1,4 +1,4 @@
-import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, AssetAllocationSend, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, TpsRawTx, Transaction, TransactionData, TxHeader } from "./index";
+import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, AssetAllocationSend, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, RpcResponse, TpsRawTx, Transaction, TransactionData, TxHeader } from "./index";
 export interface RPCServiceFunctions {
     getBestBlockHash(): Promise<any>;
     getBlock({ blockHash, verbosity }: {
@@ -662,4 +662,5 @@ export interface RPCServiceFunctions {
         bip32derivs?: number;
     }): Promise<any>;
     callThroughToRpc(args: any): Promise<any>;
+    unwrapRpcResponse(response: RpcResponse | any): any;
 }

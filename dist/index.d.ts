@@ -63,3 +63,8 @@ export interface RpcConfigOptions {
     timeout?: number;
     customHttpAgent?: any;
 }
+export interface RpcResponse {
+    result?: any;
+    error?: any;
+    id?: any;
+}
