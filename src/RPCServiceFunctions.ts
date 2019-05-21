@@ -171,8 +171,8 @@ export interface RPCServiceFunctions {
     listAddressGroupings(): Promise<any>;
     listLabels({purpose}: { purpose?: string }): Promise<any>;
     listLockUnspent(): Promise<any>;
-    listReceivedByAddress({minConf, includeEmpty, includeWatchOnly, addressFilter}: { minConf?: number, includeEmpty?: number, includeWatchOnly?: number, addressFilter?: string }): Promise<any>;
-    listReceivedByLabel({minConf, includeEmpty, includeWatchOnly}: { minConf?: number, includeEmpty?: number, includeWatchOnly?: number }): Promise<any>;
+    listReceivedByAddress({minConf, includeEmpty, includeWatchOnly, addressFilter}: { minConf?: number, includeEmpty?: number | boolean, includeWatchOnly?: number | boolean, addressFilter?: string }): Promise<any>;
+    listReceivedByLabel({minConf, includeEmpty, includeWatchOnly}: { minConf?: number, includeEmpty?: number | boolean, includeWatchOnly?: number | boolean }): Promise<any>;
     listSinceBlock({blockHash, targetConfs, includeWatchOnly, includeRemoved}: { blockHash?: string, targetConfs?: number, includeWatchOnly?: number, includeRemoved?: number }): Promise<any>;
     listTransactions({label, count, skip, includeWatchOnly}: { label?: string, count?: number, skip?: number, includeWatchOnly?: number }): Promise<any>;
     listUnspent({minConf, maxConf, addresses, includeUnsafe, query, options}: { minConf?: number, maxConf?: number, addresses?: Array<string>, includeUnsafe?: number, query?: any, options?: any }): Promise<any>;

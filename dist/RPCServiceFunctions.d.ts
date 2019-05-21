@@ -544,14 +544,14 @@ export interface RPCServiceFunctions {
     listLockUnspent(): Promise<any>;
     listReceivedByAddress({ minConf, includeEmpty, includeWatchOnly, addressFilter }: {
         minConf?: number;
-        includeEmpty?: number;
-        includeWatchOnly?: number;
+        includeEmpty?: number | boolean;
+        includeWatchOnly?: number | boolean;
         addressFilter?: string;
     }): Promise<any>;
     listReceivedByLabel({ minConf, includeEmpty, includeWatchOnly }: {
         minConf?: number;
-        includeEmpty?: number;
-        includeWatchOnly?: number;
+        includeEmpty?: number | boolean;
+        includeWatchOnly?: number | boolean;
     }): Promise<any>;
     listSinceBlock({ blockHash, targetConfs, includeWatchOnly, includeRemoved }: {
         blockHash?: string;
