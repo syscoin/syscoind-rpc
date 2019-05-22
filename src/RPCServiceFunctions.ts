@@ -1,6 +1,6 @@
 // @formatter:off
     // == Blockchain ==
-import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, AssetAllocationSend, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, RpcResponse, SyscoinAddressEntry, TpsRawTx, Transaction, TransactionData, TxHeader } from "./index";
+import { Asset, AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, AssetAllocationSend, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, RpcResponse, SyscoinAddressEntry, TpsRawTx, Transaction, TransactionData, TxHeader } from "./index"; import { AssetInfoRequest } from "./model/sys4/assetInfoRequest";
 export interface RPCServiceFunctions {
     getBestBlockHash(): Promise<any>;
     getBlock({blockHash, verbosity}: { blockHash: string, verbosity?: number }): Promise<any>;
@@ -95,7 +95,7 @@ export interface RPCServiceFunctions {
     assetAllocationSend({assetGuid, addressFrom, addressTo, amount}: { assetGuid: number, addressFrom: string, addressTo: string, amount: number }): Promise<any>;
     assetAllocationSenderStatus({assetGuid, address, txid}: { assetGuid: number, address: string, txid: string }): Promise<any>;
     assetAllocationSendMany({assetGuid, addressFrom, allocations, witness}: { assetGuid: number, addressFrom: string, allocations: Array<AssetAllocationSend>, witness?: string }): Promise<any>;
-    assetInfo({assetGuid}: { assetGuid: number }): Promise<any>;
+    assetInfo(request: AssetInfoRequest): Promise<Asset>;
     assetNew({address, publicValue, contract, precision, supply, maxSupply, updateFlags, witness}: { address: string, publicValue: string, contract: string, precision: number, supply: number, maxSupply: number, updateFlags: number, witness: string }): Promise<any>;
     assetSend({assetGuid, addressTo, amount}: { assetGuid: number, addressTo: string, amount: number }): Promise<any>;
     assetSendMany({assetGuid, allocations, witness}: { assetGuid: number, allocations: Array<AssetAllocationSend>, witness?: string }): Promise<any>;

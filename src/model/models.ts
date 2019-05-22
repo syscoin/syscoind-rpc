@@ -1,7 +1,6 @@
 export * from './account';
 export * from './addMultisigAddressRequest';
 export * from './addressGrouping';
-export * from './asset';
 export * from './assetAllocation';
 export * from './assetAllocationCollectInterestRequest';
 export * from './assetAllocationSenderStatus';

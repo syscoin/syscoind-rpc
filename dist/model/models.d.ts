@@ -1,7 +1,6 @@
 export * from './account';
 export * from './addMultisigAddressRequest';
 export * from './addressGrouping';
-export * from './asset';
 export * from './assetAllocation';
 export * from './assetAllocationCollectInterestRequest';
 export * from './assetAllocationSenderStatus';
@@ -73,3 +72,4 @@ export * from './walletInfo';
 export * from './walletPassphraseChangeRequest';
 export * from './walletPassphraseRequest';
 export * from './whitelistEntry';
+export * from './sys4/models';
