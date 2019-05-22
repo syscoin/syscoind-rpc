@@ -1,6 +1,23 @@
 // @formatter:off
     // == Blockchain ==
-import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, AssetAllocationSend, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, RpcResponse, SyscoinAddressEntry, TpsRawTx, Transaction, TransactionData, TxHeader } from "./index";
+import {
+    AssetAllocationBalanceQuery,
+    AssetAllocationBalanceQueryWithGuid,
+    AssetAllocationSend,
+    AssetNewRequest,
+    EthHeaders,
+    ListAssetIndexOptions,
+    ListAssetOptions,
+    PbstPayloadInfo,
+    RawTx,
+    RpcResponse,
+    SyscoinAddressEntry,
+    TpsRawTx,
+    Transaction,
+    TransactionData,
+    TxHeader
+} from "./index";
+import {AssetNewResponse} from "./model/assetNewResponse";
 export interface RPCServiceFunctions {
     getBestBlockHash(): Promise<any>;
     getBlock({blockHash, verbosity}: { blockHash: string, verbosity?: number }): Promise<any>;
@@ -96,7 +113,7 @@ export interface RPCServiceFunctions {
     assetAllocationSenderStatus({assetGuid, address, txid}: { assetGuid: number, address: string, txid: string }): Promise<any>;
     assetAllocationSendMany({assetGuid, addressFrom, allocations, witness}: { assetGuid: number, addressFrom: string, allocations: Array<AssetAllocationSend>, witness?: string }): Promise<any>;
     assetInfo({assetGuid}: { assetGuid: number }): Promise<any>;
-    assetNew({address, publicValue, contract, precision, supply, maxSupply, updateFlags, witness}: { address: string, publicValue: string, contract: string, precision: number, supply: number, maxSupply: number, updateFlags: number, witness: string }): Promise<any>;
+    assetNew(request: AssetNewRequest): Promise<AssetNewResponse>;
     assetSend({assetGuid, addressTo, amount}: { assetGuid: number, addressTo: string, amount: number }): Promise<any>;
     assetSendMany({assetGuid, allocations, witness}: { assetGuid: number, allocations: Array<AssetAllocationSend>, witness?: string }): Promise<any>;
     assetTransfer({assetGuid, address, witness}: { assetGuid: number, address: string, witness: string }): Promise<any>;
