@@ -71,3 +71,6 @@ export * from './walletInfo';
 export * from './walletPassphraseChangeRequest';
 export * from './walletPassphraseRequest';
 export * from './whitelistEntry';
+
+//sys4
+export * from './sys4/models';
