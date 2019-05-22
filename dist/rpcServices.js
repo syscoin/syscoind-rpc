@@ -308,14 +308,8 @@ function rpcServices(callRpc) {
             var assetGuid = _a.assetGuid, addressFrom = _a.addressFrom, allocations = _a.allocations, witness = _a.witness;
             return callThroughToRpc(arguments);
         },
-        assetInfo: function (_a) {
-            var assetGuid = _a.assetGuid;
-            return callThroughToRpc(arguments);
-        },
-        assetNew: function (_a) {
-            var address = _a.address, publicValue = _a.publicValue, contract = _a.contract, precision = _a.precision, supply = _a.supply, maxSupply = _a.maxSupply, updateFlags = _a.updateFlags, witness = _a.witness;
-            return callThroughToRpc(arguments);
-        },
+        assetInfo: function (request) { return callThroughToRpc(arguments); },
+        assetNew: function (request) { return callThroughToRpc(arguments); },
         assetSend: function (_a) {
             var assetGuid = _a.assetGuid, addressTo = _a.addressTo, amount = _a.amount;
             return callThroughToRpc(arguments);
@@ -488,7 +482,7 @@ function rpcServices(callRpc) {
             return callThroughToRpc(arguments);
         },
         createWallet: function (_a) {
-            var walletName = _a.walletName, disablePrivKeys = _a.disablePrivKeys;
+            var walletName = _a.walletName, disablePrivKeys = _a.disablePrivKeys, blank = _a.blank, passphrase = _a.passphrase;
             return callThroughToRpc(arguments);
         },
         dumpPrivKey: function (_a) {

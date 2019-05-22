@@ -1,5 +1,5 @@
-import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, AssetAllocationSend, AssetNewRequest, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, RpcResponse, SyscoinAddressEntry, TpsRawTx, Transaction, TransactionData, TxHeader } from "./index";
-import { AssetNewResponse } from "./model/assetNewResponse";
+import { Asset, AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, AssetAllocationSend, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, RpcResponse, SyscoinAddressEntry, TpsRawTx, Transaction, TransactionData, TxHeader } from "./index";
+import { AssetInfoRequest } from "./model/sys4/assetInfoRequest";
 export interface RPCServiceFunctions {
     getBestBlockHash(): Promise<any>;
     getBlock({ blockHash, verbosity }: {
@@ -273,10 +273,17 @@ export interface RPCServiceFunctions {
         allocations: Array<AssetAllocationSend>;
         witness?: string;
     }): Promise<any>;
-    assetInfo({ assetGuid }: {
-        assetGuid: number;
+    assetInfo(request: AssetInfoRequest): Promise<Asset>;
+    assetNew({ address, publicValue, contract, precision, supply, maxSupply, updateFlags, witness }: {
+        address: string;
+        publicValue: string;
+        contract: string;
+        precision: number;
+        supply: number;
+        maxSupply: number;
+        updateFlags: number;
+        witness: string;
     }): Promise<any>;
-    assetNew(request: AssetNewRequest): Promise<AssetNewResponse>;
     assetSend({ assetGuid, addressTo, amount }: {
         assetGuid: number;
         addressTo: string;
@@ -454,9 +461,11 @@ export interface RPCServiceFunctions {
         txid: string;
         options?: any;
     }): Promise<any>;
-    createWallet({ walletName, disablePrivKeys }: {
+    createWallet({ walletName, disablePrivKeys, blank, passphrase }: {
         walletName: string;
-        disablePrivKeys: number;
+        disablePrivKeys?: boolean;
+        blank?: boolean;
+        passphrase?: string;
     }): Promise<any>;
     dumpPrivKey({ address }: {
         address: string;
@@ -495,7 +504,7 @@ export interface RPCServiceFunctions {
     }): Promise<any>;
     getTransaction({ txid, includeWatchOnly }: {
         txid: string;
-        includeWatchOnly?: number | boolean;
+        includeWatchOnly?: boolean;
     }): Promise<Transaction>;
     getUnconfirmedBalance(): Promise<any>;
     getWalletInfo(): Promise<any>;
@@ -536,14 +545,14 @@ export interface RPCServiceFunctions {
     listLockUnspent(): Promise<any>;
     listReceivedByAddress({ minConf, includeEmpty, includeWatchOnly, addressFilter }: {
         minConf?: number;
-        includeEmpty?: number | boolean;
-        includeWatchOnly?: number | boolean;
+        includeEmpty?: boolean;
+        includeWatchOnly?: boolean;
         addressFilter?: string;
     }): Promise<SyscoinAddressEntry[]>;
     listReceivedByLabel({ minConf, includeEmpty, includeWatchOnly }: {
         minConf?: number;
-        includeEmpty?: number | boolean;
-        includeWatchOnly?: number | boolean;
+        includeEmpty?: boolean;
+        includeWatchOnly?: boolean;
     }): Promise<any>;
     listSinceBlock({ blockHash, targetConfs, includeWatchOnly, includeRemoved }: {
         blockHash?: string;
