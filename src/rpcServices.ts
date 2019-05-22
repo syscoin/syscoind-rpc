@@ -150,7 +150,7 @@ export function rpcServices(callRpc): RPCServiceFunctions {
     addMultiSigAddress({nRequired, keys, label, addressType}) { return callThroughToRpc(arguments) },
     backupWallet({destination}) { return callThroughToRpc(arguments) },
     bumpFee({txid, options}) { return callThroughToRpc(arguments) },
-    createWallet({walletName, disablePrivKeys}) { return callThroughToRpc(arguments) },
+    createWallet({walletName, disablePrivKeys, blank, passphrase}) { return callThroughToRpc(arguments) },
     dumpPrivKey({address}) { return callThroughToRpc(arguments) },
     dumpWallet({fileName}) { return callThroughToRpc(arguments) },
     encryptWallet({passphrase}) { return callThroughToRpc(arguments) },

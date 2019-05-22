@@ -488,7 +488,7 @@ function rpcServices(callRpc) {
             return callThroughToRpc(arguments);
         },
         createWallet: function (_a) {
-            var walletName = _a.walletName, disablePrivKeys = _a.disablePrivKeys;
+            var walletName = _a.walletName, disablePrivKeys = _a.disablePrivKeys, blank = _a.blank, passphrase = _a.passphrase;
             return callThroughToRpc(arguments);
         },
         dumpPrivKey: function (_a) {

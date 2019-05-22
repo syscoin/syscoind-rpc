@@ -147,7 +147,7 @@ export interface RPCServiceFunctions {
     addMultiSigAddress({nRequired, keys, label, addressType}: { nRequired: number, keys: Array<string>, label?: string, addressType?: string }): Promise<any>;
     backupWallet({destination}: { destination: string }): Promise<any>;
     bumpFee({txid, options}: { txid: string, options?: any }): Promise<any>;
-    createWallet({walletName, disablePrivKeys}: { walletName: string, disablePrivKeys: number }): Promise<any>;
+    createWallet({walletName, disablePrivKeys, blank, passphrase}: { walletName: string, disablePrivKeys?: boolean, blank?: boolean, passphrase?: string}): Promise<any>;
     dumpPrivKey({address}: { address: string }): Promise<any>;
     dumpWallet({fileName}: { fileName: string }): Promise<any>;
     encryptWallet({passphrase}: { passphrase: string }): Promise<any>;
@@ -158,7 +158,7 @@ export interface RPCServiceFunctions {
     getRawChangeAddress({addressType}: { addressType?: string }): Promise<any>;
     getReceivedByAddress({address, minConf}: { address: string, minConf?: number }): Promise<any>;
     getReceivedByLabel({label, minConf}: { label: string, minConf?: number }): Promise<any>;
-    getTransaction({txid, includeWatchOnly}: { txid: string, includeWatchOnly?: number | boolean }): Promise<Transaction>;
+    getTransaction({txid, includeWatchOnly}: { txid: string, includeWatchOnly?: boolean }): Promise<Transaction>;
     getUnconfirmedBalance(): Promise<any>;
     getWalletInfo(): Promise<any>;
     importAddress({address, label, rescan, p2sh}: { address: string, label?: string, rescan?: number, p2sh?: number }): Promise<any>;
@@ -171,8 +171,8 @@ export interface RPCServiceFunctions {
     listAddressGroupings(): Promise<any>;
     listLabels({purpose}: { purpose?: string }): Promise<any>;
     listLockUnspent(): Promise<any>;
-    listReceivedByAddress({minConf, includeEmpty, includeWatchOnly, addressFilter}: { minConf?: number, includeEmpty?: number | boolean, includeWatchOnly?: number | boolean, addressFilter?: string }): Promise<SyscoinAddressEntry[]>;
-    listReceivedByLabel({minConf, includeEmpty, includeWatchOnly}: { minConf?: number, includeEmpty?: number | boolean, includeWatchOnly?: number | boolean }): Promise<any>;
+    listReceivedByAddress({minConf, includeEmpty, includeWatchOnly, addressFilter}: { minConf?: number, includeEmpty?: boolean, includeWatchOnly?: boolean, addressFilter?: string }): Promise<SyscoinAddressEntry[]>;
+    listReceivedByLabel({minConf, includeEmpty, includeWatchOnly}: { minConf?: number, includeEmpty?: boolean, includeWatchOnly?: boolean }): Promise<any>;
     listSinceBlock({blockHash, targetConfs, includeWatchOnly, includeRemoved}: { blockHash?: string, targetConfs?: number, includeWatchOnly?: number, includeRemoved?: number }): Promise<any>;
     listTransactions({label, count, skip, includeWatchOnly}: { label?: string, count?: number, skip?: number, includeWatchOnly?: number }): Promise<any>;
     listUnspent({minConf, maxConf, addresses, includeUnsafe, query, options}: { minConf?: number, maxConf?: number, addresses?: Array<string>, includeUnsafe?: number, query?: any, options?: any }): Promise<any>;

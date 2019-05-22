@@ -462,9 +462,11 @@ export interface RPCServiceFunctions {
         txid: string;
         options?: any;
     }): Promise<any>;
-    createWallet({ walletName, disablePrivKeys }: {
+    createWallet({ walletName, disablePrivKeys, blank, passphrase }: {
         walletName: string;
-        disablePrivKeys: number;
+        disablePrivKeys?: boolean;
+        blank?: boolean;
+        passphrase?: string;
     }): Promise<any>;
     dumpPrivKey({ address }: {
         address: string;
@@ -503,7 +505,7 @@ export interface RPCServiceFunctions {
     }): Promise<any>;
     getTransaction({ txid, includeWatchOnly }: {
         txid: string;
-        includeWatchOnly?: number | boolean;
+        includeWatchOnly?: boolean;
     }): Promise<Transaction>;
     getUnconfirmedBalance(): Promise<any>;
     getWalletInfo(): Promise<any>;
@@ -544,14 +546,14 @@ export interface RPCServiceFunctions {
     listLockUnspent(): Promise<any>;
     listReceivedByAddress({ minConf, includeEmpty, includeWatchOnly, addressFilter }: {
         minConf?: number;
-        includeEmpty?: number | boolean;
-        includeWatchOnly?: number | boolean;
+        includeEmpty?: boolean;
+        includeWatchOnly?: boolean;
         addressFilter?: string;
     }): Promise<SyscoinAddressEntry[]>;
     listReceivedByLabel({ minConf, includeEmpty, includeWatchOnly }: {
         minConf?: number;
-        includeEmpty?: number | boolean;
-        includeWatchOnly?: number | boolean;
+        includeEmpty?: boolean;
+        includeWatchOnly?: boolean;
     }): Promise<any>;
     listSinceBlock({ blockHash, targetConfs, includeWatchOnly, includeRemoved }: {
         blockHash?: string;
