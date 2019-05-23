@@ -1,4 +1,4 @@
-import { SysTx } from "./SysTx";
+import { SysTx } from "./sysTx";
 export interface TransactionDetailEntry {
     address?: string;
     category?: string;
