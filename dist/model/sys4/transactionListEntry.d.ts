@@ -1,5 +1,6 @@
 import { SysTx } from "./SysTx";
 export interface TransactionListEntry {
+    address?: string;
     category?: string;
     amount?: number;
     vout?: number;
