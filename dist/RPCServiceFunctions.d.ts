@@ -328,7 +328,7 @@ export interface RPCServiceFunctions {
     listAssetIndexAllocations({ address }: {
         address: string;
     }): Promise<any>;
-    listAssetIndexAssets(request: ListAssetIndexAssetsRequest): Promise<Asset>;
+    listAssetIndexAssets(request: ListAssetIndexAssetsRequest): Promise<Asset[]>;
     listAssets({ count, from, options }: {
         count?: number;
         from?: number;

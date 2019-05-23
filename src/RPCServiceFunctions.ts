@@ -130,7 +130,7 @@ export interface RPCServiceFunctions {
     listAssetAllocations({count, from, query}: { count?: number, from?: number, query?: AssetAllocationBalanceQueryWithGuid }): Promise<any>;
     listAssetIndex({page, options}: { page?: number, options?: ListAssetIndexOptions }): Promise<any>;
     listAssetIndexAllocations({address}: { address: string }): Promise<any>;
-    listAssetIndexAssets(request: ListAssetIndexAssetsRequest): Promise<Asset>;
+    listAssetIndexAssets(request: ListAssetIndexAssetsRequest): Promise<Asset[]>;
     listAssets({count, from, options}: { count?: number, from?: number, options?: ListAssetOptions }): Promise<any>;
     masternode({command}: { command: string }): Promise<any>;
     masternodeBroadcast({command}: { command: string }): Promise<any>;
