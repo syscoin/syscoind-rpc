@@ -61,7 +61,6 @@ export * from './signRawTransactionResponse';
 export * from './sinceBlockTransactionEntry';
 export * from './syscoinAddressEntry';
 export * from './syscoinTransactionFundRequest';
-export * from './transactionListEntry';
 export * from './unspentListEntry';
 export * from './validateAddressResponse';
 export * from './voteRawRequest';

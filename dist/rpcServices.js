@@ -574,10 +574,7 @@ function rpcServices(callRpc) {
             var blockHash = _a.blockHash, targetConfs = _a.targetConfs, includeWatchOnly = _a.includeWatchOnly, includeRemoved = _a.includeRemoved;
             return callThroughToRpc(arguments);
         },
-        listTransactions: function (_a) {
-            var label = _a.label, count = _a.count, skip = _a.skip, includeWatchOnly = _a.includeWatchOnly;
-            return callThroughToRpc(arguments);
-        },
+        listTransactions: function (request) { return callThroughToRpc(arguments); },
         listUnspent: function (_a) {
             var minConf = _a.minConf, maxConf = _a.maxConf, addresses = _a.addresses, includeUnsafe = _a.includeUnsafe, query = _a.query, options = _a.options;
             return callThroughToRpc(arguments);

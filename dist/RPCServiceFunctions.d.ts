@@ -1,4 +1,4 @@
-import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, AssetAllocationSend, Asset, AssetNewRequest, AssetNewResponse, AssetInfoRequest, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, RpcResponse, SyscoinAddressEntry, TpsRawTx, Transaction, TransactionData, TxHeader, GetTransactionRequest } from "./index";
+import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, AssetAllocationSend, Asset, AssetNewRequest, AssetNewResponse, AssetInfoRequest, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, RpcResponse, SyscoinAddressEntry, TpsRawTx, Transaction, TransactionData, TxHeader, GetTransactionRequest, ListTransactionsRequest, TransactionListEntry } from "./index";
 export interface RPCServiceFunctions {
     getBestBlockHash(): Promise<any>;
     getBlock({ blockHash, verbosity }: {
@@ -547,12 +547,7 @@ export interface RPCServiceFunctions {
         includeWatchOnly?: number;
         includeRemoved?: number;
     }): Promise<any>;
-    listTransactions({ label, count, skip, includeWatchOnly }: {
-        label?: string;
-        count?: number;
-        skip?: number;
-        includeWatchOnly?: number;
-    }): Promise<any>;
+    listTransactions(request: ListTransactionsRequest): Promise<Array<TransactionListEntry>>;
     listUnspent({ minConf, maxConf, addresses, includeUnsafe, query, options }: {
         minConf?: number;
         maxConf?: number;

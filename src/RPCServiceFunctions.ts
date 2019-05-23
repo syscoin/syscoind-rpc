@@ -18,7 +18,7 @@ import {
     TpsRawTx,
     Transaction,
     TransactionData,
-    TxHeader, GetTransactionRequest
+    TxHeader, GetTransactionRequest, ListTransactionsRequest, TransactionListEntry
 } from "./index";
 
 export interface RPCServiceFunctions {
@@ -194,7 +194,7 @@ export interface RPCServiceFunctions {
     listReceivedByAddress({minConf, includeEmpty, includeWatchOnly, addressFilter}: { minConf?: number, includeEmpty?: boolean, includeWatchOnly?: boolean, addressFilter?: string }): Promise<SyscoinAddressEntry[]>;
     listReceivedByLabel({minConf, includeEmpty, includeWatchOnly}: { minConf?: number, includeEmpty?: boolean, includeWatchOnly?: boolean }): Promise<any>;
     listSinceBlock({blockHash, targetConfs, includeWatchOnly, includeRemoved}: { blockHash?: string, targetConfs?: number, includeWatchOnly?: number, includeRemoved?: number }): Promise<any>;
-    listTransactions({label, count, skip, includeWatchOnly}: { label?: string, count?: number, skip?: number, includeWatchOnly?: number }): Promise<any>;
+    listTransactions(request: ListTransactionsRequest): Promise<Array<TransactionListEntry>>;
     listUnspent({minConf, maxConf, addresses, includeUnsafe, query, options}: { minConf?: number, maxConf?: number, addresses?: Array<string>, includeUnsafe?: number, query?: any, options?: any }): Promise<any>;
     listWalletDir(): Promise<any>;
     listWallets(): Promise<any>;

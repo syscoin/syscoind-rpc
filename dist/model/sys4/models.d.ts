@@ -5,3 +5,5 @@ export * from './assetNewResponse';
 export * from './transaction';
 export * from './transactionDetailEntry';
 export * from './getTransactionRequest';
+export * from './transactionListEntry';
+export * from './listTransactionsRequest';

@@ -177,7 +177,7 @@ export function rpcServices(callRpc): RPCServiceFunctions {
     listReceivedByAddress({minConf, includeEmpty, includeWatchOnly, addressFilter}) { return callThroughToRpc(arguments) },
     listReceivedByLabel({minConf, includeEmpty, includeWatchOnly}) { return callThroughToRpc(arguments) },
     listSinceBlock({blockHash, targetConfs, includeWatchOnly, includeRemoved}) { return callThroughToRpc(arguments) },
-    listTransactions({label, count, skip, includeWatchOnly}) { return callThroughToRpc(arguments) },
+    listTransactions(request) { return callThroughToRpc(arguments) },
     listUnspent({minConf, maxConf, addresses, includeUnsafe, query, options}) { return callThroughToRpc(arguments) },
     listWalletDir() { return callThroughToRpc(arguments) },
     listWallets() { return callThroughToRpc(arguments) },
