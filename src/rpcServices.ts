@@ -161,7 +161,7 @@ export function rpcServices(callRpc): RPCServiceFunctions {
     getRawChangeAddress({addressType}) { return callThroughToRpc(arguments) },
     getReceivedByAddress({address, minConf}) { return callThroughToRpc(arguments) },
     getReceivedByLabel({label, minConf}) { return callThroughToRpc(arguments) },
-    getTransaction({txid, includeWatchOnly}) { return callThroughToRpc(arguments) },
+    getTransaction(request) { return callThroughToRpc(arguments) },
     getUnconfirmedBalance(){ return callThroughToRpc(arguments) },
     getWalletInfo(){ return callThroughToRpc(arguments) },
     importAddress({address, label, rescan, p2sh}){ return callThroughToRpc(arguments) },
