@@ -1,3 +1,5 @@
+import { SysTx } from "./SysTx";
+
 export interface TransactionListEntry {
     category?: string;
     amount?: number;
@@ -13,5 +15,5 @@ export interface TransactionListEntry {
     timereceived?: number;
     "bip125-replaceable"?: string;
     abandoned?: boolean;
-    systx?: any; //TODO: types
+    systx?: SysTx;
 }

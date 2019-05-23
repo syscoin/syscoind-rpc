@@ -7,3 +7,5 @@ export * from './transactionDetailEntry';
 export * from './getTransactionRequest';
 export * from './transactionListEntry';
 export * from './listTransactionsRequest';
+export * from './sysTx';
+export * from './sysTxAssetActivate';
