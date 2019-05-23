@@ -359,10 +359,7 @@ function rpcServices(callRpc) {
             var address = _a.address;
             return callThroughToRpc(arguments);
         },
-        listAssetIndexAssets: function (_a) {
-            var address = _a.address;
-            return callThroughToRpc(arguments);
-        },
+        listAssetIndexAssets: function (request) { return callThroughToRpc(arguments); },
         listAssets: function (_a) {
             var count = _a.count, from = _a.from, options = _a.options;
             return callThroughToRpc(arguments);

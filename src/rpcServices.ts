@@ -113,7 +113,7 @@ export function rpcServices(callRpc): RPCServiceFunctions {
     listAssetAllocations({count, from, query}) { return callThroughToRpc(arguments) },
     listAssetIndex({page, options}) { return callThroughToRpc(arguments) },
     listAssetIndexAllocations({address}) { return callThroughToRpc(arguments) },
-    listAssetIndexAssets({address}) { return callThroughToRpc(arguments) },
+    listAssetIndexAssets(request) { return callThroughToRpc(arguments) },
     listAssets({count, from, options}) { return callThroughToRpc(arguments) },
     masternode({command}) { return callThroughToRpc(arguments) },
     masternodeBroadcast({command}) { return callThroughToRpc(arguments) },

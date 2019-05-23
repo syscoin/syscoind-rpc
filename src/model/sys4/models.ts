@@ -9,3 +9,4 @@ export * from './transactionListEntry';
 export * from './listTransactionsRequest';
 export * from './sysTx';
 export * from './sysTxAssetActivate';
+export * from './listAssetIndexAssetsRequest';
