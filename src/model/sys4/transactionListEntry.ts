@@ -1,6 +1,7 @@
 import { SysTx } from "./SysTx";
 
 export interface TransactionListEntry {
+    address?: string; //only present on non-sys txs
     category?: string;
     amount?: number;
     vout?: number;
