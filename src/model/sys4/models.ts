@@ -4,3 +4,4 @@ export * from './assetNewRequest';
 export * from './assetNewResponse';
 export * from './transaction';
 export * from './transactionDetailEntry';
+export * from './getTransactionRequest';

@@ -525,10 +525,7 @@ function rpcServices(callRpc) {
             var label = _a.label, minConf = _a.minConf;
             return callThroughToRpc(arguments);
         },
-        getTransaction: function (_a) {
-            var txid = _a.txid, includeWatchOnly = _a.includeWatchOnly;
-            return callThroughToRpc(arguments);
-        },
+        getTransaction: function (request) { return callThroughToRpc(arguments); },
         getUnconfirmedBalance: function () { return callThroughToRpc(arguments); },
         getWalletInfo: function () { return callThroughToRpc(arguments); },
         importAddress: function (_a) {

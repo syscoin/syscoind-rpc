@@ -18,7 +18,7 @@ import {
     TpsRawTx,
     Transaction,
     TransactionData,
-    TxHeader
+    TxHeader, GetTransactionRequest
 } from "./index";
 
 export interface RPCServiceFunctions {
@@ -178,7 +178,7 @@ export interface RPCServiceFunctions {
     getRawChangeAddress({addressType}: { addressType?: string }): Promise<any>;
     getReceivedByAddress({address, minConf}: { address: string, minConf?: number }): Promise<any>;
     getReceivedByLabel({label, minConf}: { label: string, minConf?: number }): Promise<any>;
-    getTransaction({txid, includeWatchOnly}: { txid: string, includeWatchOnly?: boolean }): Promise<Transaction>;
+    getTransaction(request: GetTransactionRequest): Promise<Transaction>;
     getUnconfirmedBalance(): Promise<any>;
     getWalletInfo(): Promise<any>;
     importAddress({address, label, rescan, p2sh}: { address: string, label?: string, rescan?: number, p2sh?: number }): Promise<any>;
