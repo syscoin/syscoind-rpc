@@ -4,7 +4,7 @@ export interface AssetNewRequest {
     public_value: string;
     contract: string;
     precision: number;
-    supply: number;
+    total_supply: number;
     max_supply: number;
     update_flags: number;
     witness: string;
