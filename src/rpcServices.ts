@@ -1,4 +1,4 @@
-import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, AssetAllocationSend, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, RpcResponse, TpsRawTx, Transaction, TxHeader } from "./index";
+import { RpcResponse } from "./index";
 import { RPCServiceFunctions } from "./RPCServiceFunctions";
 
 export function rpcServices(callRpc): RPCServiceFunctions {
@@ -97,11 +97,11 @@ export function rpcServices(callRpc): RPCServiceFunctions {
     assetAllocationMint({assetGuid, address, amount, blockNum, txHex, txRootHex, merkleProofHex, merkleProofPathHex, witness}) { return callThroughToRpc(arguments) },
     assetAllocationSend({assetGuid, addressFrom, addressTo, amount}) { return callThroughToRpc(arguments) },
     assetAllocationSenderStatus({assetGuid, address, txid}) { return callThroughToRpc(arguments) },
-    assetAllocationSendMany({assetGuid, addressFrom, allocations, witness}) { return callThroughToRpc(arguments) },
+    assetAllocationSendMany({assetGuid, addressFrom, amounts, witness}) { return callThroughToRpc(arguments) },
     assetInfo(request) { return callThroughToRpc(arguments) },
     assetNew(request) { return callThroughToRpc(arguments) },
     assetSend({assetGuid, addressTo, amount}) { return callThroughToRpc(arguments) },
-    assetSendMany({assetGuid, allocations, witness}) { return callThroughToRpc(arguments) },
+    assetSendMany({assetGuid, amounts, witness}) { return callThroughToRpc(arguments) },
     assetTransfer({assetGuid, address, witness}) { return callThroughToRpc(arguments) },
     assetUpdate({assetGuid, publicValue, contract, supply, updateFlags, witness}) { return callThroughToRpc(arguments) },
     convertAddress({address}) { return callThroughToRpc(arguments) },

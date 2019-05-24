@@ -12,11 +12,6 @@ export interface RawTx {
   amount: number;
 }
 
-
-export interface AssetAllocationSend {
-  //TODO: what does this thing look like? Ask Jag.
-}
-
 export interface AssetAllocationBalanceQuery {
   addresses: Array<string>;
 }

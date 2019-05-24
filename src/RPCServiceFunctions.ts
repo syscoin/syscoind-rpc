@@ -3,7 +3,6 @@
 import {
     AssetAllocationBalanceQuery,
     AssetAllocationBalanceQueryWithGuid,
-    AssetAllocationSend,
     Asset,
     AssetNewRequest,
     AssetNewResponse,
@@ -18,7 +17,7 @@ import {
     TpsRawTx,
     Transaction,
     TransactionData,
-    TxHeader, GetTransactionRequest, ListTransactionsRequest, TransactionListEntry, AssetTransferRequest, HexResponse
+    TxHeader, GetTransactionRequest, ListTransactionsRequest, TransactionListEntry, AssetTransferRequest, HexResponse, AssetAllocationSendManyRequest, AssetSendRequest, AssetSendManyRequest, AssetAllocationSendRequest
 } from "./index"; import { ListAssetIndexAssetsRequest } from "./model/sys4/listAssetIndexAssetsRequest"; import { AssetUpdateRequest } from "./model/sys4/assetUpdateRequest";
 
 export interface RPCServiceFunctions {
@@ -112,13 +111,13 @@ export interface RPCServiceFunctions {
     assetAllocationInfo({assetGuid, address}: { assetGuid: number, address: string }): Promise<any>;
     assetAllocationLock({assetGuid, addressFrom, txid, outputIndex, witness}: { assetGuid: number, addressFrom: string, txid: string, outputIndex: number, witness?: string }): Promise<any>;
     assetAllocationMint({assetGuid, address, amount, blockNum, txHex, txRootHex, merkleProofHex, merkleProofPathHex, witness}: { assetGuid: number, address: string, amount: number, blockNum: number, txHex: string, txRootHex: string, merkleProofHex: string, merkleProofPathHex: string, witness?: string }): Promise<any>;
-    assetAllocationSend({assetGuid, addressFrom, addressTo, amount}: { assetGuid: number, addressFrom: string, addressTo: string, amount: number }): Promise<any>;
+    assetAllocationSend(request: AssetAllocationSendRequest): Promise<HexResponse>;
     assetAllocationSenderStatus({assetGuid, address, txid}: { assetGuid: number, address: string, txid: string }): Promise<any>;
-    assetAllocationSendMany({assetGuid, addressFrom, allocations, witness}: { assetGuid: number, addressFrom: string, allocations: Array<AssetAllocationSend>, witness?: string }): Promise<any>;
+    assetAllocationSendMany(request: AssetAllocationSendManyRequest): Promise<HexResponse>;
     assetInfo(request: AssetInfoRequest): Promise<Asset>;
     assetNew(request: AssetNewRequest): Promise<AssetNewResponse>;
-    assetSend({assetGuid, addressTo, amount}: { assetGuid: number, addressTo: string, amount: number }): Promise<any>;
-    assetSendMany({assetGuid, allocations, witness}: { assetGuid: number, allocations: Array<AssetAllocationSend>, witness?: string }): Promise<any>;
+    assetSend(request: AssetSendRequest): Promise<HexResponse>;
+    assetSendMany(request: AssetSendManyRequest): Promise<HexResponse>;
     assetTransfer(request: AssetTransferRequest): Promise<HexResponse>;
     assetUpdate(request: AssetUpdateRequest): Promise<HexResponse>;
     convertAddress({address}: { address: string }): Promise<any>;

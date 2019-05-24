@@ -10,8 +10,6 @@ export interface RawTx {
     witnessScript: string;
     amount: number;
 }
-export interface AssetAllocationSend {
-}
 export interface AssetAllocationBalanceQuery {
     addresses: Array<string>;
 }

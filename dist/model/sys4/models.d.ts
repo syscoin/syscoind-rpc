@@ -13,3 +13,8 @@ export * from './listAssetIndexAssetsRequest';
 export * from './assetUpdateRequest';
 export * from './assetTransferRequest';
 export * from './hexResponse';
+export * from './assetAllocationAmount';
+export * from './assetSendRequest';
+export * from './assetSendManyRequest';
+export * from './assetAllocationSendRequest';
+export * from './assetAllocationSendManyRequest';

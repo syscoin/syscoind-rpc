@@ -305,7 +305,7 @@ function rpcServices(callRpc) {
             return callThroughToRpc(arguments);
         },
         assetAllocationSendMany: function (_a) {
-            var assetGuid = _a.assetGuid, addressFrom = _a.addressFrom, allocations = _a.allocations, witness = _a.witness;
+            var assetGuid = _a.assetGuid, addressFrom = _a.addressFrom, amounts = _a.amounts, witness = _a.witness;
             return callThroughToRpc(arguments);
         },
         assetInfo: function (request) { return callThroughToRpc(arguments); },
@@ -315,7 +315,7 @@ function rpcServices(callRpc) {
             return callThroughToRpc(arguments);
         },
         assetSendMany: function (_a) {
-            var assetGuid = _a.assetGuid, allocations = _a.allocations, witness = _a.witness;
+            var assetGuid = _a.assetGuid, amounts = _a.amounts, witness = _a.witness;
             return callThroughToRpc(arguments);
         },
         assetTransfer: function (_a) {
