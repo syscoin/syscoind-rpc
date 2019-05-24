@@ -120,7 +120,7 @@ export interface RPCServiceFunctions {
     assetSend({assetGuid, addressTo, amount}: { assetGuid: number, addressTo: string, amount: number }): Promise<any>;
     assetSendMany({assetGuid, allocations, witness}: { assetGuid: number, allocations: Array<AssetAllocationSend>, witness?: string }): Promise<any>;
     assetTransfer({assetGuid, address, witness}: { assetGuid: number, address: string, witness: string }): Promise<any>;
-    assetUpdate(request: AssetUpdateRequest): Promise<any>;
+    assetUpdate(request: AssetUpdateRequest): Promise<string>;
     convertAddress({address}: { address: string }): Promise<any>;
     getBlockHashByTxid({txid}: { txid: string }): Promise<any>;
     getGovernanceInfo(): Promise<any>;

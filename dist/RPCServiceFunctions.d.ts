@@ -291,7 +291,7 @@ export interface RPCServiceFunctions {
         address: string;
         witness: string;
     }): Promise<any>;
-    assetUpdate(request: AssetUpdateRequest): Promise<any>;
+    assetUpdate(request: AssetUpdateRequest): Promise<string>;
     convertAddress({ address }: {
         address: string;
     }): Promise<any>;
