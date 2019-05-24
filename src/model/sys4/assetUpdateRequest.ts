@@ -3,6 +3,6 @@ export interface AssetUpdateRequest {
    publicValue?: string;
    contract?: string;
    supply?: number;
-   updateFlags?: string;
+   updateFlags?: number;
    witness?: string;
 }
