@@ -1,5 +1,5 @@
+import { HexResponse } from "./hexResponse";
 
-export interface AssetNewResponse {
-    hex: string;
+export interface AssetNewResponse extends HexResponse{
     assetguid: number;
 }
