@@ -11,3 +11,4 @@ export * from './sysTx';
 export * from './sysTxAssetActivate';
 export * from './listAssetIndexAssetsRequest';
 export * from './assetUpdateRequest';
+export * from './assetTransferRequest';

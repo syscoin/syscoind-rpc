@@ -18,7 +18,7 @@ import {
     TpsRawTx,
     Transaction,
     TransactionData,
-    TxHeader, GetTransactionRequest, ListTransactionsRequest, TransactionListEntry
+    TxHeader, GetTransactionRequest, ListTransactionsRequest, TransactionListEntry, AssetTransferRequest
 } from "./index"; import { ListAssetIndexAssetsRequest } from "./model/sys4/listAssetIndexAssetsRequest"; import { AssetUpdateRequest } from "./model/sys4/assetUpdateRequest";
 
 export interface RPCServiceFunctions {
@@ -119,7 +119,7 @@ export interface RPCServiceFunctions {
     assetNew(request: AssetNewRequest): Promise<AssetNewResponse>;
     assetSend({assetGuid, addressTo, amount}: { assetGuid: number, addressTo: string, amount: number }): Promise<any>;
     assetSendMany({assetGuid, allocations, witness}: { assetGuid: number, allocations: Array<AssetAllocationSend>, witness?: string }): Promise<any>;
-    assetTransfer({assetGuid, address, witness}: { assetGuid: number, address: string, witness: string }): Promise<any>;
+    assetTransfer(request: AssetTransferRequest): Promise<any>;
     assetUpdate(request: AssetUpdateRequest): Promise<string>;
     convertAddress({address}: { address: string }): Promise<any>;
     getBlockHashByTxid({txid}: { txid: string }): Promise<any>;
