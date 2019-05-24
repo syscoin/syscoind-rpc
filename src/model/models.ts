@@ -8,7 +8,6 @@ export * from './assetAmount';
 export * from './assetInput';
 export * from './assetSendRequest';
 export * from './assetTransferRequest';
-export * from './assetUpdateRequest';
 export * from './byteMessageInfo';
 export * from './dumpHdInfoResponse';
 export * from './encryptWalletRequest';

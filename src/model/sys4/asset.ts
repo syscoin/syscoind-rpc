@@ -10,4 +10,5 @@ export interface Asset {
     max_supply: number;
     update_flags: number;
     precision: number;
+    witness?: string;
 }

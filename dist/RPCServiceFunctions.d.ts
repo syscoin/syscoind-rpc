@@ -1,5 +1,6 @@
 import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, AssetAllocationSend, Asset, AssetNewRequest, AssetNewResponse, AssetInfoRequest, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, RpcResponse, SyscoinAddressEntry, TpsRawTx, Transaction, TransactionData, TxHeader, GetTransactionRequest, ListTransactionsRequest, TransactionListEntry } from "./index";
 import { ListAssetIndexAssetsRequest } from "./model/sys4/listAssetIndexAssetsRequest";
+import { AssetUpdateRequest } from "./model/sys4/assetUpdateRequest";
 export interface RPCServiceFunctions {
     getBestBlockHash(): Promise<any>;
     getBlock({ blockHash, verbosity }: {
@@ -290,14 +291,7 @@ export interface RPCServiceFunctions {
         address: string;
         witness: string;
     }): Promise<any>;
-    assetUpdate({ assetGuid, publicValue, contract, supply, updateFlags, witness }: {
-        assetGuid: number;
-        publicValue: string;
-        contract: string;
-        supply: number;
-        updateFlags: number;
-        witness: string;
-    }): Promise<any>;
+    assetUpdate(request: AssetUpdateRequest): Promise<any>;
     convertAddress({ address }: {
         address: string;
     }): Promise<any>;

@@ -19,7 +19,7 @@ import {
     Transaction,
     TransactionData,
     TxHeader, GetTransactionRequest, ListTransactionsRequest, TransactionListEntry
-} from "./index"; import { ListAssetIndexAssetsRequest } from "./model/sys4/listAssetIndexAssetsRequest";
+} from "./index"; import { ListAssetIndexAssetsRequest } from "./model/sys4/listAssetIndexAssetsRequest"; import { AssetUpdateRequest } from "./model/sys4/assetUpdateRequest";
 
 export interface RPCServiceFunctions {
     getBestBlockHash(): Promise<any>;
@@ -120,7 +120,7 @@ export interface RPCServiceFunctions {
     assetSend({assetGuid, addressTo, amount}: { assetGuid: number, addressTo: string, amount: number }): Promise<any>;
     assetSendMany({assetGuid, allocations, witness}: { assetGuid: number, allocations: Array<AssetAllocationSend>, witness?: string }): Promise<any>;
     assetTransfer({assetGuid, address, witness}: { assetGuid: number, address: string, witness: string }): Promise<any>;
-    assetUpdate({assetGuid, publicValue, contract, supply, updateFlags, witness}: { assetGuid: number, publicValue: string, contract: string, supply: number, updateFlags: number, witness: string }): Promise<any>;
+    assetUpdate(request: AssetUpdateRequest): Promise<any>;
     convertAddress({address}: { address: string }): Promise<any>;
     getBlockHashByTxid({txid}: { txid: string }): Promise<any>;
     getGovernanceInfo(): Promise<any>;
