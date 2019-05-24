@@ -2,7 +2,7 @@ export interface Asset {
     asset_guid: number;
     symbol: string;
     txid: string;
-    publicvalue: string;
+    public_value: string;
     address: string;
     contract: string;
     balance: number;
