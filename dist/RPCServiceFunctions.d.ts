@@ -1,4 +1,4 @@
-import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, Asset, AssetNewRequest, AssetNewResponse, AssetInfoRequest, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, RpcResponse, SyscoinAddressEntry, TpsRawTx, Transaction, TransactionData, TxHeader, GetTransactionRequest, ListTransactionsRequest, TransactionListEntry, AssetTransferRequest, HexResponse, AssetAllocationSendManyRequest, AssetSendRequest, AssetSendManyRequest, AssetAllocationSendRequest, AssetAllocation } from "./index";
+import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, Asset, AssetNewRequest, AssetNewResponse, AssetInfoRequest, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, RpcResponse, SyscoinAddressEntry, TpsRawTx, Transaction, TransactionData, TxHeader, GetTransactionRequest, ListTransactionsRequest, TransactionListEntry, AssetTransferRequest, HexResponse, AssetAllocationSendManyRequest, AssetSendRequest, AssetSendManyRequest, AssetAllocationSendRequest, AssetAllocation, AssetAllocationInfoRequest } from "./index";
 import { ListAssetIndexAssetsRequest } from "./model/sys4/listAssetIndexAssetsRequest";
 import { AssetUpdateRequest } from "./model/sys4/assetUpdateRequest";
 export interface RPCServiceFunctions {
@@ -235,10 +235,7 @@ export interface RPCServiceFunctions {
         amount: number;
         ethAddress: string;
     }): Promise<any>;
-    assetAllocationInfo({ assetGuid, address }: {
-        assetGuid: number;
-        address: string;
-    }): Promise<any>;
+    assetAllocationInfo(request: AssetAllocationInfoRequest): Promise<AssetAllocation>;
     assetAllocationLock({ assetGuid, addressFrom, txid, outputIndex, witness }: {
         assetGuid: number;
         addressFrom: string;

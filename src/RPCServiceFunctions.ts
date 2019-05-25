@@ -17,7 +17,7 @@ import {
     TpsRawTx,
     Transaction,
     TransactionData,
-    TxHeader, GetTransactionRequest, ListTransactionsRequest, TransactionListEntry, AssetTransferRequest, HexResponse, AssetAllocationSendManyRequest, AssetSendRequest, AssetSendManyRequest, AssetAllocationSendRequest, AssetAllocation
+    TxHeader, GetTransactionRequest, ListTransactionsRequest, TransactionListEntry, AssetTransferRequest, HexResponse, AssetAllocationSendManyRequest, AssetSendRequest, AssetSendManyRequest, AssetAllocationSendRequest, AssetAllocation, AssetAllocationInfoRequest
 } from "./index"; import { ListAssetIndexAssetsRequest } from "./model/sys4/listAssetIndexAssetsRequest"; import { AssetUpdateRequest } from "./model/sys4/assetUpdateRequest";
 
 export interface RPCServiceFunctions {
@@ -108,7 +108,7 @@ export interface RPCServiceFunctions {
     addressBalance({address}: { address: string }): Promise<any>;
     assetAllocationBalance({assetGuid, address}: { assetGuid: number, address: string }): Promise<any>;
     assetAllocationBurn({assetGuid, address, amount, ethAddress}: { assetGuid: number, address: string, amount: number, ethAddress: string }): Promise<any>;
-    assetAllocationInfo({assetGuid, address}: { assetGuid: number, address: string }): Promise<any>;
+    assetAllocationInfo(request: AssetAllocationInfoRequest): Promise<AssetAllocation>;
     assetAllocationLock({assetGuid, addressFrom, txid, outputIndex, witness}: { assetGuid: number, addressFrom: string, txid: string, outputIndex: number, witness?: string }): Promise<any>;
     assetAllocationMint({assetGuid, address, amount, blockNum, txHex, txRootHex, merkleProofHex, merkleProofPathHex, witness}: { assetGuid: number, address: string, amount: number, blockNum: number, txHex: string, txRootHex: string, merkleProofHex: string, merkleProofPathHex: string, witness?: string }): Promise<any>;
     assetAllocationSend(request: AssetAllocationSendRequest): Promise<HexResponse>;
