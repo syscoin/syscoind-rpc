@@ -18,3 +18,4 @@ export * from './assetSendRequest';
 export * from './assetSendManyRequest';
 export * from './assetAllocationSendRequest';
 export * from './assetAllocationSendManyRequest';
+export * from './assetAllocation';

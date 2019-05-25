@@ -17,7 +17,7 @@ import {
     TpsRawTx,
     Transaction,
     TransactionData,
-    TxHeader, GetTransactionRequest, ListTransactionsRequest, TransactionListEntry, AssetTransferRequest, HexResponse, AssetAllocationSendManyRequest, AssetSendRequest, AssetSendManyRequest, AssetAllocationSendRequest
+    TxHeader, GetTransactionRequest, ListTransactionsRequest, TransactionListEntry, AssetTransferRequest, HexResponse, AssetAllocationSendManyRequest, AssetSendRequest, AssetSendManyRequest, AssetAllocationSendRequest, AssetAllocation
 } from "./index"; import { ListAssetIndexAssetsRequest } from "./model/sys4/listAssetIndexAssetsRequest"; import { AssetUpdateRequest } from "./model/sys4/assetUpdateRequest";
 
 export interface RPCServiceFunctions {
@@ -128,7 +128,7 @@ export interface RPCServiceFunctions {
     listAssetAllocationMempoolBalances({count, from, query}: { count?: number, from?: number, query?: AssetAllocationBalanceQuery }): Promise<any>;
     listAssetAllocations({count, from, query}: { count?: number, from?: number, query?: AssetAllocationBalanceQueryWithGuid }): Promise<any>;
     listAssetIndex({page, options}: { page?: number, options?: ListAssetIndexOptions }): Promise<any>;
-    listAssetIndexAllocations({address}: { address: string }): Promise<any>;
+    listAssetIndexAllocations({address}: { address: string }): Promise<AssetAllocation[]>;
     listAssetIndexAssets(request: ListAssetIndexAssetsRequest): Promise<Asset[]>;
     listAssets({count, from, options}: { count?: number, from?: number, options?: ListAssetOptions }): Promise<any>;
     masternode({command}: { command: string }): Promise<any>;
