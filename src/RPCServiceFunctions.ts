@@ -93,7 +93,7 @@ export interface RPCServiceFunctions {
     createPsbt({txHeaders, payloadInfo, locktime, replaceable}: { txHeaders: Array<TxHeader>, payloadInfo: Array<PbstPayloadInfo>, locktime?: number, replaceable?: number }): Promise<any>;
     createRawTransaction({txHeaders, payloadInfo, locktime, replaceable}: { txHeaders: Array<TxHeader>, payloadInfo: Array<PbstPayloadInfo>, locktime?: number, replaceable?: number }): Promise<any>;
     decodePsbt({pbst}: { pbst: string }): Promise<any>;
-    decodeRawTransaction({hexString, isWitness}: { hexString: string, isWitness: number }): Promise<any>;
+    decodeRawTransaction({hexString, isWitness}: { hexString: string, isWitness?: boolean }): Promise<any>;
     decodeScript({hexString}: { hexString: string }): Promise<any>;
     finalizePsbt({pbst, extract}: { pbst: string, extract?: number }): Promise<any>;
     fundRawTransaction({hexString, options, isWitness}: { hexString: string, options?: number, isWitness?: number }): Promise<any>;

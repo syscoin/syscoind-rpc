@@ -650,7 +650,7 @@ function rpcServices(callRpc) {
     };
     function callThroughToRpc(args) {
         return __awaiter(this, void 0, void 0, function () {
-            var argArr, paramArr, argObj_1, orderedKeys, response;
+            var argArr, paramArr, argObj_1, orderedKeys, response, e_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -666,20 +666,29 @@ function rpcServices(callRpc) {
                             //create an ordered array of just values
                             paramArr = orderedKeys.map(function (value, index, arr) { return argObj_1[value]; });
                         }
-                        return [4 /*yield*/, callRpc(args.callee.name.toLowerCase(), paramArr)];
+                        _a.label = 1;
                     case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, callRpc(args.callee.name.toLowerCase(), paramArr)];
+                    case 2:
                         response = _a.sent();
-                        return [2 /*return*/, unwrapRpcResponse(response)];
+                        return [3 /*break*/, 4];
+                    case 3:
+                        e_1 = _a.sent();
+                        // console.log("caught error: ", e.response.data);
+                        return [2 /*return*/, unwrapRpcResponse(e_1.response.data)];
+                    case 4: return [2 /*return*/, unwrapRpcResponse(response)];
                 }
             });
         });
     }
     function unwrapRpcResponse(response) {
+        // console.log("process:", response);
         if (response.result !== null && response.error === null) {
             return response.result;
         }
         else if (response.result === null && response.error !== null) {
-            return response.error;
+            throw new Error(response.error.message);
         }
         return response; //get requests are not wrapped
     }

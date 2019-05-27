@@ -183,7 +183,7 @@ export interface RPCServiceFunctions {
     }): Promise<any>;
     decodeRawTransaction({ hexString, isWitness }: {
         hexString: string;
-        isWitness: number;
+        isWitness?: boolean;
     }): Promise<any>;
     decodeScript({ hexString }: {
         hexString: string;

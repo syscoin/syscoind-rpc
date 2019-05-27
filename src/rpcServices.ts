@@ -223,16 +223,23 @@ export function rpcServices(callRpc): RPCServiceFunctions {
       paramArr = orderedKeys.map((value, index, arr) => argObj[value]);
     }
 
-    const response = await callRpc(args.callee.name.toLowerCase(), paramArr);
+    let response;
+    try {
+      response = await callRpc(args.callee.name.toLowerCase(), paramArr);
+    }catch (e) {
+      // console.log("caught error: ", e.response.data);
+      return unwrapRpcResponse(e.response.data);
+    }
 
     return unwrapRpcResponse(response);
   }
 
   function unwrapRpcResponse(response: RpcResponse): any {
+    // console.log("process:", response);
     if(response.result !== null && response.error === null) {
       return response.result;
     }else if(response.result === null && response.error !== null) {
-      return response.error;
+      throw new Error(response.error.message);
     }
 
     return response; //get requests are not wrapped
