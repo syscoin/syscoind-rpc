@@ -20,3 +20,7 @@ export * from './assetAllocationSendRequest';
 export * from './assetAllocationSendManyRequest';
 export * from './assetAllocation';
 export * from './assetAllocationInfoRequest';
+export * from './walletInfo';
+export * from './networkInfo';
+export * from './networkInfoDetails';
+export * from './blockchainInfo';

@@ -1,4 +1,4 @@
-import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, Asset, AssetNewRequest, AssetNewResponse, AssetInfoRequest, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, RpcResponse, SyscoinAddressEntry, TpsRawTx, Transaction, TransactionData, TxHeader, GetTransactionRequest, ListTransactionsRequest, TransactionListEntry, AssetTransferRequest, HexResponse, AssetAllocationSendManyRequest, AssetSendRequest, AssetSendManyRequest, AssetAllocationSendRequest, AssetAllocation, AssetAllocationInfoRequest } from "./index";
+import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, Asset, AssetNewRequest, AssetNewResponse, AssetInfoRequest, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, RpcResponse, SyscoinAddressEntry, TpsRawTx, Transaction, TransactionData, TxHeader, GetTransactionRequest, ListTransactionsRequest, TransactionListEntry, AssetTransferRequest, HexResponse, AssetAllocationSendManyRequest, AssetSendRequest, AssetSendManyRequest, AssetAllocationSendRequest, AssetAllocation, AssetAllocationInfoRequest, WalletInfo, NetworkInfo, BlockchainInfo } from "./index";
 import { ListAssetIndexAssetsRequest } from "./model/sys4/listAssetIndexAssetsRequest";
 import { AssetUpdateRequest } from "./model/sys4/assetUpdateRequest";
 export interface RPCServiceFunctions {
@@ -7,7 +7,7 @@ export interface RPCServiceFunctions {
         blockHash: string;
         verbosity?: number;
     }): Promise<any>;
-    getBlockchainInfo(): Promise<any>;
+    getBlockchainInfo(): Promise<BlockchainInfo>;
     getBlockCount(): Promise<any>;
     getBlockFilter({ blockHash, filterType }: {
         blockHash: string;
@@ -141,7 +141,7 @@ export interface RPCServiceFunctions {
     }): Promise<any>;
     getConnectionCount(): Promise<any>;
     getNetTotals(): Promise<any>;
-    getNetworkInfo(): Promise<any>;
+    getNetworkInfo(): Promise<NetworkInfo>;
     getNodeAddresses(): Promise<any>;
     getPeerInfo(): Promise<any>;
     getInfo(): Promise<any>;
@@ -462,7 +462,7 @@ export interface RPCServiceFunctions {
     }): Promise<any>;
     getTransaction(request: GetTransactionRequest): Promise<Transaction>;
     getUnconfirmedBalance(): Promise<any>;
-    getWalletInfo(): Promise<any>;
+    getWalletInfo(): Promise<WalletInfo>;
     importAddress({ address, label, rescan, p2sh }: {
         address: string;
         label?: string;

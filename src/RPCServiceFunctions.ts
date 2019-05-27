@@ -17,13 +17,13 @@ import {
     TpsRawTx,
     Transaction,
     TransactionData,
-    TxHeader, GetTransactionRequest, ListTransactionsRequest, TransactionListEntry, AssetTransferRequest, HexResponse, AssetAllocationSendManyRequest, AssetSendRequest, AssetSendManyRequest, AssetAllocationSendRequest, AssetAllocation, AssetAllocationInfoRequest
+    TxHeader, GetTransactionRequest, ListTransactionsRequest, TransactionListEntry, AssetTransferRequest, HexResponse, AssetAllocationSendManyRequest, AssetSendRequest, AssetSendManyRequest, AssetAllocationSendRequest, AssetAllocation, AssetAllocationInfoRequest, WalletInfo, NetworkInfo, BlockchainInfo
 } from "./index"; import { ListAssetIndexAssetsRequest } from "./model/sys4/listAssetIndexAssetsRequest"; import { AssetUpdateRequest } from "./model/sys4/assetUpdateRequest";
 
 export interface RPCServiceFunctions {
     getBestBlockHash(): Promise<any>;
     getBlock({blockHash, verbosity}: { blockHash: string, verbosity?: number }): Promise<any>;
-    getBlockchainInfo(): Promise<any>;
+    getBlockchainInfo(): Promise<BlockchainInfo>;
     getBlockCount(): Promise<any>;
     getBlockFilter({blockHash, filterType}: { blockHash: string, filterType?: string }): Promise<any>;
     getBlockHash({height}: { height: number }): Promise<any>;
@@ -77,7 +77,7 @@ export interface RPCServiceFunctions {
     getAddedNodeInfo({nodeAddress}: { nodeAddress: string }): Promise<any>;
     getConnectionCount(): Promise<any>;
     getNetTotals(): Promise<any>;
-    getNetworkInfo(): Promise<any>;
+    getNetworkInfo(): Promise<NetworkInfo>;
     getNodeAddresses(): Promise<any>;
     getPeerInfo(): Promise<any>;
     getInfo(): Promise<any>;
@@ -179,7 +179,7 @@ export interface RPCServiceFunctions {
     getReceivedByLabel({label, minConf}: { label: string, minConf?: number }): Promise<any>;
     getTransaction(request: GetTransactionRequest): Promise<Transaction>;
     getUnconfirmedBalance(): Promise<any>;
-    getWalletInfo(): Promise<any>;
+    getWalletInfo(): Promise<WalletInfo>;
     importAddress({address, label, rescan, p2sh}: { address: string, label?: string, rescan?: number, p2sh?: number }): Promise<any>;
     importMulti({requests, options}: { requests: string, options: any }): Promise<any>;
     importPrivKey({key, label, rescan}: { key: string, label?: string, rescan?: number }): Promise<any>;
