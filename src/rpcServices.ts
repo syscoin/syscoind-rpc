@@ -228,7 +228,10 @@ export function rpcServices(callRpc): RPCServiceFunctions {
       response = await callRpc(args.callee.name.toLowerCase(), paramArr);
     }catch (e) {
       // console.log("caught error: ", e.response.data);
-      return unwrapRpcResponse(e.response.data);
+      if(e.response.data.result !== undefined && e.response.data.error !== undefined) {
+        //this is a special syscoin error, return the nested error
+        return unwrapRpcResponse(e.response.data);
+      }
     }
 
     return unwrapRpcResponse(response);
