@@ -676,9 +676,11 @@ function rpcServices(callRpc) {
                     case 3:
                         e_1 = _a.sent();
                         // console.log("caught error: ", e.response.data);
-                        if (e_1.response.data.result !== undefined && e_1.response.data.error !== undefined) {
-                            //this is a special syscoin error, return the nested error
-                            return [2 /*return*/, unwrapRpcResponse(e_1.response.data)];
+                        if (e_1.response && e_1.response.data) {
+                            if (e_1.response.data.result !== undefined && e_1.response.data.error !== undefined) {
+                                //this is a special syscoin error, return the nested error
+                                return [2 /*return*/, unwrapRpcResponse(e_1.response.data)];
+                            }
                         }
                         return [3 /*break*/, 4];
                     case 4: return [2 /*return*/, unwrapRpcResponse(response)];
