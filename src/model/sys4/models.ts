@@ -9,6 +9,9 @@ export * from './transactionListEntry';
 export * from './listTransactionsRequest';
 export * from './sysTx';
 export * from './sysTxAssetActivate';
+export * from './sysTxAssetUpdate'
+export * from './sysTxAssetTransfer'
+export * from './sysTxAssetAllocationSend'
 export * from './listAssetIndexAssetsRequest';
 export * from './assetUpdateRequest';
 export * from './assetTransferRequest';
