@@ -1,4 +1,5 @@
 import { TransactionDetailEntry } from './transactionDetailEntry';
+import { SysTx } from "./sysTx";
 
 export interface Transaction { 
     amount?: string;
@@ -12,4 +13,5 @@ export interface Transaction {
     timereceived?: number;
     details?: Array<TransactionDetailEntry>;
     hex?: string;
+    systx?: SysTx;
 }
