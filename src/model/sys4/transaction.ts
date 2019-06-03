@@ -13,5 +13,4 @@ export interface Transaction {
     timereceived?: number;
     details?: Array<TransactionDetailEntry>;
     hex?: string;
-    systx?: SysTx;
 }
