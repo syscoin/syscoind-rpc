@@ -1,4 +1,4 @@
-import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, Asset, AssetNewRequest, AssetNewResponse, AssetInfoRequest, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, RpcResponse, SyscoinAddressEntry, TpsRawTx, Transaction, TransactionData, TxHeader, GetTransactionRequest, ListTransactionsRequest, TransactionListEntry, AssetTransferRequest, HexResponse, AssetAllocationSendManyRequest, AssetSendRequest, AssetSendManyRequest, AssetAllocationSendRequest, AssetAllocation, AssetAllocationInfoRequest, WalletInfo, NetworkInfo, BlockchainInfo } from "./index";
+import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, Asset, AssetNewRequest, AssetNewResponse, AssetInfoRequest, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, RpcResponse, SyscoinAddressEntry, TpsRawTx, Transaction, TransactionData, TxHeader, GetTransactionRequest, ListTransactionsRequest, TransactionListEntry, AssetTransferRequest, HexResponse, AssetAllocationSendManyRequest, AssetSendRequest, AssetSendManyRequest, AssetAllocationSendRequest, AssetAllocation, AssetAllocationInfoRequest, WalletInfo, NetworkInfo, BlockchainInfo, AddressInfo } from "./index";
 import { ListAssetIndexAssetsRequest } from "./model/sys4/listAssetIndexAssetsRequest";
 import { AssetUpdateRequest } from "./model/sys4/assetUpdateRequest";
 export interface RPCServiceFunctions {
@@ -439,7 +439,7 @@ export interface RPCServiceFunctions {
     }): Promise<any>;
     getAddressInfo({ address }: {
         address: string;
-    }): Promise<any>;
+    }): Promise<AddressInfo>;
     getBalance({ dummy, minconf, includeWatchOnly }: {
         dummy?: string;
         minconf: number;

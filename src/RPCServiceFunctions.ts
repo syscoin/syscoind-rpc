@@ -17,7 +17,7 @@ import {
     TpsRawTx,
     Transaction,
     TransactionData,
-    TxHeader, GetTransactionRequest, ListTransactionsRequest, TransactionListEntry, AssetTransferRequest, HexResponse, AssetAllocationSendManyRequest, AssetSendRequest, AssetSendManyRequest, AssetAllocationSendRequest, AssetAllocation, AssetAllocationInfoRequest, WalletInfo, NetworkInfo, BlockchainInfo
+    TxHeader, GetTransactionRequest, ListTransactionsRequest, TransactionListEntry, AssetTransferRequest, HexResponse, AssetAllocationSendManyRequest, AssetSendRequest, AssetSendManyRequest, AssetAllocationSendRequest, AssetAllocation, AssetAllocationInfoRequest, WalletInfo, NetworkInfo, BlockchainInfo, AddressInfo
 } from "./index"; import { ListAssetIndexAssetsRequest } from "./model/sys4/listAssetIndexAssetsRequest"; import { AssetUpdateRequest } from "./model/sys4/assetUpdateRequest";
 
 export interface RPCServiceFunctions {
@@ -171,7 +171,7 @@ export interface RPCServiceFunctions {
     dumpWallet({fileName}: { fileName: string }): Promise<any>;
     encryptWallet({passphrase}: { passphrase: string }): Promise<any>;
     getAddressesByLabel({label}: { label: string }): Promise<any>;
-    getAddressInfo({address}: { address: string }): Promise<any>;
+    getAddressInfo({address}: { address: string }): Promise<AddressInfo>;
     getBalance({dummy, minconf, includeWatchOnly}: { dummy?: string, minconf: number, includeWatchOnly: number }): Promise<any>;
     getNewAddress({label, addressType}: { label?: string, addressType?: string }): Promise<any>;
     getRawChangeAddress({addressType}: { addressType?: string }): Promise<any>;

@@ -27,3 +27,5 @@ export * from './walletInfo';
 export * from './networkInfo';
 export * from './networkInfoDetails';
 export * from './blockchainInfo';
+export * from './addressInfo';
+export * from './addressInfoLabel';
