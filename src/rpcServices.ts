@@ -225,10 +225,10 @@ export function rpcServices(callRpc): RPCServiceFunctions {
 
     let response;
     try {
-      console.log("Calling SYS-JS function:", args.callee.name.toLowerCase(), 'with params', paramArr);
+      // console.log("Calling SYS-JS function:", args.callee.name.toLowerCase(), 'with params', paramArr);
       response = await callRpc(args.callee.name.toLowerCase(), paramArr);
     }catch (e) {
-      console.log("caught error: ", e.response.data);
+      // console.log("caught error: ", e.response.data);
       if (e.response && e.response.data) {
         if (e.response.data.result !== undefined && e.response.data.error !== undefined) {
           //this is a special syscoin error, return the nested error
@@ -241,7 +241,7 @@ export function rpcServices(callRpc): RPCServiceFunctions {
   }
 
   function unwrapRpcResponse(response: RpcResponse): any {
-    console.log("process:", response);
+    // console.log("process:", response);
     if(response.result !== null && response.error === null) {
       return response.result;
     }else if(response.result === null && response.error !== null) {

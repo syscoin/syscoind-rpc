@@ -669,14 +669,14 @@ function rpcServices(callRpc) {
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
-                        console.log("Calling SYS-JS function:", args.callee.name.toLowerCase(), 'with params', paramArr);
                         return [4 /*yield*/, callRpc(args.callee.name.toLowerCase(), paramArr)];
                     case 2:
+                        // console.log("Calling SYS-JS function:", args.callee.name.toLowerCase(), 'with params', paramArr);
                         response = _a.sent();
                         return [3 /*break*/, 4];
                     case 3:
                         e_1 = _a.sent();
-                        console.log("caught error: ", e_1.response.data);
+                        // console.log("caught error: ", e.response.data);
                         if (e_1.response && e_1.response.data) {
                             if (e_1.response.data.result !== undefined && e_1.response.data.error !== undefined) {
                                 //this is a special syscoin error, return the nested error
@@ -690,7 +690,7 @@ function rpcServices(callRpc) {
         });
     }
     function unwrapRpcResponse(response) {
-        console.log("process:", response);
+        // console.log("process:", response);
         if (response.result !== null && response.error === null) {
             return response.result;
         }
