@@ -228,7 +228,7 @@ export function rpcServices(callRpc): RPCServiceFunctions {
       console.log("Calling SYS-JS function:", args.callee.name.toLowerCase(), 'with params', paramArr);
       response = await callRpc(args.callee.name.toLowerCase(), paramArr);
     }catch (e) {
-      // console.log("caught error: ", e.response.data);
+      console.log("caught error: ", e.response.data);
       if (e.response && e.response.data) {
         if (e.response.data.result !== undefined && e.response.data.error !== undefined) {
           //this is a special syscoin error, return the nested error
