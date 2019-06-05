@@ -669,6 +669,7 @@ function rpcServices(callRpc) {
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
+                        console.log("Calling SYS-JS function:", args.callee.name.toLowerCase(), 'with params', paramArr);
                         return [4 /*yield*/, callRpc(args.callee.name.toLowerCase(), paramArr)];
                     case 2:
                         response = _a.sent();
@@ -689,7 +690,7 @@ function rpcServices(callRpc) {
         });
     }
     function unwrapRpcResponse(response) {
-        // console.log("process:", response);
+        console.log("process:", response);
         if (response.result !== null && response.error === null) {
             return response.result;
         }
