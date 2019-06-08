@@ -4,10 +4,11 @@ export interface SysTxAssetUpdate {
     symbol: string;
     txid: string;
     height: number;
-    public_value: string;
+    public_value?: string;
     sender: string;
-    update_flags: number;
-    balance: number;
+    update_flags?: number;
+    balance?: number;
+    contract?: string;
     precision: number;
     blockhash: string;
 }

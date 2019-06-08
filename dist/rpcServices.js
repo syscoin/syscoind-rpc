@@ -684,7 +684,14 @@ function rpcServices(callRpc) {
                             }
                         }
                         return [3 /*break*/, 4];
-                    case 4: return [2 /*return*/, unwrapRpcResponse(response)];
+                    case 4:
+                        try {
+                            return [2 /*return*/, unwrapRpcResponse(response)];
+                        }
+                        catch (e) {
+                            console.log("RPC COMM ERROR:", e);
+                        }
+                        return [2 /*return*/];
                 }
             });
         });

@@ -237,7 +237,11 @@ export function rpcServices(callRpc): RPCServiceFunctions {
       }
     }
 
-    return unwrapRpcResponse(response);
+    try {
+      return unwrapRpcResponse(response);
+    }catch(e) {
+      console.log("RPC COMM ERROR:", e);
+    }
   }
 
   function unwrapRpcResponse(response: RpcResponse): any {
