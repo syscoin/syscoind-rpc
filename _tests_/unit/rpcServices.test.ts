@@ -8,10 +8,10 @@ describe('RPC Services Tests', () => {
     };
 
     //requires non-anonymous function
-    function someRpcMethod(paramA?) { return rpcServices(mockRpc).callThroughToRpc(arguments); }
+    function someRpcMethod(paramA?, paramB?) { return rpcServices(mockRpc).callThroughToRpc(arguments); }
 
     it('parses the arguments object correctly', async () => {
-      let result = await someRpcMethod({propA: "A", propB: "B"});
+      let result = await someRpcMethod("A", "B");
       expect(result.method).toBe('somerpcmethod');
       expect(result.args[0]).toBe('A');
       expect(result.args[1]).toBe('B');
