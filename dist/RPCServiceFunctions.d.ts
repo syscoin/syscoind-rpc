@@ -1,4 +1,4 @@
-import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, Asset, AssetNewResponse, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, RpcResponse, SyscoinAddressEntry, TpsRawTx, Transaction, TransactionData, TxHeader, ListTransactionsRequest, TransactionListEntry, HexResponse, AssetAllocationSendRequest, AssetAllocation, WalletInfo, NetworkInfo, BlockchainInfo, AddressInfo, AssetAllocationAmount } from "./index";
+import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, Asset, AssetNewResponse, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, RpcResponse, SyscoinAddressEntry, TpsRawTx, Transaction, TransactionData, TxHeader, ListTransactionsRequest, TransactionListEntry, HexResponse, AssetAllocation, WalletInfo, NetworkInfo, BlockchainInfo, AddressInfo, AssetAllocationAmount } from "./index";
 export interface RPCServiceFunctions {
     getBestBlockHash(): Promise<any>;
     getBlock(blockHash: string, verbosity?: number): Promise<any>;
@@ -28,7 +28,7 @@ export interface RPCServiceFunctions {
     getMemoryInfo(mode?: string): Promise<any>;
     getRpcInfo(): Promise<any>;
     help(command?: string): Promise<any>;
-    logging(includeCategories?: Array<string>, excludeCategories: Array<string>): Promise<any>;
+    logging(includeCategories?: Array<string>, excludeCategories?: Array<string>): Promise<any>;
     stop(): Promise<any>;
     uptime(): Promise<any>;
     generate(numberOfBlocks: number, maxTries?: number): Promise<any>;
@@ -78,7 +78,7 @@ export interface RPCServiceFunctions {
     assetAllocationInfo(assetGuid: number, address: string): Promise<AssetAllocation>;
     assetAllocationLock(assetGuid: number, addressFrom: string, txid: string, outputIndex: number, witness?: string): Promise<any>;
     assetAllocationMint(assetGuid: number, address: string, amount: number, blockNum: number, txHex: string, txRootHex: string, merkleProofHex: string, merkleProofPathHex: string, witness?: string): Promise<any>;
-    assetAllocationSend(request: AssetAllocationSendRequest): Promise<HexResponse>;
+    assetAllocationSend(assetGuid: number, addressFrom: string, addressTo: string, amount: number): Promise<HexResponse>;
     assetAllocationSenderStatus(assetGuid: number, address: string, txid: string): Promise<any>;
     assetAllocationSendMany(assetGuid: number, addressFrom: string, amounts: AssetAllocationAmount[], witness: string): Promise<HexResponse>;
     assetInfo(assetGuid: number): Promise<Asset>;
@@ -135,7 +135,7 @@ export interface RPCServiceFunctions {
     encryptWallet(passphrase: string): Promise<any>;
     getAddressesByLabel(label: string): Promise<any>;
     getAddressInfo(address: string): Promise<AddressInfo>;
-    getBalance(dummy?: string, minconf: number, includeWatchOnly: number): Promise<any>;
+    getBalance(dummy: string, minconf: number, includeWatchOnly: number): Promise<any>;
     getNewAddress(label?: string, addressType?: string): Promise<any>;
     getRawChangeAddress(addressType?: string): Promise<any>;
     getReceivedByAddress(address: string, minConf?: number): Promise<any>;

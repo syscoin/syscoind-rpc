@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
-import { JsonRpcRequest, RpcConfigOptions } from "./index";
+import { JsonRpcRequest, JsonRpcCall, RpcConfigOptions } from "./index";
 
 export class SyscoinRpcClient {
 
@@ -21,7 +21,7 @@ export class SyscoinRpcClient {
     this.batchCallRpc = this.batchCallRpc.bind(this);
   }
 
-  private async getResponseFromRpcCall(response) {
+  private getStandardResponseFromRpcResponse(response) {
     let dataFromRpc = response.data;
 
     if (dataFromRpc) {
@@ -31,11 +31,24 @@ export class SyscoinRpcClient {
     }
   }
 
-  private getRequestObject(methodName: string, args?: any[]) {
+  private getRequestObject(methodName: string, args?: any[]): JsonRpcCall {
+    const instance = this.instance;
+    const url = this.url;
+    const getStandardResponseFromRpcResponse = this.getStandardResponseFromRpcResponse;
     return {
-      jsonrpc: "1.0",
-      method: methodName.toLowerCase(),
-      params: args ? Array.from(args).filter(element => element !== undefined): []
+      data: {
+        jsonrpc: "1.0",
+        method: methodName.toLowerCase(),
+        params: args ? Array.from(args).filter(element => element !== undefined) : []
+      },
+      call: async function(unwrap: boolean = true) {
+        let responseFromRpc = await instance.post(url, this.data);
+        if (unwrap) {
+          return getStandardResponseFromRpcResponse(responseFromRpc);
+        } else {
+          return responseFromRpc.data;
+        }
+      }
     };
   }
 
@@ -57,11 +70,8 @@ export class SyscoinRpcClient {
   }
 
   //this needs to be defined in constructor so the THIS references get setup
-  public async callRpc(methodName: string, args?: Array<any>) {
-    let data = this.getRequestObject(methodName, args);
-    let responseFromRpc = await this.instance.post(this.url, data);
-
-    return this.getResponseFromRpcCall(responseFromRpc);
+  public callRpc(methodName: string, args?: Array<any>): JsonRpcCall {
+    return this.getRequestObject(methodName, args);
   }
 
 
@@ -71,7 +81,7 @@ export class SyscoinRpcClient {
 
     let dataFromRPC = [];
     for(let result of <any>responseFromRpc) {
-      dataFromRPC.push(this.getResponseFromRpcCall(result))
+      dataFromRPC.push(this.getStandardResponseFromRpcResponse(result))
     }
 
     // make the request and then

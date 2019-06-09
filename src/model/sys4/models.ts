@@ -30,3 +30,4 @@ export * from './blockchainInfo';
 export * from './addressInfo';
 export * from './addressInfoLabel';
 export * from './jsonRpcRequest';
+export * from './jsonRpcCall';

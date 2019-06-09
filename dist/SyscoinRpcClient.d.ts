@@ -1,10 +1,11 @@
-import { RpcConfigOptions } from "./index";
+import { JsonRpcRequest, JsonRpcCall, RpcConfigOptions } from "./index";
 export declare class SyscoinRpcClient {
     private configOptions;
     private instance;
-    callRpc: (method: string, params?: Array<any>) => Promise<any>;
+    private readonly url;
     constructor(configOptions: RpcConfigOptions);
-    private getResponseFromRpcCall;
+    private getStandardResponseFromRpcResponse;
+    private getRequestObject;
     static createConfigurationObject(username: any, password: any, useSsl: any, timeout: any, customHttpAgent: any): {
         auth: {
             username: any;
@@ -12,4 +13,6 @@ export declare class SyscoinRpcClient {
         };
         timeout: any;
     };
+    callRpc(methodName: string, args?: Array<any>): JsonRpcCall;
+    batchCallRpc(requests: JsonRpcRequest[]): Promise<any[]>;
 }

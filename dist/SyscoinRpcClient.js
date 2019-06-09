@@ -37,48 +37,52 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
 var SyscoinRpcClient = /** @class */ (function () {
     function SyscoinRpcClient(configOptions) {
-        var _this = this;
         this.configOptions = configOptions;
         this.instance = axios_1.default.create(SyscoinRpcClient.createConfigurationObject(this.configOptions.username, this.configOptions.password, this.configOptions.useSsl, this.configOptions.timeout, this.configOptions.customHttpAgent));
-        //this needs to be defined in constructor so the THIS references get setup
-        this.callRpc = function (methodName, args) { return __awaiter(_this, void 0, void 0, function () {
-            var url, data;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        url = (this.configOptions.useSsl ? "https" : "http") + "://" + this.configOptions.host + ":" + this.configOptions.rpcPort;
-                        data = {
-                            jsonrpc: "1.0",
-                            method: methodName.toLowerCase(),
-                            // so we'll take that knowledge burden here instead of making
-                            // the consuming methods worry about it
-                            params: args ? Array.from(args).filter(function (element) { return element !== undefined; }) : []
-                        };
-                        return [4 /*yield*/, this.getResponseFromRpcCall(url, data)];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        }); };
+        this.url = (this.configOptions.useSsl ? "https" : "http") + "://" + this.configOptions.host + ":" + this.configOptions.rpcPort;
+        this.callRpc = this.callRpc.bind(this);
+        this.batchCallRpc = this.batchCallRpc.bind(this);
     }
-    SyscoinRpcClient.prototype.getResponseFromRpcCall = function (url, data) {
-        return __awaiter(this, void 0, void 0, function () {
-            var responseFromRpc, dataFromRpc;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.instance.post(url, data)];
-                    case 1:
-                        responseFromRpc = _a.sent();
-                        dataFromRpc = responseFromRpc.data;
-                        if (dataFromRpc) {
-                            return [2 /*return*/, dataFromRpc.result ? dataFromRpc.result : dataFromRpc];
+    SyscoinRpcClient.prototype.getStandardResponseFromRpcResponse = function (response) {
+        var dataFromRpc = response.data;
+        if (dataFromRpc) {
+            return dataFromRpc.result ? dataFromRpc.result : dataFromRpc;
+        }
+        else {
+            return response;
+        }
+    };
+    SyscoinRpcClient.prototype.getRequestObject = function (methodName, args) {
+        var instance = this.instance;
+        var url = this.url;
+        var getStandardResponseFromRpcResponse = this.getStandardResponseFromRpcResponse;
+        return {
+            data: {
+                jsonrpc: "1.0",
+                method: methodName.toLowerCase(),
+                params: args ? Array.from(args).filter(function (element) { return element !== undefined; }) : []
+            },
+            call: function (unwrap) {
+                if (unwrap === void 0) { unwrap = true; }
+                return __awaiter(this, void 0, void 0, function () {
+                    var responseFromRpc;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0: return [4 /*yield*/, instance.post(url, this.data)];
+                            case 1:
+                                responseFromRpc = _a.sent();
+                                if (unwrap) {
+                                    return [2 /*return*/, getStandardResponseFromRpcResponse(responseFromRpc)];
+                                }
+                                else {
+                                    return [2 /*return*/, responseFromRpc];
+                                }
+                                return [2 /*return*/];
                         }
-                        else {
-                            return [2 /*return*/, responseFromRpc];
-                        }
-                        return [2 /*return*/];
-                }
-            });
-        });
+                    });
+                });
+            }
+        };
     };
     SyscoinRpcClient.createConfigurationObject = function (username, password, useSsl, timeout, customHttpAgent) {
         var configurationObject = {
@@ -93,6 +97,30 @@ var SyscoinRpcClient = /** @class */ (function () {
             configurationObject[agentProperty] = customHttpAgent;
         }
         return configurationObject;
+    };
+    //this needs to be defined in constructor so the THIS references get setup
+    SyscoinRpcClient.prototype.callRpc = function (methodName, args) {
+        return this.getRequestObject(methodName, args);
+    };
+    //this needs to be defined in constructor so the THIS references get setup
+    SyscoinRpcClient.prototype.batchCallRpc = function (requests) {
+        return __awaiter(this, void 0, void 0, function () {
+            var responseFromRpc, dataFromRPC, _i, _a, result;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0: return [4 /*yield*/, this.instance.post(this.url, requests)];
+                    case 1:
+                        responseFromRpc = _b.sent();
+                        dataFromRPC = [];
+                        for (_i = 0, _a = responseFromRpc; _i < _a.length; _i++) {
+                            result = _a[_i];
+                            dataFromRPC.push(this.getStandardResponseFromRpcResponse(result));
+                        }
+                        // make the request and then
+                        return [2 /*return*/, dataFromRPC];
+                }
+            });
+        });
     };
     return SyscoinRpcClient;
 }());

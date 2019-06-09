@@ -18,7 +18,8 @@ describe('Syscoin RPC Client Tests', () => {
 
   describe('callRpc', () => {
     it('callRpc returns data for the most basic command', async () => {
-      let result = await client.callRpc("getbestblockhash");
+      let result = await client.callRpc("getbestblockhash").call();
+      console.log("Getblockhash result:", result);
       expect(typeof result).toBe('string');
     });
   });
