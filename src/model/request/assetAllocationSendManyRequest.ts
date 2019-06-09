@@ -1,4 +1,4 @@
-import { AssetAllocationAmount } from "./assetAllocationAmount";
+import { AssetAllocationAmount } from "../assetAllocationAmount";
 
 export interface AssetAllocationSendManyRequest {
    assetGuid: number;

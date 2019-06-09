@@ -8,7 +8,7 @@ A javascript library for interacting directly with the Syscoin RPC Server. Provi
 
 ## Usage 
 
-Works as a Typescript library or a ES6 Javascript libarary.
+Works as a Typescript library or a ES6 Javascript library. Calls can be made individually or batched. There are a set of Typescript helper objects for certain requests see **src/model/request/\*.ts** for more info.
 
 *Typescript*
 ```

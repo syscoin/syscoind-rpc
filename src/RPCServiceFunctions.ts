@@ -1,24 +1,26 @@
-// @formatter:off
-    // == Blockchain ==
 import {
-    AssetAllocationBalanceQuery,
-    AssetAllocationBalanceQueryWithGuid,
-    Asset,
-    AssetNewRequest,
-    AssetNewResponse,
-    AssetInfoRequest,
-    EthHeaders,
-    ListAssetIndexOptions,
-    ListAssetOptions,
-    PbstPayloadInfo,
-    RawTx,
-    RpcResponse,
-    SyscoinAddressEntry,
-    TpsRawTx,
-    Transaction,
-    TransactionData,
-    TxHeader, GetTransactionRequest, ListTransactionsRequest, TransactionListEntry, AssetTransferRequest, HexResponse, AssetAllocationSendManyRequest, AssetSendRequest, AssetSendManyRequest, AssetAllocationSendRequest, AssetAllocation, AssetAllocationInfoRequest, WalletInfo, NetworkInfo, BlockchainInfo, AddressInfo, AssetAllocationAmount, JsonRpcCall
-} from "./index"; import { ListAssetIndexAssetsRequest } from "./model/listAssetIndexAssetsRequest"; import { AssetUpdateRequest } from "./model/assetUpdateRequest";
+  AssetAllocationBalanceQuery,
+  AssetAllocationBalanceQueryWithGuid,
+  Asset,
+  AssetNewRequest,
+  AssetNewResponse,
+  AssetInfoRequest,
+  EthHeaders,
+  ListAssetIndexOptions,
+  ListAssetOptions,
+  PbstPayloadInfo,
+  RawTx,
+  RpcResponse,
+  SyscoinAddressEntry,
+  TpsRawTx,
+  Transaction,
+  TransactionData,
+  TxHeader, GetTransactionRequest, ListTransactionsRequest, TransactionListEntry, AssetTransferRequest, HexResponse, AssetAllocationSendManyRequest, AssetSendRequest, AssetSendManyRequest, AssetAllocationSendRequest, AssetAllocation, AssetAllocationInfoRequest, WalletInfo, NetworkInfo, BlockchainInfo, AddressInfo, AssetAllocationAmount, JsonRpcCall
+} from "./index";
+import { ListAssetIndexAssetsRequest } from "./model/request/listAssetIndexAssetsRequest";
+import { AssetUpdateRequest } from "./model/request/assetUpdateRequest";
+
+// @formatter:off
 
 export interface RPCServiceFunctions {
     getBestBlockHash(): JsonRpcCall<any>;
@@ -216,8 +218,8 @@ export interface RPCServiceFunctions {
     walletProcessPsbt(pbst: string, sign?: number, sigHashType?: string, bip32derivs?: number): JsonRpcCall<any>;
     // @formatter:on
 
-    //exposed for unit testing
-    callThroughToRpc(args): JsonRpcCall<any>;
-    unwrapRpcResponse(response: RpcResponse | any): any;
+  //exposed for unit testing
+  callThroughToRpc(args): JsonRpcCall<any>;
+  unwrapRpcResponse(response: RpcResponse | any): any;
 
 }

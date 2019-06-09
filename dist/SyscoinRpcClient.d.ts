@@ -1,4 +1,5 @@
-import { JsonRpcRequest, JsonRpcCall, RpcConfigOptions } from "./index";
+import { JsonRpcCall, RpcConfigOptions } from "./index";
+import { JsonRpcRequest } from "./model/request/jsonRpcRequest";
 export declare class SyscoinRpcClient {
     private configOptions;
     private instance;
