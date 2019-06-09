@@ -193,7 +193,7 @@ export interface RPCServiceFunctions {
     listReceivedByAddress(minConf?: number, includeEmpty?: boolean, includeWatchOnly?: boolean, addressFilter?: string): JsonRpcCall<SyscoinAddressEntry[]>;
     listReceivedByLabel(minConf?: number, includeEmpty?: boolean, includeWatchOnly?: boolean): JsonRpcCall<any>;
     listSinceBlock(blockHash?: string, targetConfs?: number, includeWatchOnly?: number, includeRemoved?: number): JsonRpcCall<any>;
-    listTransactions(request: ListTransactionsRequest): JsonRpcCall<Array<TransactionListEntry>>;
+    listTransactions(label?: string, count?: number, skip?: number, includeWatchOnly?: number): JsonRpcCall<Array<TransactionListEntry>>;
     listUnspent(minConf?: number, maxConf?: number, addresses?: Array<string>, includeUnsafe?: number, query?: any, options?: any): JsonRpcCall<any>;
     listWalletDir(): JsonRpcCall<any>;
     listWallets(): JsonRpcCall<any>;

@@ -1,4 +1,4 @@
-import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, Asset, AssetNewResponse, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, RpcResponse, SyscoinAddressEntry, TpsRawTx, Transaction, TransactionData, TxHeader, ListTransactionsRequest, TransactionListEntry, HexResponse, AssetAllocation, WalletInfo, NetworkInfo, BlockchainInfo, AddressInfo, AssetAllocationAmount, JsonRpcCall } from "./index";
+import { AssetAllocationBalanceQuery, AssetAllocationBalanceQueryWithGuid, Asset, AssetNewResponse, EthHeaders, ListAssetIndexOptions, ListAssetOptions, PbstPayloadInfo, RawTx, RpcResponse, SyscoinAddressEntry, TpsRawTx, Transaction, TransactionData, TxHeader, TransactionListEntry, HexResponse, AssetAllocation, WalletInfo, NetworkInfo, BlockchainInfo, AddressInfo, AssetAllocationAmount, JsonRpcCall } from "./index";
 export interface RPCServiceFunctions {
     getBestBlockHash(): JsonRpcCall<any>;
     getBlock(blockHash: string, verbosity?: number): JsonRpcCall<any>;
@@ -156,7 +156,7 @@ export interface RPCServiceFunctions {
     listReceivedByAddress(minConf?: number, includeEmpty?: boolean, includeWatchOnly?: boolean, addressFilter?: string): JsonRpcCall<SyscoinAddressEntry[]>;
     listReceivedByLabel(minConf?: number, includeEmpty?: boolean, includeWatchOnly?: boolean): JsonRpcCall<any>;
     listSinceBlock(blockHash?: string, targetConfs?: number, includeWatchOnly?: number, includeRemoved?: number): JsonRpcCall<any>;
-    listTransactions(request: ListTransactionsRequest): JsonRpcCall<Array<TransactionListEntry>>;
+    listTransactions(label?: string, count?: number, skip?: number, includeWatchOnly?: number): JsonRpcCall<Array<TransactionListEntry>>;
     listUnspent(minConf?: number, maxConf?: number, addresses?: Array<string>, includeUnsafe?: number, query?: any, options?: any): JsonRpcCall<any>;
     listWalletDir(): JsonRpcCall<any>;
     listWallets(): JsonRpcCall<any>;
