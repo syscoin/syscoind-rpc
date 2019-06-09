@@ -10,3 +10,5 @@ export * from './assetSendManyRequest';
 export * from './assetAllocationSendRequest';
 export * from './assetAllocationSendManyRequest';
 export * from './assetAllocationInfoRequest';
+export * from './sendToAddressRequest';
+export * from './signRawTransactionRequest';

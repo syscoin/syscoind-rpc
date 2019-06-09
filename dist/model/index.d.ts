@@ -17,3 +17,5 @@ export * from './addressInfo';
 export * from './addressInfoLabel';
 export * from './jsonRpcCall';
 export * from './syscoinAddressEntry';
+export * from './peerInfo';
+export * from './byteMessageInfo';
