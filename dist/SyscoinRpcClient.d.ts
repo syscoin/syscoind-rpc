@@ -14,5 +14,5 @@ export declare class SyscoinRpcClient {
         timeout: any;
     };
     callRpc(methodName: string, args?: Array<any>): JsonRpcCall;
-    batchCallRpc(requests: JsonRpcRequest[]): Promise<any[]>;
+    batch(requests: JsonRpcRequest[], unwrapResponses?: boolean): Promise<any[]>;
 }

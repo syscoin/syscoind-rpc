@@ -41,16 +41,10 @@ var SyscoinRpcClient = /** @class */ (function () {
         this.instance = axios_1.default.create(SyscoinRpcClient.createConfigurationObject(this.configOptions.username, this.configOptions.password, this.configOptions.useSsl, this.configOptions.timeout, this.configOptions.customHttpAgent));
         this.url = (this.configOptions.useSsl ? "https" : "http") + "://" + this.configOptions.host + ":" + this.configOptions.rpcPort;
         this.callRpc = this.callRpc.bind(this);
-        this.batchCallRpc = this.batchCallRpc.bind(this);
+        this.batch = this.batch.bind(this);
     }
     SyscoinRpcClient.prototype.getStandardResponseFromRpcResponse = function (response) {
-        var dataFromRpc = response.data;
-        if (dataFromRpc) {
-            return dataFromRpc.result ? dataFromRpc.result : dataFromRpc;
-        }
-        else {
-            return response;
-        }
+        return response.result ? response.result : response;
     };
     SyscoinRpcClient.prototype.getRequestObject = function (methodName, args) {
         var instance = this.instance;
@@ -72,10 +66,10 @@ var SyscoinRpcClient = /** @class */ (function () {
                             case 1:
                                 responseFromRpc = _a.sent();
                                 if (unwrap) {
-                                    return [2 /*return*/, getStandardResponseFromRpcResponse(responseFromRpc)];
+                                    return [2 /*return*/, getStandardResponseFromRpcResponse(responseFromRpc.data)];
                                 }
                                 else {
-                                    return [2 /*return*/, responseFromRpc];
+                                    return [2 /*return*/, responseFromRpc.data];
                                 }
                                 return [2 /*return*/];
                         }
@@ -103,7 +97,8 @@ var SyscoinRpcClient = /** @class */ (function () {
         return this.getRequestObject(methodName, args);
     };
     //this needs to be defined in constructor so the THIS references get setup
-    SyscoinRpcClient.prototype.batchCallRpc = function (requests) {
+    SyscoinRpcClient.prototype.batch = function (requests, unwrapResponses) {
+        if (unwrapResponses === void 0) { unwrapResponses = true; }
         return __awaiter(this, void 0, void 0, function () {
             var responseFromRpc, dataFromRPC, _i, _a, result;
             return __generator(this, function (_b) {
@@ -111,13 +106,15 @@ var SyscoinRpcClient = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.instance.post(this.url, requests)];
                     case 1:
                         responseFromRpc = _b.sent();
-                        dataFromRPC = [];
-                        for (_i = 0, _a = responseFromRpc; _i < _a.length; _i++) {
-                            result = _a[_i];
-                            dataFromRPC.push(this.getStandardResponseFromRpcResponse(result));
+                        if (unwrapResponses) {
+                            dataFromRPC = [];
+                            for (_i = 0, _a = responseFromRpc.data; _i < _a.length; _i++) {
+                                result = _a[_i];
+                                dataFromRPC.push(this.getStandardResponseFromRpcResponse(result));
+                            }
+                            return [2 /*return*/, dataFromRPC];
                         }
-                        // make the request and then
-                        return [2 /*return*/, dataFromRPC];
+                        return [2 /*return*/, responseFromRpc.data];
                 }
             });
         });
