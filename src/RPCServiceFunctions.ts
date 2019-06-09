@@ -18,7 +18,7 @@ import {
     Transaction,
     TransactionData,
     TxHeader, GetTransactionRequest, ListTransactionsRequest, TransactionListEntry, AssetTransferRequest, HexResponse, AssetAllocationSendManyRequest, AssetSendRequest, AssetSendManyRequest, AssetAllocationSendRequest, AssetAllocation, AssetAllocationInfoRequest, WalletInfo, NetworkInfo, BlockchainInfo, AddressInfo, AssetAllocationAmount, JsonRpcCall
-} from "./index"; import { ListAssetIndexAssetsRequest } from "./model/sys4/listAssetIndexAssetsRequest"; import { AssetUpdateRequest } from "./model/sys4/assetUpdateRequest";
+} from "./index"; import { ListAssetIndexAssetsRequest } from "./model/listAssetIndexAssetsRequest"; import { AssetUpdateRequest } from "./model/assetUpdateRequest";
 
 export interface RPCServiceFunctions {
     getBestBlockHash(): JsonRpcCall<any>;
