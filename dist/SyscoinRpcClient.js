@@ -130,4 +130,3 @@ var SyscoinRpcClient = /** @class */ (function () {
     return SyscoinRpcClient;
 }());
 exports.SyscoinRpcClient = SyscoinRpcClient;
-//# sourceMappingURL=SyscoinRpcClient.js.map

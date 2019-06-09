@@ -6,11 +6,8 @@
     "rootDir": "./src",
     "declaration": true,
     /* because libs is outside of src */
-    "sourceMap": true,
+    "sourceMap": false,
     "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "noStrictGenericChecks": true,
     "noImplicitUseStrict": true,
     "lib": ["es6", "dom"]
   },

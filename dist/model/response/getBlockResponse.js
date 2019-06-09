@@ -10,4 +10,3 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-//# sourceMappingURL=getBlockResponse.js.map
