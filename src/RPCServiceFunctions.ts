@@ -111,7 +111,7 @@ export interface RPCServiceFunctions {
     assetAllocationInfo(assetGuid: number, address: string): Promise<AssetAllocation>;
     assetAllocationLock(assetGuid: number, addressFrom: string, txid: string, outputIndex: number, witness?: string): Promise<any>;
     assetAllocationMint(assetGuid: number, address: string, amount: number, blockNum: number, txHex: string, txRootHex: string, merkleProofHex: string, merkleProofPathHex: string, witness?: string): Promise<any>;
-    assetAllocationSend(request: AssetAllocationSendRequest): Promise<HexResponse>;
+    assetAllocationSend(assetGuid: number, addressFrom: string, addressTo: string, amount: number): Promise<HexResponse>;
     assetAllocationSenderStatus(assetGuid: number, address: string, txid: string): Promise<any>;
     assetAllocationSendMany(assetGuid: number, addressFrom: string, amounts: AssetAllocationAmount[], witness: string): Promise<HexResponse>;
     assetInfo(assetGuid: number): Promise<Asset>;

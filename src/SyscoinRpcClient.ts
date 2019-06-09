@@ -1,10 +1,10 @@
 import axios, { AxiosInstance } from 'axios';
-import { RpcConfigOptions } from "./index";
+import { JsonRpcRequest, RpcConfigOptions } from "./index";
 
 export class SyscoinRpcClient {
 
   private instance: AxiosInstance;
-  public callRpc: (method: string, params?: Array<any>) => Promise<any>;
+  private readonly url: string;
 
   constructor(private configOptions: RpcConfigOptions) {
 
@@ -15,31 +15,28 @@ export class SyscoinRpcClient {
       this.configOptions.timeout,
       this.configOptions.customHttpAgent));
 
-    //this needs to be defined in constructor so the THIS references get setup
-    this.callRpc = async (methodName: string, args?: Array<any>) => {
-      let url = `${this.configOptions.useSsl ? "https" : "http"}://${this.configOptions.host}:${this.configOptions.rpcPort}`;
-      let data = {
-        jsonrpc: "1.0",
-        method: methodName.toLowerCase(),  // safety check: the RPC expects methods in all lowercase,
-                                           // so we'll take that knowledge burden here instead of making
-                                           // the consuming methods worry about it
-        params: args ? Array.from(args).filter(element => element !== undefined): []
-      };
+    this.url = `${this.configOptions.useSsl ? "https" : "http"}://${this.configOptions.host}:${this.configOptions.rpcPort}`;
 
-      return await this.getResponseFromRpcCall(url, data);
-    };
-
+    this.callRpc = this.callRpc.bind(this);
+    this.batchCallRpc = this.batchCallRpc.bind(this);
   }
 
-  private async getResponseFromRpcCall(url, data) {
-    let responseFromRpc = await this.instance.post(url, data);
-    let dataFromRpc = responseFromRpc.data;
+  private async getResponseFromRpcCall(response) {
+    let dataFromRpc = response.data;
 
     if (dataFromRpc) {
       return dataFromRpc.result ? dataFromRpc.result : dataFromRpc
     } else {
-      return responseFromRpc;
+      return response;
     }
+  }
+
+  private getRequestObject(methodName: string, args?: any[]) {
+    return {
+      jsonrpc: "1.0",
+      method: methodName.toLowerCase(),
+      params: args ? Array.from(args).filter(element => element !== undefined): []
+    };
   }
 
   static createConfigurationObject(username, password, useSsl, timeout, customHttpAgent) {
@@ -57,5 +54,27 @@ export class SyscoinRpcClient {
     }
 
     return configurationObject;
+  }
+
+  //this needs to be defined in constructor so the THIS references get setup
+  public async callRpc(methodName: string, args?: Array<any>) {
+    let data = this.getRequestObject(methodName, args);
+    let responseFromRpc = await this.instance.post(this.url, data);
+
+    return this.getResponseFromRpcCall(responseFromRpc);
+  }
+
+
+  //this needs to be defined in constructor so the THIS references get setup
+  public async batchCallRpc(requests: JsonRpcRequest[]) {
+    let responseFromRpc = await this.instance.post(this.url, requests);
+
+    let dataFromRPC = [];
+    for(let result of <any>responseFromRpc) {
+      dataFromRPC.push(this.getResponseFromRpcCall(result))
+    }
+
+    // make the request and then
+    return dataFromRPC;
   }
 }
