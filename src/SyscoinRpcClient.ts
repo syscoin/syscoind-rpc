@@ -30,13 +30,11 @@ export class SyscoinRpcClient {
     const url = this.url;
     const getStandardResponseFromRpcResponse = this.getStandardResponseFromRpcResponse;
     return {
-      data: {
-        jsonrpc: "1.0",
-        method: methodName.toLowerCase(),
-        params: args ? Array.from(args).filter(element => element !== undefined) : []
-      },
+      jsonrpc: "1.0",
+      method: methodName.toLowerCase(),
+      params: args ? Array.from(args).filter(element => element !== undefined) : [],
       call: async function(unwrap: boolean = true): Promise<ReturnType> {
-        let responseFromRpc = await instance.post(url, this.data);
+        let responseFromRpc = await instance.post(url, {...this});
         if (unwrap) {
           return getStandardResponseFromRpcResponse(responseFromRpc.data);
         } else {

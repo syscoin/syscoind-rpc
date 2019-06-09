@@ -1,24 +1,29 @@
 import { rpcServices } from "../../src/rpcServices";
+import { JsonRpcCall } from "../../src";
 
 describe('RPC Services Tests', () => {
 
   describe('callThroughToRpc', () => {
     let mockRpc = (method, args) => {
-      return {method, args};
+      return {
+        call: () => {
+          return {method, args}
+        }
+      }
     };
 
     //requires non-anonymous function
-    function someRpcMethod(paramA?, paramB?) { return rpcServices(mockRpc).callThroughToRpc(arguments); }
+    function someRpcMethod(paramA?, paramB?): JsonRpcCall<{ method: string, args: any[]}> { return rpcServices(mockRpc).callThroughToRpc(arguments); }
 
     it('parses the arguments object correctly', async () => {
-      let result = await someRpcMethod("A", "B");
+      let result = await someRpcMethod("A", "B").call();
       expect(result.method).toBe('somerpcmethod');
       expect(result.args[0]).toBe('A');
       expect(result.args[1]).toBe('B');
     });
 
     it('should work with no params passed', async () => {
-      let result = await someRpcMethod();
+      let result = await someRpcMethod().call();
       expect(result.method).toBe('somerpcmethod');
     });
   });
