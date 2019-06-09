@@ -18,17 +18,11 @@ export class SyscoinRpcClient {
     this.url = `${this.configOptions.useSsl ? "https" : "http"}://${this.configOptions.host}:${this.configOptions.rpcPort}`;
 
     this.callRpc = this.callRpc.bind(this);
-    this.batchCallRpc = this.batchCallRpc.bind(this);
+    this.batch = this.batch.bind(this);
   }
 
   private getStandardResponseFromRpcResponse(response) {
-    let dataFromRpc = response.data;
-
-    if (dataFromRpc) {
-      return dataFromRpc.result ? dataFromRpc.result : dataFromRpc
-    } else {
-      return response;
-    }
+    return response.result ? response.result : response;
   }
 
   private getRequestObject(methodName: string, args?: any[]): JsonRpcCall {
@@ -44,7 +38,7 @@ export class SyscoinRpcClient {
       call: async function(unwrap: boolean = true) {
         let responseFromRpc = await instance.post(url, this.data);
         if (unwrap) {
-          return getStandardResponseFromRpcResponse(responseFromRpc);
+          return getStandardResponseFromRpcResponse(responseFromRpc.data);
         } else {
           return responseFromRpc.data;
         }
@@ -76,15 +70,18 @@ export class SyscoinRpcClient {
 
 
   //this needs to be defined in constructor so the THIS references get setup
-  public async batchCallRpc(requests: JsonRpcRequest[]) {
+  public async batch(requests: JsonRpcRequest[], unwrapResponses: boolean = true): Promise<any[]> {
     let responseFromRpc = await this.instance.post(this.url, requests);
 
-    let dataFromRPC = [];
-    for(let result of <any>responseFromRpc) {
-      dataFromRPC.push(this.getStandardResponseFromRpcResponse(result))
+    if (unwrapResponses) {
+      let dataFromRPC = [];
+      for(let result of responseFromRpc.data) {
+        dataFromRPC.push(this.getStandardResponseFromRpcResponse(result))
+      }
+
+      return dataFromRPC;
     }
 
-    // make the request and then
-    return dataFromRPC;
+    return responseFromRpc.data;
   }
 }

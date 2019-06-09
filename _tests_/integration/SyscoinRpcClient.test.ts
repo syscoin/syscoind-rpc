@@ -23,4 +23,44 @@ describe('Syscoin RPC Client Tests', () => {
       expect(typeof result).toBe('string');
     });
   });
+
+  describe('batch', () => {
+    it('batch returns proper result data for multiple results', async () => {
+      let result = await client.batch([
+        client.callRpc("getbestblockhash").data,
+        client.callRpc("getbestblockhash").data
+      ], false);
+
+      expect(Array.isArray(result)).toBe(true);
+      expect(result.length).toBe(2);
+      expect(result[0].result).toBeDefined();
+      expect(result[0].error).toBeNull();
+    });
+
+
+    it('batch returns proper error data for multiple results', async () => {
+      let result = await client.batch([
+        client.callRpc("getbestblockhash") as any,
+        client.callRpc("getbestblockhash") as any
+      ], false);
+
+      expect(Array.isArray(result)).toBe(true);
+      expect(result.length).toBe(2);
+      expect(result[0].result).toBeNull();
+      expect(result[0].error).toBeDefined();
+    });
+
+
+    it('unwraps nested responses by default', async () => {
+      let result = await client.batch([
+        client.callRpc("getbestblockhash").data,
+        client.callRpc("getbestblockhash").data
+      ]);
+
+      expect(Array.isArray(result)).toBe(true);
+      expect(result.length).toBe(2);
+      expect(typeof result[0]).toBe('string');
+      expect(typeof result[1]).toBe('string');
+    });
+  });
 });
