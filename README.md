@@ -22,7 +22,7 @@ const config = {
   logLevel: 'error'
 };
 let client = new SyscoinRpcClient(config);
-rpcServices(client.callRpc).getBestBlockHash().then((info) => {
+rpcServices(client.callRpc).getBestBlockHash().call().then((info) => {
   console.log("res:", info);
 });
 ```
@@ -40,7 +40,7 @@ const config = {
   logLevel: 'error'
 };
 let client = new SyscoinRpcClient(config);
-rpcServices(client.callRpc).getBestBlockHash().then((info) => {
+rpcServices(client.callRpc).getBestBlockHash().call().then((info) => {
   console.log("res:", JSON.stringify(info));
 });
 ```
