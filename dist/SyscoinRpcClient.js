@@ -92,7 +92,6 @@ var SyscoinRpcClient = /** @class */ (function () {
         }
         return configurationObject;
     };
-    //this needs to be defined in constructor so the THIS references get setup
     SyscoinRpcClient.prototype.callRpc = function (methodName, args) {
         return this.getRequestObject(methodName, args);
     };

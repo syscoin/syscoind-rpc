@@ -13,6 +13,6 @@ export declare class SyscoinRpcClient {
         };
         timeout: any;
     };
-    callRpc(methodName: string, args?: Array<any>): JsonRpcCall;
+    callRpc<ReturnType>(methodName: string, args?: Array<any>): JsonRpcCall<ReturnType>;
     batch(requests: JsonRpcRequest[], unwrapResponses?: boolean): Promise<any[]>;
 }

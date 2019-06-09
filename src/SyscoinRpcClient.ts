@@ -25,7 +25,7 @@ export class SyscoinRpcClient {
     return response.result ? response.result : response;
   }
 
-  private getRequestObject(methodName: string, args?: any[]): JsonRpcCall {
+  private getRequestObject<ReturnType>(methodName: string, args?: any[]): JsonRpcCall<ReturnType> {
     const instance = this.instance;
     const url = this.url;
     const getStandardResponseFromRpcResponse = this.getStandardResponseFromRpcResponse;
@@ -35,7 +35,7 @@ export class SyscoinRpcClient {
         method: methodName.toLowerCase(),
         params: args ? Array.from(args).filter(element => element !== undefined) : []
       },
-      call: async function(unwrap: boolean = true) {
+      call: async function(unwrap: boolean = true): Promise<ReturnType> {
         let responseFromRpc = await instance.post(url, this.data);
         if (unwrap) {
           return getStandardResponseFromRpcResponse(responseFromRpc.data);
@@ -63,9 +63,8 @@ export class SyscoinRpcClient {
     return configurationObject;
   }
 
-  //this needs to be defined in constructor so the THIS references get setup
-  public callRpc(methodName: string, args?: Array<any>): JsonRpcCall {
-    return this.getRequestObject(methodName, args);
+  public callRpc<ReturnType>(methodName: string, args?: Array<any>): JsonRpcCall<ReturnType> {
+    return this.getRequestObject<ReturnType>(methodName, args);
   }
 
 

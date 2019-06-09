@@ -1,5 +1,5 @@
 import { JsonRpcRequest } from "./jsonRpcRequest";
-export interface JsonRpcCall {
+export interface JsonRpcCall<ReturnType> {
     data: JsonRpcRequest;
-    call: (unwrapResponse?: boolean) => void;
+    call: (unwrapResponse?: boolean) => Promise<ReturnType>;
 }

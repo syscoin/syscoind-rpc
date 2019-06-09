@@ -1,4 +1,4 @@
-import { RpcResponse } from "./index";
+import { JsonRpcCall, RpcResponse } from "./index";
 import { RPCServiceFunctions } from "./RPCServiceFunctions";
 
 export function rpcServices(callRpc): RPCServiceFunctions {
@@ -67,7 +67,7 @@ export function rpcServices(callRpc): RPCServiceFunctions {
     getInfo() { return callThroughToRpc(arguments) },
     listBanned() { return callThroughToRpc(arguments) },
     ping() { return callThroughToRpc(arguments) },
-    setBan(subnet,command,banTime):Promise<any> { return callThroughToRpc(arguments) },
+    setBan(subnet, command, banTime) { return callThroughToRpc(arguments) },
 
     // == Rawtransactions ==
     analyzePsbt(pbst) { return callThroughToRpc(arguments) },
@@ -205,13 +205,13 @@ export function rpcServices(callRpc): RPCServiceFunctions {
     unwrapRpcResponse
   };
 
-  async function callThroughToRpc(args): Promise<any> {
+  function callThroughToRpc<ReturnType>(args): JsonRpcCall<ReturnType> {
     let paramArr: Array<any> = Array.prototype.slice.call(args);
 
     let response;
     try {
       // console.log("Calling SYS-JS function:", args.callee.name.toLowerCase(), 'with params', paramArr);
-      response = await callRpc(args.callee.name.toLowerCase(), paramArr);
+      response = callRpc(args.callee.name.toLowerCase(), paramArr);
     }catch (e) {
       // console.log("caught error: ", e.response.data);
       if (e.response && e.response.data) {
