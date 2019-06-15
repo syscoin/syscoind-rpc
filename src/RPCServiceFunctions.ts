@@ -205,6 +205,7 @@ export interface RPCServiceFunctions {
     rescanBlockchain(start?: number, stop?: number): JsonRpcCall<any>;
     sendMany(dummy: string, amounts: Array<{ [address: string]: number }>, minConf?: number, comment?: string, subtractFeeFrom?: Array<string>, replaceable?: boolean, confTarget?: number, estimateMode?: string): JsonRpcCall<any>;
     sendToAddress(address: string, amount: number, minConf?: number, comment?: string, comment_to?: string, subtractFeeFromAmount?: number, replaceable?: boolean, confTarget?: number, estimateMode?: string): JsonRpcCall<any>;
+    sendFrom(fundingAddress: string, address: string, amount: number): JsonRpcCall<HexResponse>;
     setHdSeed(newKeyPool?: number, seed?: string): JsonRpcCall<any>;
     setLabel(address: string, label: string): JsonRpcCall<any>;
     setTxFee(amount: number): JsonRpcCall<any>;

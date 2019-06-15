@@ -187,6 +187,7 @@ export function rpcServices(callRpc): RPCServiceFunctions {
     rescanBlockchain(...args) { return callThroughToRpc(arguments) },
     sendMany(...args) { return callThroughToRpc(arguments) },
     sendToAddress(...args) { return callThroughToRpc(arguments) },
+    sendFrom(...args) { return callThroughToRpc(arguments) },
     setHdSeed(...args) { return callThroughToRpc(arguments) },
     setLabel(...args) { return callThroughToRpc(arguments) },
     setTxFee(...args) { return callThroughToRpc(arguments) },
