@@ -104,7 +104,6 @@ var SyscoinRpcClient = /** @class */ (function () {
     SyscoinRpcClient.prototype.callRpc = function (methodName, args) {
         return this.getRequestObject(methodName, args);
     };
-    //this needs to be defined in constructor so the THIS references get setup
     SyscoinRpcClient.prototype.batch = function (requests, unwrapResponses) {
         if (unwrapResponses === void 0) { unwrapResponses = true; }
         return __awaiter(this, void 0, void 0, function () {

@@ -67,7 +67,6 @@ export class SyscoinRpcClient {
   }
 
 
-  //this needs to be defined in constructor so the THIS references get setup
   public async batch(requests: JsonRpcRequest[], unwrapResponses: boolean = true): Promise<any[]> {
     let responseFromRpc = await this.instance.post(this.url, requests);
 
