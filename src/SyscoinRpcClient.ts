@@ -1,11 +1,14 @@
 import axios, { AxiosInstance } from 'axios';
 import { JsonRpcCall, RpcConfigOptions } from "./index";
 import { JsonRpcRequest } from "./model/request/jsonRpcRequest";
+import { HelpServices } from "./services/helpServices";
 
 export class SyscoinRpcClient {
 
-  private instance: AxiosInstance;
+  private readonly instance: AxiosInstance;
   private readonly url: string;
+
+  public helpService: HelpServices;
 
   constructor(private configOptions: RpcConfigOptions) {
 
@@ -20,6 +23,9 @@ export class SyscoinRpcClient {
 
     this.callRpc = this.callRpc.bind(this);
     this.batch = this.batch.bind(this);
+
+    // init services
+    this.helpService = new HelpServices(this.callRpc);
   }
 
   private getStandardResponseFromRpcResponse(response) {
