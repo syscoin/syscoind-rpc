@@ -5,7 +5,7 @@ endpoint list see [RPCFunctions.ts](https://github.com/syscoin/syscoin-js/blob/d
 
 ## Installation
 
-`npm install`
+`npm install @syscoin/syscoin-js`
 
 ## Usage 
 
@@ -15,7 +15,7 @@ request and response object can be found in [src/model/request](https://github.c
 
 *Typescript*
 ```
-import { SyscoinRpcClient, rpcServices } from "syscoin-js";
+import { SyscoinRpcClient, rpcServices } from "@syscoin/syscoin-js";
 
 const config = {
   host: "localhost",
@@ -30,8 +30,8 @@ const info = await rpcServices(client.callRpc).getBestBlockHash().call();
 
 *NodeJS*
 ```
-const SyscoinRpcClient = require("syscoin-js").SyscoinRpcClient;
-const rpcServices = require("syscoin-js").rpcServices;
+const SyscoinRpcClient = require("@syscoin/syscoin-js").SyscoinRpcClient;
+const rpcServices = require("@syscoin/syscoin-js").rpcServices;
 
 const config = {
   host: "localhost",
