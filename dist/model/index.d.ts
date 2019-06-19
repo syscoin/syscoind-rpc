@@ -19,3 +19,4 @@ export * from './jsonRpcCall';
 export * from './syscoinAddressEntry';
 export * from './peerInfo';
 export * from './byteMessageInfo';
+export * from './localAddress';

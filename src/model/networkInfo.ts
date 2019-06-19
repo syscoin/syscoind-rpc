@@ -1,4 +1,5 @@
 import { NetworkInfoDetails } from "./networkInfoDetails";
+import { LocalAddress } from "./localAddress";
 
 export interface NetworkInfo {
     version?: number;
@@ -11,6 +12,6 @@ export interface NetworkInfo {
     connections?: number;
     networks?: Array<NetworkInfoDetails>;
     relayfee?: number;
-    localaddresses?: Array<string>;
+    localaddresses?: Array<LocalAddress>;
     warnings?: string;
 }
