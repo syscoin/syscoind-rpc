@@ -5,7 +5,7 @@ endpoint list see [RPCFunctions.ts](https://github.com/syscoin/syscoin-js/blob/d
 
 ## Installation
 
-`npm install`
+`npm install @syscoin/syscoin-js`
 
 ## Usage 
 
