@@ -71,10 +71,12 @@ var SyscoinRpcClient = /** @class */ (function () {
             call: function (unwrap) {
                 if (unwrap === void 0) { unwrap = true; }
                 return __awaiter(this, void 0, void 0, function () {
-                    var responseFromRpc;
+                    var responseFromRpc, e_1;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
-                            case 0: return [4 /*yield*/, instance.post(url, __assign({}, this))];
+                            case 0:
+                                _a.trys.push([0, 2, , 3]);
+                                return [4 /*yield*/, instance.post(url, __assign({}, this))];
                             case 1:
                                 responseFromRpc = _a.sent();
                                 if (unwrap) {
@@ -83,7 +85,23 @@ var SyscoinRpcClient = /** @class */ (function () {
                                 else {
                                     return [2 /*return*/, responseFromRpc.data];
                                 }
-                                return [2 /*return*/];
+                                return [3 /*break*/, 3];
+                            case 2:
+                                e_1 = _a.sent();
+                                if (unwrap && e_1.response.data.error !== undefined) {
+                                    console.error("rpc error:", e_1.response);
+                                    if (e_1.response.data.error.message.indexOf('ERRCODE') > -1) {
+                                        throw new Error(e_1.response.data.error.message.substr(e_1.response.data.error.message.indexOf('ERRCODE')));
+                                    }
+                                    else {
+                                        throw new Error(e_1.response.data.error.message);
+                                    }
+                                }
+                                else {
+                                    throw new Error(JSON.stringify(e_1.response));
+                                }
+                                return [3 /*break*/, 3];
+                            case 3: return [2 /*return*/];
                         }
                     });
                 });
