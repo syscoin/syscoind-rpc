@@ -7,4 +7,5 @@ export interface TransactionDetailEntry {
     label?: string;
     vout?: number;
     systx?: SysTx; //add other types
+    fee?: number;
 }

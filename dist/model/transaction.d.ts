@@ -11,4 +11,5 @@ export interface Transaction {
     timereceived?: number;
     details?: Array<TransactionDetailEntry>;
     hex?: string;
+    fee?: number;
 }
