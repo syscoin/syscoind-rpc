@@ -96,7 +96,7 @@ export function rpcServices(callRpc): RPCServiceFunctions {
     assetAllocationLock(...args) { return callThroughToRpc(arguments) },
     assetAllocationMint(...args) { return callThroughToRpc(arguments) },
     assetAllocationSend(...args) { return callThroughToRpc(arguments) },
-    assetAllocationSenderStatus(...args) { return callThroughToRpc(arguments) },
+    assetAllocationVerifyZdag(...args) { return callThroughToRpc(arguments) },
     assetAllocationSendMany(...args) { return callThroughToRpc(arguments) },
     assetInfo(...args) { return callThroughToRpc(arguments) },
     assetNew(...args) { return callThroughToRpc(arguments) },
