@@ -7,5 +7,6 @@ export interface AssetNewRequest {
     total_supply: number;
     max_supply: number;
     update_flags: number;
+    auxfees: any;
     witness: string;
 }

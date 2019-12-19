@@ -79,14 +79,14 @@ export interface RPCServiceFunctions {
     assetAllocationLock(assetGuid: number, addressFrom: string, txid: string, outputIndex: number, witness?: string): JsonRpcCall<any>;
     assetAllocationMint(assetGuid: number, address: string, amount: number, blockNum: number, txHex: string, txRootHex: string, merkleProofHex: string, merkleProofPathHex: string, witness?: string): JsonRpcCall<any>;
     assetAllocationSend(assetGuid: number, addressFrom: string, addressTo: string, amount: number): JsonRpcCall<HexResponse>;
-    assetAllocationSenderStatus(assetGuid: number, address: string, txid: string): JsonRpcCall<any>;
+    assetAllocationVerifyZdag(txid: string): JsonRpcCall<any>;
     assetAllocationSendMany(assetGuid: number, addressFrom: string, amounts: AssetAllocationAmount[], witness: string): JsonRpcCall<HexResponse>;
     assetInfo(assetGuid: number): JsonRpcCall<Asset>;
-    assetNew(address: string, symbol: string, public_value: string, contract: string, precision: number, total_supply: number, max_supply: number, update_flags: number, witness: string): JsonRpcCall<AssetNewResponse>;
+    assetNew(address: string, symbol: string, public_value: string, contract: string, precision: number, total_supply: number, max_supply: number, update_flags: number, auxfees: any, witness: string): JsonRpcCall<AssetNewResponse>;
     assetSend(assetGuid: number, addressTo: string, amount: number): JsonRpcCall<HexResponse>;
     assetSendMany(assetGuid: number, amounts: AssetAllocationAmount[], witness: string): JsonRpcCall<HexResponse>;
     assetTransfer(assetGuid: number, address: string, witness: string): JsonRpcCall<HexResponse>;
-    assetUpdate(assetGuid?: number, publicValue?: string, contract?: string, supply?: number, updateFlags?: number, witness?: string): JsonRpcCall<HexResponse>;
+    assetUpdate(assetGuid?: number, publicValue?: string, contract?: string, supply?: number, updateFlags?: number, auxfees?: any, witness?: string): JsonRpcCall<HexResponse>;
     convertAddress(address: string): JsonRpcCall<any>;
     getBlockHashByTxid(txid: string): JsonRpcCall<any>;
     getGovernanceInfo(): JsonRpcCall<any>;
