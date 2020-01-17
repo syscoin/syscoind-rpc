@@ -1,6 +1,6 @@
 export interface AssetUpdateRequest {
     assetGuid: number;
-    publicValue: string;
+    description: string;
     contract: string;
     supply: number;
     updateFlags: number;
