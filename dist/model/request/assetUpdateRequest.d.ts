@@ -1,8 +1,10 @@
+import { AuxFees } from "../auxFees";
 export interface AssetUpdateRequest {
-    assetGuid?: number;
-    publicValue?: string;
-    contract?: string;
-    supply?: number;
-    updateFlags?: number;
-    witness?: string;
+    assetGuid: number;
+    description: string;
+    contract: string;
+    supply: number;
+    updateFlags: number;
+    auxfees: AuxFees;
+    witness: string;
 }

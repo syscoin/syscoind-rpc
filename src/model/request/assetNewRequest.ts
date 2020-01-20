@@ -1,3 +1,5 @@
+import { AuxFees } from "../auxFees";
+
 export interface AssetNewRequest {
     address: string;
     symbol: string;
@@ -7,5 +9,6 @@ export interface AssetNewRequest {
     total_supply: number;
     max_supply: number;
     update_flags: number;
+    auxfees: AuxFees;
     witness: string;
 }

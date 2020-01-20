@@ -12,3 +12,4 @@ export const SYSTX = {
   ASSET_ALLOCATION_SEND: 'assetallocationsend',
   ASSET_TRANSFER: 'assettransfer'
 };
+
