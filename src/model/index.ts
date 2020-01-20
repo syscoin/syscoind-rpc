@@ -20,6 +20,7 @@ export * from './syscoinAddressEntry';
 export * from './peerInfo';
 export * from './byteMessageInfo';
 export * from './localAddress';
+export * from './auxFees';
 
 
 
