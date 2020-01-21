@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 import { JsonRpcCall, RpcConfigOptions } from "./index";
 import { JsonRpcRequest } from "./model/request/jsonRpcRequest";
-import { HelpServices } from "./services/helpServices";
+import { HelpServices } from "./services/HelpServices";
 
 export class SyscoinRpcClient {
 

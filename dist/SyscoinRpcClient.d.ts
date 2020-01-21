@@ -1,6 +1,6 @@
 import { JsonRpcCall, RpcConfigOptions } from "./index";
 import { JsonRpcRequest } from "./model/request/jsonRpcRequest";
-import { HelpServices } from "./services/helpServices";
+import { HelpServices } from "./services/HelpServices";
 export declare class SyscoinRpcClient {
     private configOptions;
     private readonly instance;

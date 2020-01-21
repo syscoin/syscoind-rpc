@@ -46,7 +46,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
-var helpServices_1 = require("./services/helpServices");
+var HelpServices_1 = require("./services/HelpServices");
 var SyscoinRpcClient = /** @class */ (function () {
     function SyscoinRpcClient(configOptions) {
         this.configOptions = configOptions;
@@ -55,7 +55,7 @@ var SyscoinRpcClient = /** @class */ (function () {
         this.callRpc = this.callRpc.bind(this);
         this.batch = this.batch.bind(this);
         // init services
-        this.helpService = new helpServices_1.HelpServices(this.callRpc);
+        this.helpService = new HelpServices_1.HelpServices(this.callRpc);
     }
     SyscoinRpcClient.prototype.getStandardResponseFromRpcResponse = function (response) {
         return response.result ? response.result : response;
