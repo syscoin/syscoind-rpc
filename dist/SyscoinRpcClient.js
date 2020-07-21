@@ -88,6 +88,7 @@ var SyscoinRpcClient = /** @class */ (function () {
                                 return [3 /*break*/, 3];
                             case 2:
                                 e_1 = _a.sent();
+                                console.log('caught error', e_1);
                                 if (unwrap && e_1.response.data.error !== undefined) {
                                     console.error("rpc error:", e_1.response);
                                     if (e_1.response.data.error.message.indexOf('ERRCODE') > -1) {
