@@ -50,6 +50,7 @@ export class SyscoinRpcClient {
             return responseFromRpc.data;
           }
         } catch(e) {
+          console.log('caught error', e);
           if (unwrap && e.response.data.error !== undefined) {
             console.error("rpc error:", e.response);
             if(e.response.data.error.message.indexOf('ERRCODE') > -1) {
