@@ -73,7 +73,7 @@ export function rpcServices(callRpc): RPCServiceFunctions {
     // == Generating ==
     generate(...args) { return callThroughToRpc(arguments) },
     generateToAddress(...args) { return callThroughToRpc(arguments) },
-    generateToDescriptors(...args) { return callThroughToRpc(arguments) },
+    generateToDescriptor(...args) { return callThroughToRpc(arguments) },
 
     // == Governance ==
     getGovernanceInfo() { return callThroughToRpc(arguments) },
@@ -249,6 +249,7 @@ export function rpcServices(callRpc): RPCServiceFunctions {
     setHdSeed(...args) { return callThroughToRpc(arguments) },
     setLabel(...args) { return callThroughToRpc(arguments) },
     setTxFee(...args) { return callThroughToRpc(arguments) },
+    setWalletFlag(...args) { return callThroughToRpc(arguments) },
     signMessage(...args) { return callThroughToRpc(arguments) },
     signRawTransactionWithWallet(...args) { return callThroughToRpc(arguments) },
     unloadWallet(...args) { return callThroughToRpc(arguments) },
