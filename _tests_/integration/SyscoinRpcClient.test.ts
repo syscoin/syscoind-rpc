@@ -49,4 +49,14 @@ describe('Syscoin RPC Client Tests', () => {
       expect(typeof result[1]).toBe('string');
     });
   });
+
+  describe('Client options', () => {
+    it('should enable/disable logging', async () => {
+      client = await createClient(configOptions);
+      const clientLoggingOn = await createClient({ ...configOptions, logging: true });
+
+      expect(client.logging).toBe(false);
+      expect(clientLoggingOn.logging).toBe(true);
+    });
+  });
 });

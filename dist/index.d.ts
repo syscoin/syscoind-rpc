@@ -62,6 +62,7 @@ export interface RpcConfigOptions {
     useSsl?: boolean;
     timeout?: number;
     customHttpAgent?: any;
+    logging?: boolean;
 }
 export interface RpcResponse {
     result?: any;
