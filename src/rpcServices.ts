@@ -40,24 +40,74 @@ export function rpcServices(callRpc): RPCServiceFunctions {
     stop() { return callThroughToRpc(arguments) },
     uptime() { return callThroughToRpc(arguments) },
 
-    // == EVO (TODO)==
+    // == EVO ==
+    bls_fromSecret(...args) { return callThroughToRpc(arguments) },
+    bls_generate() { return callThroughToRpc(arguments) },
+    protx_diff(...args) { return callThroughToRpc(arguments) },
+    protx_info(...args) { return callThroughToRpc(arguments) },
+    protx_list(...args) { return callThroughToRpc(arguments) },
+    quorum_dkgSimError(...args) { return callThroughToRpc(arguments) },
+    quorum_dkgStatus(...args) { return callThroughToRpc(arguments) },
+    quorum_getRecSig(...args) { return callThroughToRpc(arguments) },
+    quorum_hasRecSig(...args) { return callThroughToRpc(arguments) },
+    quorum_info(...args) { return callThroughToRpc(arguments) },
+    quorum_isConflicting(...args) { return callThroughToRpc(arguments) },
+    quorum_list(...args) { return callThroughToRpc(arguments) },
+    quorum_memberOf(...args) { return callThroughToRpc(arguments) },
+    quorum_selectQuorum(...args) { return callThroughToRpc(arguments) },
+    quorum_sign(...args) { return callThroughToRpc(arguments) },
+    quorum_verify(...args) { return callThroughToRpc(arguments) },
 
-    // == EVO Wallet (TODO)==
+    // == EVO Wallet ==
+    protx_info_wallet(...args) { return callThroughToRpc(arguments) },
+    protx_list_wallet(...args) { return callThroughToRpc(arguments) },
+    protx_register(...args) { return callThroughToRpc(arguments) },
+    protx_fund(...args) { return callThroughToRpc(arguments) },
+    protx_prepare(...args) { return callThroughToRpc(arguments) },
+    protx_register_prepare(...args) { return callThroughToRpc(arguments) },
+    protx_register_submit(...args) { return callThroughToRpc(arguments) },
+    protx_revoke(...args) { return callThroughToRpc(arguments) },
+    protx_update_registrar(...args) { return callThroughToRpc(arguments) },
+    protx_update_service(...args) { return callThroughToRpc(arguments) },
 
     // == Generating ==
     generate(...args) { return callThroughToRpc(arguments) },
     generateToAddress(...args) { return callThroughToRpc(arguments) },
     generateToDescriptors(...args) { return callThroughToRpc(arguments) },
 
-    // == Governance (TODO)==
+    // == Governance ==
+    getGovernanceInfo() { return callThroughToRpc(arguments) },
+    getSuperblockBudget(...args) { return callThroughToRpc(arguments) },
+    gObject_check(...args) { return callThroughToRpc(arguments) },
+    gObject_count(...args) { return callThroughToRpc(arguments) },
+    gObject_deserialize(...args) { return callThroughToRpc(arguments) },
+    gObject_diff(...args) { return callThroughToRpc(arguments) },
+    gObject_get(...args) { return callThroughToRpc(arguments) },
+    gObject_getCurrentVotes(...args) { return callThroughToRpc(arguments) },
+    gObject_list(...args) { return callThroughToRpc(arguments) },
+    gObject_submit(...args) { return callThroughToRpc(arguments) },
+    gObject_vote_conf(...args) { return callThroughToRpc(arguments) },
+    voteRaw(...args) { return callThroughToRpc(arguments) },
 
-    // == Governance Wallet (TODO)==
+    // == Governance Wallet ==
+    gObject_list_prepared(...args) { return callThroughToRpc(arguments) },
+    gObject_prepare(...args) { return callThroughToRpc(arguments) },
+    gObject_vote_alias(...args) { return callThroughToRpc(arguments) },
+    gObject_vote_many(...args) { return callThroughToRpc(arguments) },
     
-    // == Masternode (TODO)==
+    // == Masternode ==
+    masternode_connect(...args) { return callThroughToRpc(arguments) },
+    masternode_count() { return callThroughToRpc(arguments) },
+    masternode_current() { return callThroughToRpc(arguments) },
+    masternode_list(...args) { return callThroughToRpc(arguments) },
+    masternode_outputs() { return callThroughToRpc(arguments) },
+    masternode_payments(...args) { return callThroughToRpc(arguments) },
+    masternode_status() { return callThroughToRpc(arguments) },
+    masternode_winner() { return callThroughToRpc(arguments) },
+    masternode_winners(...args) { return callThroughToRpc(arguments) },
 
     // == Mining ==
     createAuxBlock(...args) { return callThroughToRpc(arguments) },
-    getAuxBlock(...args) { return callThroughToRpc(arguments) },
     getBlockTemplate(...args) { return callThroughToRpc(arguments) },
     getMiningInfo() { return callThroughToRpc(arguments) },
     getNetworkHashesPerSecond(...args) { return callThroughToRpc(arguments) },

@@ -58,25 +58,71 @@ export interface RPCServiceFunctions {
     stop(): JsonRpcCall<any>;
     uptime(): JsonRpcCall<any>;
 
-    // == EVO (TODO)==
+    // == EVO ==
+    bls_fromSecret(secret: string): JsonRpcCall<any>;
+    bls_generate(): JsonRpcCall<any>;
+    protx_diff(baseBlock: string, block: string): JsonRpcCall<any>;
+    protx_info(proTxHash: string): JsonRpcCall<any>;
+    protx_list(protxType?: string, detailed?: boolean, height?: number): JsonRpcCall<any>;
+    quorum_dkgSimError(errType: string, rate: number): JsonRpcCall<any>;
+    quorum_dkgStatus(detailLevel?: number): JsonRpcCall<any>;
+    quorum_getRecSig(llmqType: number, id: string, msgHash: string): JsonRpcCall<any>;
+    quorum_hasRecSig(llmqType: number, id: string, msgHash: string): JsonRpcCall<any>;
+    quorum_info(llmqType: number, quorumHash: string, includeSkShare?: boolean): JsonRpcCall<any>;
+    quorum_isConflicting(llmqType: number, id: string, msgHash, string): JsonRpcCall<any>;
+    quorum_list(count?: number): JsonRpcCall<any>;
+    quorum_memberOf(proTxHash: string, scanQuorumsCount?: number): JsonRpcCall<any>;
+    quorum_selectQuorum(llmqType: number, id: string): JsonRpcCall<any>;
+    quorum_sign(llmqType: number, id: string, msgHash: string, quorumHash?: string, submit?: boolean): JsonRpcCall<any>;
+    quorum_verify(llmqType: number, id: string, msgHash: string, signature: string, quorumHash?: string, signHeight?: number): JsonRpcCall<any>;
 
-    // == EVO Wallet (TODO)==
+    // == EVO Wallet ==
+    protx_info_wallet(proTxHash: string): JsonRpcCall<any>;
+    protx_list_wallet(detail?: number, height?: number): JsonRpcCall<any>;
+    protx_register(collateralHash: string, collateralIndex, number, ipAndPort: string, ownerAddress: string, operatorPubKey: string, votingAddress: string, operatorReward: number, payoutAddress: string, fundAddress?: string, submit?: boolean): JsonRpcCall<any>;
+    protx_fund(collateralHash: string, ipAndPort: string, ownerAddress: string, operatorPubKey: string, votingAddress: string, operatorReward: number, payoutAddress: string, fundAddress?: string, submit?: boolean): JsonRpcCall<any>;
+    protx_prepare(collateralHash: string, collateralIndex, number, ipAndPort: string, ownerAddress: string, operatorPubKey: string, votingAddress: string, operatorReward: number, payoutAddress: string, fundAddress?: string): JsonRpcCall<any>;
+    protx_register_prepare(collateralHash: string, collateralIndex: number, ipAndPort: string, ownerAddress: string, operatorPubKey: string, votingAddress: string, operatorReward: number, payoutAddress: string, fundAddress?: string): JsonRpcCall<any>;
+    protx_register_submit(tx: string, sig: string): JsonRpcCall<any>;
+    protx_revoke(proTxHash: string, operatorKey: string, reason?: number, feeSourceAddress?: string): JsonRpcCall<any>;
+    protx_update_registrar(proTxHash: string, operatorPubKey: string, votingAddress: string, payoutAddress: string, feeSourceAddress?: string): JsonRpcCall<any>;
+    protx_update_service(proTxHash: string, ipAndPort: string, operatorKey: string, operatorPayoutAddress?: string, feeSourceAddress?: string): JsonRpcCall<any>;
 
     // == Generating ==
     generate(numberOfBlocks: number, maxTries?: number): JsonRpcCall<any>;
     generateToAddress(numberOfBlocks: number, address: string, maxTries?: number): JsonRpcCall<any>;
     generateToDescriptor(numberofBlocks: number, descriptor: string, maxtries?: number): JsonRpcCall<any>;
 
-    // == Governance (TODO)==
+    // == Governance ==
     getGovernanceInfo(): JsonRpcCall<any>;
     getSuperblockBudget(index: number): JsonRpcCall<any>;
+    gObject_check(hex: string): JsonRpcCall<any>;
+    gObject_count(mode?: string): JsonRpcCall<any>;
+    gObject_deserialize(hex: string): JsonRpcCall<any>;
+    gObject_diff(signal?: string, objType?: string): JsonRpcCall<any>;
+    gObject_get(governanceHash: string): JsonRpcCall<any>;
+    gObject_getCurrentVotes(governanceHash: string, txid?: string, vout?: number): JsonRpcCall<any>;
+    gObject_list(signal?: string, objType?: string): JsonRpcCall<any>;
+    gObject_submit(parentHash: string, revision: number, time: number, dataHex: string, feeTxId?: string): JsonRpcCall<any>;
+    gObject_vote_conf(governanceHash: string, vote: string, voteOutcome: string): JsonRpcCall<any>;
     voteRaw(mnTxHash: string, mnTxIndex: number, govHash: string, votSignal: string, vote: string, time: number, voteSig: string): JsonRpcCall<any>;
 
-    // == Governance Wallet (TODO)==
+    // == Governance Wallet ==
+    gObject_list_prepared(count?: number): JsonRpcCall<any>;
+    gObject_prepare(parentHash: string, revision: number, time: number, dataHex: string, outputHash?: string, outputIndex?: number): JsonRpcCall<any>;
+    gObject_vote_alias(governanceHash: string, vote: string, voteOutcome: string, proTxHash: string): JsonRpcCall<any>;
+    gObject_vote_many(governanceHash: string, vote: string, voteOutcome: string): JsonRpcCall<any>;
     
-    // == Masternode (TODO)==
-    masternodeList(mode?: string, filter?: string): JsonRpcCall<any>;
-    sentinelPing(version: number): JsonRpcCall<any>;
+    // == Masternode ==
+    masternode_connect(address: string): JsonRpcCall<any>;
+    masternode_count(): JsonRpcCall<any>;
+    masternode_current(): JsonRpcCall<any>;
+    masternode_list(mode?: string, filter?: string): JsonRpcCall<any>;
+    masternode_outputs(): JsonRpcCall<any>;
+    masternode_payments(blockhash?: string, count?: number): JsonRpcCall<any>;
+    masternode_status(): JsonRpcCall<any>;
+    masternode_winner(): JsonRpcCall<any>;
+    masternode_winners(count?: number, filter?: string): JsonRpcCall<any>;
 
     // == Mining ==
     createAuxBlock(address: string): JsonRpcCall<any>;
