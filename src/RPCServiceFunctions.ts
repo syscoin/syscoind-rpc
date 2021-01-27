@@ -24,6 +24,7 @@ import { AssetUpdateRequest } from "./model/request/assetUpdateRequest";
 
 export interface RPCServiceFunctions {
     getBestBlockHash(): JsonRpcCall<any>;
+    getBestChainlock(): JsonRpcCall<any>;
     getBlock(blockHash: string, verbosity?: number ): JsonRpcCall<any>;
     getBlockchainInfo(): JsonRpcCall<BlockchainInfo>;
     getBlockCount(): JsonRpcCall<any>;
@@ -57,13 +58,28 @@ export interface RPCServiceFunctions {
     stop(): JsonRpcCall<any>;
     uptime(): JsonRpcCall<any>;
 
+    // == EVO (TODO)==
+
+    // == EVO Wallet (TODO)==
+
     // == Generating ==
     generate(numberOfBlocks: number, maxTries?: number): JsonRpcCall<any>;
     generateToAddress(numberOfBlocks: number, address: string, maxTries?: number): JsonRpcCall<any>;
+    generateToDescriptor(numberofBlocks: number, descriptor: string, maxtries?: number): JsonRpcCall<any>;
+
+    // == Governance (TODO)==
+    getGovernanceInfo(): JsonRpcCall<any>;
+    getSuperblockBudget(index: number): JsonRpcCall<any>;
+    voteRaw(mnTxHash: string, mnTxIndex: number, govHash: string, votSignal: string, vote: string, time: number, voteSig: string): JsonRpcCall<any>;
+
+    // == Governance Wallet (TODO)==
+    
+    // == Masternode (TODO)==
+    masternodeList(mode?: string, filter?: string): JsonRpcCall<any>;
+    sentinelPing(version: number): JsonRpcCall<any>;
 
     // == Mining ==
     createAuxBlock(address: string): JsonRpcCall<any>;
-    getAuxBlock(blockHash?: string, auxPow?: string): JsonRpcCall<any>;
     getBlockTemplate(blockTemplate: string): JsonRpcCall<any>;
     getMiningInfo(): JsonRpcCall<any>;
     getNetworkHashesPerSecond(numberOfBlocks: number, blockHeight: number): JsonRpcCall<any>;
@@ -82,10 +98,10 @@ export interface RPCServiceFunctions {
     getNetworkInfo(): JsonRpcCall<NetworkInfo>;
     getNodeAddresses(): JsonRpcCall<any>;
     getPeerInfo(): JsonRpcCall<any>;
-    getInfo(): JsonRpcCall<any>;
     listBanned(): JsonRpcCall<any>;
     ping(): JsonRpcCall<any>;
     setBan(subnet: string, command: string, banTime?: number):JsonRpcCall<any>;
+    setNetworkActive(state: boolean): JsonRpcCall<any>;
 
     // == Rawtransactions ==
     analyzePsbt(pbst: string): JsonRpcCall<any>;
@@ -106,58 +122,49 @@ export interface RPCServiceFunctions {
     testMempoolAccept(rawTxs: Array<string>, maxFeeRate?: number): JsonRpcCall<any>;
     utxoUpdatePsbt(pbst: string): JsonRpcCall<any>;
 
-    // == Syscoin ==
-    addressBalance(address: string): JsonRpcCall<any>;
-    assetAllocationBalance(assetGuid: number, address: string): JsonRpcCall<any>;
-    assetAllocationBurn(assetGuid: number, address: string, amount: number, ethAddress: string): JsonRpcCall<any>;
-    assetAllocationInfo(assetGuid: number, address: string): JsonRpcCall<AssetAllocation>;
-    assetAllocationLock(assetGuid: number, addressFrom: string, txid: string, outputIndex: number, witness?: string): JsonRpcCall<any>;
-    assetAllocationMint(assetGuid: number, address: string, amount: number, blockNum: number, txHex: string, txRootHex: string, merkleProofHex: string, merkleProofPathHex: string, witness?: string): JsonRpcCall<any>;
-    assetAllocationSend(assetGuid: number, addressFrom: string, addressTo: string, amount: number): JsonRpcCall<HexResponse>;
+    // == Syscoin RPC==
     assetAllocationVerifyZdag(txid: string): JsonRpcCall<any>;
-    assetAllocationSendMany(assetGuid: number, addressFrom: string, amounts: AssetAllocationAmount[], witness: string): JsonRpcCall<HexResponse>;
     assetInfo(assetGuid: number): JsonRpcCall<Asset>;
-    assetNew(address: string, symbol: string, public_value: string, contract: string, precision: number, total_supply: number, max_supply: number, update_flags: number,  auxfees: any, witness: string): JsonRpcCall<AssetNewResponse>;
-    assetSend(assetGuid: number, addressTo: string, amount: number): JsonRpcCall<HexResponse>;
-    assetSendMany(assetGuid: number, amounts: AssetAllocationAmount[], witness: string): JsonRpcCall<HexResponse>;
-    assetTransfer(assetGuid: number, address: string, witness: string): JsonRpcCall<HexResponse>;
-    assetUpdate(assetGuid?: number, publicValue?: string, contract?: string, supply?: number, updateFlags?: number, auxfees?: any, witness?: string): JsonRpcCall<HexResponse>;
+    assetTransactionNotarize(hex: string, assetGuid: number, signature: string): JsonRpcCall<any>;
     convertAddress(address: string): JsonRpcCall<any>;
-    getBlockHashByTxid(txid: string): JsonRpcCall<any>;
-    getGovernanceInfo(): JsonRpcCall<any>;
-    getSuperblockBudget(index: number): JsonRpcCall<any>;
-    gObject(command: string): JsonRpcCall<any>;
-    listAssetAllocationMempoolBalances(count?: number, from?: number, query?: AssetAllocationBalanceQuery): JsonRpcCall<any>;
-    listAssetAllocations(count?: number, from?: number, query?: AssetAllocationBalanceQueryWithGuid): JsonRpcCall<any>;
-    listAssetIndex(page?: number, options?: ListAssetIndexOptions): JsonRpcCall<any>;
-    listAssetIndexAllocations(address: string): JsonRpcCall<AssetAllocation[]>;
-    listAssetIndexAssets(address: string): JsonRpcCall<Asset[]>;
+    getNotarySighash(hex: string, assetGuid: number): JsonRpcCall<any>;
     listAssets(count?: number, from?: number, options?: ListAssetOptions): JsonRpcCall<any>;
-    masternode(command: string): JsonRpcCall<any>;
-    masternodeBroadcast(command: string): JsonRpcCall<any>;
-    masternodeList(mode?: string, filter?: string): JsonRpcCall<any>;
     mnSync(command: string): JsonRpcCall<any>;
-    sentinelPing(version: number): JsonRpcCall<any>;
     spork(command: string): JsonRpcCall<any>;
-    syscoinBurn(fundingAddress: string, amount: number, ethAddress: string): JsonRpcCall<any>;
+    syscoinCheckMint(txid: string): JsonRpcCall<any>;
+    syscoinClearEthHeaders(): JsonRpcCall<any>;
     syscoinDecodeRawTransaction(hexString: number): JsonRpcCall<any>;
     syscoinGetSpvProof(txid: string, blockHash?: string): JsonRpcCall<any>;
-    syscoinMint(address: string, amount: number, blockNum: number, txHex: string, txRootHex: string, txMerkleProofHex: string, witness?: string): JsonRpcCall<any>;
+    syscoinGetTxRoots(height: number): JsonRpcCall<any>;
     syscoinSetEthHeaders(headers: EthHeaders): JsonRpcCall<any>;
     syscoinSetEthStatus(syncStatus: string, highestBlock: number): JsonRpcCall<any>;
     syscoinStartGeth(): JsonRpcCall<any>;
     syscoinStopGeth(): JsonRpcCall<any>;
-    syscoinTxFund(hexString: string, address: string, outputIndex: number): JsonRpcCall<any>;
-    tpsTestAdd(startTime, rawTxs?: Array<TpsRawTx>): JsonRpcCall<any>;
-    tpsTestInfo(): JsonRpcCall<any>;
-    tpsTestSetEnabled(enabled: number): JsonRpcCall<any>;
-    voteRaw(mnTxHash: string, mnTxIndex: number, govHash: string, votSignal: string, vote: string, time: number, voteSig: string): JsonRpcCall<any>;
+
+
+    // == Syscoin Wallet==
+    assetAllocationBurn(assetGuid: number, amount: number, ethAddress: string): JsonRpcCall<any>;
+    assetAllocationMint(assetGuid: number, address: string, amount: number, blockNum: number, bridgeTransferId: number, txHex: string, txRootHex: string, merkleProofHex: string, merkleProofPathHex: string, receiptHex: string, receiptRootHex: string, receiptMerkleProofHex: string, auxFeeTest?: boolean): JsonRpcCall<any>;
+    assetAllocationSend(assetGuid: number, addressTo: string, amount: number, replaceable?: boolean): JsonRpcCall<HexResponse>;
+    assetAllocationSendMany(assetGuid: number, addressFrom: string, amounts: AssetAllocationAmount[], witness: string): JsonRpcCall<HexResponse>;
+    assetNew(fundingAmount: number, symbol: string, public_value: string, contract: string, precision: number, max_supply: number, update_flags?: number,  notaryAddress?: string, notaryDetails?: any, auxfeesDetails?: any): JsonRpcCall<AssetNewResponse>;
+    assetSend(assetGuid: number, addressTo: string, amount: number, NFTID?: number): JsonRpcCall<HexResponse>;
+    assetSendMany(assetGuid: number, amounts: AssetAllocationAmount[], witness: string): JsonRpcCall<HexResponse>;
+    assetTransfer(assetGuid: number, address: string): JsonRpcCall<HexResponse>;
+    assetUpdate(assetGuid: number, publicValue: string, contract: string, updateFlags?: number, notaryAddress?: string, notaryDetails?: any, auxfeesDetails?: any): JsonRpcCall<HexResponse>;
+    convertAddressWallet(address: string, label: string, rescan?: boolean): JsonRpcCall<any>;
+    getAuxBlock(hash?: string, auxpow?: string): JsonRpcCall<any>;
+    listUnspentAsset(assetGuid: number, minConf?: number): JsonRpcCall<any>;
+    signHash(address: string, hash: string): JsonRpcCall<any>;
+    signMessageBech32(address: string, message: string): JsonRpcCall<any>;
+    syscoinBurnToAssetAllocation(assetGuid: number, amount: number): JsonRpcCall<any>;
 
     // == Util ==
     createMultiSig(numberOfRequiredSignatures: number, keys: Array<string>, addressType?: string): JsonRpcCall<any>;
     deriveAddress(descriptor: string, range?: number): JsonRpcCall<any>;
     estimateSmartFee(confTarget: number, estimateMode?: string): JsonRpcCall<any>;
     getDescriptorInfo(descriptor: string): JsonRpcCall<any>;
+    getIndexInfo(indexName?: string): JsonRpcCall<any>;
     signMessageWithPrivKey(privateKey: string, message: string): JsonRpcCall<any>;
     validateAddress(address: string): JsonRpcCall<any>;
     verifyMessage(address: string, signature: string, message: string): JsonRpcCall<any>;
@@ -175,6 +182,7 @@ export interface RPCServiceFunctions {
     getAddressesByLabel(label: string): JsonRpcCall<any>;
     getAddressInfo(address: string): JsonRpcCall<AddressInfo>;
     getBalance(dummy: string, minconf: number, includeWatchOnly: number): JsonRpcCall<any>;
+    getBalances(): JsonRpcCall<any>;
     getNewAddress(label?: string, addressType?: string): JsonRpcCall<any>;
     getRawChangeAddress(addressType?: string): JsonRpcCall<any>;
     getReceivedByAddress(address: string, minConf?: number): JsonRpcCall<any>;
@@ -183,6 +191,7 @@ export interface RPCServiceFunctions {
     getUnconfirmedBalance(): JsonRpcCall<any>;
     getWalletInfo(): JsonRpcCall<WalletInfo>;
     importAddress(address: string, label?: string, rescan?: number, p2sh?: number): JsonRpcCall<any>;
+    importDescriptors(requests: any): JsonRpcCall<any>;
     importMulti(requests: string, options: any): JsonRpcCall<any>;
     importPrivKey(key: string, label?: string, rescan?: number): JsonRpcCall<any>;
     importPrunedFunds(rawTx: string, txOutProof: string): JsonRpcCall<any>;
@@ -201,22 +210,32 @@ export interface RPCServiceFunctions {
     listWallets(): JsonRpcCall<any>;
     loadWallet(fileName: string): JsonRpcCall<any>;
     lockUnspent(unlock: number, txs?: Array<{ txid: string, vout: number }>): JsonRpcCall<any>;
+    psbtBumpFee(txid: string, options?: any): JsonRpcCall<any>;
     removePrunedFunds(txid: string): JsonRpcCall<any>;
     rescanBlockchain(start?: number, stop?: number): JsonRpcCall<any>;
+    send(txObj: any, confTarget?: number, estMode?: string, feeRate?: string, options?: any): JsonRpcCall<any>;
     sendMany(dummy: string, amounts: Array<{ [address: string]: number }>, minConf?: number, comment?: string, subtractFeeFrom?: Array<string>, replaceable?: boolean, confTarget?: number, estimateMode?: string): JsonRpcCall<any>;
     sendToAddress(address: string, amount: number, minConf?: number, comment?: string, comment_to?: string, subtractFeeFromAmount?: number, replaceable?: boolean, confTarget?: number, estimateMode?: string): JsonRpcCall<any>;
+    // To be re-implemented - start
     sendFrom(fundingAddress: string, address: string, amount: number): JsonRpcCall<HexResponse>;
+    // To be re-implemented - end
     setHdSeed(newKeyPool?: number, seed?: string): JsonRpcCall<any>;
     setLabel(address: string, label: string): JsonRpcCall<any>;
     setTxFee(amount: number): JsonRpcCall<any>;
+    setWalletFlag(flag: string, value?: boolean): JsonRpcCall<any>;
     signMessage(address: string, message: string): JsonRpcCall<any>;
     signRawTransactionWithWallet(hexString: string, rawTxs?: Array<RawTx>, sigHashType?: string): JsonRpcCall<any>;
     unloadWallet(walletName?: string): JsonRpcCall<any>;
+    upgradeWallet(version?: number): JsonRpcCall<any>;
     walletCreateFundedPsbt(txs: any, amounts: any, lockTime?: any, options?: any, bip32derivs?: any): JsonRpcCall<any>;
     walletLock(): JsonRpcCall<any>;
     walletPassphrase(passphrase: string, timeout: number): JsonRpcCall<any>;
     walletPassphraseChange(oldPass: string, newPass: string): JsonRpcCall<any>;
     walletProcessPsbt(pbst: string, sign?: number, sigHashType?: string, bip32derivs?: number): JsonRpcCall<any>;
+
+    // == Wallet ==
+    getZmqNotifications(): JsonRpcCall<any>;
+
     // @formatter:on
 
   //exposed for unit testing

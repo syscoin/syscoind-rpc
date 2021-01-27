@@ -6,6 +6,7 @@ export function rpcServices(callRpc): RPCServiceFunctions {
     // @formatter:off
     // == Blockchain ==
     getBestBlockHash() { return callThroughToRpc(arguments) },
+    getBestChainlock() { return callThroughToRpc(arguments) },
     getBlock(...args) { return callThroughToRpc(arguments) },
     getBlockchainInfo() { return callThroughToRpc(arguments) },
     getBlockCount() { return callThroughToRpc(arguments) },
@@ -39,9 +40,20 @@ export function rpcServices(callRpc): RPCServiceFunctions {
     stop() { return callThroughToRpc(arguments) },
     uptime() { return callThroughToRpc(arguments) },
 
+    // == EVO (TODO)==
+
+    // == EVO Wallet (TODO)==
+
     // == Generating ==
     generate(...args) { return callThroughToRpc(arguments) },
     generateToAddress(...args) { return callThroughToRpc(arguments) },
+    generateToDescriptors(...args) { return callThroughToRpc(arguments) },
+
+    // == Governance (TODO)==
+
+    // == Governance Wallet (TODO)==
+    
+    // == Masternode (TODO)==
 
     // == Mining ==
     createAuxBlock(...args) { return callThroughToRpc(arguments) },
@@ -64,10 +76,10 @@ export function rpcServices(callRpc): RPCServiceFunctions {
     getNetworkInfo() { return callThroughToRpc(arguments) },
     getNodeAddresses() { return callThroughToRpc(arguments) },
     getPeerInfo() { return callThroughToRpc(arguments) },
-    getInfo() { return callThroughToRpc(arguments) },
     listBanned() { return callThroughToRpc(arguments) },
     ping() { return callThroughToRpc(arguments) },
     setBan(...args) { return callThroughToRpc(arguments) },
+    setNetworkActive(...args) { return callThroughToRpc(arguments) },
 
     // == Rawtransactions ==
     analyzePsbt(...args) { return callThroughToRpc(arguments) },
@@ -88,58 +100,48 @@ export function rpcServices(callRpc): RPCServiceFunctions {
     testMempoolAccept(...args) { return callThroughToRpc(arguments) },
     utxoUpdatePsbt(...args) { return callThroughToRpc(arguments) },
 
-    // == Syscoin ==
-    addressBalance(...args) { return callThroughToRpc(arguments) },
-    assetAllocationBalance(...args) { return callThroughToRpc(arguments) },
+    // == Syscoin RPC==
+    assetAllocationVerifyZdag(...args) { return callThroughToRpc(arguments) },
+    assetInfo(...args) { return callThroughToRpc(arguments) },
+    assetTransactionNotarize(...args) { return callThroughToRpc(arguments) },
+    convertAddress(...args) { return callThroughToRpc(arguments) },
+    getNotarySighash(...args) { return callThroughToRpc(arguments) },
+    listAssets(...args) { return callThroughToRpc(arguments) },
+    mnSync(...args) { return callThroughToRpc(arguments) },
+    spork(...args) { return callThroughToRpc(arguments) },
+    syscoinCheckMint(...args) { return callThroughToRpc(arguments) },
+    syscoinClearEthHeaders() { return callThroughToRpc(arguments) },
+    syscoinDecodeRawTransaction(...args) { return callThroughToRpc(arguments) },
+    syscoinGetSpvProof(...args) { return callThroughToRpc(arguments) },
+    syscoinGetTxRoots(...args) { return callThroughToRpc(arguments) },
+    syscoinSetEthHeaders(...args) { return callThroughToRpc(arguments) },
+    syscoinSetEthStatus(...args) { return callThroughToRpc(arguments) },
+    syscoinStartGeth() { return callThroughToRpc(arguments) },
+    syscoinStopGeth() { return callThroughToRpc(arguments) },
+
+    // == Syscoin Wallet==
     assetAllocationBurn(...args) { return callThroughToRpc(arguments) },
-    assetAllocationInfo(...args) { return callThroughToRpc(arguments) },
-    assetAllocationLock(...args) { return callThroughToRpc(arguments) },
     assetAllocationMint(...args) { return callThroughToRpc(arguments) },
     assetAllocationSend(...args) { return callThroughToRpc(arguments) },
-    assetAllocationVerifyZdag(...args) { return callThroughToRpc(arguments) },
     assetAllocationSendMany(...args) { return callThroughToRpc(arguments) },
-    assetInfo(...args) { return callThroughToRpc(arguments) },
     assetNew(...args) { return callThroughToRpc(arguments) },
     assetSend(...args) { return callThroughToRpc(arguments) },
     assetSendMany(...args) { return callThroughToRpc(arguments) },
     assetTransfer(...args) { return callThroughToRpc(arguments) },
     assetUpdate(...args) { return callThroughToRpc(arguments) },
-    convertAddress(...args) { return callThroughToRpc(arguments) },
-    getBlockHashByTxid(...args) { return callThroughToRpc(arguments) },
-    getGovernanceInfo() { return callThroughToRpc(arguments) },
-    getSuperblockBudget(...args) { return callThroughToRpc(arguments) },
-    gObject(...args) { return callThroughToRpc(arguments) },
-    listAssetAllocationMempoolBalances(...args) { return callThroughToRpc(arguments) },
-    listAssetAllocations(...args) { return callThroughToRpc(arguments) },
-    listAssetIndex(...args) { return callThroughToRpc(arguments) },
-    listAssetIndexAllocations(...args) { return callThroughToRpc(arguments) },
-    listAssetIndexAssets(...args) { return callThroughToRpc(arguments) },
-    listAssets(...args) { return callThroughToRpc(arguments) },
-    masternode(...args) { return callThroughToRpc(arguments) },
-    masternodeBroadcast(...args) { return callThroughToRpc(arguments) },
-    masternodeList(...args) { return callThroughToRpc(arguments) },
-    mnSync(...args) { return callThroughToRpc(arguments) },
-    sentinelPing(...args) { return callThroughToRpc(arguments) },
-    spork(...args) { return callThroughToRpc(arguments) },
-    syscoinBurn(...args) { return callThroughToRpc(arguments) },
-    syscoinDecodeRawTransaction(...args) { return callThroughToRpc(arguments) },
-    syscoinGetSpvProof(...args) { return callThroughToRpc(arguments) },
-    syscoinMint(...args) { return callThroughToRpc(arguments) },
-    syscoinSetEthHeaders(...args) { return callThroughToRpc(arguments) },
-    syscoinSetEthStatus(...args) { return callThroughToRpc(arguments) },
-    syscoinStartGeth() { return callThroughToRpc(arguments) },
-    syscoinStopGeth() { return callThroughToRpc(arguments) },
-    syscoinTxFund(...args){ return callThroughToRpc(arguments) },
-    tpsTestAdd(...args) { return callThroughToRpc(arguments) },
-    tpsTestInfo() { return callThroughToRpc(arguments) },
-    tpsTestSetEnabled(...args) { return callThroughToRpc(arguments) },
-    voteRaw(...args){ return callThroughToRpc(arguments) },
+    convertAddressWallet(...args) { return callThroughToRpc(arguments) },
+    getAuxBlock(...args) { return callThroughToRpc(arguments) },
+    listUnspentAsset(...args) { return callThroughToRpc(arguments) },
+    signHash(...args) { return callThroughToRpc(arguments) },
+    signMessageBech32(...args) { return callThroughToRpc(arguments) },
+    syscoinBurnToAssetAllocation(...args) { return callThroughToRpc(arguments) },
 
     // == Util ==
     createMultiSig(...args) { return callThroughToRpc(arguments) },
     deriveAddress(...args) { return callThroughToRpc(arguments) },
     estimateSmartFee(...args) { return callThroughToRpc(arguments) },
     getDescriptorInfo(...args) { return callThroughToRpc(arguments) },
+    getIndexInfo(...args) { return callThroughToRpc(arguments) },
     signMessageWithPrivKey(...args) { return callThroughToRpc(arguments) },
     validateAddress(...args) { return callThroughToRpc(arguments) },
     verifyMessage(...args) { return callThroughToRpc(arguments) },
@@ -157,6 +159,7 @@ export function rpcServices(callRpc): RPCServiceFunctions {
     getAddressesByLabel(...args) { return callThroughToRpc(arguments) },
     getAddressInfo(...args) { return callThroughToRpc(arguments) },
     getBalance(...args) { return callThroughToRpc(arguments) },
+    getBalances() { return callThroughToRpc(arguments) },
     getNewAddress(...args) { return callThroughToRpc(arguments) },
     getRawChangeAddress(...args) { return callThroughToRpc(arguments) },
     getReceivedByAddress(...args) { return callThroughToRpc(arguments) },
@@ -165,6 +168,7 @@ export function rpcServices(callRpc): RPCServiceFunctions {
     getUnconfirmedBalance() { return callThroughToRpc(arguments) },
     getWalletInfo() { return callThroughToRpc(arguments) },
     importAddress(...args) { return callThroughToRpc(arguments) },
+    importDescriptors(...args) { return callThroughToRpc(arguments) },
     importMulti(...args) { return callThroughToRpc(arguments) },
     importPrivKey(...args) { return callThroughToRpc(arguments) },
     importPrunedFunds(...args) { return callThroughToRpc(arguments) },
@@ -183,22 +187,30 @@ export function rpcServices(callRpc): RPCServiceFunctions {
     listWallets() { return callThroughToRpc(arguments) },
     loadWallet(...args) { return callThroughToRpc(arguments) },
     lockUnspent(...args) { return callThroughToRpc(arguments) },
+    psbtBumpFee(...args) { return callThroughToRpc(arguments) },
     removePrunedFunds(...args) { return callThroughToRpc(arguments) },
     rescanBlockchain(...args) { return callThroughToRpc(arguments) },
+    send(...args) { return callThroughToRpc(arguments) },
     sendMany(...args) { return callThroughToRpc(arguments) },
     sendToAddress(...args) { return callThroughToRpc(arguments) },
+    // To be re-implemented -start
     sendFrom(...args) { return callThroughToRpc(arguments) },
+    // To be re-implemented -end
     setHdSeed(...args) { return callThroughToRpc(arguments) },
     setLabel(...args) { return callThroughToRpc(arguments) },
     setTxFee(...args) { return callThroughToRpc(arguments) },
     signMessage(...args) { return callThroughToRpc(arguments) },
     signRawTransactionWithWallet(...args) { return callThroughToRpc(arguments) },
     unloadWallet(...args) { return callThroughToRpc(arguments) },
+    upgradeWallet(...args) { return callThroughToRpc(arguments) },
     walletCreateFundedPsbt(...args) { return callThroughToRpc(arguments) },
     walletLock() { return callThroughToRpc(arguments) },
     walletPassphrase(...args) { return callThroughToRpc(arguments) },
     walletPassphraseChange(...args) { return callThroughToRpc(arguments) },
     walletProcessPsbt(...args) { return callThroughToRpc(arguments) },
+
+    // == Wallet ==
+    getZmqNotifications(...args) { return callThroughToRpc(arguments) },
     // @formatter:on
 
     //exposed for unit testing
