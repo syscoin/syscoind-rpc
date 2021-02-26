@@ -170,10 +170,10 @@ export interface RPCServiceFunctions {
 
     // == Syscoin RPC==
     assetAllocationVerifyZdag(txid: string): JsonRpcCall<any>;
-    assetInfo(assetGuid: number): JsonRpcCall<Asset>;
-    assetTransactionNotarize(hex: string, assetGuid: number, signature: string): JsonRpcCall<any>;
+    assetInfo(assetGuid: string): JsonRpcCall<Asset>;
+    assetTransactionNotarize(hex: string, assetGuid: string, signature: string): JsonRpcCall<any>;
     convertAddress(address: string): JsonRpcCall<any>;
-    getNotarySighash(hex: string, assetGuid: number): JsonRpcCall<any>;
+    getNotarySighash(hex: string, assetGuid: string): JsonRpcCall<any>;
     listAssets(count?: number, from?: number, options?: ListAssetOptions): JsonRpcCall<any>;
     mnSync(command: string): JsonRpcCall<any>;
     spork(command: string): JsonRpcCall<any>;
@@ -189,21 +189,21 @@ export interface RPCServiceFunctions {
 
 
     // == Syscoin Wallet==
-    assetAllocationBurn(assetGuid: number, amount: number, ethAddress: string): JsonRpcCall<any>;
-    assetAllocationMint(assetGuid: number, address: string, amount: number, blockNum: number, bridgeTransferId: number, txHex: string, txRootHex: string, merkleProofHex: string, merkleProofPathHex: string, receiptHex: string, receiptRootHex: string, receiptMerkleProofHex: string, auxFeeTest?: boolean): JsonRpcCall<any>;
-    assetAllocationSend(assetGuid: number, addressTo: string, amount: number, replaceable?: boolean): JsonRpcCall<HexResponse>;
-    assetAllocationSendMany(assetGuid: number, addressFrom: string, amounts: AssetAllocationAmount[], witness: string): JsonRpcCall<HexResponse>;
+    assetAllocationBurn(assetGuid: string, amount: number, ethAddress: string): JsonRpcCall<any>;
+    assetAllocationMint(assetGuid: string, address: string, amount: number, blockNum: number, bridgeTransferId: number, txHex: string, txRootHex: string, merkleProofHex: string, merkleProofPathHex: string, receiptHex: string, receiptRootHex: string, receiptMerkleProofHex: string, auxFeeTest?: boolean): JsonRpcCall<any>;
+    assetAllocationSend(assetGuid: string, addressTo: string, amount: number, replaceable?: boolean): JsonRpcCall<HexResponse>;
+    assetAllocationSendMany(assetGuid: string, addressFrom: string, amounts: AssetAllocationAmount[], witness: string): JsonRpcCall<HexResponse>;
     assetNew(fundingAmount: number, symbol: string, public_value: string, contract: string, precision: number, max_supply: number, update_flags?: number,  notaryAddress?: string, notaryDetails?: any, auxfeesDetails?: any): JsonRpcCall<AssetNewResponse>;
-    assetSend(assetGuid: number, addressTo: string, amount: number, NFTID?: number): JsonRpcCall<HexResponse>;
-    assetSendMany(assetGuid: number, amounts: AssetAllocationAmount[], witness: string): JsonRpcCall<HexResponse>;
-    assetTransfer(assetGuid: number, address: string): JsonRpcCall<HexResponse>;
-    assetUpdate(assetGuid: number, publicValue: string, contract: string, updateFlags?: number, notaryAddress?: string, notaryDetails?: any, auxfeesDetails?: any): JsonRpcCall<HexResponse>;
+    assetSend(assetGuid: string, addressTo: string, amount: number, NFTID?: string): JsonRpcCall<HexResponse>;
+    assetSendMany(assetGuid: string, amounts: AssetAllocationAmount[], witness: string): JsonRpcCall<HexResponse>;
+    assetTransfer(assetGuid: string, address: string): JsonRpcCall<HexResponse>;
+    assetUpdate(assetGuid: string, publicValue: string, contract: string, updateFlags?: number, notaryAddress?: string, notaryDetails?: any, auxfeesDetails?: any): JsonRpcCall<HexResponse>;
     convertAddressWallet(address: string, label: string, rescan?: boolean): JsonRpcCall<any>;
     getAuxBlock(hash?: string, auxpow?: string): JsonRpcCall<any>;
-    listUnspentAsset(assetGuid: number, minConf?: number): JsonRpcCall<any>;
+    listUnspentAsset(assetGuid: string, minConf?: number): JsonRpcCall<any>;
     signHash(address: string, hash: string): JsonRpcCall<any>;
     signMessageBech32(address: string, message: string): JsonRpcCall<any>;
-    syscoinBurnToAssetAllocation(assetGuid: number, amount: number): JsonRpcCall<any>;
+    syscoinBurnToAssetAllocation(assetGuid: string, amount: number): JsonRpcCall<any>;
 
     // == Util ==
     createMultiSig(numberOfRequiredSignatures: number, keys: Array<string>, addressType?: string): JsonRpcCall<any>;
