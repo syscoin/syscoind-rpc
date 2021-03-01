@@ -192,10 +192,10 @@ export interface RPCServiceFunctions {
     assetAllocationBurn(assetGuid: string, amount: number, ethAddress: string): JsonRpcCall<any>;
     assetAllocationMint(assetGuid: string, address: string, amount: number, blockNum: number, bridgeTransferId: number, txHex: string, txRootHex: string, merkleProofHex: string, merkleProofPathHex: string, receiptHex: string, receiptRootHex: string, receiptMerkleProofHex: string, auxFeeTest?: boolean): JsonRpcCall<any>;
     assetAllocationSend(assetGuid: string, addressTo: string, amount: number, replaceable?: boolean): JsonRpcCall<HexResponse>;
-    assetAllocationSendMany(assetGuid: string, addressFrom: string, amounts: AssetAllocationAmount[], witness: string): JsonRpcCall<HexResponse>;
+    assetAllocationSendMany(assetGuid: string, addressFrom: string, amounts: AssetAllocationAmount[]): JsonRpcCall<HexResponse>;
     assetNew(fundingAmount: number, symbol: string, public_value: string, contract: string, precision: number, max_supply: number, update_flags?: number,  notaryAddress?: string, notaryDetails?: any, auxfeesDetails?: any): JsonRpcCall<AssetNewResponse>;
     assetSend(assetGuid: string, addressTo: string, amount: number, NFTID?: string): JsonRpcCall<HexResponse>;
-    assetSendMany(assetGuid: string, amounts: AssetAllocationAmount[], witness: string): JsonRpcCall<HexResponse>;
+    assetSendMany(assetGuid: string, amounts: AssetAllocationAmount[]): JsonRpcCall<HexResponse>;
     assetTransfer(assetGuid: string, address: string): JsonRpcCall<HexResponse>;
     assetUpdate(assetGuid: string, publicValue: string, contract: string, updateFlags?: number, notaryAddress?: string, notaryDetails?: any, auxfeesDetails?: any): JsonRpcCall<HexResponse>;
     convertAddressWallet(address: string, label: string, rescan?: boolean): JsonRpcCall<any>;
