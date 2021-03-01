@@ -189,15 +189,15 @@ export interface RPCServiceFunctions {
 
 
     // == Syscoin Wallet==
-    assetAllocationBurn(assetGuid: string, amount: number, ethAddress: string): JsonRpcCall<any>;
+    assetAllocationBurn(assetGuid: string, amount: number | string, ethAddress?: string): JsonRpcCall<any>;
     assetAllocationMint(assetGuid: string, address: string, amount: number, blockNum: number, bridgeTransferId: number, txHex: string, txRootHex: string, merkleProofHex: string, merkleProofPathHex: string, receiptHex: string, receiptRootHex: string, receiptMerkleProofHex: string, auxFeeTest?: boolean): JsonRpcCall<any>;
-    assetAllocationSend(assetGuid: string, addressTo: string, amount: number, replaceable?: boolean): JsonRpcCall<HexResponse>;
-    assetAllocationSendMany(assetGuid: string, addressFrom: string, amounts: AssetAllocationAmount[]): JsonRpcCall<HexResponse>;
-    assetNew(fundingAmount: number, symbol: string, public_value: string, contract: string, precision: number, max_supply: number, update_flags?: number,  notaryAddress?: string, notaryDetails?: any, auxfeesDetails?: any): JsonRpcCall<AssetNewResponse>;
-    assetSend(assetGuid: string, addressTo: string, amount: number, NFTID?: string): JsonRpcCall<HexResponse>;
-    assetSendMany(assetGuid: string, amounts: AssetAllocationAmount[]): JsonRpcCall<HexResponse>;
-    assetTransfer(assetGuid: string, address: string): JsonRpcCall<HexResponse>;
-    assetUpdate(assetGuid: string, publicValue: string, contract: string, updateFlags?: number, notaryAddress?: string, notaryDetails?: any, auxfeesDetails?: any): JsonRpcCall<HexResponse>;
+    assetAllocationSend(assetGuid: string, address: string, amount: number | string, sysAmount?: number | string, replaceable?: boolean): JsonRpcCall<any>;
+    assetAllocationSendMany(amounts: AssetAllocationAmount[], replaceable?: boolean, comment?: string, conf_target?: number, estimate_mode?: string): JsonRpcCall<any>;
+    assetNew(fundingAmount: number | string, symbol: string, description: string, contract: string, precision: number, max_supply: number | string, update_flags?: number,  notaryAddress?: string, notaryDetails?: any, auxfeesDetails?: any): JsonRpcCall<AssetNewResponse>;
+    assetSend(assetGuid: string, address: string, amount: number | string, sysAmount: number | string, NFTID?: string): JsonRpcCall<any>;
+    assetSendMany(assetGuid: string, amounts: AssetAllocationAmount[]): JsonRpcCall<any>;
+    assetTransfer(assetGuid: string, address: string): JsonRpcCall<any>;
+    assetUpdate(assetGuid: string, description: string, contract: string, updateFlags?: number, notaryAddress?: string, notaryDetails?: any, auxfeesDetails?: any): JsonRpcCall<any>;
     convertAddressWallet(address: string, label: string, rescan?: boolean): JsonRpcCall<any>;
     getAuxBlock(hash?: string, auxpow?: string): JsonRpcCall<any>;
     listUnspentAsset(assetGuid: string, minConf?: number): JsonRpcCall<any>;
