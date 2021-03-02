@@ -170,6 +170,8 @@ export function rpcServices(callRpc): RPCServiceFunctions {
     syscoinStopGeth() { return callThroughToRpc(arguments) },
 
     // == Syscoin Wallet==
+    addressBalance(...args) { return callThroughToRpc(arguments) },
+    assetAllocationBalance(...args) { return callThroughToRpc(arguments) },
     assetAllocationBurn(...args) { return callThroughToRpc(arguments) },
     assetAllocationMint(...args) { return callThroughToRpc(arguments) },
     assetAllocationSend(...args) { return callThroughToRpc(arguments) },
@@ -182,6 +184,7 @@ export function rpcServices(callRpc): RPCServiceFunctions {
     convertAddressWallet(...args) { return callThroughToRpc(arguments) },
     getAuxBlock(...args) { return callThroughToRpc(arguments) },
     listUnspentAsset(...args) { return callThroughToRpc(arguments) },
+    sendFrom(...args) { return callThroughToRpc(arguments) },
     signHash(...args) { return callThroughToRpc(arguments) },
     signMessageBech32(...args) { return callThroughToRpc(arguments) },
     syscoinBurnToAssetAllocation(...args) { return callThroughToRpc(arguments) },
@@ -243,9 +246,6 @@ export function rpcServices(callRpc): RPCServiceFunctions {
     send(...args) { return callThroughToRpc(arguments) },
     sendMany(...args) { return callThroughToRpc(arguments) },
     sendToAddress(...args) { return callThroughToRpc(arguments) },
-    // To be re-implemented -start
-    sendFrom(...args) { return callThroughToRpc(arguments) },
-    // To be re-implemented -end
     setHdSeed(...args) { return callThroughToRpc(arguments) },
     setLabel(...args) { return callThroughToRpc(arguments) },
     setTxFee(...args) { return callThroughToRpc(arguments) },

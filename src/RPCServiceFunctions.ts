@@ -189,6 +189,8 @@ export interface RPCServiceFunctions {
 
 
     // == Syscoin Wallet==
+    addressBalance(address: string[], minConf?: number, maxConf?: number): JsonRpcCall<any>;
+    assetAllocationBalance(assetGuid: string, address?: string[], minConf?: number, verbose?: number): JsonRpcCall<any>;
     assetAllocationBurn(assetGuid: string, amount: number | string, ethAddress?: string): JsonRpcCall<any>;
     assetAllocationMint(assetGuid: string, address: string, amount: number, blockNum: number, bridgeTransferId: number, txHex: string, txRootHex: string, merkleProofHex: string, merkleProofPathHex: string, receiptHex: string, receiptRootHex: string, receiptMerkleProofHex: string, auxFeeTest?: boolean): JsonRpcCall<any>;
     assetAllocationSend(assetGuid: string, address: string, amount: number | string, sysAmount?: number | string, replaceable?: boolean): JsonRpcCall<any>;
@@ -201,6 +203,7 @@ export interface RPCServiceFunctions {
     convertAddressWallet(address: string, label: string, rescan?: boolean): JsonRpcCall<any>;
     getAuxBlock(hash?: string, auxpow?: string): JsonRpcCall<any>;
     listUnspentAsset(assetGuid: string, minConf?: number): JsonRpcCall<any>;
+    sendFrom(fundingAddress: string, address: string, amount: number| string, minConf?: number, maxConf?: number): JsonRpcCall<any>;
     signHash(address: string, hash: string): JsonRpcCall<any>;
     signMessageBech32(address: string, message: string): JsonRpcCall<any>;
     syscoinBurnToAssetAllocation(assetGuid: string, amount: number): JsonRpcCall<any>;
@@ -262,9 +265,6 @@ export interface RPCServiceFunctions {
     send(txObj: any, confTarget?: number, estMode?: string, feeRate?: string, options?: any): JsonRpcCall<any>;
     sendMany(dummy: string, amounts: Array<{ [address: string]: number }>, minConf?: number, comment?: string, subtractFeeFrom?: Array<string>, replaceable?: boolean, confTarget?: number, estimateMode?: string): JsonRpcCall<any>;
     sendToAddress(address: string, amount: number, minConf?: number, comment?: string, comment_to?: string, subtractFeeFromAmount?: number, replaceable?: boolean, confTarget?: number, estimateMode?: string): JsonRpcCall<any>;
-    // To be re-implemented - start
-    sendFrom(fundingAddress: string, address: string, amount: number): JsonRpcCall<HexResponse>;
-    // To be re-implemented - end
     setHdSeed(newKeyPool?: number, seed?: string): JsonRpcCall<any>;
     setLabel(address: string, label: string): JsonRpcCall<any>;
     setTxFee(amount: number): JsonRpcCall<any>;
