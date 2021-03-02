@@ -6,7 +6,7 @@ export function rpcServices(callRpc): RPCServiceFunctions {
     // @formatter:off
     // == Blockchain ==
     getBestBlockHash() { return callThroughToRpc(arguments) },
-    getBestChainlock() { return callThroughToRpc(arguments) },
+    getChainlocks() { return callThroughToRpc(arguments) },
     getBlock(...args) { return callThroughToRpc(arguments) },
     getBlockchainInfo() { return callThroughToRpc(arguments) },
     getBlockCount() { return callThroughToRpc(arguments) },
