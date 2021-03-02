@@ -2,6 +2,10 @@ import { createClient } from '../utilities';
 import config from "../config";
 import { SyscoinRpcClient } from "../../src/SyscoinRpcClient";
 
+// https://github.com/axios/axios/issues/2654
+import axios from 'axios';
+axios.defaults.adapter = require('axios/lib/adapters/http');
+
 const configOptions = config;
 
 describe('Syscoin RPC Client Tests', () => {
