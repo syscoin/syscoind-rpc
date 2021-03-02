@@ -24,7 +24,7 @@ import { AssetUpdateRequest } from "./model/request/assetUpdateRequest";
 
 export interface RPCServiceFunctions {
     getBestBlockHash(): JsonRpcCall<any>;
-    getBestChainlock(): JsonRpcCall<any>;
+    getChainlocks(): JsonRpcCall<any>;
     getBlock(blockHash: string, verbosity?: number ): JsonRpcCall<any>;
     getBlockchainInfo(): JsonRpcCall<BlockchainInfo>;
     getBlockCount(): JsonRpcCall<any>;
