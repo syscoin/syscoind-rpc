@@ -2,6 +2,10 @@ import { createClient } from '../utilities';
 import config from "../config";
 import { SyscoinRpcClient } from "../../src/SyscoinRpcClient";
 
+// https://github.com/axios/axios/issues/2654
+import axios from 'axios';
+axios.defaults.adapter = require('axios/lib/adapters/http');
+
 const configOptions = config;
 
 describe('Syscoin RPC Client Tests', () => {
@@ -47,6 +51,16 @@ describe('Syscoin RPC Client Tests', () => {
       expect(result.length).toBe(2);
       expect(typeof result[0]).toBe('string');
       expect(typeof result[1]).toBe('string');
+    });
+  });
+
+  describe('Client options', () => {
+    it('should enable/disable logging', async () => {
+      client = await createClient(configOptions);
+      const clientLoggingOn = await createClient({ ...configOptions, logging: true });
+
+      expect(client.logging).toBe(false);
+      expect(clientLoggingOn.logging).toBe(true);
     });
   });
 });

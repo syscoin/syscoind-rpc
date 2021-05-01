@@ -6,6 +6,7 @@ export declare class SyscoinRpcClient {
     private readonly instance;
     private readonly url;
     helpService: HelpServices;
+    logging: boolean;
     constructor(configOptions: RpcConfigOptions);
     private getStandardResponseFromRpcResponse;
     private getRequestObject;

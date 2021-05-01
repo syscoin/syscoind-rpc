@@ -9,6 +9,7 @@ export class SyscoinRpcClient {
   private readonly url: string;
 
   public helpService: HelpServices;
+  public logging: boolean = false;
 
   constructor(private configOptions: RpcConfigOptions) {
 
@@ -26,6 +27,10 @@ export class SyscoinRpcClient {
 
     // init services
     this.helpService = new HelpServices(this.callRpc);
+
+    if (this.configOptions.logging) {
+      this.logging = true;
+    }
   }
 
   private getStandardResponseFromRpcResponse(response) {
@@ -50,9 +55,13 @@ export class SyscoinRpcClient {
             return responseFromRpc.data;
           }
         } catch(e) {
-          console.log('caught error', e);
+          if (this.logging) {
+            console.log('caught error', e);
+          }
           if (unwrap && e.response.data.error !== undefined) {
-            console.error("rpc error:", e.response);
+            if (this.logging) {
+              console.error("rpc error:", e.response);
+            }
             if(e.response.data.error.message.indexOf('ERRCODE') > -1) {
               throw new Error(e.response.data.error.message.substr(e.response.data.error.message.indexOf('ERRCODE')));
             }else {

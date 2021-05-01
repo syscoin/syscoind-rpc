@@ -50,12 +50,16 @@ var HelpServices_1 = require("./services/HelpServices");
 var SyscoinRpcClient = /** @class */ (function () {
     function SyscoinRpcClient(configOptions) {
         this.configOptions = configOptions;
+        this.logging = false;
         this.instance = axios_1.default.create(SyscoinRpcClient.createConfigurationObject(this.configOptions.username, this.configOptions.password, this.configOptions.useSsl, this.configOptions.timeout, this.configOptions.customHttpAgent));
         this.url = (this.configOptions.useSsl ? "https" : "http") + "://" + this.configOptions.host + ":" + this.configOptions.rpcPort;
         this.callRpc = this.callRpc.bind(this);
         this.batch = this.batch.bind(this);
         // init services
         this.helpService = new HelpServices_1.HelpServices(this.callRpc);
+        if (this.configOptions.logging) {
+            this.logging = true;
+        }
     }
     SyscoinRpcClient.prototype.getStandardResponseFromRpcResponse = function (response) {
         return response.result ? response.result : response;
@@ -88,9 +92,13 @@ var SyscoinRpcClient = /** @class */ (function () {
                                 return [3 /*break*/, 3];
                             case 2:
                                 e_1 = _a.sent();
-                                console.log('caught error', e_1);
+                                if (this.logging) {
+                                    console.log('caught error', e_1);
+                                }
                                 if (unwrap && e_1.response.data.error !== undefined) {
-                                    console.error("rpc error:", e_1.response);
+                                    if (this.logging) {
+                                        console.error("rpc error:", e_1.response);
+                                    }
                                     if (e_1.response.data.error.message.indexOf('ERRCODE') > -1) {
                                         throw new Error(e_1.response.data.error.message.substr(e_1.response.data.error.message.indexOf('ERRCODE')));
                                     }

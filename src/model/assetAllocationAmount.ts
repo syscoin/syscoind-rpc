@@ -1,4 +1,6 @@
 export interface AssetAllocationAmount {
+  assetGuid: string;
   address: string;
-  amount: number;
+  amount: number | string;
+  sysAmount: number | string;
 }
