@@ -25,7 +25,8 @@ const config = {
   logLevel: 'error'
 };
 const client = new SyscoinRpcClient(config);
-const info = await rpcServices(client.callRpc).getBestBlockHash().call();
+const rpc = rpcServices(client.callRpc);
+const info = await rpc.getBestBlockHash().call();
 ```
 
 *NodeJS*
@@ -41,7 +42,8 @@ const config = {
   logLevel: 'error'
 };
 const client = new SyscoinRpcClient(config);
-const info = rpcServices(client.callRpc).getBestBlockHash().call();
+const rpc = rpcServices(client.callRpc);
+const info = await rpc.getBestBlockHash().call();
 ```
 
 ### Batch Calls
@@ -49,8 +51,8 @@ const info = rpcServices(client.callRpc).getBestBlockHash().call();
 Batch requests can be constructed using the `batch` function. Results will be an array based on the requests.
 ```
 const result = await client.batch([
-  rpcServices(client.callRpc).getBestBlockHash(),
-  rpcServices(client.callRpc).getWallteInfo()]);
+  rpc.getBestBlockHash(),
+  rpc.getWallteInfo()]);
 
 // result[0] = getBestBlockHash result
 // result[1] = getWalletInfo result
@@ -65,14 +67,14 @@ optionally disable this to process the full wrapped object.
 
 *Example single call with unwrapping disabled*
 ```
-const result = await rpcServices(client.callRpc).getBestBlockHash().call(false);
+const result = await rpc.getBestBlockHash().call(false);
 ```
 
 *Example batch call with unwrapping disabled*
 ```
 const result = await client.batch([
-  rpcServices(client.callRpc).getBestBlockHash(),
-  rpcServices(client.callRpc).getWallteInfo()], false);
+  rpc.getBestBlockHash(),
+  rpc.getWallteInfo()], false);
 ```
 
 ## Contributing
