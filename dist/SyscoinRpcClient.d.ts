@@ -1,8 +1,12 @@
-import { JsonRpcRequest, JsonRpcCall, RpcConfigOptions } from "./index";
+import { JsonRpcCall, RpcConfigOptions } from "./index";
+import { JsonRpcRequest } from "./model/request/jsonRpcRequest";
+import { HelpServices } from "./services/HelpServices";
 export declare class SyscoinRpcClient {
     private configOptions;
-    private instance;
+    private readonly instance;
     private readonly url;
+    helpService: HelpServices;
+    logging: boolean;
     constructor(configOptions: RpcConfigOptions);
     private getStandardResponseFromRpcResponse;
     private getRequestObject;
@@ -13,6 +17,6 @@ export declare class SyscoinRpcClient {
         };
         timeout: any;
     };
-    callRpc(methodName: string, args?: Array<any>): JsonRpcCall;
+    callRpc<ReturnType>(methodName: string, args?: Array<any>): JsonRpcCall<ReturnType>;
     batch(requests: JsonRpcRequest[], unwrapResponses?: boolean): Promise<any[]>;
 }

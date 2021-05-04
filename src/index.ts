@@ -1,7 +1,10 @@
 export * from "./SyscoinRpcClient"
 export * from "./rpcServices"
 export * from "./RPCServiceFunctions"
-export * from "./model/models";
+export * from "./model/index";
+export * from "./model/request/index";
+export * from "./model/response/index";
+
 
 export interface RawTx {
   txid: string;
@@ -72,6 +75,7 @@ export interface RpcConfigOptions {
   useSsl?: boolean;
   timeout?: number;
   customHttpAgent?: any;
+  logging?: boolean;
 }
 
 export interface RpcResponse {

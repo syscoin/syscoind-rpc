@@ -1,15 +1,14 @@
 {
   "name": "@syscoin/syscoin-js",
-  "version": "4.0.2",
+  "version": "4.2.0",
   "description": "Javascript SDK for the Syscoin cryptocurrency.",
   "main": "dist/",
   "typings": "dist/",
   "scripts": {
     "build": "tsc",
-    "test": "node dist/test.js",
+    "test": "jest",
     "build-test": "npm run build && npm run test",
-    "webpack": "webpack",
-    "start:dev": "webpack-dev-server"
+    "version-bump": "npm --no-git-tag-version version patch"
   },
   "repository": {
     "type": "git",
@@ -35,5 +34,8 @@
     "jest": "^24.8.0",
     "ts-jest": "^24.0.2",
     "ts-loader": "^6.0.0"
+  },
+  "peerDependencies": {
+    "axios": ">=0.18.1"
   }
 }

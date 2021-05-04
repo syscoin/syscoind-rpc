@@ -1,3 +1,14 @@
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -35,13 +46,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
+var HelpServices_1 = require("./services/HelpServices");
 var SyscoinRpcClient = /** @class */ (function () {
     function SyscoinRpcClient(configOptions) {
         this.configOptions = configOptions;
+        this.logging = false;
         this.instance = axios_1.default.create(SyscoinRpcClient.createConfigurationObject(this.configOptions.username, this.configOptions.password, this.configOptions.useSsl, this.configOptions.timeout, this.configOptions.customHttpAgent));
         this.url = (this.configOptions.useSsl ? "https" : "http") + "://" + this.configOptions.host + ":" + this.configOptions.rpcPort;
         this.callRpc = this.callRpc.bind(this);
         this.batch = this.batch.bind(this);
+        // init services
+        this.helpService = new HelpServices_1.HelpServices(this.callRpc);
+        if (this.configOptions.logging) {
+            this.logging = true;
+        }
     }
     SyscoinRpcClient.prototype.getStandardResponseFromRpcResponse = function (response) {
         return response.result ? response.result : response;
@@ -51,18 +69,18 @@ var SyscoinRpcClient = /** @class */ (function () {
         var url = this.url;
         var getStandardResponseFromRpcResponse = this.getStandardResponseFromRpcResponse;
         return {
-            data: {
-                jsonrpc: "1.0",
-                method: methodName.toLowerCase(),
-                params: args ? Array.from(args).filter(function (element) { return element !== undefined; }) : []
-            },
+            jsonrpc: "1.0",
+            method: methodName.toLowerCase(),
+            params: args ? Array.from(args).filter(function (element) { return element !== undefined; }) : [],
             call: function (unwrap) {
                 if (unwrap === void 0) { unwrap = true; }
                 return __awaiter(this, void 0, void 0, function () {
-                    var responseFromRpc;
+                    var responseFromRpc, e_1;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
-                            case 0: return [4 /*yield*/, instance.post(url, this.data)];
+                            case 0:
+                                _a.trys.push([0, 2, , 3]);
+                                return [4 /*yield*/, instance.post(url, __assign({}, this))];
                             case 1:
                                 responseFromRpc = _a.sent();
                                 if (unwrap) {
@@ -71,7 +89,28 @@ var SyscoinRpcClient = /** @class */ (function () {
                                 else {
                                     return [2 /*return*/, responseFromRpc.data];
                                 }
-                                return [2 /*return*/];
+                                return [3 /*break*/, 3];
+                            case 2:
+                                e_1 = _a.sent();
+                                if (this.logging) {
+                                    console.log('caught error', e_1);
+                                }
+                                if (unwrap && e_1.response.data.error !== undefined) {
+                                    if (this.logging) {
+                                        console.error("rpc error:", e_1.response);
+                                    }
+                                    if (e_1.response.data.error.message.indexOf('ERRCODE') > -1) {
+                                        throw new Error(e_1.response.data.error.message.substr(e_1.response.data.error.message.indexOf('ERRCODE')));
+                                    }
+                                    else {
+                                        throw new Error(e_1.response.data.error.message);
+                                    }
+                                }
+                                else {
+                                    throw new Error(JSON.stringify(e_1.response));
+                                }
+                                return [3 /*break*/, 3];
+                            case 3: return [2 /*return*/];
                         }
                     });
                 });
@@ -92,11 +131,9 @@ var SyscoinRpcClient = /** @class */ (function () {
         }
         return configurationObject;
     };
-    //this needs to be defined in constructor so the THIS references get setup
     SyscoinRpcClient.prototype.callRpc = function (methodName, args) {
         return this.getRequestObject(methodName, args);
     };
-    //this needs to be defined in constructor so the THIS references get setup
     SyscoinRpcClient.prototype.batch = function (requests, unwrapResponses) {
         if (unwrapResponses === void 0) { unwrapResponses = true; }
         return __awaiter(this, void 0, void 0, function () {
@@ -122,4 +159,3 @@ var SyscoinRpcClient = /** @class */ (function () {
     return SyscoinRpcClient;
 }());
 exports.SyscoinRpcClient = SyscoinRpcClient;
-//# sourceMappingURL=SyscoinRpcClient.js.map
