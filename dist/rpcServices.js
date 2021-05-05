@@ -4,6 +4,7 @@ function rpcServices(callRpc) {
         // @formatter:off
         // == Blockchain ==
         getBestBlockHash: function () { return callThroughToRpc(arguments); },
+        getChainlocks: function () { return callThroughToRpc(arguments); },
         getBlock: function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
@@ -161,6 +162,184 @@ function rpcServices(callRpc) {
         },
         stop: function () { return callThroughToRpc(arguments); },
         uptime: function () { return callThroughToRpc(arguments); },
+        // == EVO ==
+        bls_fromSecret: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        bls_generate: function () { return callThroughToRpc(arguments); },
+        protx_diff: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        protx_info: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        protx_list: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        quorum_dkgSimError: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        quorum_dkgStatus: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        quorum_getRecSig: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        quorum_hasRecSig: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        quorum_info: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        quorum_isConflicting: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        quorum_list: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        quorum_memberOf: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        quorum_selectQuorum: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        quorum_sign: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        quorum_verify: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        // == EVO Wallet ==
+        protx_info_wallet: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        protx_list_wallet: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        protx_register: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        protx_fund: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        protx_prepare: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        protx_register_prepare: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        protx_register_submit: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        protx_revoke: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        protx_update_registrar: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        protx_update_service: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
         // == Generating ==
         generate: function () {
             var args = [];
@@ -176,15 +355,157 @@ function rpcServices(callRpc) {
             }
             return callThroughToRpc(arguments);
         },
-        // == Mining ==
-        createAuxBlock: function () {
+        generateToDescriptor: function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
             }
             return callThroughToRpc(arguments);
         },
-        getAuxBlock: function () {
+        // == Governance ==
+        getGovernanceInfo: function () { return callThroughToRpc(arguments); },
+        getSuperblockBudget: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        gObject_check: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        gObject_count: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        gObject_deserialize: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        gObject_diff: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        gObject_get: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        gObject_getCurrentVotes: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        gObject_list: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        gObject_submit: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        gObject_vote_conf: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        voteRaw: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        // == Governance Wallet ==
+        gObject_list_prepared: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        gObject_prepare: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        gObject_vote_alias: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        gObject_vote_many: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        // == Masternode ==
+        masternode_connect: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        masternode_count: function () { return callThroughToRpc(arguments); },
+        masternode_current: function () { return callThroughToRpc(arguments); },
+        masternode_list: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        masternode_outputs: function () { return callThroughToRpc(arguments); },
+        masternode_payments: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        masternode_status: function () { return callThroughToRpc(arguments); },
+        masternode_winner: function () { return callThroughToRpc(arguments); },
+        masternode_winners: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        // == Mining ==
+        createAuxBlock: function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
@@ -262,10 +583,16 @@ function rpcServices(callRpc) {
         getNetworkInfo: function () { return callThroughToRpc(arguments); },
         getNodeAddresses: function () { return callThroughToRpc(arguments); },
         getPeerInfo: function () { return callThroughToRpc(arguments); },
-        getInfo: function () { return callThroughToRpc(arguments); },
         listBanned: function () { return callThroughToRpc(arguments); },
         ping: function () { return callThroughToRpc(arguments); },
         setBan: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        setNetworkActive: function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
@@ -392,7 +719,109 @@ function rpcServices(callRpc) {
             }
             return callThroughToRpc(arguments);
         },
-        // == Syscoin ==
+        // == Syscoin RPC==
+        assetAllocationVerifyZdag: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        assetInfo: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        assetTransactionNotarize: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        convertAddress: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        getNotarySighash: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        listAssets: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        mnSync: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        spork: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        syscoinCheckMint: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        syscoinClearEthHeaders: function () { return callThroughToRpc(arguments); },
+        syscoinDecodeRawTransaction: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        syscoinGetSpvProof: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        syscoinGetTxRoots: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        syscoinSetEthHeaders: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        syscoinSetEthStatus: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        syscoinStartGeth: function () { return callThroughToRpc(arguments); },
+        syscoinStopGeth: function () { return callThroughToRpc(arguments); },
+        // == Syscoin Wallet==
         addressBalance: function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
@@ -414,20 +843,6 @@ function rpcServices(callRpc) {
             }
             return callThroughToRpc(arguments);
         },
-        assetAllocationInfo: function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return callThroughToRpc(arguments);
-        },
-        assetAllocationLock: function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return callThroughToRpc(arguments);
-        },
         assetAllocationMint: function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
@@ -442,21 +857,7 @@ function rpcServices(callRpc) {
             }
             return callThroughToRpc(arguments);
         },
-        assetAllocationVerifyZdag: function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return callThroughToRpc(arguments);
-        },
         assetAllocationSendMany: function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return callThroughToRpc(arguments);
-        },
-        assetInfo: function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
@@ -498,186 +899,49 @@ function rpcServices(callRpc) {
             }
             return callThroughToRpc(arguments);
         },
-        convertAddress: function () {
+        convertAddressWallet: function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
             }
             return callThroughToRpc(arguments);
         },
-        getBlockHashByTxid: function () {
+        getAuxBlock: function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
             }
             return callThroughToRpc(arguments);
         },
-        getGovernanceInfo: function () { return callThroughToRpc(arguments); },
-        getSuperblockBudget: function () {
+        listUnspentAsset: function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
             }
             return callThroughToRpc(arguments);
         },
-        gObject: function () {
+        sendFrom: function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
             }
             return callThroughToRpc(arguments);
         },
-        listAssetAllocationMempoolBalances: function () {
+        signHash: function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
             }
             return callThroughToRpc(arguments);
         },
-        listAssetAllocations: function () {
+        signMessageBech32: function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
             }
             return callThroughToRpc(arguments);
         },
-        listAssetIndex: function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return callThroughToRpc(arguments);
-        },
-        listAssetIndexAllocations: function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return callThroughToRpc(arguments);
-        },
-        listAssetIndexAssets: function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return callThroughToRpc(arguments);
-        },
-        listAssets: function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return callThroughToRpc(arguments);
-        },
-        masternode: function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return callThroughToRpc(arguments);
-        },
-        masternodeBroadcast: function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return callThroughToRpc(arguments);
-        },
-        masternodeList: function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return callThroughToRpc(arguments);
-        },
-        mnSync: function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return callThroughToRpc(arguments);
-        },
-        sentinelPing: function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return callThroughToRpc(arguments);
-        },
-        spork: function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return callThroughToRpc(arguments);
-        },
-        syscoinBurn: function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return callThroughToRpc(arguments);
-        },
-        syscoinDecodeRawTransaction: function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return callThroughToRpc(arguments);
-        },
-        syscoinGetSpvProof: function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return callThroughToRpc(arguments);
-        },
-        syscoinMint: function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return callThroughToRpc(arguments);
-        },
-        syscoinSetEthHeaders: function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return callThroughToRpc(arguments);
-        },
-        syscoinSetEthStatus: function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return callThroughToRpc(arguments);
-        },
-        syscoinStartGeth: function () { return callThroughToRpc(arguments); },
-        syscoinStopGeth: function () { return callThroughToRpc(arguments); },
-        syscoinTxFund: function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return callThroughToRpc(arguments);
-        },
-        tpsTestAdd: function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return callThroughToRpc(arguments);
-        },
-        tpsTestInfo: function () { return callThroughToRpc(arguments); },
-        tpsTestSetEnabled: function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return callThroughToRpc(arguments);
-        },
-        voteRaw: function () {
+        syscoinBurnToAssetAllocation: function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
@@ -707,6 +971,13 @@ function rpcServices(callRpc) {
             return callThroughToRpc(arguments);
         },
         getDescriptorInfo: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        getIndexInfo: function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
@@ -813,6 +1084,7 @@ function rpcServices(callRpc) {
             }
             return callThroughToRpc(arguments);
         },
+        getBalances: function () { return callThroughToRpc(arguments); },
         getNewAddress: function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
@@ -851,6 +1123,13 @@ function rpcServices(callRpc) {
         getUnconfirmedBalance: function () { return callThroughToRpc(arguments); },
         getWalletInfo: function () { return callThroughToRpc(arguments); },
         importAddress: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        importDescriptors: function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
@@ -959,6 +1238,13 @@ function rpcServices(callRpc) {
             }
             return callThroughToRpc(arguments);
         },
+        psbtBumpFee: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
         removePrunedFunds: function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
@@ -973,6 +1259,13 @@ function rpcServices(callRpc) {
             }
             return callThroughToRpc(arguments);
         },
+        send: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
         sendMany: function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
@@ -981,13 +1274,6 @@ function rpcServices(callRpc) {
             return callThroughToRpc(arguments);
         },
         sendToAddress: function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return callThroughToRpc(arguments);
-        },
-        sendFrom: function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
@@ -1015,6 +1301,13 @@ function rpcServices(callRpc) {
             }
             return callThroughToRpc(arguments);
         },
+        setWalletFlag: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
         signMessage: function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
@@ -1030,6 +1323,13 @@ function rpcServices(callRpc) {
             return callThroughToRpc(arguments);
         },
         unloadWallet: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        upgradeWallet: function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
@@ -1059,6 +1359,14 @@ function rpcServices(callRpc) {
             return callThroughToRpc(arguments);
         },
         walletProcessPsbt: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return callThroughToRpc(arguments);
+        },
+        // == Wallet ==
+        getZmqNotifications: function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
